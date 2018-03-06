@@ -10,19 +10,19 @@ $config = [
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'language' => 'es-ES',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'D_AfmowMgIcvBIHLn2fQUegDj08Hqy5V',
+            'cookieValidationKey' => 'pih5PdO-ldsms9h0QGfRAHK3yIxny96N',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\Usuarios',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
