@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/c17d35df/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/e5c190f2/solarized_light.css" rel="stylesheet">
+<link href="./assets/abbb5d3f/style.css" rel="stylesheet">
+<script src="./assets/ff804b3a/jquery.js"></script>
+<script src="./assets/c17d35df/js/bootstrap.js"></script>
+<script src="./assets/5d94b131/jssearch.js"></script>    <title>Guía del proyecto</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w82" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w82-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">Guía del proyecto</a></div><div id="w82-collapse" class="collapse navbar-collapse"><ul id="w83" class="navbar-nav nav"><li><a href="./api/index.html">Class reference</a></li>
+<li><a href="./README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-72" data-toggle="collapse" data-parent="#navigation">Descripción general <b class="caret"></b></a><div id="navigation-72" class="submenu panel-collapse collapse"><a class="list-group-item" href="./descripcion.html#funcionalidad-principal-de-la-aplicacion">Funcionalidad principal de la aplicación</a>
+<a class="list-group-item" href="./descripcion.html#objetivos-generales">Objetivos generales</a>
+<a class="list-group-item" href="./descripcion.html#url-del-repositorio">URL del repositorio</a>
+<a class="list-group-item" href="./descripcion.html#url-de-la-documentacion">URL de la documentación</a></div>
+<a class="list-group-item" href="#navigation-73" data-toggle="collapse" data-parent="#navigation">Instrucciones de instalación y despliegue <b class="caret"></b></a><div id="navigation-73" class="submenu panel-collapse collapse"><a class="list-group-item" href="./instalacion.html#en-local">En local</a>
+<a class="list-group-item" href="./instalacion.html#en-la-nube">En la nube</a></div>
+<a class="list-group-item" href="#navigation-74" data-toggle="collapse" data-parent="#navigation">Catálogo de requisitos <b class="caret"></b></a><div id="navigation-74" class="submenu panel-collapse collapse"><a class="list-group-item" href="./requisitos.html#cuadro-resumen">Cuadro resumen</a></div>
+<a class="list-group-item" href="#navigation-75" data-toggle="collapse" data-parent="#navigation">Manual de usuario <b class="caret"></b></a><div id="navigation-75" class="submenu panel-collapse collapse"><a class="list-group-item" href="./manual.html">Manual de usuario</a></div>
+<a class="list-group-item" href="#navigation-76" data-toggle="collapse" data-parent="#navigation">Decisiones adoptadas <b class="caret"></b></a><div id="navigation-76" class="submenu panel-collapse collapse"><a class="list-group-item" href="./decisiones.html">Decisiones adoptadas</a></div>
+<a class="list-group-item" href="#navigation-77" data-toggle="collapse" data-parent="#navigation">Dificultades encontradas <b class="caret"></b></a><div id="navigation-77" class="submenu panel-collapse collapse"><a class="list-group-item" href="./dificultades.html">Dificultades encontradas</a></div>
+<a class="list-group-item" href="#navigation-78" data-toggle="collapse" data-parent="#navigation">Diagramas <b class="caret"></b></a><div id="navigation-78" class="submenu panel-collapse collapse"><a class="list-group-item" href="./diagramas.html#diagramas-de-clases">Diagramas de clases</a>
+<a class="list-group-item" href="./diagramas.html#diagramas-de-estructura-logica-de-datos">Diagramas de estructura lógica de datos</a></div>
+<a class="list-group-item" href="#navigation-79" data-toggle="collapse" data-parent="#navigation">Glosario de términos <b class="caret"></b></a><div id="navigation-79" class="submenu panel-collapse collapse"><a class="list-group-item" href="./glosario.html">Glosario de términos</a></div>
+<a class="list-group-item" href="#navigation-80" data-toggle="collapse" data-parent="#navigation">Conclusiones <b class="caret"></b></a><div id="navigation-80" class="submenu panel-collapse collapse"><a class="list-group-item" href="./conclusiones.html">Conclusiones</a></div>
+<a class="list-group-item" href="#navigation-81" data-toggle="collapse" data-parent="#navigation">Anexos <b class="caret"></b></a><div id="navigation-81" class="submenu panel-collapse collapse"><a class="list-group-item" href="./anexos.html">Anexos</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Catálogo de requisitos <span id="catalogo-de-requisitos"></span><a href="#catalogo-de-requisitos" class="hashlink">&para;</a></h1><table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R01</strong>     </th><th align="left"><strong>Registro de usuarios</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá a un usuario registrarse en la aplicación web para poder acceder a las distintas funcionalidades.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/1">1</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R02</strong>     </th><th align="left"><strong>Perfil de usuario</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá visualizar todos los datos de un usuario concreto.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/2">2</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R03</strong>     </th><th align="left"><strong>Modificación de usuarios</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá a un usuario registrado, modificar sus datos desde su perfil.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/3">3</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R04</strong>     </th><th align="left"><strong>Baja de usuarios</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá a un usuario registrado, darse de baja de la web</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Opcional</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/4">4</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R05</strong>     </th><th align="left"><strong>Inicio de sesión </strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá a un usuario registrado, iniciar sesión a través de un formulario en la web.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/5">5</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R06</strong>     </th><th align="left"><strong>Login/Registro con Google</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá al usuario registrarse e iniciar sesión a través de un botón de Google que vincule la cuenta.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Opcional</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Difícil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/6">6</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R07</strong>     </th><th align="left"><strong>Avatar de usuario</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá a un usuario registrado poder subir un avatar, y así poder mostrarse en sus publicaciones.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/7">7</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R08</strong>     </th><th align="left"><strong>Confirmación de usuario por correo</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se enviará al usuario un correo de confirmación, una vez se haya registrado, para que active la cuenta</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/8">8</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R09</strong>     </th><th align="left"><strong>Recordar sesión</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá, al iniciar sesión, darle la posibilidad al usuario de recordar su sesión, para que no se le vuelva a pedir que inicie sesión.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/9">9</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R10</strong>     </th><th align="left"><strong>Recuperación de contraseña</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá recuperar la contraseña si se le ha olvidado al usuario, recuperándola a través del correo electrónico..</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Opcional</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/10">10</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R11</strong>     </th><th align="left"><strong>Alta de videojuegos del usuario</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá a un usuario registrado, publicar un videojuego para intercambiar.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/11">11</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R12</strong>     </th><th align="left"><strong>Baja de videojuegos del usuario</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá a un usuario registrado, dar de baja un videojuego previamente publicado (siempre que no esté ya intercambiado).</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/12">12</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R13</strong>     </th><th align="left"><strong>Visualizar ofertas</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá a un usuario registrado visualizar una lista con las ofertas que le ha llegado.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/13">13</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R14</strong>     </th><th align="left"><strong>Hacer oferta</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá a un usuario registrado hacer una oferta a un usuario, sobre un videojuego que esté publicado.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/14">14</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R15</strong>     </th><th align="left"><strong>Aceptar/Rechazar oferta</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá a un usuario registrado aceptar/rechazar una oferta que se le haya enviado.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/15">15</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R16</strong>     </th><th align="left"><strong>Realizar oferta</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá realizar una oferta a otro usuario sobre su videojuego publicado, ofreciéndole uno de los juegos que tengamos publicados.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/16">16</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R17</strong>     </th><th align="left"><strong>Realizar contraoferta</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá realizar una contraoferta de una oferta, seleccionando un videojuego que tenga publicado el usuario que hace la oferta.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Difícil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/17">17</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R18</strong>     </th><th align="left"><strong>Búsqueda de videojuegos</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá realizar una búsqueda de videojuegos publicados por el título del videojuego.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/18">18</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R19</strong>     </th><th align="left"><strong>Email de oferta</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se enviará al usuario que ha publicado un juego, cuando se le envíe una oferta.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Opcional</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Difícil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/19">19</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R20</strong>     </th><th align="left"><strong>Visualizar mensajes privados</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá a un usuario registrado visualizar los mensajes que les ha enviado otro usuario</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/20">20</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R21</strong>     </th><th align="left"><strong>Enviar mensaje privado</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá a un usuario registrado enviar un mensaje privado a otro usuario del sitio web</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/21">21</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R22</strong>     </th><th align="left"><strong>Mostrar mensajes pendientes</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se mostrará en la pantalla de inicio, una alerta con el número de mensajes que tiene el usuario sin leer.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/22">22</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R23</strong>     </th><th align="left"><strong>Listado de usuarios mejores valorados</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se listará los usuarios con mejor valoración de la aplicación.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/23">23</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R24</strong>     </th><th align="left"><strong>Listado de últimos videojuegos publicados</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se listará los videojuegos que se han publicado recientemente por los usuarios en la aplicación.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/24">24</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R25</strong>     </th><th align="left"><strong>Solicitar nuevo videojuego</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Los usuarios podrán solicitar el alta de un nuevo videojuego que no esté incluído en la base de datos. Posteriormente, esto será comprobado por el Administrador, y éste aceptará o rechazará la solicitud.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Opcional</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/25">25</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R26</strong>     </th><th align="left"><strong>Alta de videojuegos</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá a los administradores dar de alta un videojuego</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/26">26</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R27</strong>     </th><th align="left"><strong>Baja de videojuegos</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá a los administradores dar de baja un videojuego de la base de datos.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/27">27</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R28</strong>     </th><th align="left"><strong>Modificación de videojuegos</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá a los administradores modificar un videojuego</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/28">28</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R29</strong>     </th><th align="left"><strong>Mapa con usuarios cercanos</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se podrá visualizar un mapa con los usuarios más cercanos a nuestra posición que tengan videojuegos publicados.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Difícil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/29">29</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R30</strong>     </th><th align="left"><strong>Valorar un intercambio</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá al usuario, una vez que haya aceptado una oferta, valorar el intercambio</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/30">30</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R31</strong>     </th><th align="left"><strong>Visualizar valoraciones pendientes</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá al usuario visualizar un listado de las valoraciones pendientes de realizar</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/31">31</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R32</strong>     </th><th align="left"><strong>Reportar usuario</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá a un usuario realizar un reporte a un usuario específico. Posteriormente esto será revisado por un administrador.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/32">32</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R33</strong>     </th><th align="left"><strong>Listar reportes </strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá a los administradores visualizar una lista de reportes que envían los usuarios</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/33">33</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R34</strong>     </th><th align="left"><strong>Subir fotos de los juegos</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá al usuario al publicar un videojuego, poder subir fotos para que así los otros usuarios puedan visualizar el estado del juego.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Opcional</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Difícil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/34">34</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R35</strong>     </th><th align="left"><strong>Videojuegos</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se almacenará el título, género, fecha de lanzamiento, sinopsis, y la caratula.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Información</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/35">35</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R36</strong>     </th><th align="left"><strong>Usuarios</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se almacenará el nombre de usuario, email, dirección, nombre real, avatar y el rol del mismo.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Información</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/36">36</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R37</strong>     </th><th align="left"><strong>Ofertas</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se almacenará los usuarios que están implicados en la oferta (tanto el usuario que oferta, como el usuario que publica el juego), y también el estado de la oferta (si está aceptada o rechazada)</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Información</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/37">37</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R38</strong>     </th><th align="left"><strong>Mensajes</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se almacenará los usuarios que están implicados en el mensaje (el receptor y el emisor), la fecha de envío, el contenido, y si se encuentra leído el mensaje.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Información</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/38">38</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R39</strong>     </th><th align="left"><strong>Reportes</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se almacenará el emisor del reporte, hacia quien va el reporte, el texto explicando la causa del reporte, así como la fecha de envío del reporte.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Información</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/39">39</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R40</strong>     </th><th align="left"><strong>Validación de formularios</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/40">40</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R41</strong>     </th><th align="left"><strong>Gestión de ventanas</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/41">41</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R42</strong>     </th><th align="left"><strong>Uso de manejo de eventos</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/42">42</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R43</strong>     </th><th align="left"><strong>Uso y manipulación del DOM</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/43">43</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R44</strong>     </th><th align="left"><strong>Almacenamiento en cliente</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/44">44</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R45</strong>     </th><th align="left"><strong>Uso de jQuery</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/45">45</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R46</strong>     </th><th align="left"><strong>Uso de plugin no trabajado</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/46">46</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R47</strong>     </th><th align="left"><strong>Uso de AJAX</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/47">47</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R48</strong>     </th><th align="left"><strong>PHP 7.1</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/48">48</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R49</strong>     </th><th align="left"><strong>Yii2 2.0.10</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/49">49</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R50</strong>     </th><th align="left"><strong>PostgreSQL 9.6</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/50">50</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R51</strong>     </th><th align="left"><strong>Despliegue en Heroku</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/51">51</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R52</strong>     </th><th align="left"><strong>Pruebas con Codeception</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/52">52</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R53</strong>     </th><th align="left"><strong>Validar con Code Climate</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/53">53</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R54</strong>     </th><th align="left"><strong>Escalabilidad</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/54">54</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R55</strong>     </th><th align="left"><strong>Uso de HTML5</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/55">55</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R56</strong>     </th><th align="left"><strong>Uso de CSS</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/56">56</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R57</strong>     </th><th align="left"><strong>Diseño flexible</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/57">57</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R58</strong>     </th><th align="left"><strong>Animaciones y contenido multimedia</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/58">58</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R59</strong>     </th><th align="left"><strong>Uso de microdatos</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/59">59</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R60</strong>     </th><th align="left"><strong>Validación de HTML y CSS, nivel de accesibilidad AA y prueba del seis</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/60">60</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R61</strong>     </th><th align="left"><strong>Implementar para varias resoluciones</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/61">61</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R62</strong>     </th><th align="left"><strong>Comprobación en varios navegadores</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/62">62</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R63</strong>     </th><th align="left"><strong>Desplegar en un Host</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/63">63</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R64</strong>     </th><th align="left"><strong>Desplegar en un servidor local</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/jlnarvaez/tradegame/issues/64">64</a></td></tr>
+</tbody>
+</table>
+<h2>Cuadro resumen <span id="cuadro-resumen"></span><a href="#cuadro-resumen" class="hashlink">&para;</a></h2><table class="table table-bordered table-striped">
+<thead>
+<tr><th align="left"><strong>Requisito</strong> </th><th align="center"><strong>Prioridad</strong> </th><th align="center"><strong>Tipo</strong> </th><th align="center"><strong>Complejidad</strong> </th><th align="center"><strong>Entrega</strong> </th><th align="center"><strong>Incidencia</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="left">(<strong>R01</strong>) Registro de usuarios </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/1">1</a></td></tr>
+<tr><td align="left">(<strong>R02</strong>) Perfil de usuario </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/2">2</a></td></tr>
+<tr><td align="left">(<strong>R03</strong>) Modificación de usuarios </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/3">3</a></td></tr>
+<tr><td align="left">(<strong>R04</strong>) Baja de usuarios </td><td align="center">Opcional </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/4">4</a></td></tr>
+<tr><td align="left">(<strong>R05</strong>) Inicio de sesión  </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/5">5</a></td></tr>
+<tr><td align="left">(<strong>R06</strong>) Login/Registro con Google </td><td align="center">Opcional </td><td align="center">Funcional </td><td align="center">Difícil </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/6">6</a></td></tr>
+<tr><td align="left">(<strong>R07</strong>) Avatar de usuario </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/7">7</a></td></tr>
+<tr><td align="left">(<strong>R08</strong>) Confirmación de usuario por correo </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/8">8</a></td></tr>
+<tr><td align="left">(<strong>R09</strong>) Recordar sesión </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/9">9</a></td></tr>
+<tr><td align="left">(<strong>R10</strong>) Recuperación de contraseña </td><td align="center">Opcional </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/10">10</a></td></tr>
+<tr><td align="left">(<strong>R11</strong>) Alta de videojuegos del usuario </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/11">11</a></td></tr>
+<tr><td align="left">(<strong>R12</strong>) Baja de videojuegos del usuario </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/12">12</a></td></tr>
+<tr><td align="left">(<strong>R13</strong>) Visualizar ofertas </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/13">13</a></td></tr>
+<tr><td align="left">(<strong>R14</strong>) Hacer oferta </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/14">14</a></td></tr>
+<tr><td align="left">(<strong>R15</strong>) Aceptar/Rechazar oferta </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/15">15</a></td></tr>
+<tr><td align="left">(<strong>R16</strong>) Realizar oferta </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/16">16</a></td></tr>
+<tr><td align="left">(<strong>R17</strong>) Realizar contraoferta </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Difícil </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/17">17</a></td></tr>
+<tr><td align="left">(<strong>R18</strong>) Búsqueda de videojuegos </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/18">18</a></td></tr>
+<tr><td align="left">(<strong>R19</strong>) Email de oferta </td><td align="center">Opcional </td><td align="center">Funcional </td><td align="center">Difícil </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/19">19</a></td></tr>
+<tr><td align="left">(<strong>R20</strong>) Visualizar mensajes privados </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v2 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/20">20</a></td></tr>
+<tr><td align="left">(<strong>R21</strong>) Enviar mensaje privado </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v2 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/21">21</a></td></tr>
+<tr><td align="left">(<strong>R22</strong>) Mostrar mensajes pendientes </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/22">22</a></td></tr>
+<tr><td align="left">(<strong>R23</strong>) Listado de usuarios mejores valorados </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/23">23</a></td></tr>
+<tr><td align="left">(<strong>R24</strong>) Listado de últimos videojuegos publicados </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v2 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/24">24</a></td></tr>
+<tr><td align="left">(<strong>R25</strong>) Solicitar nuevo videojuego </td><td align="center">Opcional </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/25">25</a></td></tr>
+<tr><td align="left">(<strong>R26</strong>) Alta de videojuegos </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v2 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/26">26</a></td></tr>
+<tr><td align="left">(<strong>R27</strong>) Baja de videojuegos </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v2 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/27">27</a></td></tr>
+<tr><td align="left">(<strong>R28</strong>) Modificación de videojuegos </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v2 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/28">28</a></td></tr>
+<tr><td align="left">(<strong>R29</strong>) Mapa con usuarios cercanos </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Difícil </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/29">29</a></td></tr>
+<tr><td align="left">(<strong>R30</strong>) Valorar un intercambio </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v2 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/30">30</a></td></tr>
+<tr><td align="left">(<strong>R31</strong>) Visualizar valoraciones pendientes </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v2 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/31">31</a></td></tr>
+<tr><td align="left">(<strong>R32</strong>) Reportar usuario </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/32">32</a></td></tr>
+<tr><td align="left">(<strong>R33</strong>) Listar reportes  </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/33">33</a></td></tr>
+<tr><td align="left">(<strong>R34</strong>) Subir fotos de los juegos </td><td align="center">Opcional </td><td align="center">Funcional </td><td align="center">Difícil </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/34">34</a></td></tr>
+<tr><td align="left">(<strong>R35</strong>) Videojuegos </td><td align="center">Importante </td><td align="center">Información </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/35">35</a></td></tr>
+<tr><td align="left">(<strong>R36</strong>) Usuarios </td><td align="center">Importante </td><td align="center">Información </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/36">36</a></td></tr>
+<tr><td align="left">(<strong>R37</strong>) Ofertas </td><td align="center">Importante </td><td align="center">Información </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/37">37</a></td></tr>
+<tr><td align="left">(<strong>R38</strong>) Mensajes </td><td align="center">Importante </td><td align="center">Información </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/38">38</a></td></tr>
+<tr><td align="left">(<strong>R39</strong>) Reportes </td><td align="center">Importante </td><td align="center">Información </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/39">39</a></td></tr>
+<tr><td align="left">(<strong>R40</strong>) Validación de formularios </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/40">40</a></td></tr>
+<tr><td align="left">(<strong>R41</strong>) Gestión de ventanas </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/41">41</a></td></tr>
+<tr><td align="left">(<strong>R42</strong>) Uso de manejo de eventos </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/42">42</a></td></tr>
+<tr><td align="left">(<strong>R43</strong>) Uso y manipulación del DOM </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Fácil </td><td align="center">v2 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/43">43</a></td></tr>
+<tr><td align="left">(<strong>R44</strong>) Almacenamiento en cliente </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/44">44</a></td></tr>
+<tr><td align="left">(<strong>R45</strong>) Uso de jQuery </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Fácil </td><td align="center">v2 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/45">45</a></td></tr>
+<tr><td align="left">(<strong>R46</strong>) Uso de plugin no trabajado </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/46">46</a></td></tr>
+<tr><td align="left">(<strong>R47</strong>) Uso de AJAX </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/47">47</a></td></tr>
+<tr><td align="left">(<strong>R48</strong>) PHP 7.1 </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/48">48</a></td></tr>
+<tr><td align="left">(<strong>R49</strong>) Yii2 2.0.10 </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/49">49</a></td></tr>
+<tr><td align="left">(<strong>R50</strong>) PostgreSQL 9.6 </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/50">50</a></td></tr>
+<tr><td align="left">(<strong>R51</strong>) Despliegue en Heroku </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/51">51</a></td></tr>
+<tr><td align="left">(<strong>R52</strong>) Pruebas con Codeception </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/52">52</a></td></tr>
+<tr><td align="left">(<strong>R53</strong>) Validar con Code Climate </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/53">53</a></td></tr>
+<tr><td align="left">(<strong>R54</strong>) Escalabilidad </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/54">54</a></td></tr>
+<tr><td align="left">(<strong>R55</strong>) Uso de HTML5 </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/55">55</a></td></tr>
+<tr><td align="left">(<strong>R56</strong>) Uso de CSS </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/56">56</a></td></tr>
+<tr><td align="left">(<strong>R57</strong>) Diseño flexible </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/57">57</a></td></tr>
+<tr><td align="left">(<strong>R58</strong>) Animaciones y contenido multimedia </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Fácil </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/58">58</a></td></tr>
+<tr><td align="left">(<strong>R59</strong>) Uso de microdatos </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Fácil </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/59">59</a></td></tr>
+<tr><td align="left">(<strong>R60</strong>) Validación de HTML y CSS, nivel de accesibilidad AA y prueba del seis </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/60">60</a></td></tr>
+<tr><td align="left">(<strong>R61</strong>) Implementar para varias resoluciones </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/61">61</a></td></tr>
+<tr><td align="left">(<strong>R62</strong>) Comprobación en varios navegadores </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Fácil </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/62">62</a></td></tr>
+<tr><td align="left">(<strong>R63</strong>) Desplegar en un Host </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/63">63</a></td></tr>
+<tr><td align="left">(<strong>R64</strong>) Desplegar en un servidor local </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Media </td><td align="center">v1 </td><td align="center"><a href="https://github.com/jlnarvaez/tradegame/issues/64">64</a></td></tr>
+</tbody>
+</table>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 06 Mar 2018 17:14:40 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>
