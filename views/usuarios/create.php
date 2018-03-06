@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="col-md-offset-3 col-md-6">
-    <div class="panel panel-success">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <div class="panel-title text-center">
                 <?= $this->title ?>

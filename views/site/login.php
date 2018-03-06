@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
     <div class="col-md-offset-4 col-md-4">
-        <div class="panel panel-success">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title text-center">
                     Iniciar sesión
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
                     <div class="form-group">
-                            <?= Html::submitButton('Login', ['class' => 'btn btn-success btn-block', 'name' => 'login-button']) ?>
+                            <?= Html::submitButton('Login', ['class' => 'btn btn-tradegame btn-block', 'name' => 'login-button']) ?>
                     </div>
                     <hr>
                     <p>¿No tienes cuenta? Puedes registrate

@@ -113,3 +113,31 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.breadcrumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 1px grey;
+}
+
+.breadcrumb a {
+    color: #730000;
+}
+
+.breadcrumb li+li:before {
+    color: #fff;
+}
+
+.breadcrumb .active {
+    color: #9f0404;
+    font-weight: bold;
+}
+
+.btn-tradegame {
+    background-color: #730000;
+    color: #fff;
+}
+
+.btn-tradegame:hover {
+    color: #fff;
+    background-color: #9f0404;
+}

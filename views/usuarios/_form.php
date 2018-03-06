@@ -23,7 +23,7 @@ use yii\widgets\ActiveForm;
 
     <div class="col-md-offset-2 col-md-8">
         <div class="form-group">
-            <?= Html::submitButton('Registrar', ['class' => 'btn btn-success btn-block']) ?>
+            <?= Html::submitButton('Registrar', ['class' => 'btn btn-tradegame btn-block']) ?>
         </div>
 
     </div>

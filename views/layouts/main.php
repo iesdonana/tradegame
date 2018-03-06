@@ -29,10 +29,14 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => Html::img('@web/logo.png', [
+                    'alt'=>Yii::$app->name,
+                    'width' => '25px',
+                    'style' => 'display: inline; margin-right: 10px'
+                ]) . Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-default navbar-fixed-top',
         ],
     ]);
     $items = [
