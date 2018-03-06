@@ -110,6 +110,10 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         if (parent::beforeSave($insert)) {
             if ($insert) {
                 $this->password = Yii::$app->security->generatePasswordHash($this->password);
+                do {
+                    $val = Yii::$app->security->generateRandomString();
+                } while (self::findOne(['token_val' => $val]) !== null);
+                $this->token_val = $val;
             }
             return true;
         }

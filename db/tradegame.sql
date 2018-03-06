@@ -10,6 +10,7 @@ CREATE TABLE usuarios
   , usuario      varchar(20)  NOT NULL UNIQUE
   , email        varchar(100) NOT NULL
   , password     varchar(255) NOT NULL
+  , token_val    varchar(255)
   , nombre_real  varchar(255)
   , localidad    varchar(255)
 );
