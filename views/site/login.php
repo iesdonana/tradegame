@@ -49,6 +49,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="form-group">
                             <?= Html::submitButton('Login', ['class' => 'btn btn-success btn-block', 'name' => 'login-button']) ?>
                     </div>
+                    <hr>
+                    <p>¿No tienes cuenta? Puedes registrate
+                        <?= Html::a('aquí', [
+                            'usuarios/registrar'
+                        ]) ?></p>
 
                 <?php ActiveForm::end(); ?>
             </div>

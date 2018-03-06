@@ -18,6 +18,12 @@ use yii\web\IdentityInterface;
 class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 {
     /**
+     * Variable en la que se guarda la repetición de la contraseña
+     * a la hora de registrar a un usario.
+     * @var string
+     */
+    public $repeatPassword;
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -31,12 +37,27 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['usuario', 'email', 'password'], 'required'],
+            [['usuario', 'email', 'password', 'repeatPassword'], 'required'],
             [['usuario'], 'string', 'max' => 20],
             [['email'], 'string', 'max' => 100],
+            [['email'], 'email'],
             [['password', 'nombre_real', 'localidad'], 'string', 'max' => 255],
             [['usuario'], 'unique'],
+            [
+                'repeatPassword',
+                'compare',
+                'compareAttribute' => 'password',
+                'message' => 'Las contraseñas deben coincidir.',
+            ],
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), ['repeatPassword']);
     }
 
     /**
@@ -47,10 +68,11 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             'id' => 'ID',
             'usuario' => 'Usuario',
-            'email' => 'Email',
-            'password' => 'Password',
-            'nombre_real' => 'Nombre Real',
+            'email' => 'Correo electrónico',
+            'password' => 'Contraseña',
+            'nombre_real' => 'Nombre completo',
             'localidad' => 'Localidad',
+            'repeatPassword' => 'Repite la contraseña',
         ];
     }
 
@@ -81,5 +103,20 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     public function validateAuthKey($authKey)
     {
         // return $this->authKey === $authKey;
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if ($insert) {
+                $this->password = Yii::$app->security->generatePasswordHash($this->password);
+                do {
+                    $val = Yii::$app->security->generateRandomString();
+                } while (self::findOne(['token_val' => $val]) !== null);
+                $this->token_val = $val;
+            }
+            return true;
+        }
+        return false;
     }
 }
