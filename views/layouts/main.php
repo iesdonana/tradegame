@@ -4,6 +4,7 @@
 /* @var $content string */
 
 use app\widgets\Alert;
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -40,26 +41,52 @@ $this->title = 'TradeGame';
             'class' => 'navbar-default navbar-fixed-top',
         ],
     ]);
+
     $items = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
-        Yii::$app->user->isGuest ? (
-            ['label' => 'Login', 'url' => ['/site/login']]
-        ) : (
-            '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->usuario . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>'
-        )
+        ['label' => 'Inicio', 'url' => ['/site/index']]
     ];
 
     if (Yii::$app->user->isGuest) {
         $items[] = ['label' => 'Registro', 'url' => ['/usuarios/registrar']];
+        $items[] = ['label' => 'Login', 'url' => ['/site/login']];
+    } else {
+        $form = Html::beginForm(['/site/logout'], 'post')
+        . Html::submitButton(
+            'Cerrar sesión',
+            ['class' => 'btn btn-danger btn-block logout']
+        )
+        . Html::endForm();
+
+        $items[] = [
+            'label' => Html::encode(Yii::$app->user->identity->usuario),
+            'items' => [
+                "<div class='navbar-login'>
+                    <div class='row'>
+                        <div class='col-xs-1 col-sm-1 col-lg-4'>
+                            <p class='text-center'>" .
+                                Html::img('@web/avatar.png', ['id' => 'thumbnail-nav'])
+                            . "</p>
+                        </div>
+                        <div class='col-xs-11 col-sm-11 col-lg-8 '>
+                            <p class='text-left'><strong>" . Html::encode(Yii::$app->user->identity->usuario) . "</strong></p>
+                            <p class='text-left small'>" . Html::encode(Yii::$app->user->identity->email) . "</p>
+                            <p class='text-left'>" .
+                                Html::a(
+                                    'Mi perfil',
+                                    Url::to([
+                                        '/usuarios/perfil',
+                                        'usuario' => Yii::$app->user->identity->usuario
+                                    ]),
+                                    ['class' => 'btn btn-primary']
+                                )
+                            . "</p>
+                        </div>
+                    </div>
+                </div>",
+                '<li class="divider"></li>' .
+                $form
+            ]
+        ];
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
