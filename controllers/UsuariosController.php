@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Usuarios;
 use HttpRequestException;
 use Yii;
+use yii\filters\AccessControl;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -17,6 +18,28 @@ use yii\widgets\ActiveForm;
  */
 class UsuariosController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['registrar'],
+                'rules' => [
+                    [
+                        'allow' => false,
+                        'actions' => ['registrar'],
+                        'roles' => ['@'],
+                        'denyCallback' => function ($rule, $action) {
+                            return $this->redirect([
+                                'usuarios/' .
+                                Yii::$app->user->identity->usuario,
+                            ]);
+                        },
+                    ],
+                ],
+            ],
+        ];
+    }
     /**
      * Crea un nuevo modelo de Usuarios y lo guarda en la base de datos.
      * Si se ha creado correctamente, se redireccionará a la pantalla de Login.
