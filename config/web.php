@@ -50,14 +50,13 @@ $config = [
         'formatter' => [
             'timeZone' => 'Europe/Madrid',
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'usuarios/<usuario:\w+>' => 'usuarios/perfil',
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
