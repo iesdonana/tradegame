@@ -69,8 +69,9 @@ class UsuariosController extends Controller
 
     public function actionPerfil($usuario)
     {
-        $model = Usuarios::findOne(['usuario' => $usuario]);
-
+        if (($model = Usuarios::findOne(['usuario' => $usuario])) === null) {
+            throw new NotFoundHttpException('La página solicitada no existe.');
+        }
         return $this->render('profile', [
             'model' => $model,
         ]);
