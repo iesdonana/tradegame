@@ -54,8 +54,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'usuarios/registrar' => 'usuarios/registrar',
-                'usuarios/<usuario:\w+>' => 'usuarios/perfil',
+                'perfil/<usuario:\w+>' => 'usuarios/perfil',
             ],
         ],
     ],

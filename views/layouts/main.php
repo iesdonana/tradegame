@@ -63,7 +63,7 @@ $this->title = 'TradeGame';
                 "<div class='navbar-login'>
                     <div class='row'>
                         <div class='col-xs-1 col-sm-1 col-lg-4'>
-                            <p class='text-center'>" .
+                            <p class='visible-md visible-lg text-center'>" .
                                 Html::img('@web/avatar.png', ['id' => 'thumbnail-nav'])
                             . "</p>
                         </div>
@@ -84,7 +84,9 @@ $this->title = 'TradeGame';
                     </div>
                 </div>",
                 '<li class="divider"></li>' .
-                $form
+                '<div class="col-md-offset-1 col-md-10">' .
+                    $form .
+                '</div>'
             ]
         ];
     }

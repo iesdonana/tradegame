@@ -4,6 +4,8 @@
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\LoginForm */
 
+use app\helpers\Utiles;
+
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
@@ -22,26 +24,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php $form = ActiveForm::begin(); ?>
 
                     <?= $form->field($model, 'username', [
-                        'template' => '<div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="glyphicon glyphicon-user"></i>
-                                            </span>
-                                            {input}
-                                       </div>
-                                       {error}{hint}'
+                        'template' => Utiles::inputGlyphicon('user')
                         ])->textInput([
                             'autofocus' => true,
                             'placeHolder' => 'Usuario'
                         ]) ?>
 
                     <?= $form->field($model, 'password', [
-                        'template' => '<div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="glyphicon glyphicon-lock"></i>
-                                            </span>
-                                            {input}
-                                       </div>
-                                       {error}{hint}'
+                        'template' => Utiles::inputGlyphicon('lock')
                         ])->passwordInput(['placeholder' => 'Contraseña']) ?>
 
                     <?= $form->field($model, 'rememberMe')->checkbox() ?>

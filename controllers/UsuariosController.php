@@ -26,20 +26,15 @@ class UsuariosController extends Controller
                 'only' => ['registrar'],
                 'rules' => [
                     [
-                        'allow' => false,
+                        'allow' => true,
                         'actions' => ['registrar'],
-                        'roles' => ['@'],
-                        'denyCallback' => function ($rule, $action) {
-                            return $this->redirect([
-                                'usuarios/' .
-                                Yii::$app->user->identity->usuario,
-                            ]);
-                        },
+                        'roles' => ['?'],
                     ],
                 ],
             ],
         ];
     }
+
     /**
      * Crea un nuevo modelo de Usuarios y lo guarda en la base de datos.
      * Si se ha creado correctamente, se redireccionará a la pantalla de Login.
