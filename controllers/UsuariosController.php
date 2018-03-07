@@ -67,6 +67,15 @@ class UsuariosController extends Controller
         $this->redirect(['site/login']);
     }
 
+    public function actionPerfil($usuario)
+    {
+        $model = Usuarios::findOne(['usuario' => $usuario]);
+
+        return $this->render('profile', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Updates an existing Usuarios model.
      * If update is successful, the browser will be redirected to the 'view' page.

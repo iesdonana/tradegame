@@ -12,8 +12,6 @@ use yii\web\IdentityInterface;
  * @property string $usuario
  * @property string $email
  * @property string $password
- * @property string $nombre_real
- * @property string $localidad
  * @property string $auth_key
  * @property string $token_val
  */
@@ -43,7 +41,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             [['usuario'], 'string', 'max' => 20],
             [['email'], 'string', 'max' => 100],
             [['email'], 'email'],
-            [['password', 'nombre_real', 'localidad'], 'string', 'max' => 255],
+            [['password'], 'string', 'max' => 255],
             [['usuario'], 'unique'],
             [
                 'repeatPassword',
@@ -72,8 +70,6 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             'usuario' => 'Usuario',
             'email' => 'Correo electrónico',
             'password' => 'Contraseña',
-            'nombre_real' => 'Nombre completo',
-            'localidad' => 'Localidad',
             'repeatPassword' => 'Repite la contraseña',
         ];
     }
@@ -107,6 +103,14 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->auth_key === $authKey;
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsuariosDatos()
+    {
+        return $this->hasOne(UsuariosDatos::className(), ['id_usuario' => 'id'])->inverseOf('usuario');
+    }
+
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
@@ -120,5 +124,16 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             return true;
         }
         return false;
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        if ($insert) {
+            $datos = new UsuariosDatos();
+            $datos->id_usuario = $this->id;
+            $datos->save();
+        }
+        return true;
     }
 }
