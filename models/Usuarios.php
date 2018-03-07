@@ -14,6 +14,8 @@ use yii\web\IdentityInterface;
  * @property string $password
  * @property string $nombre_real
  * @property string $localidad
+ * @property string $auth_key
+ * @property string $token_val
  */
 class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -97,12 +99,12 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 
     public function getAuthKey()
     {
-        // return $this->authKey;
+        return $this->auth_key;
     }
 
     public function validateAuthKey($authKey)
     {
-        // return $this->authKey === $authKey;
+        return $this->auth_key === $authKey;
     }
 
     public function beforeSave($insert)
