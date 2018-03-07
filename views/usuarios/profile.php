@@ -31,14 +31,17 @@ use yii\helpers\Html;
                         <li class="list-group-item"><strong>Fecha de nacimiento:</strong> <?= $datos->fecha_nacimiento ?></li>
                     <?php endif ?>
                </ul>
-               <a href="#" class="btn btn-primary">
-                   <span class="glyphicon glyphicon-send"></span>
-                   <span>Enviar mensaje</span>
-               </a>
-               <a href="#" class="btn btn-default">
-                   <span class="glyphicon glyphicon-edit"></span>
-                   <span>Editar perfil</span>
-               </a>
+                <?php if ($model->id === Yii::$app->user->id): ?>
+                    <a href="#" class="btn btn-default">
+                       <span class="glyphicon glyphicon-edit"></span>
+                       <span>Editar perfil</span>
+                    </a>
+                <?php else: ?>
+                    <a href="#" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-send"></span>
+                        <span>Enviar mensaje</span>
+                    </a>
+                <?php endif ?>
             </div>
          </div>
       </div>
