@@ -41,10 +41,6 @@ use kartik\datecontrol\DateControl;
         'template' => Utiles::inputGlyphicon('book')
         ])->textarea(['maxlength' => true, 'placeholder' => 'Biografía']) ?>
 
-    <!-- <?= $form->field($model, 'fecha_nacimiento', [
-        'template' => Utiles::inputGlyphicon('calendar')
-        ])->textInput(['maxlength' => true, 'placeholder' => 'Fecha de nacimiento']) ?> -->
-
     <?= $form->field($model, 'fecha_nacimiento')->widget(DateControl::classname(), [
         'options' => ['placeholder' => 'Fecha de nacimiento'],
         'readonly' => true,
@@ -54,13 +50,6 @@ use kartik\datecontrol\DateControl;
                 'autoclose' => true,
             ]
         ]
-        // 'readonly' => true,
-        // 'convertFormat' => true,
-        // 'layout' => '{picker}{input}{remove}',
-        // 'pluginOptions' => [
-        //     'format' => 'yyyy-MM-dd',
-        //     'autoclose' => true,
-        // ]
     ])->label(false) ?>
 
     <?= $form->field($model, 'genero_id', [
@@ -69,7 +58,7 @@ use kartik\datecontrol\DateControl;
             UsuariosGeneros::find()
             ->select('sexo')
             ->indexBy('id')
-            ->column())
+            ->column(), ['prompt' => 'Selecciona un género'])
     ?>
 
     <div class="col-md-offset-2 col-md-8">
