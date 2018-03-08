@@ -19,6 +19,8 @@ use yii\web\IdentityInterface;
  */
 class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 {
+    const ESCENARIO_UPDATE = 'Modificar';
+    const ESCENARIO_CREATE = 'Registrar';
     /**
      * Variable en la que se guarda la repetición de la contraseña
      * a la hora de registrar a un usario.
@@ -39,7 +41,8 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['usuario', 'email', 'password', 'repeatPassword'], 'required'],
+            [['usuario', 'email'], 'required'],
+            [['password', 'repeatPassword'], 'required', 'on' => self::ESCENARIO_CREATE],
             [['usuario'], 'string', 'max' => 20],
             [['email'], 'string', 'max' => 100],
             [['email'], 'email'],
@@ -49,6 +52,8 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 'repeatPassword',
                 'compare',
                 'compareAttribute' => 'password',
+                'skipOnEmpty' => false,
+                'on' => [self::ESCENARIO_UPDATE, self::ESCENARIO_CREATE],
                 'message' => 'Las contraseñas deben coincidir.',
             ],
         ];
@@ -125,11 +130,22 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     {
         if (parent::beforeSave($insert)) {
             if ($insert) {
-                $this->password = Yii::$app->security->generatePasswordHash($this->password);
-                do {
-                    $val = Yii::$app->security->generateRandomString();
-                } while (self::findOne(['token_val' => $val]) !== null);
-                $this->token_val = $val;
+                $this->auth_key = Yii::$app->security->generateRandomString();
+                if ($this->scenario === self::ESCENARIO_CREATE) {
+                    $this->password = Yii::$app->security->generatePasswordHash($this->password);
+                    do {
+                        $val = Yii::$app->security->generateRandomString();
+                    } while (self::findOne(['token_val' => $val]) !== null);
+                    $this->token_val = $val;
+                }
+            } else {
+                if ($this->scenario === self::ESCENARIO_UPDATE) {
+                    if ($this->password === '') {
+                        $this->password = $this->getOldAttribute('password');
+                    } else {
+                        $this->password = Yii::$app->security->generatePasswordHash($this->password);
+                    }
+                }
             }
             return true;
         }
