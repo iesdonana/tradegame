@@ -60,7 +60,10 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             [['usuario', 'email'], 'required'],
-            [['password', 'repeatPassword', 'oldPassword'], 'required', 'on' => self::ESCENARIO_CREATE],
+            [['password', 'repeatPassword'], 'required', 'on' => self::ESCENARIO_CREATE],
+            [['oldPassword'], 'required', 'when' => function ($model) {
+                return Yii::$app->request->get('seccion') === 'password';
+            }],
             [['usuario'], 'string', 'max' => 20],
             [['email'], 'string', 'max' => 100],
             [['email'], 'email'],

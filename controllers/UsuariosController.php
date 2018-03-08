@@ -140,14 +140,14 @@ class UsuariosController extends Controller
 
         $model = Yii::$app->user->identity;
         $model->scenario = Usuarios::ESCENARIO_UPDATE;
-        $model->password = $model->oldPassword = '';
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $model->password = '';
+        if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
             Yii::$app->session->setFlash('success', 'Has actualizado tus datos correctamente');
             $model->password = $model->repeatPassword = $model->oldPassword = '';
         }

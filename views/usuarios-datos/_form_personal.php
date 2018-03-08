@@ -7,8 +7,6 @@ use app\helpers\Utiles;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-use kartik\date\DatePicker;
-
 use kartik\datecontrol\DateControl;
 
 
@@ -42,7 +40,6 @@ use kartik\datecontrol\DateControl;
         ])->textarea(['maxlength' => true, 'placeholder' => 'Biografía']) ?>
 
     <?= $form->field($model, 'fecha_nacimiento')->widget(DateControl::classname(), [
-        'options' => ['placeholder' => 'Fecha de nacimiento'],
         'readonly' => true,
         'widgetOptions' => [
             'layout' => '{picker}{input}{remove}',
