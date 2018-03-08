@@ -14,6 +14,8 @@ use yii\web\IdentityInterface;
  * @property string $password
  * @property string $auth_key
  * @property string $token_val
+ * @property string $created_at
+ * @property string $updated_at
  */
 class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -109,6 +111,14 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     public function getUsuariosDatos()
     {
         return $this->hasOne(UsuariosDatos::className(), ['id_usuario' => 'id'])->inverseOf('usuario');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsuarioId()
+    {
+        return $this->hasOne(UsuariosId::className(), ['id' => 'id'])->inverseOf('usuario');
     }
 
     public function beforeSave($insert)

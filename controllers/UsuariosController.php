@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Usuarios;
+use app\models\UsuariosId;
 use HttpRequestException;
 use Yii;
 use yii\filters\AccessControl;
@@ -57,7 +58,13 @@ class UsuariosController extends Controller
             return ActiveForm::validate($model);
         }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $usuariosId = new UsuariosId();
+            $usuariosId->save();
+
+            $model->id = $usuariosId->id;
+            $model->save(false);
+
             if ($this->enviarEmailValidacion($model)) {
                 Yii::$app->session->setFlash(
                     'success',
