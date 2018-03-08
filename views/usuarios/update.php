@@ -42,9 +42,16 @@ $this->registerJs($js);
                 </div>
             </div>
             <div class="panel-body">
-                <?= $this->render('_form_' . $seccion, [
-                    'model' => $model,
-                    ]) ?>
+                <?php if ($seccion !== 'personal'): ?>
+                    <?php $dir = '/usuarios-datos/_form_personal' ?>
+                    <?= $this->render('_form_' . $seccion, [
+                        'model' => $model,
+                        ]) ?>
+                <?php else: ?>
+                    <?= $this->render('/usuarios-datos/_form_personal', [
+                        'model' => $model,
+                        ]) ?>
+                <?php endif ?>
 
                 </div>
             </div>

@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "usuarios_datos".
  *
@@ -11,6 +9,9 @@ use Yii;
  * @property string $nombre_real
  * @property string $localidad
  * @property string $biografia
+ * @property string $telefono
+ * @property int $genero_id
+ * @property string $provincia
  * @property string $fecha_nacimiento
  *
  * @property Usuarios $usuario
@@ -33,11 +34,13 @@ class UsuariosDatos extends \yii\db\ActiveRecord
         return [
             [['id_usuario'], 'required'],
             [['id_usuario'], 'default', 'value' => null],
-            [['id_usuario'], 'integer'],
+            [['id_usuario', 'genero_id'], 'integer'],
             [['fecha_nacimiento'], 'safe'],
-            [['nombre_real', 'localidad', 'biografia'], 'string', 'max' => 255],
+            [['nombre_real', 'localidad', 'biografia', 'provincia'], 'string', 'max' => 255],
+            [['telefono'], 'string', 'max' => 9],
             [['id_usuario'], 'unique'],
             [['id_usuario'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['id_usuario' => 'id']],
+            [['genero_id'], 'exist', 'skipOnError' => true, 'targetClass' => UsuariosGeneros::className(), 'targetAttribute' => ['genero_id' => 'id']],
         ];
     }
 

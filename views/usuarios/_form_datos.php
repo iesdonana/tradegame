@@ -44,7 +44,6 @@ use yii\widgets\ActiveForm;
         <div class="form-group">
             <?= Html::submitButton($model->scenario, ['class' => 'btn btn-tradegame btn-block']) ?>
         </div>
-
     </div>
 
     <?php ActiveForm::end(); ?>

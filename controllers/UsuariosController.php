@@ -132,8 +132,8 @@ class UsuariosController extends Controller
      */
     public function actionModificar($seccion)
     {
-        $exists = ['datos', 'password'];
-        if (!in_array($seccion, $exists)) {
+        $validos = ['datos', 'password', 'personal'];
+        if (!in_array($seccion, $validos)) {
             throw new NotFoundHttpException('No se ha encontrado lo que buscabas');
         }
         $model = Yii::$app->user->identity;
