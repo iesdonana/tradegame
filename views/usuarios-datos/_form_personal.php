@@ -7,6 +7,11 @@ use app\helpers\Utiles;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+use kartik\date\DatePicker;
+
+use kartik\datecontrol\DateControl;
+
+
 /* @var $this yii\web\View */
 /* @var $model app\models\UsuariosDatos */
 /* @var $form yii\widgets\ActiveForm */
@@ -36,9 +41,27 @@ use yii\widgets\ActiveForm;
         'template' => Utiles::inputGlyphicon('book')
         ])->textarea(['maxlength' => true, 'placeholder' => 'Biografía']) ?>
 
-    <?= $form->field($model, 'fecha_nacimiento', [
+    <!-- <?= $form->field($model, 'fecha_nacimiento', [
         'template' => Utiles::inputGlyphicon('calendar')
-        ])->textInput(['maxlength' => true, 'placeholder' => 'Fecha de nacimiento']) ?>
+        ])->textInput(['maxlength' => true, 'placeholder' => 'Fecha de nacimiento']) ?> -->
+
+    <?= $form->field($model, 'fecha_nacimiento')->widget(DateControl::classname(), [
+        'options' => ['placeholder' => 'Fecha de nacimiento'],
+        'readonly' => true,
+        'widgetOptions' => [
+            'layout' => '{picker}{input}{remove}',
+            'pluginOptions' => [
+                'autoclose' => true,
+            ]
+        ]
+        // 'readonly' => true,
+        // 'convertFormat' => true,
+        // 'layout' => '{picker}{input}{remove}',
+        // 'pluginOptions' => [
+        //     'format' => 'yyyy-MM-dd',
+        //     'autoclose' => true,
+        // ]
+    ])->label(false) ?>
 
     <?= $form->field($model, 'genero_id', [
         'template' => Utiles::inputGlyphicon('user')
