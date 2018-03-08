@@ -14,11 +14,16 @@ use yii\widgets\ActiveForm;
 
 <div class="usuarios-form">
     <?php $form = ActiveForm::begin(); ?>
+    <?= $form->field($model, 'oldPassword', [
+        'template' => Utiles::inputGlyphicon('lock'),
+        'enableAjaxValidation' => true
+        ])->passwordInput(['maxlength' => true, 'placeholder' => 'Contraseña actual']) ?>
+
     <?= $form->field($model, 'password', ['template' => Utiles::inputGlyphicon('lock')])
         ->passwordInput(['maxlength' => true, 'placeholder' => 'Nueva contraseña']) ?>
 
-        <?= $form->field($model, 'repeatPassword', ['template' => Utiles::inputGlyphicon('lock')])
-            ->passwordInput(['maxlength' => true, 'placeholder' => 'Repite la nueva contraseña']) ?>
+    <?= $form->field($model, 'repeatPassword', ['template' => Utiles::inputGlyphicon('lock')])
+        ->passwordInput(['maxlength' => true, 'placeholder' => 'Repite la nueva contraseña']) ?>
 
     <div class="col-md-offset-2 col-md-8">
         <div class="form-group">

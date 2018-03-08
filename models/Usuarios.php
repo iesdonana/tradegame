@@ -19,14 +19,32 @@ use yii\web\IdentityInterface;
  */
 class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 {
+    /**
+     * Escenario de modificación del Usuario.
+     * @var string
+     */
     const ESCENARIO_UPDATE = 'Modificar';
+
+    /**
+     * Escenario de creación del Usuario.
+     * @var string
+     */
     const ESCENARIO_CREATE = 'Registrar';
+
     /**
      * Variable en la que se guarda la repetición de la contraseña
      * a la hora de registrar a un usario.
      * @var string
      */
     public $repeatPassword;
+
+    /**
+     * Variable en la que se guarda la contraseña actual (para comprobar
+     * cuando vayamos a actualizar la contraseña).
+     * @var string
+     */
+    public $oldPassword;
+
     /**
      * {@inheritdoc}
      */
@@ -42,7 +60,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             [['usuario', 'email'], 'required'],
-            [['password', 'repeatPassword'], 'required', 'on' => self::ESCENARIO_CREATE],
+            [['password', 'repeatPassword', 'oldPassword'], 'required', 'on' => self::ESCENARIO_CREATE],
             [['usuario'], 'string', 'max' => 20],
             [['email'], 'string', 'max' => 100],
             [['email'], 'email'],
@@ -56,6 +74,11 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 'on' => [self::ESCENARIO_UPDATE, self::ESCENARIO_CREATE],
                 'message' => 'Las contraseñas deben coincidir.',
             ],
+            [['oldPassword'], function ($attribute, $params, $validator) {
+                if (!Yii::$app->security->validatePassword($this->oldPassword, $this->oldAttributes['password'])) {
+                    $this->addError($attribute, 'La contraseña no coincide con tu contraseña actual');
+                }
+            }],
         ];
     }
 
@@ -64,7 +87,10 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function attributes()
     {
-        return array_merge(parent::attributes(), ['repeatPassword']);
+        return array_merge(
+            parent::attributes(),
+            ['repeatPassword', 'oldPassword']
+        );
     }
 
     /**

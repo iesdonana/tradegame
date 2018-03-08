@@ -133,12 +133,14 @@ class UsuariosController extends Controller
     public function actionModificar($seccion)
     {
         $validos = ['datos', 'password', 'personal'];
+
         if (!in_array($seccion, $validos)) {
             throw new NotFoundHttpException('No se ha encontrado lo que buscabas');
         }
+
         $model = Yii::$app->user->identity;
         $model->scenario = Usuarios::ESCENARIO_UPDATE;
-        $model->password = '';
+        $model->password = $model->oldPassword = '';
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -147,8 +149,7 @@ class UsuariosController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Has actualizado tus datos correctamente');
-            $model->password = '';
-            $model->repeatPassword = '';
+            $model->password = $model->repeatPassword = $model->oldPassword = '';
         }
 
         return $this->render('update', [
