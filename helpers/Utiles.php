@@ -24,4 +24,14 @@ class Utiles
                </div>
                {error}{hint}';
     }
+
+    /**
+     * Devuelve un Glyphicon.
+     * @param  string $nombre Nombre del Glyphicon
+     * @return string
+     */
+    public static function glyphicon($nombre)
+    {
+        return '<span class="glyphicon glyphicon-' . $nombre . '"></span>';
+    }
 }

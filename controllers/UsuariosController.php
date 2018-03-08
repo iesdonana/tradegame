@@ -6,6 +6,7 @@ use app\models\Usuarios;
 use HttpRequestException;
 use Yii;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -21,6 +22,12 @@ class UsuariosController extends Controller
     public function behaviors()
     {
         return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'remove' => ['POST'],
+                ],
+            ],
             'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['registrar'],
@@ -93,6 +100,14 @@ class UsuariosController extends Controller
         return $this->render('profile', [
             'model' => $model,
         ]);
+    }
+
+    public function actionRemove()
+    {
+        $user = Yii::$app->user->identity;
+        $user->delete();
+        Yii::$app->session->setFlash('success', 'Su cuenta se ha eliminado correctamente');
+        return $this->goHome();
     }
 
     /**
