@@ -31,12 +31,17 @@ class UsuariosController extends Controller
             ],
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['registrar'],
+                'only' => ['registrar', 'modificar'],
                 'rules' => [
                     [
                         'allow' => true,
                         'actions' => ['registrar'],
                         'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['modificar'],
+                        'roles' => ['@'],
                     ],
                 ],
             ],
@@ -52,6 +57,7 @@ class UsuariosController extends Controller
     public function actionRegistrar()
     {
         $model = new Usuarios();
+        $model->scenario = Usuarios::ESCENARIO_CREATE;
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -118,22 +124,37 @@ class UsuariosController extends Controller
     }
 
     /**
-     * Updates an existing Usuarios model.
+     * Modifica los datos de un usuario
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id
+     * @param mixed $seccion
      * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException Si el modelo no se puede encontrar
      */
-    public function actionUpdate($id)
+    public function actionModificar($seccion)
     {
-        $model = $this->findModel($id);
+        $validos = ['datos', 'password', 'personal'];
+
+        if (!in_array($seccion, $validos)) {
+            throw new NotFoundHttpException('No se ha encontrado lo que buscabas');
+        }
+
+        $model = Yii::$app->user->identity;
+        $model->scenario = Usuarios::ESCENARIO_UPDATE;
+        $model->password = $model->oldPassword = '';
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash('success', 'Has actualizado tus datos correctamente');
+            $model->password = $model->repeatPassword = $model->oldPassword = '';
         }
 
         return $this->render('update', [
             'model' => $model,
+            'seccion' => $seccion,
         ]);
     }
 

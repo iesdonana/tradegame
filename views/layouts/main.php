@@ -3,6 +3,8 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\helpers\Utiles;
+
 use app\widgets\Alert;
 use yii\helpers\Url;
 use yii\helpers\Html;
@@ -57,8 +59,15 @@ $this->title = 'TradeGame';
         )
         . Html::endForm();
 
+        $modelUsuario = Yii::$app->user->identity;
+        $linkPerfil = Html::a(
+            Html::encode($modelUsuario->usuario), [
+                '/usuarios/perfil',
+                'usuario' => $modelUsuario->usuario,
+            ]
+        );
         $items[] = [
-            'label' => Html::encode(Yii::$app->user->identity->usuario),
+            'label' => Html::encode($modelUsuario->usuario),
             'items' => [
                 "<div class='navbar-login'>
                     <div class='row'>
@@ -68,16 +77,15 @@ $this->title = 'TradeGame';
                             . "</p>
                         </div>
                         <div class='col-xs-11 col-sm-11 col-lg-8 '>
-                            <p class='text-left'><strong>" . Html::encode(Yii::$app->user->identity->usuario) . "</strong></p>
-                            <p class='text-left small'>" . Html::encode(Yii::$app->user->identity->email) . "</p>
+                            <p class='text-left'><strong>" . $linkPerfil . "</strong></p>
+                            <p class='text-left small'>" .
+                                Utiles::glyphicon('envelope') . ' ' . Html::encode($modelUsuario->email)
+                            . "</p>
                             <p class='text-left'>" .
                                 Html::a(
-                                    'Mi perfil',
-                                    Url::to([
-                                        '/usuarios/perfil',
-                                        'usuario' => Yii::$app->user->identity->usuario
-                                    ]),
-                                    ['class' => 'btn btn-primary']
+                                    Utiles::glyphicon('cog') . ' Modificar datos',
+                                    ['usuarios/modificar', 'seccion' => 'datos'],
+                                    ['class' => 'btn btn-xs btn-info']
                                 )
                             . "</p>
                         </div>

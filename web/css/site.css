@@ -132,7 +132,14 @@ a.desc:after {
     font-weight: bold;
 }
 
-.btn-tradegame {
+.nav-pills > li > a {
+    color: #730000;
+}
+
+.btn-tradegame,
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
     background-color: #730000;
     color: #fff;
 }

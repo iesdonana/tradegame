@@ -104,3 +104,7 @@
 .form-logout {
     display: inline;
 }
+
+.navbar-login a {
+    margin-right: 5px;
+}

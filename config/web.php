@@ -1,5 +1,7 @@
 <?php
 
+use kartik\datecontrol\Module;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 $log = require __DIR__ . '/log.php';
@@ -49,17 +51,31 @@ $config = [
         'db' => $db,
         'formatter' => [
             'timeZone' => 'Europe/Madrid',
+            'dateFormat' => $params['dateFormat'],
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'usuarios/modificar/personal' => 'usuarios-datos/modificar',
+                'usuarios/modificar/<seccion:\w+>' => 'usuarios/modificar',
                 'registrar' => 'usuarios/registrar',
                 'usuario/<usuario:\w+>' => 'usuarios/perfil',
             ],
         ],
     ],
     'params' => $params,
+    'modules' => [
+        'datecontrol' => [
+            'class' => '\kartik\datecontrol\Module',
+            'displaySettings' => [
+                Module::FORMAT_DATE => $params['dateFormat'],
+            ],
+            'saveSettings' => [
+                Module::FORMAT_DATE => 'php:Y-m-d',
+            ],
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {
