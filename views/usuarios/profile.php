@@ -1,9 +1,28 @@
 <?php
 
 /* @var $this yii\web\View */
+use app\helpers\Utiles;
+
 use yii\helpers\Html;
 
+use yii\bootstrap\Modal;
+
 /* @var $model app\models\Usuarios */
+$this->registerJs("
+    $(function() {
+        $('.popup-modal').click(function(e) {
+            e.preventDefault();
+            var modal = $('#modal-delete').modal('show');
+            modal.find('.modal-body').load($('.modal-dialog'));
+            modal.find('.modal-title').text('Supprimer la ressource');
+
+            $('#delete-confirm').click(function(e) {
+                e.preventDefault();
+                window.location = 'delete?id='+id;
+            });
+        });
+    });"
+);
 ?>
 <div class="col-md-12">
 <div class="panel panel-default">
@@ -32,10 +51,16 @@ use yii\helpers\Html;
                     <?php endif ?>
                </ul>
                 <?php if ($model->id === Yii::$app->user->id): ?>
-                    <a href="#" class="btn btn-default">
-                       <span class="glyphicon glyphicon-edit"></span>
-                       <span>Editar perfil</span>
-                    </a>
+                    <?= Html::a(
+                        Utiles::glyphicon('edit') . ' Editar perfil',
+                        ['usuarios/update', 'usuario' => Yii::$app->user->identity->usuario],
+                        ['class' => 'btn btn-default']
+                    ) ?>
+                    <?= Html::a(
+                        Utiles::glyphicon('remove') . ' Borrar cuenta',
+                        ['usuarios/remove'],
+                        ['class' => 'btn btn-danger popup-modal']
+                    ) ?>
                 <?php else: ?>
                     <a href="#" class="btn btn-primary">
                         <span class="glyphicon glyphicon-send"></span>
@@ -54,4 +79,24 @@ use yii\helpers\Html;
     <?php endif ?>
 
    </div>
+   <?php Modal::begin([
+    'header' => '<h2 class="modal-title">Borrar cuenta</h2>',
+    'id'     => 'modal-delete',
+    'footer' => Html::beginForm(['/usuarios/remove'], 'post') .
+                Html::submitButton(
+                    Utiles::glyphicon('remove') . ' Borrar definitivamente',
+                    ['class' => 'btn btn-danger logout']
+                )
+                . Html::endForm()
+    ])
+    // 'footer' => Html::a(Utiles::glyphicon('remove') .
+    //             ' Borrar definitivamente', ['usuarios/remove'],
+    //             ['class' => 'btn btn-danger', 'id' => 'delete-confirm']),
+    // ]);
+    ?>
+
+
+    <p>¿Estás seguro de que deseas borrar permanentemente su cuenta?</p>
+
+    <?php Modal::end(); ?>
 </div>
