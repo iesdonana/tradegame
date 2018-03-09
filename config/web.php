@@ -14,6 +14,8 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
+        '@avatares' => '@app/web/avatares',
+        '@avatares_s3' => '/avatares',
     ],
     'language' => 'es-ES',
     'components' => [
@@ -62,6 +64,16 @@ $config = [
                 'registrar' => 'usuarios/registrar',
                 'usuario/<usuario:\w+>' => 'usuarios/perfil',
             ],
+        ],
+        's3' => [
+            'class' => 'frostealth\yii2\aws\s3\Service',
+            'credentials' => [
+                'key' => getenv('KEY_S3'),
+                'secret' => getenv('SECRET_S3'),
+            ],
+            'region' => 'us-east-1',
+            'defaultBucket' => 'tradegame',
+            'defaultAcl' => 'public-read',
         ],
     ],
     'params' => $params,

@@ -7,6 +7,8 @@ use app\helpers\Utiles;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+use kartik\file\FileInput;
+
 use kartik\datecontrol\DateControl;
 
 
@@ -16,8 +18,33 @@ use kartik\datecontrol\DateControl;
 ?>
 
 <div class="usuarios-datos-form">
-
     <?php $form = ActiveForm::begin(); ?>
+
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <?= Html::img('@web/avatar.png', [
+                'id' => 'img-edit',
+                'class' => 'center-block'
+            ]) ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <?= $form->field($model, 'foto')->widget(FileInput::classname(), [
+                'pluginOptions' => [
+                    'showUpload' => false,
+                    'showPreview' => false,
+                    'showCaption' => false,
+                    'showRemove' => false,
+                    'browseClass' => 'btn btn-tradegame btn-block',
+                    'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
+                    'browseLabel' =>  'Sube tu avatar'
+                ],
+                'options' => ['accept' => 'image/*'],
+                ])->label(false);?>
+            </div>
+    </div>
+
 
     <?= $form->field($model, 'nombre_real', [
         'template' => Utiles::inputGlyphicon('tag')
