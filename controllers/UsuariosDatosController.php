@@ -8,6 +8,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
 
 /**
  * UsuariosDatosController implements the CRUD actions for UsuariosDatos model.
@@ -41,8 +42,11 @@ class UsuariosDatosController extends Controller
     {
         $model = Yii::$app->user->identity->usuariosDatos;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'Has actualizado tus datos correctamente');
+        if ($model->load(Yii::$app->request->post())) {
+            $model->foto = UploadedFile::getInstance($model, 'foto');
+            if ($model->save() && $model->upload()) {
+                Yii::$app->session->setFlash('success', 'Has actualizado tus datos correctamente');
+            }
         }
 
         return $this->render('/usuarios/update', [

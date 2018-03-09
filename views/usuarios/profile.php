@@ -23,6 +23,7 @@ $this->registerJs("
         });
     });"
 );
+$this->registerCssFile('@web/css/profile.css');
 ?>
 <div class="col-md-12">
 <div class="panel panel-default">
@@ -30,14 +31,16 @@ $this->registerJs("
       <div class="row">
          <div class="col-lg-12">
                 <div class="col-xs-12 col-sm-4 col-md-3">
-                    <?= Html::img('@web/avatar.png', [
+                    <?php $datos = $model->usuariosDatos; ?>
+                    <div class="img-thumbnail">
+                        <?= Html::img($datos->avatar, [
                             'id' => 'img-profile',
                             'class' => 'img-responsive'
-                        ]) ?>
+                            ]) ?>
+                    </div>
                 </div>
             <div class="col-xs-12 col-sm-8 col-md-8">
                <ul class="list-group">
-                    <?php $datos = $model->usuariosDatos ?>
                     <li class="list-group-item"><strong>Usuario:</strong> <?= Html::encode($model->usuario) ?></li>
                     <li class="list-group-item"><strong>Email:</strong> <?= Html::encode($model->email) ?></li>
                     <?php if ($datos->nombre_real): ?>

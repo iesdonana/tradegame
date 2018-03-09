@@ -148,3 +148,8 @@ a.desc:after {
     color: #fff;
     background-color: #9f0404;
 }
+
+#img-edit {
+    margin-bottom: 20px;
+    width: 200px;
+}
