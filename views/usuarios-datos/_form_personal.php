@@ -15,14 +15,33 @@ use kartik\datecontrol\DateControl;
 /* @var $this yii\web\View */
 /* @var $model app\models\UsuariosDatos */
 /* @var $form yii\widgets\ActiveForm */
+
+$js = <<<EOT
+function cargarImagen(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#img-edit').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#usuariosdatos-foto").change(function() {
+  cargarImagen(this);
+});
+EOT;
+$this->registerJs($js);
 ?>
 
 <div class="usuarios-datos-form">
     <?php $form = ActiveForm::begin(); ?>
-
     <div class="row">
         <div class="col-md-offset-4 col-md-4">
-            <?= Html::img('@web/avatar.png', [
+            <?= Html::img($model->avatar, [
                 'id' => 'img-edit',
                 'class' => 'center-block'
             ]) ?>

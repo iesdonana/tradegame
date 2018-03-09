@@ -78,6 +78,28 @@ class UsuariosDatos extends \yii\db\ActiveRecord
     }
 
     /**
+     * Devuelve el avatar del usuario desde Amazon S3 si lo tiene. Si no
+     * existe ningún avatar del usuario en S3, devolverá la ruta hacia el
+     * avatar por defecto.
+     * @return string Ruta del avatar
+     */
+    public function getAvatar()
+    {
+        $s3 = Yii::$app->get('s3');
+        $id = $this->id_usuario;
+        $rutaJpg = Yii::getAlias('@avatares_s3/') . $id . '.jpg';
+        $rutaPng = Yii::getAlias('@avatares_s3/') . $id . '.png';
+
+        if ($s3->exist($rutaJpg)) {
+            return $s3->getUrl($rutaJpg);
+        } elseif ($s3->exist($rutaPng)) {
+            return $s3->getUrl($rutaPng);
+        }
+
+        return '@web/avatar.png';
+    }
+
+    /**
      * Sube una foto/avatar al directorio de avatares de la aplicación.
      * @return mixed
      */
@@ -94,7 +116,7 @@ class UsuariosDatos extends \yii\db\ActiveRecord
 
         $res = $this->foto->saveAs($ruta);
         if ($res) {
-            Image::crop($ruta, 300, 300, [5, 5]);
+            Image::crop($ruta, 300, 300);
         }
 
         $s3 = Yii::$app->get('s3');
@@ -108,13 +130,24 @@ class UsuariosDatos extends \yii\db\ActiveRecord
     }
 
     /**
-     * Borra el avatar anterior de un usuario, si ya existiese alguno.
+     * Borra el avatar anterior de un usuario, si ya existiese alguno, tando
+     * de la carpeta uploads, como de Amazon S3.
      */
     public function borrarAnteriores()
     {
-        $ficheros = glob(Yii::getAlias('@avatares/') . $this->id_usuario . '.*');
+        $id = $this->id_usuario;
+        $ficheros = glob(Yii::getAlias('@avatares/') . $id . '.*');
         foreach ($ficheros as $fichero) {
             unlink($fichero);
+        }
+        $s3 = Yii::$app->get('s3');
+        $rutaJpg = Yii::getAlias('@avatares_s3/') . $id . '.jpg';
+        $rutaPng = Yii::getAlias('@avatares_s3/') . $id . '.png';
+
+        if ($s3->exist($rutaJpg)) {
+            $s3->delete($rutaJpg);
+        } elseif ($s3->exist($rutaPng)) {
+            $s3->delete($rutaPng);
         }
     }
 

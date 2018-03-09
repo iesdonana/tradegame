@@ -15,7 +15,7 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
         '@avatares' => '@app/web/avatares',
-        '@avatares_s3' => '/avatares',
+        '@avatares_s3' => 'avatares',
     ],
     'language' => 'es-ES',
     'components' => [
