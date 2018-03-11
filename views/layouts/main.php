@@ -73,7 +73,7 @@ $this->title = 'TradeGame';
                     <div class='row'>
                         <div class='col-xs-1 col-sm-1 col-lg-4'>
                             <p class='visible-md visible-lg text-center'>" .
-                                Html::img($modelUsuario->usuariosDatos->avatar, ['id' => 'thumbnail-nav'])
+                                '' //Html::img($modelUsuario->usuariosDatos->avatar, ['id' => 'thumbnail-nav'])
                             . "</p>
                         </div>
                         <div class='col-xs-11 col-sm-11 col-lg-8 '>

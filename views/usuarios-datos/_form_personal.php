@@ -51,12 +51,10 @@ $this->registerCssFile('@web/css/badge.css');
     <?php $form = ActiveForm::begin(); ?>
     <div class="col-md-3">
         <div class="row">
-	        <!-- <div class="relative"> -->
             <?= Html::img($model->avatar, [
                 'id' => 'img-edit',
                 'class' => 'center-block relative'
                 ]) ?>
-            <!-- </div> -->
         </div>
         <div class="row">
             <?= $form->field($model, 'foto')->widget(FileInput::classname(), [
@@ -69,7 +67,7 @@ $this->registerCssFile('@web/css/badge.css');
                     'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
                     'browseLabel' =>  'Sube tu avatar'
                 ],
-                'options' => ['accept' => 'image/*'],
+                'options' => ['accept' => 'image/jpg, image/png'],
                 ])->label(false);?>
         </div>
     </div>

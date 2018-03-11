@@ -56,7 +56,7 @@ $this->registerCssFile('@web/css/profile.css');
                 <?php if ($model->id === Yii::$app->user->id): ?>
                     <?= Html::a(
                         Utiles::glyphicon('edit') . ' Editar perfil',
-                        ['usuarios/update', 'usuario' => Yii::$app->user->identity->usuario],
+                        ['usuarios/modificar', 'seccion' => 'personal'],
                         ['class' => 'btn btn-default']
                     ) ?>
                     <?= Html::a(
@@ -74,12 +74,11 @@ $this->registerCssFile('@web/css/profile.css');
          </div>
       </div>
    </div>
-    <?php if ($datos->biografia): ?>
-        <div class="bs-callout bs-callout-danger">
-           <h4>Biografía</h4>
-           <p><?= Html::encode($datos->biografia) ?></p>
-        </div>
-    <?php endif ?>
+    <div class="bs-callout bs-callout-danger">
+       <h4>Biografía</h4>
+       <p><?= ($datos->biografia) ? Html::encode($datos->biografia) :
+       '<em>El usuario no ha facilitado una biografía</em>' ?></p>
+    </div>
 
    </div>
    <?php Modal::begin([
@@ -92,14 +91,7 @@ $this->registerCssFile('@web/css/profile.css');
                 )
                 . Html::endForm()
     ])
-    // 'footer' => Html::a(Utiles::glyphicon('remove') .
-    //             ' Borrar definitivamente', ['usuarios/remove'],
-    //             ['class' => 'btn btn-danger', 'id' => 'delete-confirm']),
-    // ]);
     ?>
-
-
     <p>¿Estás seguro de que deseas borrar permanentemente su cuenta?</p>
-
     <?php Modal::end(); ?>
 </div>
