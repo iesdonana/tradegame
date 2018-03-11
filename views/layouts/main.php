@@ -45,7 +45,8 @@ $this->title = 'TradeGame';
     ]);
 
     $items = [
-        ['label' => 'Inicio', 'url' => ['/site/index']]
+        ['label' => 'Inicio', 'url' => ['/site/index']],
+        ['label' => 'Publicar videojuego', 'url' => ['/videojuegos-usuarios/publicar']]
     ];
 
     if (Yii::$app->user->isGuest) {

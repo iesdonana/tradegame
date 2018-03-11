@@ -86,6 +86,18 @@ CREATE TABLE videojuegos
                                    ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
+DROP TABLE IF EXISTS videojuegos_usuarios CASCADE;
+
+CREATE TABLE videojuegos_usuarios
+(
+    id            bigserial    PRIMARY KEY
+  , videojuego_id bigint       NOT NULL REFERENCES videojuegos (id)
+                               ON DELETE NO ACTION ON UPDATE CASCADE
+  , usuario_id    bigint       NOT NULL REFERENCES usuarios (id)
+                               ON DELETE CASCADE ON UPDATE CASCADE
+  , mensaje       varchar(255)
+);
+
 -- INSERCIONES --
 
 INSERT INTO usuarios_generos (sexo)
