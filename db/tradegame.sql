@@ -203,7 +203,7 @@ INSERT INTO videojuegos (nombre, descripcion, fecha_lanzamiento,
         'Estados Unidos para explorar sorprendentes horizontes en un ' ||
         'planteamiento de mundo abierto en el que los disparos, los vehículos ' ||
         'y los animales salvajes siguen teniendo una importancia capital. ',
-        '2018-03-27', 7, 1, 1),
+        '2018-03-27', 7, 1, 5),
         ('Forza 7',
         'Forza 7 es la entrega de la conocida saga de simulación y velocidad ' ||
         'Forza firmada por Turn 10. El Lamborghini Centenario es su "coche de ' ||

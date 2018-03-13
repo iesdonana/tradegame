@@ -28,8 +28,18 @@ class VideojuegosController extends Controller
                 ->limit(10)->select([
                     'videojuegos.id', 'videojuegos.nombre',
                     'plataformas.nombre as plataforma', 'plataforma_id', ])
+                ->orderBy('videojuegos.nombre')
                 ->asArray()->all();
         }
         return $videojuegos;
+    }
+
+    public function actionDetalles($id)
+    {
+        $videojuego = Videojuegos::findOne($id);
+
+        return $this->renderAjax('detalles', [
+            'videojuego' => $videojuego,
+        ]);
     }
 }

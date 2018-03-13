@@ -11,10 +11,14 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="videojuegos-usuarios-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <div class="row">
+        <div class="col-md-6">
+            <?= $this->render('_form', [
+                'model' => $model,
+                ]) ?>
+        </div>
+        <div id="detalles" class="col-md-6">
+        </div>
+    </div>
 
 </div>
