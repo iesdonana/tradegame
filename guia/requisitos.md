@@ -577,6 +577,15 @@
 | **Entrega**     | v1             |
 | **Incidencia**  | [64](https://github.com/jlnarvaez/tradegame/issues/64) |
 
+| **R65**     | **Listado de videojuegos publicados por un usuario**           |
+| --------------: | :------------------- |
+| **Descripción** | Los usuarios tendrán la posibilidad de ver un listado con todos los videojuegos que han publicado, desde su perfil             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v1             |
+| **Incidencia**  | [76](https://github.com/jlnarvaez/tradegame/issues/76) |
+
 
 ## Cuadro resumen
 
@@ -646,3 +655,4 @@
 | (**R62**) Comprobación en varios navegadores | Mínimo | Técnico | Fácil | v3 | [62](https://github.com/jlnarvaez/tradegame/issues/62) |
 | (**R63**) Desplegar en un Host | Mínimo | Técnico | Media | v3 | [63](https://github.com/jlnarvaez/tradegame/issues/63) |
 | (**R64**) Desplegar en un servidor local | Mínimo | Técnico | Media | v1 | [64](https://github.com/jlnarvaez/tradegame/issues/64) |
+| (**R65**) Listado de videojuegos publicados por un usuario | Importante | Funcional | Media | v1 | [76](https://github.com/jlnarvaez/tradegame/issues/76) |
