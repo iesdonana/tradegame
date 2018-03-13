@@ -2,5 +2,5 @@
 
 return [
     'adminEmail' => 'tradegame.soporte@gmail.com',
-    'dateFormat' => 'php:d-m-Y',
+    'dateFormat' => 'php:d M Y',
 ];

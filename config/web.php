@@ -16,6 +16,7 @@ $config = [
         '@npm' => '@vendor/npm-asset',
         '@avatares' => '@app/web/avatares',
         '@avatares_s3' => 'avatares',
+        '@caratulas_s3' => 'caratulas',
     ],
     'language' => 'es-ES',
     'components' => [

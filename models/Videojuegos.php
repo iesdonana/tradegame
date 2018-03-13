@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use Yii;
+
 /**
  * This is the model class for table "videojuegos".
  *
@@ -59,6 +61,28 @@ class Videojuegos extends \yii\db\ActiveRecord
             'genero_id' => 'Genero ID',
             'plataforma_id' => 'Plataforma ID',
         ];
+    }
+
+    /**
+     * Devuelve la carátula del videojuego desde Amazon S3 si la tiene. Si no
+     * existe ninguna carátula del videojuego en S3, devolverá la ruta hacia la
+     * carátula por defecto.
+     * @return string Ruta de la carátula
+     */
+    public function getCaratula()
+    {
+        $s3 = Yii::$app->get('s3');
+        $id = $this->id;
+        $rutaJpg = Yii::getAlias('@caratulas_s3/') . $id . '.jpg';
+        $rutaPng = Yii::getAlias('@caratulas_s3/') . $id . '.png';
+
+        if ($s3->exist($rutaJpg)) {
+            return $s3->getUrl($rutaJpg);
+        } elseif ($s3->exist($rutaPng)) {
+            return $s3->getUrl($rutaPng);
+        }
+
+        return '@web/caratula.png';
     }
 
     /**

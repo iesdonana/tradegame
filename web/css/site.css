@@ -149,7 +149,39 @@ a.desc:after {
     background-color: #9f0404;
 }
 
+.btn-tradegame:focus {
+    color: #fff;
+}
+
 #img-edit {
     margin-bottom: 20px;
+    width: 200px;
+}
+
+.badge-ps4 {
+    background-color: #0b1d91;
+}
+
+.badge-xbox360 {
+    background-color: #0eaf0e;
+}
+
+.badge-xboxone {
+    background-color: #066306;
+}
+
+.badge-switch {
+    background-color: #d61717;
+}
+
+.badge-pc {
+    background-color: #a04a00;
+}
+
+.badge-ps2 {
+    background-color: #040821;
+}
+
+#caratula-detail {
     width: 200px;
 }
