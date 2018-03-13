@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "videojuegos_usuarios".
  *
@@ -47,7 +45,7 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'videojuego_id' => 'Videojuego ID',
+            'videojuego_id' => 'Título del videojuego',
             'usuario_id' => 'Usuario ID',
             'mensaje' => 'Mensaje',
         ];
