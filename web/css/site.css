@@ -177,3 +177,7 @@ a.desc:after {
 .badge-ps2 {
     background-color: #040821;
 }
+
+#caratula-detail {
+    width: 200px;
+}

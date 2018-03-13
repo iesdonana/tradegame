@@ -19,6 +19,7 @@ $urlDetalles = Url::to(['videojuegos/detalles']);
 
 $this->registerJsFile('@web/js/publicar.js', ['position' => View::POS_HEAD]);
 $this->registerJsFile('@web/js/utiles.js');
+$this->registerCssFile('@web/css/loader.css');
 ?>
 
 <div class="videojuegos-usuarios-form">
@@ -37,7 +38,10 @@ $this->registerJsFile('@web/js/utiles.js');
                 'options' => ['placeholder' => 'Busca un videojuego ...'],
 
                 'pluginEvents' => [
-                    'select2:select' => "function() {peticionDetalles('$urlDetalles'); }",
+                    'select2:select' => "function() {
+                        $('#detalles').empty();
+                        peticionDetalles('$urlDetalles');
+                    }",
                     "select2:unselect" => "function() { $('#detalles').empty(); }"
                 ],
                 'pluginOptions' => [
@@ -54,7 +58,9 @@ $this->registerJsFile('@web/js/utiles.js');
                 ],
             ]); ?>
 
-            <?= $form->field($model, 'mensaje')->textarea(['maxlength' => true]) ?>
+            <?= $form->field($model, 'mensaje', [
+                'template' => "{label}\n{input}\n{hint}\n{error}",
+            ])->textarea(['maxlength' => true]) ?>
 
             <div class="form-group">
                 <?= Html::submitButton('Publicar',
