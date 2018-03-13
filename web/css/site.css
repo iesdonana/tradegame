@@ -185,3 +185,7 @@ a.desc:after {
 #caratula-detail {
     width: 200px;
 }
+
+.site-register {
+    border-left: 1px solid #cccccc;
+}

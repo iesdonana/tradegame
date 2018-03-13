@@ -108,3 +108,8 @@
 .navbar-login a {
     margin-right: 5px;
 }
+
+.small {
+    text-overflow: ellipsis;
+white-space: nowrap;
+}

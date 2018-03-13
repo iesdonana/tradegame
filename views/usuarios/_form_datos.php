@@ -4,6 +4,7 @@ use app\models\Usuarios;
 
 use app\helpers\Utiles;
 
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -13,7 +14,7 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="usuarios-form">
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['action' => Url::to(['usuarios/registrar'])]); ?>
 
     <?= $form->field($model, 'usuario', [
             'enableAjaxValidation' => true,

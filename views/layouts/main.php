@@ -50,8 +50,8 @@ $this->title = 'TradeGame';
     ];
 
     if (Yii::$app->user->isGuest) {
-        $items[] = ['label' => 'Registro', 'url' => ['/usuarios/registrar']];
-        $items[] = ['label' => 'Login', 'url' => ['/site/login']];
+        // $items[] = ['label' => 'Registro', 'url' => ['/usuarios/registrar']];
+        $items[] = ['label' => 'Login / Registro', 'url' => ['/site/login']];
     } else {
         $form = Html::beginForm(['/site/logout'], 'post')
         . Html::submitButton(

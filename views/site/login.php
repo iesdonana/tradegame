@@ -13,7 +13,7 @@ $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
-    <div class="col-md-offset-4 col-md-4">
+    <div class="col-md-offset-1 col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title text-center">
@@ -39,15 +39,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="form-group">
                             <?= Html::submitButton('Login', ['class' => 'btn btn-tradegame btn-block', 'name' => 'login-button']) ?>
                     </div>
-                    <hr>
-                    <p>¿No tienes cuenta? Puedes registrate
-                        <?= Html::a('aquí', [
-                            'usuarios/registrar'
-                        ]) ?></p>
 
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
     </div>
-
+    <!-- <div class="col-md-1 divisor">
+    </div> -->
+    <div class="col-md-6 site-register">
+        <?= $this->render('/usuarios/create', [
+            'model' => $usuario
+        ]) ?>
+    </div>
 </div>

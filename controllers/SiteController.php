@@ -2,13 +2,14 @@
 
 namespace app\controllers;
 
+use app\models\ContactForm;
+use app\models\LoginForm;
+use app\models\Usuarios;
 use Yii;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
 
 class SiteController extends Controller
 {
@@ -80,9 +81,12 @@ class SiteController extends Controller
             return $this->goBack();
         }
 
+        $usuario = new Usuarios();
+        $usuario->scenario = Usuarios::ESCENARIO_CREATE;
         $model->password = '';
         return $this->render('login', [
             'model' => $model,
+            'usuario' => $usuario,
         ]);
     }
 
