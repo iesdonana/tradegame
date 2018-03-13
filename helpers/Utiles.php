@@ -29,14 +29,29 @@ class Utiles
 
     /**
      * Devuelve un Glyphicon.
-     * @param  string $nombre Nombre del Glyphicon
+     * @param string $nombre Nombre del Glyphicon
+     * @param string $tooltip Contenido del tooltip (Opcional)
      * @return string
      */
-    public static function glyphicon($nombre)
+    public static function glyphicon($nombre, $tooltip = null)
     {
-        return '<span class="glyphicon glyphicon-' . $nombre . '"></span>';
+        $array = ['class' => 'glyphicon glyphicon-' . $nombre];
+        if ($tooltip !== null) {
+            $array = array_merge($array, [
+                'title' => $tooltip,
+                'data-toggle' => 'tooltip',
+            ]);
+        }
+
+        return Html::tag('span', null, $array);
     }
 
+    /**
+     * Devuelve un 'badge' de Bootstrap con una clase, dependiendo de la plataforma
+     * del videojuego.
+     * @param  string $plataforma Nombre de la plataforma
+     * @return string             <span> con la clase correspondiente
+     */
     public static function badgePlataforma($plataforma)
     {
         switch ($plataforma) {

@@ -20,6 +20,12 @@ $urlDetalles = Url::to(['videojuegos/detalles']);
 $this->registerJsFile('@web/js/publicar.js', ['position' => View::POS_HEAD]);
 $this->registerJsFile('@web/js/utiles.js');
 $this->registerCssFile('@web/css/loader.css');
+$js = <<<JS
+$(function () {
+    $("[data-toggle='tooltip']").tooltip();
+});
+JS;
+$this->registerJs($js);
 ?>
 
 <div class="videojuegos-usuarios-form">
@@ -59,8 +65,9 @@ $this->registerCssFile('@web/css/loader.css');
             ]); ?>
 
             <?= $form->field($model, 'mensaje', [
-                'template' => "{label}\n{input}\n{hint}\n{error}",
-            ])->textarea(['maxlength' => true]) ?>
+                'template' => "{label} " . Utiles::glyphicon('info-sign', 'Comentarios acerca del videojuego. Por ejemplo: tu opinión personal.') .
+                            "\n{input}\n{hint}\n{error}",
+            ])->textarea(['maxlength' => true, 'rows' => 8]) ?>
 
             <div class="form-group">
                 <?= Html::submitButton('Publicar',

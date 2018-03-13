@@ -149,6 +149,10 @@ a.desc:after {
     background-color: #9f0404;
 }
 
+.btn-tradegame:focus {
+    color: #fff;
+}
+
 #img-edit {
     margin-bottom: 20px;
     width: 200px;

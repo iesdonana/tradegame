@@ -124,7 +124,7 @@ INSERT INTO plataformas (nombre)
 INSERT INTO desarrolladores_videojuegos (compania)
     VALUES ('Naughty Dog'), ('EA Sports'), ('Vicarious Visions'), ('Konami'),
            ('BitBox Ltd.'), ('Guerrilla Games'), ('Ubisoft'), ('Real Time Worlds'),
-           ('Capcom'), ('Bluehole Studio'), ('Turn 10');
+           ('Capcom'), ('Bluehole Studio'), ('Turn 10'), ('Valve');
 
 INSERT INTO videojuegos (nombre, descripcion, fecha_lanzamiento,
                         desarrollador_id, genero_id, plataforma_id)
@@ -213,11 +213,9 @@ INSERT INTO videojuegos (nombre, descripcion, fecha_lanzamiento,
         'de la actualidad para ofrecer la misma exactitud en su experiencia de ' ||
         'conducción y unos gráficos a la altura de lo que la serie ha venido ' ||
         'acostumbrando.',
-        '2017-10-03', 11, 6, 1),
-        ('Life is Feudal: MMO',
-        'Un videojuego de supervivencia medieval en el que tendrás que ' ||
-        'enfrentarte (o colaborar) con otros usuarios del software. ' ||
-        '¡Conviértete en el guerrero más poderoso de todo el reino a costa ' ||
-        'de tus rivales! Sobrevive a las hordas enemigas y avanza en un amplio ' ||
-        'mapeado en el que los peligros y las sorpresas aguardan en cada rincón.',
-        '2017-10-03', 5, 6, 1);
+        '2017-10-03', 11, 6, 5),
+        ('Counter Strike: Source',
+        'Counter-Strike Source es un juego de acción (shooter) desarrollado ' ||
+        'por Valve y distribuido por VU Games para PC. La fecha de lanzamiento ' ||
+        'de este videojuego es el 16 de noviembre de 2004.',
+        '2004-11-16', 12, 3, 5);

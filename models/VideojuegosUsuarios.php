@@ -47,7 +47,7 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
             'id' => 'ID',
             'videojuego_id' => 'Título del videojuego',
             'usuario_id' => 'Usuario ID',
-            'mensaje' => 'Mensaje',
+            'mensaje' => 'Comentarios',
         ];
     }
 
