@@ -108,10 +108,12 @@ class UsuariosController extends Controller
     public function actionPerfil($usuario)
     {
         if (($model = Usuarios::findOne(['usuario' => $usuario])) === null) {
-            throw new NotFoundHttpException('La página solicitada no existe.');
+            throw new NotFoundHttpException('El usuario no existe.');
         }
+
         return $this->render('profile', [
             'model' => $model,
+            'listado' => $model->getUltimosVideojuegos(3),
         ]);
     }
 

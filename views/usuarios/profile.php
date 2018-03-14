@@ -8,6 +8,11 @@ use yii\helpers\Html;
 use yii\bootstrap\Modal;
 
 /* @var $model app\models\Usuarios */
+
+use app\assets\BxAsset;
+
+BxAsset::register($this);
+
 $this->registerJs("
     $(function() {
         $('.popup-modal').click(function(e) {
@@ -23,7 +28,8 @@ $this->registerJs("
         });
     });"
 );
-$this->registerCssFile('@web/css/profile.css');
+$this->registerCssFile('@web/css/profile.css'); //{auto: true, stopAutoOnClick: true}
+$this->registerJs("$('.bxslider').bxSlider();");
 ?>
 <div class="col-md-12">
 <div class="panel panel-default">
@@ -41,16 +47,31 @@ $this->registerCssFile('@web/css/profile.css');
                 </div>
             <div class="col-xs-12 col-sm-8 col-md-8">
                <ul class="list-group">
-                    <li class="list-group-item"><strong>Usuario:</strong> <?= Html::encode($model->usuario) ?></li>
-                    <li class="list-group-item"><strong>Email:</strong> <?= Html::encode($model->email) ?></li>
+                    <li class="list-group-item">
+                        <strong>Usuario:</strong>
+                        <?= Html::encode($model->usuario) ?>
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Email:</strong>
+                        <?= Html::encode($model->email) ?>
+                    </li>
                     <?php if ($datos->nombre_real): ?>
-                        <li class="list-group-item"><strong>Nombre:</strong> <?= Html::encode($datos->nombre_real) ?></li>
+                        <li class="list-group-item">
+                            <strong>Nombre:</strong>
+                            <?= Html::encode($datos->nombre_real) ?>
+                        </li>
                     <?php endif ?>
                     <?php if ($datos->localidad): ?>
-                        <li class="list-group-item"><strong>Localidad:</strong> <?= Html::encode($datos->localidad) ?></li>
+                        <li class="list-group-item">
+                            <strong>Localidad:</strong>
+                            <?= Html::encode($datos->localidad) ?>
+                        </li>
                     <?php endif ?>
                     <?php if ($datos->fecha_nacimiento): ?>
-                        <li class="list-group-item"><strong>Fecha de nacimiento:</strong> <?= $datos->fecha_nacimiento ?></li>
+                        <li class="list-group-item">
+                            <strong>Fecha de nacimiento:</strong>
+                            <?= $datos->fecha_nacimiento ?>
+                        </li>
                     <?php endif ?>
                </ul>
                 <?php if ($model->id === Yii::$app->user->id): ?>
@@ -74,6 +95,24 @@ $this->registerCssFile('@web/css/profile.css');
          </div>
       </div>
    </div>
+   <?php if (count($listado) > 0): ?>
+       <div class="bs-callout bs-callout-danger">
+           <h4>Últimos videojuegos publicados</h4>
+           <ul class='bxslider'>
+                <?php foreach ($listado as $model): ?>
+                    <li>
+                        <?= $this->render('/videojuegos-usuarios/view', [
+                            'model' => $model,
+                        ]) ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+            <?= Html::a('Ver todas las publicaciones [+]',
+                ['/videojuegos-usuarios/publicaciones', 'usuario' => Yii::$app->request->get('usuario')],
+                ['class' => 'btn btn-xs btn-tradegame pull-right']
+            ) ?>
+       </div>
+    <?php endif ?>
     <div class="bs-callout bs-callout-danger">
        <h4>Biografía</h4>
        <p><?= ($datos->biografia) ? Html::encode($datos->biografia) :

@@ -182,10 +182,31 @@ a.desc:after {
     background-color: #040821;
 }
 
-#caratula-detail {
-    width: 200px;
+.caratula-detail {
+    width: 180px;
 }
 
 .site-register {
     border-left: 1px solid #cccccc;
+}
+
+.page-header {
+    margin-top: 10px;
+}
+
+.detalles-info {
+    margin-top: 10px;
+}
+
+.text-tradegame {
+    color: #730000;
+}
+
+.date-publicado {
+    margin-bottom: 10px;
+}
+
+.separador {
+    border: 2px dotted #730000;
+    opacity: 0.5;
 }

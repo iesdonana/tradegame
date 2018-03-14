@@ -29,3 +29,19 @@
     margin: 0 auto;
     margin-bottom: 10px;
 }
+
+.bx-viewport {
+    background-color: #f5f5f5;
+}
+
+.bxslider li {
+    padding: 20px;
+}
+
+.videojuego-publicacion h3 {
+    margin-top: 10px;
+}
+
+.well-sm {
+    margin-top: 0px;
+}

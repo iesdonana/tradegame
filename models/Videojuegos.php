@@ -73,16 +73,27 @@ class Videojuegos extends \yii\db\ActiveRecord
     {
         $s3 = Yii::$app->get('s3');
         $id = $this->id;
-        $rutaJpg = Yii::getAlias('@caratulas_s3/') . $id . '.jpg';
-        $rutaPng = Yii::getAlias('@caratulas_s3/') . $id . '.png';
+        $caratulas = Yii::getAlias('@caratulas/');
 
-        if ($s3->exist($rutaJpg)) {
-            return $s3->getUrl($rutaJpg);
-        } elseif ($s3->exist($rutaPng)) {
-            return $s3->getUrl($rutaPng);
+        $archivos = glob($caratulas . "$id.*");
+        if (count($archivos) > 0) {
+            return '/' . $archivos[0];
         }
 
-        return '@web/caratula.png';
+        $ruta = $caratulas . $id . '.jpg';
+        if (!$s3->exist($ruta)) {
+            $ruta = $caratulas . $id . '.png';
+        }
+
+        if ($s3->exist($ruta)) {
+            $archivo = $caratulas . $id . '.' . pathinfo($ruta, PATHINFO_EXTENSION);
+            $s3->commands()->get($ruta)
+                ->saveAs($archivo)
+                ->execute();
+            return $ruta;
+        }
+
+        return "/{$caratulas}default.png";
     }
 
     /**
@@ -107,5 +118,13 @@ class Videojuegos extends \yii\db\ActiveRecord
     public function getPlataforma()
     {
         return $this->hasOne(Plataformas::className(), ['id' => 'plataforma_id'])->inverseOf('videojuegos');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVideojuegosUsuarios()
+    {
+        return $this->hasMany(VideojuegosUsuarios::className(), ['videojuego_id' => 'id']);
     }
 }

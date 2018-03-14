@@ -6,7 +6,6 @@
 use app\helpers\Utiles;
 
 use app\widgets\Alert;
-use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -50,7 +49,6 @@ $this->title = 'TradeGame';
     ];
 
     if (Yii::$app->user->isGuest) {
-        // $items[] = ['label' => 'Registro', 'url' => ['/usuarios/registrar']];
         $items[] = ['label' => 'Login / Registro', 'url' => ['/site/login']];
     } else {
         $form = Html::beginForm(['/site/logout'], 'post')
@@ -74,7 +72,7 @@ $this->title = 'TradeGame';
                     <div class='row'>
                         <div class='col-xs-1 col-sm-1 col-lg-4'>
                             <p class='visible-md visible-lg text-center'>" .
-                                '' //Html::img($modelUsuario->usuariosDatos->avatar, ['id' => 'thumbnail-nav'])
+                                Html::img($modelUsuario->usuariosDatos->avatar, ['id' => 'thumbnail-nav'])
                             . "</p>
                         </div>
                         <div class='col-xs-11 col-sm-11 col-lg-8 '>
@@ -96,7 +94,8 @@ $this->title = 'TradeGame';
                 '<div class="col-md-offset-1 col-md-10">' .
                     $form .
                 '</div>'
-            ]
+            ],
+            'active' => in_array(Yii::$app->controller->action->id, ['modificar']),
         ];
     }
     echo Nav::widget([

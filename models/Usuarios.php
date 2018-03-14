@@ -155,6 +155,19 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->hasOne(UsuariosId::className(), ['id' => 'id'])->inverseOf('usuario');
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVideojuegosUsuarios()
+    {
+        return $this->hasMany(VideojuegosUsuarios::className(), ['usuario_id' => 'id']);
+    }
+
+    public function getUltimosVideojuegos($numero)
+    {
+        return $this->getVideojuegosUsuarios()->limit($numero)->orderBy(['created_at' => SORT_DESC])->all();
+    }
+
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
