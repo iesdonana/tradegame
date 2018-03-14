@@ -67,7 +67,7 @@ $this->registerCssFile('@web/css/badge.css');
                     'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
                     'browseLabel' =>  'Sube tu avatar'
                 ],
-                'options' => ['accept' => 'image/jpg, image/png'],
+                'options' => ['accept' => 'image/*'],
                 ])->label(false);?>
         </div>
     </div>

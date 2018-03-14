@@ -107,6 +107,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             'email' => 'Correo electrónico',
             'password' => 'Contraseña',
             'repeatPassword' => 'Repite la contraseña',
+            'oldPassword' => 'Contraseña actual',
         ];
     }
 

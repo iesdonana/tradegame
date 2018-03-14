@@ -90,7 +90,7 @@ class Videojuegos extends \yii\db\ActiveRecord
             $s3->commands()->get($ruta)
                 ->saveAs($archivo)
                 ->execute();
-            return $ruta;
+            return "/$ruta";
         }
 
         return "/{$caratulas}default.png";

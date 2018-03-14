@@ -104,7 +104,7 @@ class UsuariosDatos extends \yii\db\ActiveRecord
             $s3->commands()->get($ruta)
                 ->saveAs($archivo)
                 ->execute();
-            return $ruta;
+            return "/$ruta";
         }
 
         return "/{$avatares}default.png";
@@ -123,7 +123,6 @@ class UsuariosDatos extends \yii\db\ActiveRecord
         $extension = $this->foto->extension;
         $nombreFichero = $this->id_usuario . '.' . $extension;
         $ruta = Yii::getAlias('@avatares/') . $nombreFichero;
-        $rutaS3 = Yii::getAlias('@avatares_s3/') . $nombreFichero;
 
         $res = $this->foto->saveAs($ruta);
         if ($res) {
@@ -132,7 +131,7 @@ class UsuariosDatos extends \yii\db\ActiveRecord
 
         $s3 = Yii::$app->get('s3');
         try {
-            $s3->upload($rutaS3, $ruta);
+            $s3->upload($ruta, $ruta);
         } catch (\Exception $e) {
             unlink($ruta);
             return false;
@@ -149,16 +148,16 @@ class UsuariosDatos extends \yii\db\ActiveRecord
         $id = $this->id_usuario;
         $ficheros = glob(Yii::getAlias('@avatares/') . $id . '.*');
         foreach ($ficheros as $fichero) {
-            unlink($fichero);
+            return unlink($fichero);
         }
         $s3 = Yii::$app->get('s3');
-        $rutaJpg = Yii::getAlias('@avatares_s3/') . $id . '.jpg';
-        $rutaPng = Yii::getAlias('@avatares_s3/') . $id . '.png';
 
-        if ($s3->exist($rutaJpg)) {
-            $s3->delete($rutaJpg);
-        } elseif ($s3->exist($rutaPng)) {
-            $s3->delete($rutaPng);
+        $ruta = Yii::getAlias('@avatares/') . $id . '.jpg';
+        if ($s3->exist($ruta)) {
+            $s3->delete($ruta);
+        } else {
+            $ruta = Yii::getAlias('@avatares/') . $id . '.png';
+            $s3->delete($ruta);
         }
     }
 
