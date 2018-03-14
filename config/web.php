@@ -14,9 +14,8 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
-        '@avatares' => '@app/web/avatares',
-        '@avatares_s3' => 'avatares',
-        '@caratulas_s3' => 'caratulas',
+        '@avatares' => 'uploads/avatares',
+        '@caratulas' => 'uploads/caratulas',
     ],
     'language' => 'es-ES',
     'components' => [
@@ -60,6 +59,8 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'videojuegos/publicar' => 'videojuegos-usuarios/publicar',
+                'publicaciones/<usuario:\w+>' => 'videojuegos-usuarios/publicaciones',
                 'usuarios/modificar/personal' => 'usuarios-datos/modificar',
                 'usuarios/modificar/<seccion:\w+>' => 'usuarios/modificar',
                 'registrar' => 'usuarios/registrar',
@@ -72,7 +73,7 @@ $config = [
                 'key' => getenv('KEY_S3'),
                 'secret' => getenv('SECRET_S3'),
             ],
-            'region' => 'us-east-1',
+            'region' => 'eu-west-3',
             'defaultBucket' => 'tradegame2',
             'defaultAcl' => 'public-read',
         ],

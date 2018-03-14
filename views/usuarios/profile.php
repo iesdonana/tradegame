@@ -47,16 +47,31 @@ $this->registerJs("$('.bxslider').bxSlider();");
                 </div>
             <div class="col-xs-12 col-sm-8 col-md-8">
                <ul class="list-group">
-                    <li class="list-group-item"><strong>Usuario:</strong> <?= Html::encode($model->usuario) ?></li>
-                    <li class="list-group-item"><strong>Email:</strong> <?= Html::encode($model->email) ?></li>
+                    <li class="list-group-item">
+                        <strong>Usuario:</strong>
+                        <?= Html::encode($model->usuario) ?>
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Email:</strong>
+                        <?= Html::encode($model->email) ?>
+                    </li>
                     <?php if ($datos->nombre_real): ?>
-                        <li class="list-group-item"><strong>Nombre:</strong> <?= Html::encode($datos->nombre_real) ?></li>
+                        <li class="list-group-item">
+                            <strong>Nombre:</strong>
+                            <?= Html::encode($datos->nombre_real) ?>
+                        </li>
                     <?php endif ?>
                     <?php if ($datos->localidad): ?>
-                        <li class="list-group-item"><strong>Localidad:</strong> <?= Html::encode($datos->localidad) ?></li>
+                        <li class="list-group-item">
+                            <strong>Localidad:</strong>
+                            <?= Html::encode($datos->localidad) ?>
+                        </li>
                     <?php endif ?>
                     <?php if ($datos->fecha_nacimiento): ?>
-                        <li class="list-group-item"><strong>Fecha de nacimiento:</strong> <?= $datos->fecha_nacimiento ?></li>
+                        <li class="list-group-item">
+                            <strong>Fecha de nacimiento:</strong>
+                            <?= $datos->fecha_nacimiento ?>
+                        </li>
                     <?php endif ?>
                </ul>
                 <?php if ($model->id === Yii::$app->user->id): ?>
@@ -92,9 +107,10 @@ $this->registerJs("$('.bxslider').bxSlider();");
                     </li>
                 <?php endforeach; ?>
             </ul>
-            <?= Html::a('Ver todas las publicaciones [+]', '/usuarios/publicaciones', [
-                'class' => 'btn btn-xs btn-tradegame pull-right'
-            ]) ?>
+            <?= Html::a('Ver todas las publicaciones [+]',
+                ['/videojuegos-usuarios/publicaciones', 'usuario' => Yii::$app->request->get('usuario')],
+                ['class' => 'btn btn-xs btn-tradegame pull-right']
+            ) ?>
        </div>
     <?php endif ?>
     <div class="bs-callout bs-callout-danger">
