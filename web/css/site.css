@@ -183,7 +183,7 @@ a.desc:after {
 }
 
 .caratula-detail {
-    width: 200px;
+    width: 180px;
 }
 
 .site-register {
@@ -192,4 +192,21 @@ a.desc:after {
 
 .page-header {
     margin-top: 10px;
+}
+
+.detalles-info {
+    margin-top: 10px;
+}
+
+.text-tradegame {
+    color: #730000;
+}
+
+.date-publicado {
+    margin-bottom: 10px;
+}
+
+.separador {
+    border: 2px dotted #730000;
+    opacity: 0.5;
 }

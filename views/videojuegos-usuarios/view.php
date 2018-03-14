@@ -4,20 +4,25 @@ use app\helpers\Utiles;
 
 use yii\helpers\Html;
 
-
 $videojuego = $model->videojuego;
 ?>
 
-
 <div class="row">
-    <div class="pull-right date-publicado">
-        <?= Utiles::glyphicon('time') . ' ' .
-        Yii::$app->formatter->asRelativeTime($model->created_at) ?>
+    <div class="row">
+        <div class="col-md-offset-10 col-md-2 col-xs-offset-4 col-xs-6 date-publicado">
+            <?= Utiles::glyphicon('time') . ' ' .
+            Yii::$app->formatter->asRelativeTime($model->created_at) ?>
+        </div>
     </div>
-</div>
-<div class="row">
     <div class="col-md-offset-1 col-md-3">
-        <?= Html::img($videojuego->caratula, ['class' => 'caratula-detail']) ?>
+        <div class="text-center">
+            <div class="row">
+                <?= Html::img($videojuego->caratula, ['class' => 'caratula-detail']) ?>
+            </div>
+            <div class="row detalles-info">
+                <?= Html::a('Detalles del videojuego', null, ['class' => 'btn btn-xs btn-default']) ?>
+            </div>
+        </div>
     </div>
     <div class="col-md-6">
         <div class="row">
@@ -36,5 +41,4 @@ $videojuego = $model->videojuego;
             </div>
         </div>
     </div>
-
 </div>
