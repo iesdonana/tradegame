@@ -8,6 +8,11 @@ use yii\helpers\Html;
 use yii\bootstrap\Modal;
 
 /* @var $model app\models\Usuarios */
+
+use app\assets\BxAsset;
+
+BxAsset::register($this);
+
 $this->registerJs("
     $(function() {
         $('.popup-modal').click(function(e) {
@@ -23,7 +28,8 @@ $this->registerJs("
         });
     });"
 );
-$this->registerCssFile('@web/css/profile.css');
+$this->registerCssFile('@web/css/profile.css'); //{auto: true, stopAutoOnClick: true}
+$this->registerJs("$('.bxslider').bxSlider();");
 ?>
 <div class="col-md-12">
 <div class="panel panel-default">
@@ -74,6 +80,23 @@ $this->registerCssFile('@web/css/profile.css');
          </div>
       </div>
    </div>
+   <?php if (count($listado) > 0): ?>
+       <div class="bs-callout bs-callout-danger">
+           <h4>Últimos videojuegos publicados</h4>
+           <ul class='bxslider'>
+                <?php foreach ($listado as $model): ?>
+                    <li>
+                        <?= $this->render('/videojuegos-usuarios/view', [
+                            'model' => $model,
+                        ]) ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+            <?= Html::a('Ver todas las publicaciones [+]', '/usuarios/publicaciones', [
+                'class' => 'btn btn-xs btn-tradegame pull-right'
+            ]) ?>
+       </div>
+    <?php endif ?>
     <div class="bs-callout bs-callout-danger">
        <h4>Biografía</h4>
        <p><?= ($datos->biografia) ? Html::encode($datos->biografia) :

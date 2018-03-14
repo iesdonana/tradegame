@@ -96,6 +96,7 @@ CREATE TABLE videojuegos_usuarios
   , usuario_id    bigint       NOT NULL REFERENCES usuarios (id)
                                ON DELETE CASCADE ON UPDATE CASCADE
   , mensaje       varchar(255)
+  , created_at    timestamp(0) NOT NULL DEFAULT localtimestamp
 );
 
 -- INSERCIONES --

@@ -73,7 +73,7 @@ $config = [
                 'secret' => getenv('SECRET_S3'),
             ],
             'region' => 'us-east-1',
-            'defaultBucket' => 'tradegame',
+            'defaultBucket' => 'tradegame2',
             'defaultAcl' => 'public-read',
         ],
     ],

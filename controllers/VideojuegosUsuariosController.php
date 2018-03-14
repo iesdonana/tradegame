@@ -2,10 +2,12 @@
 
 namespace app\controllers;
 
+use app\models\Usuarios;
 use app\models\VideojuegosUsuarios;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 /**
  * VideojuegosUsuariosController implements the CRUD actions for VideojuegosUsuarios model.
@@ -48,4 +50,15 @@ class VideojuegosUsuariosController extends Controller
             'model' => $model,
         ]);
     }
+
+    // public function actionVer($id)
+    // {
+    //     if (($model = Usuarios::findOne($id)) === null) {
+    //         throw new NotFoundHttpException('No se encontró el usuario');
+    //     }
+    //
+    //     return $this->render('view', [
+    //         'model' => $model,
+    //     ]);
+    // }
 }

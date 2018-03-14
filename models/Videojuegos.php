@@ -108,4 +108,12 @@ class Videojuegos extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Plataformas::className(), ['id' => 'plataforma_id'])->inverseOf('videojuegos');
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVideojuegosUsuarios()
+    {
+        return $this->hasMany(VideojuegosUsuarios::className(), ['videojuego_id' => 'id']);
+    }
 }

@@ -182,10 +182,14 @@ a.desc:after {
     background-color: #040821;
 }
 
-#caratula-detail {
+.caratula-detail {
     width: 200px;
 }
 
 .site-register {
     border-left: 1px solid #cccccc;
+}
+
+.page-header {
+    margin-top: 10px;
 }

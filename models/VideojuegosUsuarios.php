@@ -9,6 +9,7 @@ namespace app\models;
  * @property int $videojuego_id
  * @property int $usuario_id
  * @property string $mensaje
+ * @property string $created_at
  *
  * @property Usuarios $usuario
  * @property Videojuegos $videojuego

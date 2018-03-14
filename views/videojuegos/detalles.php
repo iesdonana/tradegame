@@ -10,7 +10,7 @@ use yii\widgets\DetailView;
 
 <div class="row">
     <div class="col-md-4">
-        <?= Html::img($videojuego->caratula, ['id' => 'caratula-detail', 'class' => 'center-block']) ?>
+        <?= Html::img($videojuego->caratula, ['class' => 'caratula-detail center-block']) ?>
         <hr class="visible-xs">
     </div>
     <div class="col-md-8">
