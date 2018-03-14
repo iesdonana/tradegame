@@ -3,12 +3,14 @@
 namespace app\controllers;
 
 use app\models\Usuarios;
+use app\models\Videojuegos;
 use app\models\VideojuegosUsuarios;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 /**
  * VideojuegosUsuariosController implements the CRUD actions for VideojuegosUsuarios model.
@@ -50,6 +52,38 @@ class VideojuegosUsuariosController extends Controller
         return $this->render('publicar', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * Hace una búsqueda de videojuegos publicados de un usuariom por el nombre
+     * del videojuego.
+     * @param  int $id_usuario    Usuario por el cual vamos a filtrar
+     * @param  string $q          Búsqueda
+     * @param  int $id_videojuego Id del videojuego publicado
+     * @return string             Respuesta en JSON
+     */
+    public function actionBuscarPublicados($id_usuario, $id_videojuego, $q = null)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $videojuegos['results'] = [];
+        if ($q !== null && $q !== '') {
+            $subQuery = VideojuegosUsuarios::find()
+                ->select('videojuego_id')
+                ->where(['usuario_id' => $id_usuario])
+                ->andWhere(['!=', 'id',  $id_videojuego]);
+
+            $videojuegos['results'] = Videojuegos::find()
+                ->joinWith('plataforma as p')
+                ->joinWith('videojuegosUsuarios')
+                ->where(['ilike', 'videojuegos.nombre', $q])
+                ->andWhere(['videojuegos.id' => $subQuery])
+                ->limit(10)->select([
+                    'videojuegos_usuarios.id', 'videojuegos.nombre',
+                    'p.nombre as plataforma', 'plataforma_id', ])
+                ->orderBy('videojuegos.nombre')
+                ->asArray()->all();
+        }
+        return $videojuegos;
     }
 
     /**

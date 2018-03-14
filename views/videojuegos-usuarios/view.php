@@ -14,31 +14,43 @@ $videojuego = $model->videojuego;
             Yii::$app->formatter->asRelativeTime($model->created_at) ?>
         </div>
     </div>
-    <div class="col-md-offset-1 col-md-3">
-        <div class="text-center">
-            <div class="row">
-                <?= Html::img($videojuego->caratula, ['class' => 'caratula-detail']) ?>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-3">
+            <div class="text-center">
+                <div class="row">
+                    <?= Html::img($videojuego->caratula, ['class' => 'caratula-detail center-block']) ?>
+                </div>
+                <div class="row detalles-info text-center">
+                    <?= Html::a('Detalles del videojuego', null, ['class' => 'btn btn-xs btn-default']) ?>
+                </div>
             </div>
-            <div class="row detalles-info">
-                <?= Html::a('Detalles del videojuego', null, ['class' => 'btn btn-xs btn-default']) ?>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <h3 class="well well-sm text-tradegame text-center">
+                    <?= Html::encode($videojuego->nombre) ?>
+                </h3>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <strong>Sinopsis:</strong>
+                    <p><?= Html::encode(
+                        mb_strimwidth($videojuego->descripcion, 0, 300, '...')
+                    ) ?></p>
+                </div>
+                <div class="col-md-6">
+                    <strong>Comentarios del usuario:</strong>
+                    <p><?= Html::encode($model->mensaje) ?></p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="row">
-            <h3 class="well well-sm text-tradegame text-center">
-                <?= Html::encode($videojuego->nombre) ?>
-            </h3>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <strong>Sinopsis:</strong>
-                <p><?= Html::encode($videojuego->descripcion) ?></p>
-            </div>
-            <div class="col-md-6">
-                <strong>Comentarios del usuario:</strong>
-                <p><?= Html::encode($model->mensaje) ?></p>
-            </div>
+    <div class="row">
+        <div class="col-md-offset-10 col-md-2 col-xs-offset-4 col-xs-6">
+            <?= Html::a('Hacer oferta', [
+                'ofertas/create',
+                'publicacion' => $model->id
+            ], ['class' => 'btn btn-warning']) ?>
         </div>
     </div>
 </div>

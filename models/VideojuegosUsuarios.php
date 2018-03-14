@@ -67,4 +67,20 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Videojuegos::className(), ['id' => 'videojuego_id'])->inverseOf('videojuegosUsuarios');
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOfertasPublicados()
+    {
+        return $this->hasMany(Ofertas::className(), ['videojuego_publicado_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOfertasOfrecidos()
+    {
+        return $this->hasMany(Ofertas::className(), ['videojuego_ofrecido_id' => 'id']);
+    }
 }
