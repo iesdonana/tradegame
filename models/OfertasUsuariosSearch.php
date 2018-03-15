@@ -16,7 +16,7 @@ class OfertasUsuariosSearch extends OfertasUsuarios
     public function rules()
     {
         return [
-            [['id', 'videojuego_publicado_id', 'videojuego_ofrecido_id', 'contraoferta_de', 'id_publicado', 'id_ofrecido'], 'integer'],
+            [['id', 'videojuego_publicado_id', 'videojuego_ofrecido_id', 'id_publicado', 'id_ofrecido'], 'integer'],
             [['aceptada'], 'default'],
             [['created_at', 'publicado', 'ofrecido', 'usuario_publicado', 'usuario_ofrecido'], 'safe'],
         ];

@@ -228,3 +228,7 @@ a.desc:after {
 .img-miniatura {
     width: 100px;
 }
+
+.accion {
+    display: inline;
+}
