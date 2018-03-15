@@ -3,7 +3,6 @@
 use app\helpers\Utiles;
 
 use yii\web\View;
-use yii\web\JsExpression;
 
 use yii\helpers\Url;
 use yii\helpers\Html;
@@ -38,31 +37,18 @@ $this->registerJs($js);
         <div class="panel-body">
             <?php $form = ActiveForm::begin(); ?>
             <?php $url = Url::to(['videojuegos/buscar-videojuegos']) ?>
-            <?= $form->field($model, 'videojuego_id')->widget(Select2::classname(), [
-                'name' => 'select-videojuegos',
-                'language' => 'es',
-                'options' => ['placeholder' => 'Busca un videojuego ...'],
-
+            <?php $items = [
                 'pluginEvents' => [
                     'select2:select' => "function() {
                         $('#detalles').empty();
                         peticionDetalles('$urlDetalles');
                     }",
                     "select2:unselect" => "function() { $('#detalles').empty(); }"
-                ],
-                'pluginOptions' => [
-                    'allowClear' => true,
-                    'minimumInputLength' => 1,
-                    'ajax' => [
-                        'url' => $url,
-                        'dataType' => 'json',
-                        'data' => new JsExpression('function(params) { return {q:params.term}; }'),
-                    ],
-                    'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
-                    'templateResult' => new JsExpression('formatVideojuego'),
-                    'templateSelection' => new JsExpression('function (videojuego) { return videojuego.nombre; }'),
-                ],
-            ]); ?>
+                ]
+            ];
+            $items = array_merge($items, Utiles::optionsSelect2($url)) ?>
+            
+            <?= $form->field($model, 'videojuego_id')->widget(Select2::classname(), $items); ?>
 
             <?= $form->field($model, 'mensaje', [
                 'template' => "{label} " . Utiles::glyphicon('info-sign', 'Comentarios acerca del videojuego. Por ejemplo: tu opinión personal.') .

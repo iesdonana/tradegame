@@ -3,6 +3,7 @@
 namespace app\helpers;
 
 use yii\helpers\Html;
+use yii\web\JsExpression;
 
 /**
  * Helper con funciones que nos van a hacer falta a lo largo de la aplicación
@@ -44,6 +45,24 @@ class Utiles
         }
 
         return Html::tag('span', null, $array);
+    }
+
+    public static function optionsSelect2($urlAjax)
+    {
+        return [
+            'pluginOptions' => [
+                'allowClear' => true,
+                'minimumInputLength' => 1,
+                'ajax' => [
+                    'url' => $urlAjax,
+                    'dataType' => 'json',
+                    'data' => new JsExpression('function(params) { return {q:params.term}; }'),
+                ],
+                'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
+                'templateResult' => new JsExpression('formatVideojuego'),
+                'templateSelection' => new JsExpression('function (videojuego) { return videojuego.nombre; }'),
+            ],
+        ];
     }
 
     /**

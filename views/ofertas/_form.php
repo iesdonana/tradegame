@@ -1,5 +1,7 @@
 <?php
 
+use app\helpers\Utiles;
+
 use yii\web\View;
 use yii\web\JsExpression;
 
@@ -33,30 +35,18 @@ $urlDatos = Url::to(['videojuegos/oferta-videojuego']);
 
     <?= $form->field($model, 'videojuego_publicado_id', ['template' => '{input}'])
         ->hiddenInput()->label(false) ?>
-
-        <?= $form->field($model, 'videojuego_ofrecido_id')->widget(Select2::classname(), [
-            'name' => 'select-videojuegos',
-            'language' => 'es',
-            'options' => ['placeholder' => 'Busca un videojuego ...'],
+        <?php $items = [
             'pluginEvents' => [
                 'select2:select' => "function() {
                     peticionVideojuego('$urlDatos');
                 }",
                 "select2:unselect" => "function() { vaciarDatos(); }"
             ],
-            'pluginOptions' => [
-                'allowClear' => true,
-                'minimumInputLength' => 1,
-                'ajax' => [
-                    'url' => $url,
-                    'dataType' => 'json',
-                    'data' => new JsExpression('function(params) { return {q:params.term}; }'),
-                ],
-                'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
-                'templateResult' => new JsExpression('formatVideojuego'),
-                'templateSelection' => new JsExpression('function (videojuego) { return videojuego.nombre; }'),
-            ],
-        ])->label(false); ?>
+        ];
+        $items = array_merge($items, Utiles::optionsSelect2($url)) ?>
+        
+        <?= $form->field($model, 'videojuego_ofrecido_id')
+            ->widget(Select2::classname(), $items)->label(false); ?>
 
     <div class="form-group col-md-offset-2 col-md-8">
         <?= Html::submitButton('Enviar oferta', ['class' => 'btn btn-tradegame btn-block']) ?>

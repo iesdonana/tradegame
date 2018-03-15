@@ -18,6 +18,21 @@ $config = [
         '@caratulas' => 'uploads/caratulas',
     ],
     'language' => 'es-ES',
+    'container' => [
+        'definitions' => [
+            kartik\select2\Select2::className() => [
+                'name' => 'select-videojuegos',
+                'options' => ['placeholder' => 'Busca un videojuego ...'],
+                'language' => 'es',
+                'pluginOptions' => [
+                    'allowClear' => true,
+                    'minimumInputLength' => 1,
+                    'escapeMarkup' => new yii\web\JsExpression('function (markup) { return markup; }'),
+                    'templateSelection' => new yii\web\JsExpression('function (videojuego) { return videojuego.nombre; }'),
+                ],
+            ],
+        ],
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
