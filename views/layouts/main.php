@@ -45,12 +45,16 @@ $this->title = 'TradeGame';
 
     $items = [
         ['label' => 'Inicio', 'url' => ['/site/index']],
-        ['label' => 'Publicar videojuego', 'url' => ['/videojuegos-usuarios/publicar']]
+        ['label' => 'Publicar', 'url' => ['/videojuegos-usuarios/publicar']]
     ];
 
     if (Yii::$app->user->isGuest) {
         $items[] = ['label' => 'Login / Registro', 'url' => ['/site/login']];
     } else {
+        $items[] = [
+            'label' => 'Mis publicaciones',
+            'url' => ['/videojuegos-usuarios/publicaciones', 'usuario' => Yii::$app->user->identity->usuario]
+        ];
         $form = Html::beginForm(['/site/logout'], 'post')
         . Html::submitButton(
             'Cerrar sesión',

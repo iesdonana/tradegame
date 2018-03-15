@@ -99,6 +99,22 @@ CREATE TABLE videojuegos_usuarios
   , created_at    timestamp(0) NOT NULL DEFAULT localtimestamp
 );
 
+DROP TABLE IF EXISTS ofertas CASCADE;
+
+CREATE TABLE ofertas
+(
+    id                        bigserial    PRIMARY KEY
+  , videojuego_publicado_id   bigint       NOT NULL REFERENCES videojuegos_usuarios (id)
+                                           ON DELETE NO ACTION ON UPDATE CASCADE
+  , videojuego_ofrecido_id    bigint       NOT NULL REFERENCES videojuegos_usuarios (id)
+                                           ON DELETE NO ACTION ON UPDATE CASCADE
+  , contraoferta_de           bigint       REFERENCES ofertas (id)
+                                           ON DELETE NO ACTION ON UPDATE CASCADE
+  , created_at                timestamp(0) NOT NULL DEFAULT localtimestamp
+  , aceptada                  boolean      DEFAULT NULL
+  , UNIQUE (videojuego_publicado_id, videojuego_ofrecido_id)
+);
+
 -- INSERCIONES --
 
 INSERT INTO usuarios_generos (sexo)

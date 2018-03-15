@@ -3,8 +3,10 @@
 namespace app\controllers;
 
 use app\models\Videojuegos;
+use app\models\VideojuegosUsuarios;
 use Yii;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
 /**
@@ -34,9 +36,31 @@ class VideojuegosController extends Controller
         return $videojuegos;
     }
 
+    public function actionOfertaVideojuego($id)
+    {
+        if (($videojuegoUsuario = VideojuegosUsuarios::findOne($id)) === null) {
+            throw new NotFoundHttpException('No se encontró el videojuego');
+        }
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $videojuego = $videojuegoUsuario->videojuego;
+        $datos = [
+            'titulo' => $videojuego->nombre,
+            'caratula' => $videojuego->caratula,
+        ];
+
+        return $datos;
+    }
+
+    /**
+     * Devuelve una vista con los detalles de un videojuego concreto.
+     * @param  int   $id Id del videojuego
+     * @return mixed
+     */
     public function actionDetalles($id)
     {
-        $videojuego = Videojuegos::findOne($id);
+        if (($videojuego = Videojuegos::findOne($id)) === null) {
+            throw new NotFoundHttpException('No se encontró el videojuego');
+        }
 
         return $this->renderAjax('detalles', [
             'videojuego' => $videojuego,
