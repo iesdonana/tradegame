@@ -12,20 +12,37 @@ use yii\web\JsExpression;
 class Utiles
 {
     /**
-     * Devuelve un template para poner a un campo de un ActiveForm con un
-     * glyphicon de Bootstrap.
-     * @param  string $glyphicon Nombre del Glyphicon
-     * @return string            La cadena del template
+     * Define si el icono es de tipo Glyphicon.
+     * @var int
      */
-    public static function inputGlyphicon($glyphicon)
+    public const GLYPHICON = 0;
+    /**
+     * Define si el icono es de tipo Font Awesome.
+     * @var int
+     */
+    public const FONT_AWESOME = 1;
+
+    /**
+     * Devuelve un template para poner a un campo de un ActiveForm con un
+     * icono.
+     * @param string  $icon     Nombre del icono
+     * @param int     $tipo     GLYPHICON ó FONT_AWESOME
+     * @param mixed   $options  Opciones del icono
+     * @return string La cadena del template
+     */
+    public static function inputTemplate($icon, $tipo, $options = [])
     {
+        $res = self::glyphicon($icon, $options);
+        if ($tipo === self::FONT_AWESOME) {
+            $res = self::FA($icon, $options);
+        }
         return '<div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-' . $glyphicon . '"></i>
-                    </span>
-                    {input}
-               </div>
-               {error}{hint}';
+                <span class="input-group-addon">' .
+                $res .
+                '</span>
+                {input}
+           </div>
+           {error}{hint}';
     }
 
     /**
@@ -44,7 +61,32 @@ class Utiles
             ]);
         }
 
-        return Html::tag('span', null, $array);
+        return Html::tag('i', null, $array);
+    }
+
+    /**
+     * Devuelve un icono de Font Awesome.
+     * @param string  $nombre  Clase del icono
+     * @param array   $options Opciones para la etiqueta
+     * @param string
+     * @param mixed $options
+     */
+    public static function FA($nombre, $options = [])
+    {
+        $array = ['class' => 'fa-' . $nombre];
+        if (!isset($options['class'])) {
+            $options['class'] = 'fas';
+        }
+        $array['class'] = $options['class'] . ' ' . $array['class'];
+
+        if (isset($options['tooltip'])) {
+            $array = array_merge($array, [
+                'title' => $options['tooltip'],
+                'data-toggle' => 'tooltip',
+            ]);
+        }
+
+        return Html::tag('i', null, $array);
     }
 
     public static function optionsSelect2($urlAjax)

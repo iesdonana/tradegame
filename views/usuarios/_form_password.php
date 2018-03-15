@@ -1,7 +1,5 @@
 <?php
 
-use app\models\Usuarios;
-
 use app\helpers\Utiles;
 
 use yii\helpers\Html;
@@ -15,14 +13,14 @@ use yii\widgets\ActiveForm;
 <div class="usuarios-form">
     <?php $form = ActiveForm::begin(); ?>
     <?= $form->field($model, 'oldPassword', [
-        'template' => Utiles::inputGlyphicon('lock'),
+        'template' => Utiles::inputTemplate('key', Utiles::FONT_AWESOME),
         'enableAjaxValidation' => true
         ])->passwordInput(['maxlength' => true, 'placeholder' => 'Contraseña actual']) ?>
 
-    <?= $form->field($model, 'password', ['template' => Utiles::inputGlyphicon('lock')])
+    <?= $form->field($model, 'password', ['template' => Utiles::inputTemplate('key', Utiles::FONT_AWESOME)])
         ->passwordInput(['maxlength' => true, 'placeholder' => 'Nueva contraseña']) ?>
 
-    <?= $form->field($model, 'repeatPassword', ['template' => Utiles::inputGlyphicon('lock')])
+    <?= $form->field($model, 'repeatPassword', ['template' => Utiles::inputTemplate('key', Utiles::FONT_AWESOME)])
         ->passwordInput(['maxlength' => true, 'placeholder' => 'Repite la nueva contraseña']) ?>
 
     <div class="col-md-offset-2 col-md-8">

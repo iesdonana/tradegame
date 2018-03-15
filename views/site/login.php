@@ -24,14 +24,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php $form = ActiveForm::begin(); ?>
 
                     <?= $form->field($model, 'username', [
-                        'template' => Utiles::inputGlyphicon('user')
+                            'template' => Utiles::inputTemplate('user',
+                                Utiles::FONT_AWESOME,
+                                ['class' => 'fas']
+                            )
                         ])->textInput([
                             'autofocus' => true,
                             'placeHolder' => 'Usuario'
                         ]) ?>
 
                     <?= $form->field($model, 'password', [
-                        'template' => Utiles::inputGlyphicon('lock')
+                        'template' => Utiles::inputTemplate('key', Utiles::FONT_AWESOME)
                         ])->passwordInput(['placeholder' => 'Contraseña']) ?>
 
                     <?= $form->field($model, 'rememberMe')->checkbox() ?>
@@ -44,8 +47,6 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-    <!-- <div class="col-md-1 divisor">
-    </div> -->
     <div class="col-md-6 site-register">
         <?= $this->render('/usuarios/create', [
             'model' => $usuario

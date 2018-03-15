@@ -10,7 +10,7 @@ $videojuego = $model->videojuego;
 <div class="row">
     <div class="row">
         <div class="col-md-offset-10 col-md-2 col-xs-offset-4 col-xs-6 date-publicado">
-            <?= Utiles::glyphicon('time') . ' ' .
+            <?= Utiles::FA('clock', ['class' => 'far']) . ' ' .
             Yii::$app->formatter->asRelativeTime($model->created_at) ?>
         </div>
     </div>
@@ -34,9 +34,14 @@ $videojuego = $model->videojuego;
             <div class="row">
                 <div class="col-md-6">
                     <strong>Sinopsis:</strong>
-                    <p><?= Html::encode(
-                        mb_strimwidth($videojuego->descripcion, 0, 300, '...')
-                    ) ?></p>
+                    <?php $desc = mb_strimwidth($videojuego->descripcion, 0, 300, '...')?>
+
+                    <p>
+                        <?= Html::encode($desc) ?>
+                        <?php if (mb_strlen($desc) === 300): ?>
+                            <?= Html::a('Ver mas', null, ['class' => 'btn btn-xs btn-default']) ?>
+                        <?php endif ?>
+                    </p>
                 </div>
                 <div class="col-md-6">
                     <strong>Comentarios del usuario:</strong>

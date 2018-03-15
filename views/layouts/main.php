@@ -44,20 +44,27 @@ $this->title = 'TradeGame';
     ]);
 
     $items = [
-        ['label' => 'Inicio', 'url' => ['/site/index']],
-        ['label' => 'Publicar', 'url' => ['/videojuegos-usuarios/publicar']]
+        [
+            'label' => Utiles::FA('home') . ' Inicio',
+            'url' => ['/site/index']
+        ],
+        [
+            'label' => Utiles::FA('gamepad') .
+                ' Publicar',
+            'url' => ['/videojuegos-usuarios/publicar']
+        ]
     ];
 
     if (Yii::$app->user->isGuest) {
-        $items[] = ['label' => 'Login / Registro', 'url' => ['/site/login']];
+        $items[] = ['label' => Utiles::FA('sign-in-alt') . ' Login / Registro', 'url' => ['/site/login']];
     } else {
         $items[] = [
-            'label' => 'Mis publicaciones',
+            'label' => Utiles::FA('list', ['class' => 'fas']) . ' Mis publicaciones',
             'url' => ['/videojuegos-usuarios/publicaciones', 'usuario' => Yii::$app->user->identity->usuario]
         ];
         $form = Html::beginForm(['/site/logout'], 'post')
         . Html::submitButton(
-            'Cerrar sesión',
+            Utiles::FA('sign-out-alt') . ' Cerrar sesión',
             ['class' => 'btn btn-danger btn-block logout']
         )
         . Html::endForm();
@@ -70,7 +77,8 @@ $this->title = 'TradeGame';
             ]
         );
         $items[] = [
-            'label' => Html::encode($modelUsuario->usuario),
+            'label' => Utiles::FA('user') . ' ' .
+                Html::encode($modelUsuario->usuario),
             'items' => [
                 "<div class='navbar-login'>
                     <div class='row'>
@@ -82,11 +90,11 @@ $this->title = 'TradeGame';
                         <div class='col-xs-11 col-sm-11 col-lg-8 '>
                             <p class='text-left'><strong>" . $linkPerfil . "</strong></p>
                             <p class='text-left small'>" .
-                                Utiles::glyphicon('envelope') . ' ' . Html::encode($modelUsuario->email)
+                                Utiles::FA('envelope') . ' ' . Html::encode($modelUsuario->email)
                             . "</p>
                             <p class='text-left'>" .
                                 Html::a(
-                                    Utiles::glyphicon('cog') . ' Modificar datos',
+                                    Utiles::FA('cog') . ' Modificar datos',
                                     ['usuarios/modificar', 'seccion' => 'datos'],
                                     ['class' => 'btn btn-xs btn-info']
                                 )
@@ -104,7 +112,8 @@ $this->title = 'TradeGame';
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $items
+        'items' => $items,
+        'encodeLabels' => false
     ]);
     NavBar::end();
     ?>

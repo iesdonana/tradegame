@@ -74,23 +74,23 @@ $this->registerCssFile('@web/css/badge.css');
     <div id="col-datos-personales" class="col-md-9">
 
         <?= $form->field($model, 'nombre_real', [
-            'template' => Utiles::inputGlyphicon('tag')
+            'template' => Utiles::inputTemplate('tag', Utiles::GLYPHICON)
             ])->textInput(['maxlength' => true, 'placeholder' => 'Nombre real']) ?>
 
         <?= $form->field($model, 'localidad', [
-            'template' => Utiles::inputGlyphicon('globe')
+            'template' => Utiles::inputTemplate('globe', Utiles::GLYPHICON)
             ])->textInput(['maxlength' => true, 'placeholder' => 'Localidad']) ?>
 
         <?= $form->field($model, 'provincia', [
-            'template' => Utiles::inputGlyphicon('map-marker')
+            'template' => Utiles::inputTemplate('map-marker', Utiles::GLYPHICON)
             ])->textInput(['maxlength' => true, 'placeholder' => 'Provincia']) ?>
 
         <?= $form->field($model, 'telefono', [
-            'template' => Utiles::inputGlyphicon('earphone')
+            'template' => Utiles::inputTemplate('earphone', Utiles::GLYPHICON)
             ])->textInput(['maxlength' => true, 'placeholder' => 'Teléfono']) ?>
 
         <?= $form->field($model, 'biografia', [
-            'template' => Utiles::inputGlyphicon('book')
+            'template' => Utiles::inputTemplate('book', Utiles::GLYPHICON)
             ])->textarea(['maxlength' => true, 'placeholder' => 'Biografía']) ?>
 
         <?= $form->field($model, 'fecha_nacimiento')->widget(DateControl::classname(), [
@@ -104,7 +104,7 @@ $this->registerCssFile('@web/css/badge.css');
             ])->label(false) ?>
 
         <?= $form->field($model, 'genero_id', [
-            'template' => Utiles::inputGlyphicon('user')
+            'template' => Utiles::inputTemplate('user', Utiles::GLYPHICON)
             ])->dropDownList(
                 UsuariosGeneros::find()
                 ->select('sexo')

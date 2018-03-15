@@ -76,12 +76,12 @@ $this->registerJs("$('.bxslider').bxSlider();");
                </ul>
                 <?php if ($model->id === Yii::$app->user->id): ?>
                     <?= Html::a(
-                        Utiles::glyphicon('edit') . ' Editar perfil',
+                        Utiles::FA('edit') . ' Editar perfil',
                         ['usuarios/modificar', 'seccion' => 'personal'],
                         ['class' => 'btn btn-default']
                     ) ?>
                     <?= Html::a(
-                        Utiles::glyphicon('remove') . ' Borrar cuenta',
+                        Utiles::FA('user-times') . ' Borrar cuenta',
                         ['usuarios/remove'],
                         ['class' => 'btn btn-danger popup-modal']
                     ) ?>
@@ -125,7 +125,7 @@ $this->registerJs("$('.bxslider').bxSlider();");
     'id'     => 'modal-delete',
     'footer' => Html::beginForm(['/usuarios/remove'], 'post') .
                 Html::submitButton(
-                    Utiles::glyphicon('remove') . ' Borrar definitivamente',
+                    Utiles::FA('trash-alt') . ' Borrar definitivamente',
                     ['class' => 'btn btn-danger logout']
                 )
                 . Html::endForm()

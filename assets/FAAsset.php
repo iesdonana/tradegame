@@ -9,25 +9,16 @@ namespace app\assets;
 
 use yii\web\AssetBundle;
 
-/**
- * Main application asset bundle.
- *
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
- */
-class AppAsset extends AssetBundle
+class FAAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
+    public $sourcePath = '@npm/font-awesome';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
-        'css/navbar.css',
     ];
     public $js = [
+        'svg-with-js/js/fontawesome-all.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
-        'app\assets\FAAsset',
     ];
 }
