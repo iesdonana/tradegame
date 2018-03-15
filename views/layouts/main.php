@@ -45,10 +45,6 @@ $this->title = 'TradeGame';
 
     $items = [
         [
-            'label' => Utiles::FA('home') . ' Inicio',
-            'url' => ['/site/index']
-        ],
-        [
             'label' => Utiles::FA('gamepad') .
                 ' Publicar',
             'url' => ['/videojuegos-usuarios/publicar']
@@ -61,6 +57,19 @@ $this->title = 'TradeGame';
         $items[] = [
             'label' => Utiles::FA('list', ['class' => 'fas']) . ' Mis publicaciones',
             'url' => ['/videojuegos-usuarios/publicaciones', 'usuario' => Yii::$app->user->identity->usuario]
+        ];
+        $items[] = [
+            'label' => Utiles::FA('bell', ['class' => 'far']) . ' Notificaciones',
+            'items' => [
+                [
+                    'label' => Utiles::FA('handshake', ['class' => 'far']) . ' Ofertas',
+                    'url' => ['/ofertas-usuarios/index']
+                ],
+                [
+                    'label' => Utiles::FA('comments', ['class' => 'far']) . ' Mensajes',
+                    'url' => ['/mensajes/index']
+                ]
+            ]
         ];
         $form = Html::beginForm(['/site/logout'], 'post')
         . Html::submitButton(

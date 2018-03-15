@@ -1,5 +1,4 @@
 <?php
-use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuarios */
@@ -11,7 +10,6 @@ $this->params['breadcrumbs'][] = [
     'url' => ['usuarios/perfil', 'usuario' => Yii::$app->user->identity->usuario]
 ];
 $this->params['breadcrumbs'][] = $this->title;
-
 $js = <<<EOT
 $('.nav-pills li').removeClass('active');
 var array = window.location.pathname.split('/');
@@ -53,7 +51,7 @@ $this->registerJs($js);
                         ]) ?>
                 <?php endif ?>
 
-                </div>
             </div>
         </div>
+    </div>
 </div>
