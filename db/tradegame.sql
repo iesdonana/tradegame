@@ -236,3 +236,25 @@ INSERT INTO videojuegos (nombre, descripcion, fecha_lanzamiento,
         'por Valve y distribuido por VU Games para PC. La fecha de lanzamiento ' ||
         'de este videojuego es el 16 de noviembre de 2004.',
         '2004-11-16', 12, 3, 5);
+
+DROP VIEW IF EXISTS ofertas_usuarios;
+
+CREATE VIEW ofertas_usuarios as
+SELECT o.*,
+       v1.id as id_publicado, v1.nombre as publicado,
+       v2.id as id_ofrecido, v2.nombre as ofrecido,
+       u1.usuario as usuario_publicado,
+       u2.usuario as usuario_ofrecido
+FROM ofertas as o
+    LEFT JOIN videojuegos_usuarios as vup
+    ON videojuego_publicado_id = vup.id
+    LEFT JOIN videojuegos_usuarios as vuo
+    ON videojuego_ofrecido_id = vuo.id
+    LEFT JOIN videojuegos as v1
+    ON v1.id = vup.videojuego_id
+    LEFT JOIN videojuegos as v2
+    ON v2.id = vuo.videojuego_id
+    LEFT JOIN usuarios as u1
+    ON u1.id = vup.usuario_id
+    LEFT JOIN usuarios as u2
+    ON u2.id = vuo.usuario_id

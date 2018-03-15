@@ -1,18 +1,5 @@
 <?php
 use yii\helpers\Html;
-
-$js = <<<EOT
-$('.nav-pills li').removeClass('active');
-var array = window.location.pathname.split('/');
-if (array.length > 0) {
-    $('.nav-pills a').each(function(e) {
-        if ($(this).data('seccion') === array[array.length - 1]) {
-            $(this).parent('li').addClass('active');
-        }
-    });
-}
-EOT;
-$this->registerJs($js);
 ?>
 
 <ul class="nav nav-pills nav-stacked nav-email shadow mb-20">

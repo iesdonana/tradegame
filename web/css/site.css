@@ -119,6 +119,10 @@ a.desc:after {
     box-shadow: 2px 2px 1px grey;
 }
 
+.breadcrumb > li + li:before {
+    content: ' >';
+}
+
 .breadcrumb a {
     color: #730000;
 }
@@ -219,4 +223,8 @@ a.desc:after {
     -ms-transform: rotate(90deg); /* IE 9 */
     -webkit-transform: rotate(90deg); /* Safari 3-8 */
     transform: rotate(90deg);
+}
+
+.img-miniatura {
+    width: 100px;
 }
