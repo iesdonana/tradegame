@@ -45,6 +45,7 @@ $videojuego = $model->videojuego;
             </div>
         </div>
     </div>
+    <?php if ($model->usuario_id !== Yii::$app->user->id): ?>
     <div class="row">
         <div class="col-md-offset-10 col-md-2 col-xs-offset-4 col-xs-6">
             <?= Html::a('Hacer oferta', [
@@ -53,4 +54,5 @@ $videojuego = $model->videojuego;
             ], ['class' => 'btn btn-warning']) ?>
         </div>
     </div>
+    <?php endif ?>
 </div>

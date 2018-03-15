@@ -111,7 +111,8 @@ CREATE TABLE ofertas
   , contraoferta_de           bigint       REFERENCES ofertas (id)
                                            ON DELETE NO ACTION ON UPDATE CASCADE
   , created_at                timestamp(0) NOT NULL DEFAULT localtimestamp
-  , aceptada                  boolean      -- Será null si aún no se ha aceptado ni rechazado
+  , aceptada                  boolean      DEFAULT NULL
+  , UNIQUE (videojuego_publicado_id, videojuego_ofrecido_id)
 );
 
 -- INSERCIONES --

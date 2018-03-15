@@ -38,9 +38,17 @@ class Ofertas extends \yii\db\ActiveRecord
             [['videojuego_publicado_id', 'videojuego_ofrecido_id', 'contraoferta_de'], 'integer'],
             [['created_at'], 'safe'],
             [['aceptada'], 'boolean'],
+            [
+                ['videojuego_publicado_id', 'videojuego_ofrecido_id'], 'unique',
+                'targetAttribute' => [
+                    'videojuego_publicado_id',
+                    'videojuego_ofrecido_id',
+                ],
+                'message' => 'Ya has realizado esta misma oferta anteriormente',
+            ],
             [['contraoferta_de'], 'exist', 'skipOnError' => true, 'targetClass' => self::className(), 'targetAttribute' => ['contraoferta_de' => 'id']],
-            [['videojuego_publicado_id'], 'exist', 'skipOnError' => true, 'targetClass' => VideojuegosUsuarios::className(), 'targetAttribute' => ['videojuego_publicado_id' => 'id']],
             [['videojuego_ofrecido_id'], 'exist', 'skipOnError' => true, 'targetClass' => VideojuegosUsuarios::className(), 'targetAttribute' => ['videojuego_ofrecido_id' => 'id']],
+            [['videojuego_publicado_id'], 'exist', 'skipOnError' => true, 'targetClass' => VideojuegosUsuarios::className(), 'targetAttribute' => ['videojuego_publicado_id' => 'id']],
         ];
     }
 

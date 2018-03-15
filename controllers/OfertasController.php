@@ -3,8 +3,9 @@
 namespace app\controllers;
 
 use app\models\Ofertas;
+use app\models\VideojuegosUsuarios;
 use Yii;
-use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -19,10 +20,26 @@ class OfertasController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['create'],
+                        'matchCallback' => function ($rule, $action) {
+                            if (Yii::$app->user->isGuest) {
+                                return false;
+                            }
+
+                            $publicacion = Yii::$app->request->get('publicacion');
+                            if (($vUsuario = VideojuegosUsuarios::findOne($publicacion)) === null) {
+                                return false;
+                            }
+
+                            return $vUsuario->usuario_id !== Yii::$app->user->id;
+                        },
+                    ],
                 ],
             ],
         ];
@@ -44,7 +61,7 @@ class OfertasController extends Controller
         }
 
         $model->videojuego_publicado_id = $publicacion;
-
+        $model->videojuego_ofrecido_id = null; // No se muestra nuevamente el videojuego ofrecido
         return $this->render('create', [
             'model' => $model,
         ]);
