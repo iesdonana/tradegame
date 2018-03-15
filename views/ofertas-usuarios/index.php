@@ -5,7 +5,7 @@ use app\models\Videojuegos;
 use app\helpers\Utiles;
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\OfertasUsuariosSearch */
@@ -22,8 +22,9 @@ $this->registerJs($js);
 ?>
 <div class="ofertas-usuarios-index">
     <?= GridView::widget([
+        'responsive' => true,
+        'summary' => '',
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'rowOptions' => function ($model) {
             if ($model->aceptada === true) {
                 return ['class' => 'success'];
@@ -46,6 +47,7 @@ $this->registerJs($js);
 
             ],
             [
+                'label' => 'Mi videojuego',
                 'attribute' => 'publicado',
                 'format' => 'raw',
                 'value' => function ($model) {
@@ -60,6 +62,7 @@ $this->registerJs($js);
                 }
             ],
             [
+                'label' => 'Videojuego ofrecido',
                 'attribute' => 'ofrecido',
                 'format' => 'raw',
                 'value' => function ($model) {
@@ -74,6 +77,7 @@ $this->registerJs($js);
                 }
             ],
             [
+                'label' => 'Usuario',
                 'attribute' => 'usuario_ofrecido',
                 'format' => 'raw',
                 'value' => function ($model) {

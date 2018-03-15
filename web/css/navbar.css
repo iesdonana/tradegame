@@ -44,6 +44,19 @@
     background-color: #404040;
 }
 
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+    background-color: #fff;
+    color: #730000;
+}
+
+.dropdown-menu > .active > a:after {
+    background-color: #fff;
+    color: #730000;
+    content: " \1f878";
+}
+
 
 /* Caret */
 .navbar-default .navbar-nav > .dropdown > a .caret {

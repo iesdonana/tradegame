@@ -60,7 +60,16 @@ $this->title = 'TradeGame';
         ];
         $items[] = [
             'label' => Utiles::FA('bell', ['class' => 'far']) . ' Notificaciones',
-            'url' => ['/ofertas-usuarios/index']
+            'items' => [
+                [
+                    'label' => Utiles::FA('handshake', ['class' => 'far']) . ' Ofertas',
+                    'url' => ['/ofertas-usuarios/index']
+                ],
+                [
+                    'label' => Utiles::FA('comments', ['class' => 'far']) . ' Mensajes',
+                    'url' => ['/mensajes/index']
+                ]
+            ]
         ];
         $form = Html::beginForm(['/site/logout'], 'post')
         . Html::submitButton(
