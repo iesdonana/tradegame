@@ -61,7 +61,7 @@ $this->title = 'TradeGame';
             'url' => ['/videojuegos-usuarios/publicaciones', 'usuario' => Yii::$app->user->identity->usuario]
         ];
         if (($pendOf = OfertasUsuarios::getPendientes()) > 0) {
-            $pendOf = Html::tag('span', $pendOf, ['class' => 'badge']);
+            $pendOf = Html::tag('span', $pendOf, ['class' => 'badge badge-custom']);
         } else {
             $pendOf = '';
         }
@@ -73,7 +73,7 @@ $this->title = 'TradeGame';
                     'url' => ['/ofertas-usuarios/index']
                 ],
                 [
-                    'label' => Utiles::FA('comments', ['class' => 'far']) . ' Mensajes',
+                    'label' => Utiles::FA('inbox') . ' Mensajes',
                     'url' => ['/mensajes/index']
                 ]
             ]

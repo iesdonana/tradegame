@@ -58,6 +58,7 @@ class OfertasController extends Controller
         $model = new Ofertas();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', 'Has realizado la oferta correctamente');
             return $this->goHome();
         }
 

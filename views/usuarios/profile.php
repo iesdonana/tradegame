@@ -107,9 +107,12 @@ $this->registerJs("$('.bxslider').bxSlider();");
            <ul class='bxslider'>
                 <?php foreach ($listado as $model): ?>
                     <li>
-                        <?= $this->render('/videojuegos-usuarios/view', [
-                            'model' => $model,
-                        ]) ?>
+                        <div class="col-md-offset-1 col-md-10">
+                            <?= $this->render('/videojuegos-usuarios/view', [
+                                'model' => $model,
+                                'big' => true
+                                ]) ?>
+                        </div>
                     </li>
                 <?php endforeach; ?>
             </ul>

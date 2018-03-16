@@ -17,8 +17,11 @@ $this->params['breadcrumbs'][] = [
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<?= ListView::widget([
-    'dataProvider' => $dataProvider,
-    'itemView' => 'view',
-    'separator' => '<hr class="separador">'
-]) ?>
+<div class="col-md-offset-1 col-md-10">
+    <?= ListView::widget([
+        'summary' => '',
+        'dataProvider' => $dataProvider,
+        'itemView' => 'view',
+        'separator' => '<hr class="separador">'
+    ]) ?>
+</div>
