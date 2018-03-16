@@ -165,8 +165,7 @@ a.desc:after {
 }
 
 .separador {
-    border: 2px dotted #730000;
-    opacity: 0.5;
+    border: 2px solid #730000;
 }
 
 .trading {

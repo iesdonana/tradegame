@@ -2,8 +2,6 @@
 
 use yii\helpers\Html;
 
-use kartik\grid\GridView;
-
 $css = <<<CSS
 .datos-videojuego {
     margin: 10px;

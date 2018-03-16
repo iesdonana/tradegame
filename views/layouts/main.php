@@ -73,7 +73,7 @@ $this->title = 'TradeGame';
                     'url' => ['/ofertas-usuarios/index']
                 ],
                 [
-                    'label' => Utiles::FA('comments', ['class' => 'far']) . ' Mensajes',
+                    'label' => Utiles::FA('inbox') . ' Mensajes',
                     'url' => ['/mensajes/index']
                 ]
             ]

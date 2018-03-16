@@ -1,4 +1,6 @@
 <?php
+use yii\helpers\Html;
+
 use kartik\grid\GridView;
 /**
  * Muestra un listado de videojuegos publicados por los usuarios, de un videojuego
@@ -37,9 +39,7 @@ use kartik\grid\GridView;
             'template' => '<div class="text-center">{oferta}</div>',
             'buttons' => [
                 'oferta' => function ($url, $model, $key) {
-                    $id = (Yii::$app->user->isGuest) ? -1 : Yii::$app->user->id;
-
-                    if ($model->usuario_id !== $id) {
+                    if ($model->usuario_id !== Yii::$app->user->id) {
                         return Html::a('Hacer oferta', [
                             'ofertas/create',
                             'publicacion' => $model->id
