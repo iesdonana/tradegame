@@ -3,6 +3,8 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\models\OfertasUsuarios;
+
 use app\helpers\Utiles;
 
 use app\widgets\Alert;
@@ -58,11 +60,16 @@ $this->title = 'TradeGame';
             'label' => Utiles::FA('list', ['class' => 'fas']) . ' Mis publicaciones',
             'url' => ['/videojuegos-usuarios/publicaciones', 'usuario' => Yii::$app->user->identity->usuario]
         ];
+        if (($pendOf = OfertasUsuarios::getPendientes()) > 0) {
+            $pendOf = Html::tag('span', $pendOf, ['class' => 'badge']);
+        } else {
+            $pendOf = '';
+        }
         $items[] = [
-            'label' => Utiles::FA('bell', ['class' => 'far']) . ' Notificaciones',
+            'label' => Utiles::FA('bell', ['class' => 'far']) . ' Notificaciones ' . $pendOf,
             'items' => [
                 [
-                    'label' => Utiles::FA('handshake', ['class' => 'far']) . ' Ofertas',
+                    'label' => Utiles::FA('handshake', ['class' => 'far']) . ' Ofertas ' . $pendOf,
                     'url' => ['/ofertas-usuarios/index']
                 ],
                 [
