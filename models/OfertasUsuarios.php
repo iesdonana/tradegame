@@ -57,4 +57,13 @@ class OfertasUsuarios extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
         ];
     }
+
+    /**
+     * Devuelve el número de ofertas que están pendientes de aprobar o rechazar.
+     * @return int Número de ofertas pendientes
+     */
+    public static function getPendientes()
+    {
+        return self::find()->where(['is', 'aceptada', null])->count();
+    }
 }

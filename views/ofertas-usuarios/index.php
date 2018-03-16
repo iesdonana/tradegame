@@ -5,6 +5,8 @@ use app\models\Videojuegos;
 use app\helpers\Utiles;
 
 use yii\helpers\Html;
+use yii\bootstrap\Modal;
+
 use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
@@ -12,6 +14,40 @@ use kartik\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $js = <<<JS
+$('.popup-modal').click(function(e) {
+    e.preventDefault();
+    var modal = $('#modal-oferta').modal('show');
+    var btn = $('#cambiar-estado');
+    var fa = $('<i></i>');
+    var cols = $('.popup-modal').first().closest('tr').children();
+    var estado = 1;
+    if ($(this).data('cambiar') === 'aceptar') {
+        fa.addClass('fas fa-check');
+        btn.empty().append(fa).append(' Aceptar')
+            .removeClass('btn-danger').addClass('btn-success');
+        $('.modal-title').html('<span class="text-success">Aceptar oferta</span>');
+        $('.modal-text').html(
+            '¿<span class="text-success">Aceptas</span> intercambiar tu ' +
+            'videojuego ' + cols.eq(1).html() + ' por ' +
+            'el videojuego ' + cols.eq(2).html() + ' de ' + cols.eq(3).html() + ' ?'
+        );
+    } else {
+        estado = 0;
+        fa.addClass('fas fa-times');
+        btn.empty().append(fa).append(' Rechazar')
+            .removeClass('btn-success').addClass('btn-danger');
+        $('.modal-title').html('<span class="text-danger">Rechazar oferta</span>');
+        $('.modal-text').html(
+            '¿<span class="text-danger">Rechazas</span> intercambiar tu ' +
+            'videojuego ' + cols.eq(1).html() + ' por ' +
+            'el videojuego ' + cols.eq(2).html() + ' de ' + cols.eq(3).html() + ' ?'
+        );
+    }
+    $('.modal-footer form').find('input[name=id]').val($(this).closest('tr').data('key'));
+    $('.modal-footer form').find('input[name=valor]').val(estado);
+
+});
+
 $('*[data-toggle="tooltip"]').tooltip({
     animated: 'fade',
     placement: 'bottom',
@@ -22,6 +58,7 @@ $this->registerJs($js);
 ?>
 <div class="ofertas-usuarios-index">
     <?= GridView::widget([
+        'resizableColumns' => false,
         'responsive' => true,
         'summary' => '',
         'hover' => true,
@@ -43,9 +80,7 @@ $this->registerJs($js);
                         return Html::tag('span', 'Oferta', ['class' => 'label label-default center-block']);
                     }
                     return Html::tag('span', 'Contraoferta', ['class' => 'label label-primary center-block']);
-
                 }
-
             ],
             [
                 'label' => 'Mi videojuego',
@@ -93,19 +128,19 @@ $this->registerJs($js);
                 'buttons' => [
                     'aceptar' => function($url, $model, $key) {
                         if ($model->aceptada === null) {
-                            return Html::beginForm(['ofertas/cambiar-estado'], 'post', ['class' => 'accion']) .
-                            Html::submitButton(Utiles::FA('check'), [
-                                'class' => 'btn btn-xs btn-success',
+                            return Html::a(Utiles::FA('check'), null, [
+                                'class' => 'btn btn-xs btn-success popup-modal',
+                                'data-cambiar' => 'aceptar',
                                 'data-toggle' => 'tooltip',
                                 'title' => 'Aceptar oferta',
-                                ]) . Html::endForm();
+                            ]);
                         }
                     },
                     'rechazar' => function($url, $model, $key) {
                         if ($model->aceptada === null) {
                             return Html::beginForm(['ofertas/cambiar-estado'], 'post', ['class' => 'accion']) .
                             Html::submitButton(Utiles::FA('times'), [
-                                'class' => 'btn btn-xs btn-danger',
+                                'class' => 'btn btn-xs btn-danger popup-modal',
                                 'data-toggle' => 'tooltip',
                                 'title' => 'Rechazar oferta',
                                 ]) . Html::endForm();
@@ -139,4 +174,23 @@ $this->registerJs($js);
             ],
         ],
     ]); ?>
+
+    <?php Modal::begin([
+     'header' => '<h2 class="modal-title">Oferta</h2>',
+     'id'     => 'modal-oferta',
+     'footer' => Html::beginForm(['/ofertas/cambiar-estado'], 'post') .
+                Html::hiddenInput('id', 0) .
+                Html::hiddenInput('valor', -1) .
+                 Html::submitButton(
+                     '',
+                     [
+                         'id' => 'cambiar-estado',
+                         'class' => 'btn'
+                     ]
+                 )
+                 . Html::endForm()
+     ])
+     ?>
+     <p class='modal-text'>Aquí va el texto</p>
+     <?php Modal::end() ?>
 </div>

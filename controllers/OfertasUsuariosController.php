@@ -38,7 +38,11 @@ class OfertasUsuariosController extends Controller
     {
         $query = Yii::$app->request->queryParams;
 
-
+        // Evitamos que el usuario pase por parámetro cualquier cosa
+        $validos = ['pendientes', 'aceptadas', 'rechazadas', null];
+        if (!in_array($estado, $validos)) {
+            return $this->goHome();
+        }
         $searchModel = new OfertasUsuariosSearch();
         $dataProvider = $searchModel->search(
             Yii::$app->request->queryParams,
