@@ -24,6 +24,7 @@ $this->registerJs($js);
     <?= GridView::widget([
         'responsive' => true,
         'summary' => '',
+        'hover' => true,
         'dataProvider' => $dataProvider,
         'rowOptions' => function ($model) {
             if ($model->aceptada === true) {

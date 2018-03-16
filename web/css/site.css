@@ -49,11 +49,11 @@ a.asc:after, a.desc:after {
 }
 
 a.asc:after {
-    content: /*"\e113"*/ "\e151";
+    content: "\e113" /*"\e151"*/;
 }
 
 a.desc:after {
-    content: /*"\e114"*/ "\e152";
+    content: "\e114" /*"\e152"*/;
 }
 
 .sort-numerical a.asc:after {
@@ -90,7 +90,6 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
-/* align the logout "link" (button in form) of the navbar */
 .nav li > form > button.logout {
     padding: 15px;
     border: none;
@@ -114,27 +113,6 @@ a.desc:after {
     outline: none;
 }
 
-.breadcrumb {
-    background-color: rgba(0, 0, 0, 0.3);
-    box-shadow: 2px 2px 1px grey;
-}
-
-.breadcrumb > li + li:before {
-    content: ' >';
-}
-
-.breadcrumb a {
-    color: #730000;
-}
-
-.breadcrumb li+li:before {
-    color: #fff;
-}
-
-.breadcrumb .active {
-    color: #9f0404;
-    font-weight: bold;
-}
 
 .nav-pills > li > a {
     color: #730000;
@@ -160,30 +138,6 @@ a.desc:after {
 #img-edit {
     margin-bottom: 20px;
     width: 200px;
-}
-
-.badge-ps4 {
-    background-color: #0b1d91;
-}
-
-.badge-xbox360 {
-    background-color: #0eaf0e;
-}
-
-.badge-xboxone {
-    background-color: #066306;
-}
-
-.badge-switch {
-    background-color: #d61717;
-}
-
-.badge-pc {
-    background-color: #a04a00;
-}
-
-.badge-ps2 {
-    background-color: #040821;
 }
 
 .caratula-detail {
@@ -231,4 +185,55 @@ a.desc:after {
 
 .accion {
     display: inline;
+}
+
+.scrollTop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #730000;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.scrollTop:hover {
+  background-color: #555;
+}
+
+.kv-grid-table th,
+.kv-grid-table th > a {
+    color: #730000;
+}
+
+/* Badges de Plataformas */
+
+.badge-ps4 {
+    background-color: #0b1d91;
+}
+
+.badge-xbox360 {
+    background-color: #0eaf0e;
+}
+
+.badge-xboxone {
+    background-color: #066306;
+}
+
+.badge-switch {
+    background-color: #d61717;
+}
+
+.badge-pc {
+    background-color: #a04a00;
+}
+
+.badge-ps2 {
+    background-color: #040821;
 }

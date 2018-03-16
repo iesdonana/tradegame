@@ -1,0 +1,21 @@
+.breadcrumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 1px grey;
+}
+
+.breadcrumb > li + li:before {
+    content: ' >';
+}
+
+.breadcrumb a {
+    color: #730000;
+}
+
+.breadcrumb li+li:before {
+    color: #fff;
+}
+
+.breadcrumb .active {
+    color: #9f0404;
+    font-weight: bold;
+}

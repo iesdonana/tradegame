@@ -26,7 +26,7 @@
     color: #fff;
 }
 
-.navbar-default .navbar-nav > li:not(.dropdown):hover {
+.navbar-default .navbar-nav > li:not(.open):hover {
     box-shadow: 0 -5px #730000 inset;
 }
 

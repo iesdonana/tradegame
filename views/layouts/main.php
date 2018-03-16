@@ -91,12 +91,12 @@ $this->title = 'TradeGame';
             'items' => [
                 "<div class='navbar-login'>
                     <div class='row'>
-                        <div class='col-xs-1 col-sm-1 col-lg-4'>
-                            <p class='visible-md visible-lg text-center'>" .
+                        <div class='col-xs-5 col-sm-5 col-md-4 col-lg-4'>
+                            <p class='text-center'>" .
                                 Html::img($modelUsuario->usuariosDatos->avatar, ['id' => 'thumbnail-nav'])
                             . "</p>
                         </div>
-                        <div class='col-xs-11 col-sm-11 col-lg-8 '>
+                        <div class='col-xs-7 col-sm-7 col-md-8 col-lg-8 '>
                             <p class='text-left'><strong>" . $linkPerfil . "</strong></p>
                             <p class='text-left small'>" .
                                 Utiles::FA('envelope') . ' ' . Html::encode($modelUsuario->email)
@@ -137,10 +137,9 @@ $this->title = 'TradeGame';
 </div>
 
 <footer class="footer">
+    <button class='scrollTop'><?= Utiles::FA('chevron-circle-up') ?></button>
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-left">&copy; TradeGame <?= date('Y') ?></p>
     </div>
 </footer>
 
