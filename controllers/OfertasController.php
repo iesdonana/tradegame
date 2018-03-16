@@ -89,6 +89,10 @@ class OfertasController extends Controller
         ]);
     }
 
+    /**
+     * Acepta o Rechaza una oferta.
+     * @return mixed
+     */
     public function actionCambiarEstado()
     {
         if (($valor = Yii::$app->request->post('valor')) === null) {
@@ -96,7 +100,7 @@ class OfertasController extends Controller
         }
 
         if (($id = Yii::$app->request->post('id')) === null) {
-            throw new NotFoundHttpException('No se encontró el la oferta');
+            throw new NotFoundHttpException('No se encontró la oferta');
         }
 
         if (($model = $this->findModel($id)) === null) {
@@ -110,6 +114,14 @@ class OfertasController extends Controller
 
         $model->aceptada = $valor;
         if ($model->save()) {
+            if ($model->aceptada) {
+                $publicado = $model->videojuegoPublicado;
+                $ofrecido = $model->videojuegoOfrecido;
+                $publicado->visible = $ofrecido->visible = false;
+                $publicado->save();
+                $ofrecido->save();
+            }
+
             Yii::$app->session->setFlash('success', 'Se ha cambiado el estado correctamente');
         }
         return $this->redirect('/ofertas-usuarios/index');

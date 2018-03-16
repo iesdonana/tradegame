@@ -69,7 +69,7 @@ class VideojuegosUsuariosController extends Controller
         if ($q !== null && $q !== '') {
             $subQuery = VideojuegosUsuarios::find()
                 ->select('videojuego_id')
-                ->where(['usuario_id' => $id_usuario])
+                ->andWhere(['usuario_id' => $id_usuario])
                 ->andWhere(['!=', 'videojuego_id',  $id_videojuego]);
 
             $videojuegos['results'] = Videojuegos::find()
@@ -102,7 +102,7 @@ class VideojuegosUsuariosController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => VideojuegosUsuarios::find()
                 ->with('videojuego')
-                ->where(['usuario_id' => $model->id]),
+                ->andWhere(['usuario_id' => $model->id]),
             'pagination' => [
                 'pageSize' => 10,
             ],

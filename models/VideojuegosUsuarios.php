@@ -10,6 +10,7 @@ namespace app\models;
  * @property int $usuario_id
  * @property string $mensaje
  * @property string $created_at
+ * @property bool $visible
  *
  * @property Usuarios $usuario
  * @property Videojuegos $videojuego
@@ -32,6 +33,7 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
         return [
             [['videojuego_id', 'usuario_id'], 'required'],
             [['videojuego_id', 'usuario_id'], 'default', 'value' => null],
+            [['visible'], 'default', 'value' => true],
             [['videojuego_id', 'usuario_id'], 'integer'],
             [['mensaje'], 'string', 'max' => 255],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'id']],
@@ -82,5 +84,13 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
     public function getOfertasOfrecidos()
     {
         return $this->hasMany(Ofertas::className(), ['videojuego_ofrecido_id' => 'id']);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function find()
+    {
+        return parent::find()->where(['visible' => true]);
     }
 }
