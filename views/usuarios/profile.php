@@ -25,17 +25,12 @@ $this->registerJs("
     $(function() {
         $('.popup-modal').click(function(e) {
             e.preventDefault();
-            var modal = $('#modal-delete').modal('show');
-
-            $('#delete-confirm').click(function(e) {
-                e.preventDefault();
-                window.location = 'delete?id='+id;
-            });
+            $('#modal-delete').modal('show');
         });
     });"
 );
-$this->registerCssFile('@web/css/profile.css'); //{auto: true, stopAutoOnClick: true}
-$this->registerJs("$('.bxslider').bxSlider();");
+$this->registerCssFile('@web/css/profile.css');
+$this->registerJs("$('.bxslider').bxSlider({auto: true, stopAutoOnClick: true});");
 ?>
 <div class="col-md-12">
 <div class="panel panel-default">

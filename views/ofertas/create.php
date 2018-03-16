@@ -15,9 +15,8 @@ $videojuegoPublicado = $vUsuarioPublicado->videojuego;
 $this->registerJsFile('@web/js/oferta.js');
 ?>
 <div class="ofertas-create">
-
     <div class="row">
-        <div class="col-md-offset-3 col-md-2 col-sm-offset-2 col-sm-3">
+        <div class="col-md-offset-2 col-md-3 col-sm-3">
             <div class="row">
                 <p class="text-center text-tradegame">
                     <?= Html::encode($videojuegoPublicado->nombre) ?>
@@ -38,11 +37,11 @@ $this->registerJsFile('@web/js/oferta.js');
                 </p>
             </div>
         </div>
-        <div class="col-md-3 col-sm-3">
+        <div class="col-md-2 col-sm-3">
             <?= Html::img('@web/images/trading.png', ['class' => 'trading center-block visible-xs rotado']) ?>
             <?= Html::img('@web/images/trading.png', ['class' => 'trading center-block visible-lg visible-sm visible-md']) ?>
         </div>
-        <div class="col-md-2 col-sm-3">
+        <div class="col-md-3 col-sm-3">
             <div class="row text-tradegame text-center">
                 <p id="mi-oferta-titulo">&nbsp;</p>
             </div>
@@ -58,19 +57,22 @@ $this->registerJsFile('@web/js/oferta.js');
         </div>
     </div>
     <hr>
-    <div class="col-md-offset-3 col-md-7">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="panel-title">
-                    Ofrecer videojuego
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        Ofrecer videojuego
+                    </div>
                 </div>
-            </div>
-            <div class="panel-body">
-                <?= $this->render('_form', [
-                    'model' => $model,
-                    ]) ?>
+                <div class="panel-body">
+                    <?= $this->render('_form', [
+                        'model' => $model,
+                        ]) ?>
+                </div>
             </div>
         </div>
     </div>
+
 
 </div>

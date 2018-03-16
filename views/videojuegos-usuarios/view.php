@@ -21,6 +21,10 @@ $css = <<<CSS
     margin: 10px;
 }
 
+.date-publicado {
+    margin-right: 10px;
+}
+
 .no-padding {
     padding-left: 0px;
 }
@@ -56,13 +60,17 @@ if (isset($big) && $big === true) {
                             <strong class='titulo text-tradegame'><?= $videojuego->nombre ?></strong><br>
                             <?= Utiles::badgePlataforma($videojuego->plataforma->nombre) ?> <br>
                         </div>
-                        <div class="col-md-2">
-                            <?php if ($model->usuario_id !== Yii::$app->user->id): ?>
-                                <?= Html::a('<strong>Hacer oferta</strong>', [
-                                    'ofertas/create',
-                                    'publicacion' => $model->id
-                                ], ['class' => 'btn btn-sm btn-warning']) ?>
-                            <?php endif ?>
+                        <div class="row">
+                            <div class='text-center date-publicado'>
+                                <?= Utiles::FA('clock', ['class' => 'far']) . ' ' .
+                                Yii::$app->formatter->asRelativeTime($model->created_at) ?>
+                                <?php if ($model->usuario_id !== Yii::$app->user->id): ?>
+                                    <?= Html::a('<strong>Hacer oferta</strong>', [
+                                        'ofertas/create',
+                                        'publicacion' => $model->id
+                                    ], ['class' => 'btn btn-sm btn-warning']) ?>
+                                <?php endif ?>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
