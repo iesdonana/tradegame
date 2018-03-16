@@ -26,8 +26,6 @@ $this->registerJs("
         $('.popup-modal').click(function(e) {
             e.preventDefault();
             var modal = $('#modal-delete').modal('show');
-            modal.find('.modal-body').load($('.modal-dialog'));
-            modal.find('.modal-title').text('Supprimer la ressource');
 
             $('#delete-confirm').click(function(e) {
                 e.preventDefault();

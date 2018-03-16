@@ -93,8 +93,8 @@ CREATE TABLE videojuegos_usuarios
     id            bigserial    PRIMARY KEY
   , videojuego_id bigint       NOT NULL REFERENCES videojuegos (id)
                                ON DELETE NO ACTION ON UPDATE CASCADE
-  , usuario_id    bigint       NOT NULL REFERENCES usuarios (id)
-                               ON DELETE CASCADE ON UPDATE CASCADE
+  , usuario_id    bigint       NOT NULL REFERENCES usuarios_id (id)
+                               ON DELETE NO ACTION ON UPDATE CASCADE
   , mensaje       varchar(255)
   , created_at    timestamp(0) NOT NULL DEFAULT localtimestamp
 );

@@ -7,6 +7,7 @@ use app\models\VideojuegosUsuarios;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -85,6 +86,32 @@ class OfertasController extends Controller
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+    public function actionCambiarEstado()
+    {
+        if (($valor = Yii::$app->request->post('valor')) === null) {
+            throw new NotFoundHttpException('No se encontró el valor');
+        }
+
+        if (($id = Yii::$app->request->post('id')) === null) {
+            throw new NotFoundHttpException('No se encontró el la oferta');
+        }
+
+        if (($model = $this->findModel($id)) === null) {
+            throw new NotFoundHttpException('No se encontró la oferta');
+        }
+
+        $validos = [0, 1];
+        if (!in_array($valor, $validos)) {
+            throw new ForbiddenHttpException('No es posible ejecutar esa acción');
+        }
+
+        $model->aceptada = $valor;
+        if ($model->save()) {
+            Yii::$app->session->setFlash('success', 'Se ha cambiado el estado correctamente');
+        }
+        return $this->redirect('/ofertas-usuarios/index');
     }
 
     /**
