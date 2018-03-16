@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use Yii;
+
 /**
  * This is the model class for table "ofertas_usuarios".
  *
@@ -64,6 +66,8 @@ class OfertasUsuarios extends \yii\db\ActiveRecord
      */
     public static function getPendientes()
     {
-        return self::find()->where(['is', 'aceptada', null])->count();
+        return self::find()->where(['is', 'aceptada', null])
+            ->andWhere(['usuario_publicado' => Yii::$app->user->identity->usuario])
+            ->count();
     }
 }

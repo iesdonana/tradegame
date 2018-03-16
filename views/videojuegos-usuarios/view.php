@@ -21,7 +21,9 @@ $videojuego = $model->videojuego;
                     <?= Html::img($videojuego->caratula, ['class' => 'caratula-detail center-block']) ?>
                 </div>
                 <div class="row detalles-info text-center">
-                    <?= Html::a('Detalles del videojuego', null, ['class' => 'btn btn-xs btn-default']) ?>
+                    <?= Html::a('Detalles del videojuego',
+                    ['videojuegos/ver', 'id' => $videojuego->id], 
+                    ['class' => 'btn btn-xs btn-default']) ?>
                 </div>
             </div>
         </div>

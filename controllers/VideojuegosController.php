@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Videojuegos;
 use app\models\VideojuegosUsuarios;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
@@ -36,6 +37,12 @@ class VideojuegosController extends Controller
         return $videojuegos;
     }
 
+    /**
+     * Busca un videojuego y devuelve su carátula y su título, para poder
+     * ver una previsualización del mismo a la hora de hacer una oferta.
+     * @param  int   $id Id del videojuego
+     * @return mixed
+     */
     public function actionOfertaVideojuego($id)
     {
         if (($videojuegoUsuario = VideojuegosUsuarios::findOne($id)) === null) {
@@ -64,6 +71,22 @@ class VideojuegosController extends Controller
 
         return $this->renderAjax('detalles', [
             'videojuego' => $videojuego,
+        ]);
+    }
+
+    public function actionVer($id)
+    {
+        if (($videojuego = Videojuegos::findOne($id)) === null) {
+            throw new NotFoundHttpException('No se encontró el videojuego');
+        }
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $videojuego->getVideojuegosUsuarios()->orderBy('created_at DESC'),
+        ]);
+
+        return $this->render('view', [
+            'model' => $videojuego,
+            'dataProvider' => $dataProvider,
         ]);
     }
 }
