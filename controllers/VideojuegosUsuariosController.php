@@ -70,13 +70,14 @@ class VideojuegosUsuariosController extends Controller
             $subQuery = VideojuegosUsuarios::find()
                 ->select('videojuego_id')
                 ->where(['usuario_id' => $id_usuario])
-                ->andWhere(['!=', 'id',  $id_videojuego]);
+                ->andWhere(['!=', 'videojuego_id',  $id_videojuego]);
 
             $videojuegos['results'] = Videojuegos::find()
                 ->joinWith('plataforma as p')
                 ->joinWith('videojuegosUsuarios')
                 ->where(['ilike', 'videojuegos.nombre', $q])
                 ->andWhere(['videojuegos.id' => $subQuery])
+                ->andWhere(['usuario_id' => $id_usuario])
                 ->limit(10)->select([
                     'videojuegos_usuarios.id', 'videojuegos.nombre',
                     'p.nombre as plataforma', 'plataforma_id', ])

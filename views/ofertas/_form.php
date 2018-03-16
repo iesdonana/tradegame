@@ -23,7 +23,7 @@ $this->registerJsFile('@web/js/utiles.js');
 $this->registerJsFile('@web/js/oferta.js', ['position' => View::POS_HEAD]);
 $url = Url::to(['videojuegos-usuarios/buscar-publicados',
     'id_usuario' => Yii::$app->user->id,
-    'id_videojuego' => $model->videojuego_publicado_id
+    'id_videojuego' => $model->videojuegoPublicado->videojuego->id
 ]);
 
 $urlDatos = Url::to(['videojuegos/oferta-videojuego']);
@@ -44,7 +44,7 @@ $urlDatos = Url::to(['videojuegos/oferta-videojuego']);
             ],
         ];
         $items = array_merge($items, Utiles::optionsSelect2($url)) ?>
-        
+
         <?= $form->field($model, 'videojuego_ofrecido_id')
             ->widget(Select2::classname(), $items)->label(false); ?>
 
