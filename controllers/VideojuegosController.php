@@ -46,20 +46,18 @@ class VideojuegosController extends Controller
      * @param null|mixed $q Búsqueda
      * @return string       Respuesta en JSON
      */
-    public function actionBuscadorVideojuegos($q = null)
+    public function actionBuscadorVideojuegos($q = '')
     {
-        if (!Yii::$app->request->isAjax) {
-            $this->goHome();
-        }
-
-        Yii::$app->response->format = Response::FORMAT_JSON;
         $res = [];
-        if ($q !== null && $q !== '') {
-            $videojuegos = Videojuegos::find()
-                ->with('plataforma')
-                ->where(['ilike', 'videojuegos.nombre', $q])
-                ->orderBy('videojuegos.nombre')->limit(10)
-                ->all();
+
+        $videojuegos = Videojuegos::find()
+            ->with('plataforma')
+            ->where(['ilike', 'videojuegos.nombre', $q])
+            ->orderBy('videojuegos.nombre')->limit(10);
+
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            $videojuegos = $videojuegos->all();
             foreach ($videojuegos as $videojuego) {
                 $res[] = [
                     'id' => $videojuego->id,
@@ -67,7 +65,19 @@ class VideojuegosController extends Controller
                     'plataforma' => $videojuego->plataforma->nombre,
                 ];
             }
+        } else {
+            $dataProvider = new ActiveDataProvider([
+                'query' => $videojuegos,
+                'pagination' => [
+                    'pageSize' => 5,
+                ],
+            ]);
+
+            $res = $this->render('busqueda', [
+                'dataProvider' => $dataProvider,
+            ]);
         }
+
         return $res;
     }
 

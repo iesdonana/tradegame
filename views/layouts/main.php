@@ -8,6 +8,7 @@ use app\models\OfertasUsuarios;
 use app\helpers\Utiles;
 
 use app\widgets\Alert;
+use yii\web\View;
 use yii\web\JsExpression;
 
 use yii\helpers\Url;
@@ -19,6 +20,11 @@ use app\assets\AppAsset;
 
 use kartik\typeahead\Typeahead;
 
+$baseUrl = Url::to(['videojuegos/buscador-videojuegos']);
+$js = <<<JS
+var baseUrl = "$baseUrl";
+JS;
+$this->registerJs($js, View::POS_HEAD);
 AppAsset::register($this);
 $this->title = 'TradeGame';
 ?>

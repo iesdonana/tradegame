@@ -1,0 +1,27 @@
+.caratula-mini {
+    width: 130px;
+}
+
+.caratula-big {
+    width: 200px;
+}
+
+.titulo {
+    font-size: 18px;
+}
+
+.divide {
+    margin: 10px;
+}
+
+.date-publicado {
+    margin-right: 10px;
+}
+
+.no-padding {
+    padding-left: 0px;
+}
+
+.desc {
+    margin-left: 20px;
+}

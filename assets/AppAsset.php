@@ -26,6 +26,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/scrollTop.js',
+        'js/busqueda.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
