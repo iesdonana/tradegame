@@ -8,11 +8,16 @@ use app\models\OfertasUsuarios;
 use app\helpers\Utiles;
 
 use app\widgets\Alert;
+use yii\web\JsExpression;
+
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+
+use kartik\typeahead\Typeahead;
 
 AppAsset::register($this);
 $this->title = 'TradeGame';
@@ -45,7 +50,38 @@ $this->title = 'TradeGame';
         ],
     ]);
 
+    $template =
+    "<div>" .
+        "{{nombre}} " .
+        "<span class=\'badge\' data-plat=\'{{plataforma}}\'>{{plataforma}}</span>".
+    "</div>";
+    $url = Yii::$app->request->baseUrl;
     $items = [
+
+        '<li class="buscador center-block">' .
+        Typeahead::widget([
+        'name' => 'videojuegos',
+        'options' => ['placeholder' => 'Busca un videojuego ...', 'class' => 'form-inline'],
+        'pluginOptions' => ['highlight'=>true],
+        'pluginEvents' => [
+            'typeahead:select' => "function(ev, resp) {window.location.href = '$url/videojuegos/' + resp.id }",
+        ],
+        'dataset' => [
+            [
+                'datumTokenizer' => "Bloodhound.tokenizers.obj.whitespace('nombre')",
+                'display' => 'nombre',
+                'templates' => [
+                    'notFound' => '<div class="text-danger" style="padding:0 8px">No se ha podido encontrar ningún videojuego</div>',
+                    'suggestion' => new JsExpression("Handlebars.compile('{$template}')")
+                ],
+                'remote' => [
+                    'url' => Url::to(['videojuegos/buscador-videojuegos']) . '?q=%QUERY',
+                    'wildcard' => '%QUERY'
+                ]
+            ]
+        ]
+        ]) .
+        '</li>',
         [
             'label' => Utiles::FA('gamepad') .
                 ' Publicar',
