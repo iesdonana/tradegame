@@ -3,41 +3,25 @@ use app\helpers\Utiles;
 
 use yii\helpers\Html;
 
+$this->registerCssFile('@web/css/listado_videojuegos.css');
 
-$css = <<<CSS
-.caratula-mini {
-    width: 130px;
+// Busqueda se pasará a 'true' si viene para buscar videojuegos, y por lo tanto,
+// solo queremos que muestre datos del videojuego, y no de videojuegos_usuarios
+if (isset($busqueda)) {
+    $videojuego = $model;
+} else {
+    $videojuego = $model->videojuego;
 }
 
-.caratula-big {
-    width: 200px;
-}
-
-.titulo {
-    font-size: 18px;
-}
-
-.divide {
-    margin: 10px;
-}
-
-.date-publicado {
-    margin-right: 10px;
-}
-
-.no-padding {
-    padding-left: 0px;
-}
-CSS;
-$this->registerCss($css);
-
-$videojuego = $model->videojuego;
+// Controles para mostrar la imagen de carátula en un tamaño mayor, o menor
+// dependiendo del lugar donde rendericemos la vista en la aplicación
 $valor = 2;
 $clase = 'caratula-mini';
 if (isset($big) && $big === true) {
     $valor = 4;
     $clase = 'caratula-big';
 }
+
 ?>
 
 <div class="row">
@@ -60,23 +44,25 @@ if (isset($big) && $big === true) {
                             <strong class='titulo text-tradegame'><?= $videojuego->nombre ?></strong><br>
                             <?= Utiles::badgePlataforma($videojuego->plataforma->nombre) ?> <br>
                         </div>
-                        <div class="row">
-                            <div class='text-center date-publicado'>
-                                <?= Utiles::FA('clock', ['class' => 'far']) . ' ' .
-                                Yii::$app->formatter->asRelativeTime($model->created_at) ?>
-                                <?php if ($model->usuario_id !== Yii::$app->user->id): ?>
-                                    <?= Html::a('<strong>Hacer oferta</strong>', [
-                                        'ofertas/create',
-                                        'publicacion' => $model->id
-                                    ], ['class' => 'btn btn-sm btn-warning']) ?>
-                                <?php endif ?>
+                        <?php if (!isset($busqueda)): ?>
+                            <div class="row">
+                                <div class='text-center date-publicado'>
+                                    <?= Utiles::FA('clock', ['class' => 'far']) . ' ' .
+                                    Yii::$app->formatter->asRelativeTime($model->created_at) ?>
+                                    <?php if ($model->usuario_id !== Yii::$app->user->id): ?>
+                                        <?= Html::a('<strong>Hacer oferta</strong>', [
+                                            'ofertas/create',
+                                            'publicacion' => $model->id
+                                        ], ['class' => 'btn btn-sm btn-warning']) ?>
+                                    <?php endif ?>
+                                </div>
                             </div>
-                        </div>
+                        <?php endif; ?>
                     </div>
-                    <div class="row">
+                    <div class="">
                         <strong>Descripción:</strong>
                         <em><?= $videojuego->descripcion ?></em>
-                        <?php if ($model->mensaje !== ''): ?>
+                        <?php if (!isset($busqueda) && $model->mensaje !== ''): ?>
                             <hr class='divide'>
                             <strong>Comentarios:</strong>
                             <?= $model->mensaje ?>

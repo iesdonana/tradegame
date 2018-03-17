@@ -22,19 +22,63 @@ class VideojuegosController extends Controller
      */
     public function actionBuscarVideojuegos($q = null)
     {
+        if (!Yii::$app->request->isAjax) {
+            $this->goHome();
+        }
+
         Yii::$app->response->format = Response::FORMAT_JSON;
         $videojuegos['results'] = [];
         if ($q !== null && $q !== '') {
             $videojuegos['results'] = Videojuegos::find()
+                ->select(['videojuegos.id', 'videojuegos.nombre',
+                'plataformas.nombre as plataforma', 'plataforma_id', ])
                 ->joinWith('plataforma')
                 ->where(['ilike', 'videojuegos.nombre', $q])
-                ->limit(10)->select([
-                    'videojuegos.id', 'videojuegos.nombre',
-                    'plataformas.nombre as plataforma', 'plataforma_id', ])
+                ->limit(10)
                 ->orderBy('videojuegos.nombre')
                 ->asArray()->all();
         }
         return $videojuegos;
+    }
+
+    /**
+     * Busca un videojuego a través del input del NavBar.
+     * @param null|mixed $q Búsqueda
+     * @return string       Respuesta en JSON
+     */
+    public function actionBuscadorVideojuegos($q = '')
+    {
+        $res = [];
+
+        $videojuegos = Videojuegos::find()
+            ->with('plataforma')
+            ->where(['ilike', 'videojuegos.nombre', $q])
+            ->orderBy('videojuegos.nombre')->limit(10);
+
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            $videojuegos = $videojuegos->all();
+            foreach ($videojuegos as $videojuego) {
+                $res[] = [
+                    'id' => $videojuego->id,
+                    'nombre' => $videojuego->nombre,
+                    'plataforma' => $videojuego->plataforma->nombre,
+                ];
+            }
+        } else {
+            $dataProvider = new ActiveDataProvider([
+                'query' => $videojuegos,
+                'pagination' => [
+                    'pageSize' => 5,
+                ],
+            ]);
+
+            $res = $this->render('busqueda', [
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+
+        return $res;
     }
 
     /**

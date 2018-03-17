@@ -213,26 +213,33 @@ a.desc:after {
 
 /* Badges de Plataformas */
 
-.badge-ps4 {
+
+.badge-ps4,
+span[data-plat$='4'] {
     background-color: #0b1d91;
 }
 
-.badge-xbox360 {
+.badge-xbox360,
+span[data-plat$='360'] {
     background-color: #0eaf0e;
 }
 
-.badge-xboxone {
+.badge-xboxone,
+span[data-plat$='One'] {
     background-color: #066306;
 }
 
-.badge-switch {
+.badge-switch,
+span[data-plat$='Switch'] {
     background-color: #d61717;
 }
 
-.badge-pc {
+.badge-pc,
+span[data-plat$='PC'] {
     background-color: #a04a00;
 }
 
-.badge-ps2 {
+.badge-ps2,
+span[data-plat$='2'] {
     background-color: #040821;
 }
