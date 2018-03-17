@@ -47,7 +47,7 @@ $this->registerJs($js);
                 ]
             ];
             $items = array_merge($items, Utiles::optionsSelect2($url)) ?>
-            
+
             <?= $form->field($model, 'videojuego_id')->widget(Select2::classname(), $items); ?>
 
             <?= $form->field($model, 'mensaje', [
@@ -62,8 +62,5 @@ $this->registerJs($js);
 
             <?php ActiveForm::end(); ?>
         </div>
-
     </div>
-
-
 </div>

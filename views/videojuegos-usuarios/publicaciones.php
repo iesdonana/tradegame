@@ -15,13 +15,22 @@ $this->params['breadcrumbs'][] = [
 ];
 
 $this->params['breadcrumbs'][] = $this->title;
+$css = <<<CSS
+.panel-default {
+    padding: 20px;
+}
+CSS;
+$this->registerCss($css);
 ?>
 
 <div class="col-md-offset-1 col-md-10">
-    <?= ListView::widget([
-        'summary' => '',
-        'dataProvider' => $dataProvider,
-        'itemView' => 'view',
-        'separator' => '<hr class="separador">'
-    ]) ?>
+    <div class="panel panel-default">
+        <?= ListView::widget([
+            'summary' => '',
+            'dataProvider' => $dataProvider,
+            'itemView' => 'view',
+            'separator' => '<hr class="separador">'
+            ]) ?>
+
+    </div>
 </div>

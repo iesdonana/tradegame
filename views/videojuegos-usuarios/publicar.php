@@ -6,6 +6,12 @@
 
 $this->title = 'Publicar videojuego';
 $this->params['breadcrumbs'][] = $this->title;
+$css = <<<CSS
+tr:nth-child(even) {
+    background-color: white;
+}
+CSS;
+$this->registerCss($css);
 ?>
 <div class="videojuegos-usuarios-create">
 
