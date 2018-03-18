@@ -2,33 +2,17 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\models\Valoraciones;
 use app\models\ValoracionesSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * ValoracionesController implements the CRUD actions for Valoraciones model.
  */
 class ValoracionesController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all Valoraciones models.
      * @return mixed
@@ -46,7 +30,7 @@ class ValoracionesController extends Controller
 
     /**
      * Displays a single Valoraciones model.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -59,15 +43,21 @@ class ValoracionesController extends Controller
 
     /**
      * Creates a new Valoraciones model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
+     * @param mixed $id
      */
-    public function actionCreate()
+    public function actionValorar($id)
     {
-        $model = new Valoraciones();
+        $model = $this->findModel($id);
+        // Si ya se ha valorado, mandamos al usuario al inicio
+        if ($model->num_estrellas !== null) {
+            return $this->goHome();
+        }
+        $model->scenario = Valoraciones::ESCENARIO_CREATE;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash('success', 'Has valorado la oferta correctamente');
+            return $this->goHome();
         }
 
         return $this->render('create', [
@@ -76,29 +66,9 @@ class ValoracionesController extends Controller
     }
 
     /**
-     * Updates an existing Valoraciones model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
      * Deletes an existing Valoraciones model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -112,7 +82,7 @@ class ValoracionesController extends Controller
     /**
      * Finds the Valoraciones model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return Valoraciones the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

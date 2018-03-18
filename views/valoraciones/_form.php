@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+use kartik\rating\StarRating;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Valoraciones */
 /* @var $form yii\widgets\ActiveForm */
@@ -12,16 +14,14 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'oferta_id')->textInput() ?>
+    <?= $form->field($model, 'comentario')->textarea(['maxlength' => true, 'rows' => 7]) ?>
 
-    <?= $form->field($model, 'comentario')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'num_estrellas')->widget(StarRating::className(), [
+        'pluginOptions' => ['step' => 1]
+    ]) ?>
 
-    <?= $form->field($model, 'num_estrellas')->textInput() ?>
-
-    <?= $form->field($model, 'pendiente')->checkbox() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    <div class="form-group col-md-offset-2 col-md-8">
+        <?= Html::submitButton('Valorar', ['class' => 'btn btn-tradegame btn-block']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

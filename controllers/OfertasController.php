@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Ofertas;
+use app\models\Valoraciones;
 use app\models\VideojuegosUsuarios;
 use Yii;
 use yii\filters\AccessControl;
@@ -95,6 +96,7 @@ class OfertasController extends Controller
 
         $model->aceptada = $valor;
         if ($model->save()) {
+            Yii::$app->session->setFlash('success', 'Se ha cambiado el estado correctamente');
             if ($model->aceptada) {
                 $publicado = $model->videojuegoPublicado;
                 $ofrecido = $model->videojuegoOfrecido;
@@ -110,9 +112,13 @@ class OfertasController extends Controller
                 }
                 $publicado->save();
                 $ofrecido->save();
-            }
 
-            Yii::$app->session->setFlash('success', 'Se ha cambiado el estado correctamente');
+                $valoracion = new Valoraciones([
+                    'oferta_id' => $model->id,
+                ]);
+                $valoracion->save();
+                return $this->redirect(['valoraciones/create', 'id' => $valoracion->id]);
+            }
         }
         return $this->redirect('/ofertas-usuarios/index');
     }

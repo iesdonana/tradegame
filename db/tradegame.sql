@@ -126,7 +126,7 @@ CREATE TABLE valoraciones
   , comentario          varchar(255)
   , num_estrellas       numeric(1)   CONSTRAINT ck_estrellas_correctas
                                      CHECK (num_estrellas > 0 AND num_estrellas <= 5)
-  , pendiente           boolean      NOT NULL DEFAULT true
+  , UNIQUE (oferta_id)
 );
 
 -- INSERCIONES --

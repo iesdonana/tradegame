@@ -98,4 +98,12 @@ class Ofertas extends \yii\db\ActiveRecord
     {
         return $this->hasOne(VideojuegosUsuarios::className(), ['id' => 'videojuego_ofrecido_id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getValoraciones()
+    {
+        return $this->hasOne(Valoraciones::className(), ['oferta_id' => 'id'])->inverseOf('oferta');
+    }
 }

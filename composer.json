@@ -29,7 +29,8 @@
         "npm-asset/bxslider": "^4.2",
         "npm-asset/font-awesome": "^5.0",
         "kartik-v/yii2-grid": "@dev",
-        "kartik-v/yii2-widget-typeahead": "*"
+        "kartik-v/yii2-widget-typeahead": "*",
+        "kartik-v/yii2-widget-rating": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

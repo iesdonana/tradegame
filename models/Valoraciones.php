@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "valoraciones".
  *
@@ -17,6 +15,12 @@ use Yii;
  */
 class Valoraciones extends \yii\db\ActiveRecord
 {
+    /**
+     * Escenario para la creación de una Valoración.
+     * @var string
+     */
+    const ESCENARIO_CREATE = 'create';
+
     /**
      * {@inheritdoc}
      */
@@ -32,11 +36,12 @@ class Valoraciones extends \yii\db\ActiveRecord
     {
         return [
             [['oferta_id'], 'required'],
+            [['num_estrellas'], 'required', 'on' => self::ESCENARIO_CREATE],
             [['oferta_id'], 'default', 'value' => null],
             [['oferta_id'], 'integer'],
             [['num_estrellas'], 'number'],
-            [['pendiente'], 'boolean'],
             [['comentario'], 'string', 'max' => 255],
+            [['oferta_id'], 'unique', 'message' => 'Esa valoración ya ha sido creada'],
             [['oferta_id'], 'exist', 'skipOnError' => true, 'targetClass' => Ofertas::className(), 'targetAttribute' => ['oferta_id' => 'id']],
         ];
     }
@@ -50,8 +55,7 @@ class Valoraciones extends \yii\db\ActiveRecord
             'id' => 'ID',
             'oferta_id' => 'Oferta ID',
             'comentario' => 'Comentario',
-            'num_estrellas' => 'Num Estrellas',
-            'pendiente' => 'Pendiente',
+            'num_estrellas' => 'Valoración',
         ];
     }
 
