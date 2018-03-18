@@ -64,6 +64,10 @@ class VideojuegosUsuariosController extends Controller
      */
     public function actionBuscarPublicados($id_usuario, $id_videojuego, $q = null)
     {
+        if (!Yii::$app->request->isAjax) {
+            return $this->goHome();
+        }
+
         Yii::$app->response->format = Response::FORMAT_JSON;
         $videojuegos['results'] = [];
         if ($q !== null && $q !== '') {
@@ -73,14 +77,14 @@ class VideojuegosUsuariosController extends Controller
                 ->andWhere(['!=', 'videojuego_id',  $id_videojuego]);
 
             $videojuegos['results'] = Videojuegos::find()
+                ->select(['videojuegos_usuarios.id', 'videojuegos.nombre',
+                    'p.nombre as plataforma', 'plataforma_id', ])
                 ->joinWith('plataforma as p')
                 ->joinWith('videojuegosUsuarios')
                 ->where(['ilike', 'videojuegos.nombre', $q])
                 ->andWhere(['videojuegos.id' => $subQuery])
                 ->andWhere(['usuario_id' => $id_usuario])
-                ->limit(10)->select([
-                    'videojuegos_usuarios.id', 'videojuegos.nombre',
-                    'p.nombre as plataforma', 'plataforma_id', ])
+                ->limit(10)
                 ->orderBy('videojuegos.nombre')
                 ->asArray()->all();
         }

@@ -69,25 +69,6 @@ class OfertasController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Ofertas model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
-    }
 
     /**
      * Acepta o Rechaza una oferta.
@@ -118,6 +99,15 @@ class OfertasController extends Controller
                 $publicado = $model->videojuegoPublicado;
                 $ofrecido = $model->videojuegoOfrecido;
                 $publicado->visible = $ofrecido->visible = false;
+                // Se rechazan automáticamente el resto de ofertas por este juego
+                // por el que acabamos de aceptar una oferta, ya que no volverá
+                // a estar visible
+                $ofertasPublicados = $publicado->getOfertasPublicados()
+                    ->where(['is', 'aceptada', null])->all();
+                foreach ($ofertasPublicados as $oferta) {
+                    $oferta->aceptada = false;
+                    $oferta->save();
+                }
                 $publicado->save();
                 $ofrecido->save();
             }
@@ -125,20 +115,6 @@ class OfertasController extends Controller
             Yii::$app->session->setFlash('success', 'Se ha cambiado el estado correctamente');
         }
         return $this->redirect('/ofertas-usuarios/index');
-    }
-
-    /**
-     * Deletes an existing Ofertas model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
     }
 
     /**
