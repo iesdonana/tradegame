@@ -247,3 +247,7 @@ span[data-plat$='PC'] {
 span[data-plat$='2'] {
     background-color: #040821;
 }
+
+.rating-container .filled-stars {
+    color: #e5dd00;
+}

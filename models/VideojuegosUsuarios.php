@@ -91,6 +91,6 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
      */
     public static function find()
     {
-        return parent::find()->where(['visible' => true]);
+        return parent::find()->where(['>', 'id', 0]);
     }
 }
