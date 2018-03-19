@@ -255,8 +255,8 @@ DROP VIEW IF EXISTS ofertas_usuarios;
 
 CREATE VIEW ofertas_usuarios as
 SELECT o.*,
-       v1.id as id_publicado, v1.nombre as publicado,
-       v2.id as id_ofrecido, v2.nombre as ofrecido,
+       vup.id as id_publicado, v1.nombre as publicado,
+       vuo.id as id_ofrecido, v2.nombre as ofrecido,
        u1.usuario as usuario_publicado,
        u2.usuario as usuario_ofrecido
 FROM ofertas as o

@@ -89,7 +89,9 @@ class VideojuegosController extends Controller
      */
     public function actionOfertaVideojuego($id)
     {
-        if (($videojuegoUsuario = VideojuegosUsuarios::findOne($id)) === null) {
+        if (($videojuegoUsuario = VideojuegosUsuarios::find()
+                ->where(['id' => $publicacion]))
+                ->andWhere(['visible' => true]) === null) {
             throw new NotFoundHttpException('No se encontró el videojuego');
         }
         Yii::$app->response->format = Response::FORMAT_JSON;
@@ -118,6 +120,11 @@ class VideojuegosController extends Controller
         ]);
     }
 
+    /**
+     * Renderiza una vista en la que vemos todos los detalles de un videojuego.
+     * @param  int   $id Id de un videojuego
+     * @return mixed
+     */
     public function actionVer($id)
     {
         if (($videojuego = Videojuegos::findOne($id)) === null) {

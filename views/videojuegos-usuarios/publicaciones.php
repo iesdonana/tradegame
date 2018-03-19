@@ -28,7 +28,7 @@ $this->registerCss($css);
         <?= ListView::widget([
             'summary' => '',
             'dataProvider' => $dataProvider,
-            'itemView' => 'view',
+            'itemView' => 'view_min',
             'separator' => '<hr class="separador">'
             ]) ?>
 

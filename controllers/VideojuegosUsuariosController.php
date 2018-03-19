@@ -73,7 +73,8 @@ class VideojuegosUsuariosController extends Controller
         if ($q !== null && $q !== '') {
             $subQuery = VideojuegosUsuarios::find()
                 ->select('videojuego_id')
-                ->andWhere(['usuario_id' => $id_usuario])
+                ->where(['usuario_id' => $id_usuario])
+                ->andWhere(['visible' => true])
                 ->andWhere(['!=', 'videojuego_id',  $id_videojuego]);
 
             $videojuegos['results'] = Videojuegos::find()
@@ -106,7 +107,8 @@ class VideojuegosUsuariosController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => VideojuegosUsuarios::find()
                 ->with('videojuego')
-                ->andWhere(['usuario_id' => $model->id]),
+                ->where(['usuario_id' => $model->id])
+                ->andWhere(['visible' => true]),
             'pagination' => [
                 'pageSize' => 10,
             ],
@@ -115,6 +117,23 @@ class VideojuegosUsuariosController extends Controller
         return $this->render('publicaciones', [
             'model' => $model,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Renderiza una vista en la que vemos todos los detalles de una publicación
+     * de un videojuego del usuario.
+     * @param  int   $id Id del videojuego_usuario
+     * @return mixed
+     */
+    public function actionVer($id)
+    {
+        if (($videojuego = VideojuegosUsuarios::findOne($id)) === null) {
+            throw new NotFoundHttpException('No se encontró la publicación');
+        }
+
+        return $this->render('view', [
+            'model' => $videojuego,
         ]);
     }
 }

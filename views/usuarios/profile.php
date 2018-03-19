@@ -103,7 +103,7 @@ $this->registerJs("$('.bxslider').bxSlider({auto: true, stopAutoOnClick: true});
                 <?php foreach ($listado as $model): ?>
                     <li>
                         <div class="col-md-offset-1 col-md-10">
-                            <?= $this->render('/videojuegos-usuarios/view', [
+                            <?= $this->render('/videojuegos-usuarios/view_min', [
                                 'model' => $model,
                                 'big' => true
                                 ]) ?>

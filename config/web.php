@@ -74,6 +74,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'publicacion/<id:\d+>' => 'videojuegos-usuarios/ver',
                 'ofertas' => 'ofertas-usuarios/index',
                 'ofrecer/<publicacion:\d+>' => 'ofertas/create',
                 'ofertas/<estado:\w+>' => 'ofertas-usuarios/index',

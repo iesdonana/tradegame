@@ -38,7 +38,7 @@ class OfertasUsuarios extends \yii\db\ActiveRecord
     {
         return [
             [['id'], 'default', 'value' => null],
-            [['id'], 'integer'],
+            [['id', 'id_publicado', 'id_ofrecido'], 'integer'],
             [['created_at'], 'safe'],
             [['publicado', 'ofrecido'], 'string', 'max' => 255],
             [['usuario_publicado', 'usuario_ofrecido'], 'string', 'max' => 20],

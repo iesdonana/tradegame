@@ -16,7 +16,7 @@ $this->registerCss($css);
             'summary' => '',
             'dataProvider' => $dataProvider,
             'viewParams' => ['busqueda' => true],
-            'itemView' => '/videojuegos-usuarios/view',
+            'itemView' => '/videojuegos-usuarios/view_min',
             'separator' => '<hr class="separador">'
             ]) ?>
     </div>

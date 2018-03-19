@@ -89,7 +89,7 @@ $this->registerJs($js);
                 'value' => function ($model) {
                     $v = Videojuegos::findOne($model->id_publicado);
                     return Html::a($model->publicado,
-                        ['videojuegos/ver', 'id' => $model->id_publicado],
+                        ['videojuegos-usuarios/ver', 'id' => $model->id_publicado],
                         [
                             'data-toggle' => 'tooltip',
                             'title' => Html::img($v->caratula, ['class' => 'img-miniatura'])
@@ -104,7 +104,7 @@ $this->registerJs($js);
                 'value' => function ($model) {
                     $v = Videojuegos::findOne($model->id_ofrecido);
                     return Html::a($model->ofrecido,
-                        ['videojuegos-usuarios/detalles', 'id' => $model->id_ofrecido],
+                        ['videojuegos-usuarios/ver', 'id' => $model->id_ofrecido],
                         [
                             'data-toggle' => 'tooltip',
                             'title' => Html::img($v->caratula, ['class' => 'img-miniatura'])

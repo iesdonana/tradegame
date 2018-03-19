@@ -85,12 +85,4 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Ofertas::className(), ['videojuego_ofrecido_id' => 'id']);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function find()
-    {
-        return parent::find()->where(['>', 'id', 0]);
-    }
 }

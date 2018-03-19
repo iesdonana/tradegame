@@ -35,7 +35,9 @@ class OfertasController extends Controller
                             }
 
                             $publicacion = Yii::$app->request->get('publicacion');
-                            if (($vUsuario = VideojuegosUsuarios::findOne($publicacion)) === null) {
+                            if (($vUsuario = VideojuegosUsuarios::find()
+                                ->where(['id' => $publicacion])
+                                ->andWhere(['visible' => true])->one()) === null) {
                                 return false;
                             }
 
@@ -117,7 +119,7 @@ class OfertasController extends Controller
                     'oferta_id' => $model->id,
                 ]);
                 $valoracion->save();
-                return $this->redirect(['valoraciones/create', 'id' => $valoracion->id]);
+                return $this->redirect(['valoraciones/valorar', 'id' => $valoracion->id]);
             }
         }
         return $this->redirect('/ofertas-usuarios/index');
