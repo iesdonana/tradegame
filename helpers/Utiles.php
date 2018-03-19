@@ -141,4 +141,23 @@ class Utiles
 
         return Html::tag('span', $plataforma, ['class' => $clase]);
     }
+
+    /**
+     * Pinta un número de estrellas coloreadas, dependiendo de el número que se le pase por
+     * parámetro.
+     * @param  int    $numEstrellas Número de estrellas que se van a pintar de color
+     * @return string
+     */
+    public static function pintarEstrellas($numEstrellas)
+    {
+        $res = '';
+        for ($i = 0; $i < 5; $i++) {
+            $class = ['class' => 'fas fa-lg'];
+            if ($i < $numEstrellas) {
+                $class = ['class' => 'fas fa-lg puntuacion'];
+            }
+            $res .= self::FA('star', $class);
+        }
+        return $res;
+    }
 }

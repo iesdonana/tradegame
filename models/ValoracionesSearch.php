@@ -2,10 +2,8 @@
 
 namespace app\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Valoraciones;
 
 /**
  * ValoracionesSearch represents the model behind the search form of `app\models\Valoraciones`.
@@ -21,7 +19,6 @@ class ValoracionesSearch extends Valoraciones
             [['id', 'oferta_id'], 'integer'],
             [['comentario'], 'safe'],
             [['num_estrellas'], 'number'],
-            [['pendiente'], 'boolean'],
         ];
     }
 
@@ -35,7 +32,7 @@ class ValoracionesSearch extends Valoraciones
     }
 
     /**
-     * Creates data provider instance with search query applied
+     * Creates data provider instance with search query applied.
      *
      * @param array $params
      *
@@ -43,7 +40,7 @@ class ValoracionesSearch extends Valoraciones
      */
     public function search($params)
     {
-        $query = Valoraciones::find();
+        $query = Valoraciones::find()->with(['oferta']);
 
         // add conditions that should always apply here
 
@@ -61,10 +58,8 @@ class ValoracionesSearch extends Valoraciones
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
             'oferta_id' => $this->oferta_id,
             'num_estrellas' => $this->num_estrellas,
-            'pendiente' => $this->pendiente,
         ]);
 
         $query->andFilterWhere(['ilike', 'comentario', $this->comentario]);
