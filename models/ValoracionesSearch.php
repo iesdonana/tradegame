@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
@@ -16,7 +17,7 @@ class ValoracionesSearch extends Valoraciones
     public function rules()
     {
         return [
-            [['id', 'oferta_id'], 'integer'],
+            [['id'], 'integer'],
             [['comentario'], 'safe'],
             [['num_estrellas'], 'number'],
         ];
@@ -40,7 +41,7 @@ class ValoracionesSearch extends Valoraciones
      */
     public function search($params)
     {
-        $query = Valoraciones::find()->with(['oferta']);
+        $query = Valoraciones::find()->where(['usuario_valora_id' => Yii::$app->user->id]);
 
         // add conditions that should always apply here
 
@@ -58,7 +59,6 @@ class ValoracionesSearch extends Valoraciones
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'oferta_id' => $this->oferta_id,
             'num_estrellas' => $this->num_estrellas,
         ]);
 

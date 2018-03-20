@@ -90,8 +90,8 @@ class VideojuegosController extends Controller
     public function actionOfertaVideojuego($id)
     {
         if (($videojuegoUsuario = VideojuegosUsuarios::find()
-                ->where(['id' => $publicacion]))
-                ->andWhere(['visible' => true]) === null) {
+                ->where(['id' => $id])
+                ->andWhere(['visible' => true])->one()) === null) {
             throw new NotFoundHttpException('No se encontró el videojuego');
         }
         Yii::$app->response->format = Response::FORMAT_JSON;

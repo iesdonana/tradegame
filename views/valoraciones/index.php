@@ -12,19 +12,17 @@ use kartik\grid\GridView;
 /* @var $searchModel app\models\ValoracionesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Valoraciones';
+$this->title = 'Mis valoraciones';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="valoraciones-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'summary' => '',
         'columns' => [
-            'oferta.videojuegoOfrecido.usuario.usuario:text:Usuario a valorar',
-            'oferta.videojuegoOfrecido.videojuego.nombre:text:Videojuego entregado',
+            'usuarioValorado.usuario:text:Usuario a valorar',
+            'comentario',
             [
                 'class' => ActionColumn::className(),
                 'template' => '{valorar}',

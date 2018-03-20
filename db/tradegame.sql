@@ -121,12 +121,13 @@ DROP TABLE IF EXISTS valoraciones CASCADE;
 CREATE TABLE valoraciones
 (
     id                  bigserial    PRIMARY KEY
-  , oferta_id           bigint       NOT NULL REFERENCES ofertas (id)
+  , usuario_valorado_id    bigint    NOT NULL REFERENCES usuarios (id)
+                                     ON DELETE NO ACTION ON UPDATE CASCADE
+  , usuario_valora_id      bigint    NOT NULL REFERENCES usuarios (id)
                                      ON DELETE NO ACTION ON UPDATE CASCADE
   , comentario          varchar(255)
   , num_estrellas       numeric(1)   CONSTRAINT ck_estrellas_correctas
                                      CHECK (num_estrellas > 0 AND num_estrellas <= 5)
-  , UNIQUE (oferta_id)
 );
 
 -- INSERCIONES --

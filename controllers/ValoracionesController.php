@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Valoraciones;
 use app\models\ValoracionesSearch;
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -13,6 +14,25 @@ use yii\web\NotFoundHttpException;
  */
 class ValoracionesController extends Controller
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['valorar'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['valorar'],
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
     /**
      * Lists all Valoraciones models.
      * @return mixed
