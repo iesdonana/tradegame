@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use Yii;
+
 /**
  * This is the model class for table "valoraciones".
  *
@@ -54,6 +56,11 @@ class Valoraciones extends \yii\db\ActiveRecord
             'comentario' => 'Comentario',
             'num_estrellas' => 'Valoración',
         ];
+    }
+
+    public static function getPendientes()
+    {
+        return self::find()->where(['is', 'num_estrellas', null])->andWhere(['usuario_valora_id' => Yii::$app->user->id])->count();
     }
 
     /**

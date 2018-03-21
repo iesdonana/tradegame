@@ -36,14 +36,20 @@ class ValoracionesSearch extends Valoraciones
      * Creates data provider instance with search query applied.
      *
      * @param array $params
+     * @param mixed $estado
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $estado)
     {
         $query = Valoraciones::find()->where(['usuario_valora_id' => Yii::$app->user->id]);
 
         // add conditions that should always apply here
+        if ($estado === 'pendientes') {
+            $query->andWhere(['is', 'num_estrellas', null]);
+        } elseif ($estado === 'valoradas') {
+            $query->andWhere(['is not', 'num_estrellas', null]);
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

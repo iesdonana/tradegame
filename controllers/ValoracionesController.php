@@ -36,13 +36,24 @@ class ValoracionesController extends Controller
     /**
      * Lists all Valoraciones models.
      * @return mixed
+     * @param null|mixed $estado
      */
-    public function actionIndex()
+    public function actionIndex($estado = null)
     {
-        $searchModel = new ValoracionesSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $query = Yii::$app->request->queryParams;
 
-        return $this->render('index', [
+        // Evitamos que el usuario pase por parámetro cualquier cosa
+        $validos = ['valoradas', 'pendientes', null];
+        if (!in_array($estado, $validos)) {
+            return $this->goHome();
+        }
+        $searchModel = new ValoracionesSearch();
+        $dataProvider = $searchModel->search(
+            Yii::$app->request->queryParams,
+            $estado
+        );
+
+        return $this->render('listado', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);

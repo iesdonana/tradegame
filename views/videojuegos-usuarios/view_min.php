@@ -46,9 +46,11 @@ if (isset($big) && $big === true) {
                         <?php if (!isset($busqueda)): ?>
                         <div class="col-md-4">
                             <div class='text-right date-publicado'>
-                                <?= Utiles::FA('clock', ['class' => 'far']) . ' ' .
-                                Yii::$app->formatter->asRelativeTime($model->created_at) ?>
+                                <?= Html::a(Utiles::FA('clock', ['class' => 'far']) . ' Publicado ' .
+                                Yii::$app->formatter->asRelativeTime($model->created_at),
+                                ['videojuegos-usuarios/ver', 'id' => $model->id]) ?>
                                 <?php if ($model->usuario_id !== Yii::$app->user->id): ?>
+                                    <hr>
                                     <?= Html::a('<strong>Hacer oferta</strong>', [
                                         'ofertas/create',
                                         'publicacion' => $model->id
@@ -63,10 +65,10 @@ if (isset($big) && $big === true) {
                         <br>
                         <strong>Descripción:</strong>
                         <em><?= $videojuego->descripcion ?></em>
-                        <?php if (!isset($busqueda) && $model->mensaje !== ''): ?>
+                        <?php if (!isset($busqueda)): ?>
                             <hr class='divide'>
                             <strong>Comentarios:</strong>
-                            <?= $model->mensaje ?>
+                            <div class="comentarios-videojuego"><?= $model->mensaje ?></div>
                         <?php endif ?>
                     </div>
                 </div>

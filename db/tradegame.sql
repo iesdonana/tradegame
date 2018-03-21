@@ -97,7 +97,7 @@ CREATE TABLE videojuegos_usuarios
                                ON DELETE NO ACTION ON UPDATE CASCADE
   , mensaje       varchar(255)
   , created_at    timestamp(0) NOT NULL DEFAULT localtimestamp
-  , visible           boolean      DEFAULT true
+  , visible           boolean  DEFAULT true
 );
 
 DROP TABLE IF EXISTS ofertas CASCADE;
@@ -251,6 +251,12 @@ INSERT INTO videojuegos (nombre, descripcion, fecha_lanzamiento,
         'por Valve y distribuido por VU Games para PC. La fecha de lanzamiento ' ||
         'de este videojuego es el 16 de noviembre de 2004.',
         '2004-11-16', 12, 3, 5);
+
+INSERT INTO videojuegos_usuarios (videojuego_id, usuario_id)
+    VALUES (1, 1), (2, 2);
+
+INSERT INTO ofertas (videojuego_publicado_id, videojuego_ofrecido_id)
+    VALUES (1, 1);
 
 DROP VIEW IF EXISTS ofertas_usuarios;
 

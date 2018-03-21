@@ -5,22 +5,17 @@ use yii\helpers\Html;
 <ul class="nav nav-pills nav-stacked nav-email shadow mb-20 panel panel-default">
     <li>
         <?= Html::a('Todas', [
-            'ofertas-usuarios/index',
+            'valoraciones/index',
             ]) ?>
     </li>
     <li>
         <?= Html::a('Pendientes', [
-            'ofertas/pendientes',
+            'valoraciones/pendientes',
         ], ['data-seccion' => 'pendientes']) ?>
     </li>
     <li>
         <?= Html::a('Aceptadas', [
-            'ofertas/aceptadas',
-        ], ['data-seccion' => 'aceptadas']) ?>
-    </li>
-    <li>
-        <?= Html::a('Rechazadas', [
-            'ofertas/rechazadas',
-        ], ['data-seccion' => 'rechazadas']) ?>
+            'valoraciones/valoradas',
+        ], ['data-seccion' => 'valoradas']) ?>
     </li>
 </ul>

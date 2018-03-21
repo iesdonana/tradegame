@@ -27,8 +27,20 @@ $css = <<<CSS
 CSS;
 $this->registerCss($css);
 
+
+$user = $model->usuario->usuario;
 $videojuego = $model->videojuego;
 $this->title = $videojuego->nombre;
+
+$label = 'Mis publicadones';
+if (Yii::$app->user->id !== $model->usuario_id) {
+    $label = 'Publicaciones de ' . "'$user'";
+}
+
+$this->params['breadcrumbs'][] = [
+    'label' => $label,
+    'url' => ['videojuegos-usuarios/publicaciones', 'usuario' => $user]
+];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -38,7 +50,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <div id='date'>
                 <div class="col-md-6 text-left">
                     <?= Utiles::FA('user') ?> Publicado por
-                    <?php $user = $model->usuario->usuario ?>
                     <?= Html::a($user, ['usuarios/perfil', 'usuario' => $user]) ?>
                 </div>
                 <div class="col-md-6 text-right">
@@ -54,10 +65,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'model' => $videojuego
             ]) ?>
             <div class="datos-videojuego">
-                <?php if ($model->mensaje !== ''): ?>
-                    <strong>Comentarios del usuario: </strong><br>
-                    <?= $model->mensaje ?>
-                <?php endif; ?>
+                <strong>Comentarios del usuario: </strong><br>
+                <div class="comentarios-videojuego"><?= $model->mensaje ?></div>
             </div>
             <?php if (Yii::$app->user->id !== $model->usuario_id && $model->visible): ?>
                 <hr>

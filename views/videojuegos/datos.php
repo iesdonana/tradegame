@@ -6,7 +6,7 @@ use yii\helpers\Html;
 
 <div class="row">
     <div class="page-header text-center text-tradegame">
-        <h3><?= $model->nombre ?></h3>
+        <h3><?= Html::a($model->nombre, ['videojuegos/ver', 'id' => $model->id]) ?></h3>
     </div>
 </div>
 <div class="row">

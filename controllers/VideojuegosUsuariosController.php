@@ -83,6 +83,7 @@ class VideojuegosUsuariosController extends Controller
                 ->joinWith('plataforma as p')
                 ->joinWith('videojuegosUsuarios')
                 ->where(['ilike', 'videojuegos.nombre', $q])
+                ->andWhere(['visible' => true])
                 ->andWhere(['videojuegos.id' => $subQuery])
                 ->andWhere(['usuario_id' => $id_usuario])
                 ->limit(10)

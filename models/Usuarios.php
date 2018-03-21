@@ -180,9 +180,19 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->hasMany(Valoraciones::className(), ['usuario_valora_id' => 'id'])->inverseOf('usuarioValora');
     }
 
+    /**
+     * Devuelve los $numero útlimos videojuegos que el usuario ha publicado
+     * para intercambiar.
+     * @param  int   $numero Número de videojuegos del usuario a retornar
+     * @return array         Un array de modelos de VideojuegosUsuarios
+     */
     public function getUltimosVideojuegos($numero)
     {
-        return $this->getVideojuegosUsuarios()->limit($numero)->orderBy(['created_at' => SORT_DESC])->all();
+        return $this->getVideojuegosUsuarios()
+            ->where(['visible' => true])
+            ->limit($numero)
+            ->orderBy(['created_at' => SORT_DESC])
+            ->all();
     }
 
     public function beforeSave($insert)

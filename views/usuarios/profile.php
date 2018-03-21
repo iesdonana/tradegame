@@ -13,12 +13,7 @@ use app\assets\BxAsset;
 
 BxAsset::register($this);
 
-$this->title = 'Mi perfil';
-
-if (Yii::$app->user->id !== $model->id) {
-    $this->title = 'Perfil de ' . "'$model->usuario'";
-}
-
+$this->title = $model->usuario;
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerJs("
