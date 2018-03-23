@@ -2,6 +2,8 @@
 
 namespace app\helpers;
 
+use app\models\OfertasUsuarios;
+use app\models\Valoraciones;
 use yii\helpers\Html;
 use yii\web\JsExpression;
 
@@ -140,5 +142,46 @@ class Utiles
         }
 
         return Html::tag('span', $plataforma, ['class' => $clase]);
+    }
+
+    /**
+     * Pinta un número de estrellas coloreadas, dependiendo de el número que se le pase por
+     * parámetro.
+     * @param  int    $numEstrellas Número de estrellas que se van a pintar de color
+     * @return string
+     */
+    public static function pintarEstrellas($numEstrellas)
+    {
+        $res = '';
+        for ($i = 0; $i < 5; $i++) {
+            $class = ['class' => 'fas fa-lg'];
+            if ($i < $numEstrellas) {
+                $class = ['class' => 'fas fa-lg puntuacion'];
+            }
+            $res .= self::FA('star', $class);
+        }
+        return $res;
+    }
+
+    public static function badgeNotificacionesPendientes($clase)
+    {
+        $pendientes = call_user_func($clase . '::getPendientes');
+        if ($pendientes > 0) {
+            return Html::tag('span', $pendientes, ['class' => 'badge badge-custom']);
+        }
+        return '';
+    }
+
+    public static function badgeNotificacionesTotales()
+    {
+        $sum = 0;
+        $valores = [OfertasUsuarios::className(), Valoraciones::className()];
+        foreach ($valores as $clase) {
+            $sum += call_user_func($clase . '::getPendientes');
+        }
+        if ($sum > 0) {
+            return Html::tag('span', $sum, ['class' => 'badge badge-custom']);
+        }
+        return '';
     }
 }

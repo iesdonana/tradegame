@@ -1,13 +1,8 @@
 <?php
 use yii\widgets\ListView;
 
-
-$this->title = 'Mis publicaciones';
-$label = 'Mi perfil';
-if (Yii::$app->user->id !== $model->id) {
-    $this->title = 'Publicaciones de ' . "'$model->usuario'";
-    $label = 'Perfil de ' . "'$model->usuario'";
-}
+$this->title = 'Publicaciones';
+$label = $model->usuario;
 
 $this->params['breadcrumbs'][] = [
     'label' => $label,

@@ -248,6 +248,13 @@ span[data-plat$='2'] {
     background-color: #040821;
 }
 
-.rating-container .filled-stars {
+.rating-container .filled-stars,
+.puntuacion
+{
     color: #e5dd00;
+}
+
+.comentarios-videojuego:empty:after {
+    font-style: italic;
+    content: 'No se ha proporcionado ningún comentario';
 }

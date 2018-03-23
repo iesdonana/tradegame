@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Valoraciones;
 use app\models\ValoracionesSearch;
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -14,15 +15,45 @@ use yii\web\NotFoundHttpException;
 class ValoracionesController extends Controller
 {
     /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['valorar'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['valorar'],
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+    /**
      * Lists all Valoraciones models.
      * @return mixed
+     * @param null|mixed $estado
      */
-    public function actionIndex()
+    public function actionIndex($estado = null)
     {
-        $searchModel = new ValoracionesSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $query = Yii::$app->request->queryParams;
 
-        return $this->render('index', [
+        // Evitamos que el usuario pase por parámetro cualquier cosa
+        $validos = ['valoradas', 'pendientes', null];
+        if (!in_array($estado, $validos)) {
+            return $this->goHome();
+        }
+        $searchModel = new ValoracionesSearch();
+        $dataProvider = $searchModel->search(
+            Yii::$app->request->queryParams,
+            $estado
+        );
+
+        return $this->render('listado', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);

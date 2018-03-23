@@ -105,7 +105,14 @@ class OfertasController extends Controller
                 $publicado->visible = $ofrecido->visible = false;
                 // Se rechazan automáticamente el resto de ofertas por este juego
                 // por el que acabamos de aceptar una oferta, ya que no volverá
-                // a estar visible
+                // a estar visible. Además se borran las ofertas pendientes en
+                // las que el videojuego ofrecido sea el que hemos aceptado que
+                // nos ofrezcan
+                $ofertasOfrecido = $ofrecido->getOfertasOfrecidos()
+                    ->where(['is', 'aceptada', null])->all();
+                foreach ($ofertasOfrecido as $oferta) {
+                    $oferta->delete();
+                }
                 $ofertasPublicados = $publicado->getOfertasPublicados()
                     ->where(['is', 'aceptada', null])->all();
                 foreach ($ofertasPublicados as $oferta) {
@@ -116,7 +123,8 @@ class OfertasController extends Controller
                 $ofrecido->save();
 
                 $valoracion = new Valoraciones([
-                    'oferta_id' => $model->id,
+                    'usuario_valora_id' => Yii::$app->user->id,
+                    'usuario_valorado_id' => $model->videojuegoOfrecido->usuario_id,
                 ]);
                 $valoracion->save();
                 return $this->redirect(['valoraciones/valorar', 'id' => $valoracion->id]);

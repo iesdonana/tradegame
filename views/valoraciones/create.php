@@ -16,18 +16,14 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-heading">
                 <div class="panel-title text-center">
                     <?php
-                        $oferta = $model->oferta;
-                        $videojuegoPublicado = $oferta->videojuegoPublicado->videojuego;
-                        $videojuegoOfrecido = $oferta->videojuegoOfrecido;
-                        $usuario = $videojuegoOfrecido->usuario->usuario;
+                        $usuario = $model->usuarioValorado->usuario;
                         $urlPerfil = Html::a($usuario, ['usuarios/perfil', 'usuario' => $usuario]);
                     ?>
                     <?= Html::encode($this->title) ?>
                 </div>
             </div>
             <div class="panel-body">
-                Valora tu intercambio con el usuario <?= $urlPerfil ?>, en el cuál has intercambiado tu
-                <em><?= $videojuegoPublicado->nombre ?></em> por su <em><?= $videojuegoOfrecido->videojuego->nombre ?></em><hr>
+                Valora tu intercambio con el usuario <?= $urlPerfil ?><hr>
                 <?= $this->render('_form', [
                     'model' => $model,
                     ]) ?>

@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\models\Valoraciones;
 use app\models\OfertasUsuarios;
 
 use app\helpers\Utiles;
@@ -102,21 +103,23 @@ $this->title = 'TradeGame';
             'label' => Utiles::FA('list', ['class' => 'fas']) . ' Mis publicaciones',
             'url' => ['/videojuegos-usuarios/publicaciones', 'usuario' => Yii::$app->user->identity->usuario]
         ];
-        if (($pendOf = OfertasUsuarios::getPendientes()) > 0) {
-            $pendOf = Html::tag('span', $pendOf, ['class' => 'badge badge-custom']);
-        } else {
-            $pendOf = '';
-        }
+
+        $pendOf = Utiles::badgeNotificacionesPendientes(OfertasUsuarios::className());
+        $pendVal = Utiles::badgeNotificacionesPendientes(Valoraciones::className());
         $items[] = [
-            'label' => Utiles::FA('bell', ['class' => 'far']) . ' Notificaciones ' . $pendOf,
+            'label' => Utiles::FA('bell', ['class' => 'far']) . ' Notificaciones ' . Utiles::badgeNotificacionesTotales(),
             'items' => [
                 [
-                    'label' => Utiles::FA('handshake', ['class' => 'far']) . ' Ofertas ' . $pendOf,
+                    'label' => Utiles::FA('handshake', ['class' => 'far']) . " Ofertas $pendOf",
                     'url' => ['/ofertas-usuarios/index']
                 ],
                 [
                     'label' => Utiles::FA('inbox') . ' Mensajes',
                     'url' => ['/mensajes/index']
+                ],
+                [
+                    'label' => Utiles::FA('star') . " Valoraciones $pendVal",
+                    'url' => ['/valoraciones/index']
                 ]
             ]
         ];

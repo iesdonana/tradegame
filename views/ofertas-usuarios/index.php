@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Videojuegos;
+use app\models\VideojuegosUsuarios;
 
 use app\helpers\Utiles;
 
@@ -87,12 +88,12 @@ $this->registerJs($js);
                 'attribute' => 'publicado',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    $v = Videojuegos::findOne($model->id_publicado);
+                    $v = VideojuegosUsuarios::findOne($model->id_publicado);
                     return Html::a($model->publicado,
                         ['videojuegos-usuarios/ver', 'id' => $model->id_publicado],
                         [
                             'data-toggle' => 'tooltip',
-                            'title' => Html::img($v->caratula, ['class' => 'img-miniatura'])
+                            'title' => Html::img($v->videojuego->caratula, ['class' => 'img-miniatura'])
                         ]
                     );
                 }
@@ -102,12 +103,12 @@ $this->registerJs($js);
                 'attribute' => 'ofrecido',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    $v = Videojuegos::findOne($model->id_ofrecido);
+                    $v = VideojuegosUsuarios::findOne($model->id_ofrecido);
                     return Html::a($model->ofrecido,
                         ['videojuegos-usuarios/ver', 'id' => $model->id_ofrecido],
                         [
                             'data-toggle' => 'tooltip',
-                            'title' => Html::img($v->caratula, ['class' => 'img-miniatura'])
+                            'title' => Html::img($v->videojuego->caratula, ['class' => 'img-miniatura'])
                         ]
                     );
                 }

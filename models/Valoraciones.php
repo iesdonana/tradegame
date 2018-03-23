@@ -2,12 +2,15 @@
 
 namespace app\models;
 
+use Yii;
+
 /**
  * This is the model class for table "valoraciones".
  *
  * @property int $id
- * @property int $oferta_id
  * @property string $comentario
+ * @property string $usuario_valora
+ * @property string $usuario_valorar
  * @property string $num_estrellas
  * @property bool $pendiente
  *
@@ -35,14 +38,10 @@ class Valoraciones extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['oferta_id'], 'required'],
             [['num_estrellas'], 'required', 'on' => self::ESCENARIO_CREATE],
-            [['oferta_id'], 'default', 'value' => null],
-            [['oferta_id'], 'integer'],
+            [['usuario_valorado_id', 'usuario_valora_id'], 'integer'],
             [['num_estrellas'], 'number'],
             [['comentario'], 'string', 'max' => 255],
-            [['oferta_id'], 'unique', 'message' => 'Esa valoración ya ha sido creada'],
-            [['oferta_id'], 'exist', 'skipOnError' => true, 'targetClass' => Ofertas::className(), 'targetAttribute' => ['oferta_id' => 'id']],
         ];
     }
 
@@ -53,17 +52,30 @@ class Valoraciones extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'oferta_id' => 'Oferta ID',
+            'usuario_valorado_id' => 'Usuario a valorar',
             'comentario' => 'Comentario',
             'num_estrellas' => 'Valoración',
         ];
     }
 
+    public static function getPendientes()
+    {
+        return self::find()->where(['is', 'num_estrellas', null])->andWhere(['usuario_valora_id' => Yii::$app->user->id])->count();
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getOferta()
+    public function getUsuarioValorado()
     {
-        return $this->hasOne(Ofertas::className(), ['id' => 'oferta_id'])->inverseOf('valoraciones');
+        return $this->hasOne(Usuarios::className(), ['id' => 'usuario_valorado_id'])->inverseOf('valoraciones');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsuarioValora()
+    {
+        return $this->hasOne(Usuarios::className(), ['id' => 'usuario_valora_id'])->inverseOf('valoraciones0');
     }
 }

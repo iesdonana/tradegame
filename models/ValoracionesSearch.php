@@ -5,7 +5,6 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Valoraciones;
 
 /**
  * ValoracionesSearch represents the model behind the search form of `app\models\Valoraciones`.
@@ -18,10 +17,9 @@ class ValoracionesSearch extends Valoraciones
     public function rules()
     {
         return [
-            [['id', 'oferta_id'], 'integer'],
+            [['id'], 'integer'],
             [['comentario'], 'safe'],
             [['num_estrellas'], 'number'],
-            [['pendiente'], 'boolean'],
         ];
     }
 
@@ -35,17 +33,23 @@ class ValoracionesSearch extends Valoraciones
     }
 
     /**
-     * Creates data provider instance with search query applied
+     * Creates data provider instance with search query applied.
      *
      * @param array $params
+     * @param mixed $estado
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $estado)
     {
-        $query = Valoraciones::find();
+        $query = Valoraciones::find()->where(['usuario_valora_id' => Yii::$app->user->id]);
 
         // add conditions that should always apply here
+        if ($estado === 'pendientes') {
+            $query->andWhere(['is', 'num_estrellas', null]);
+        } elseif ($estado === 'valoradas') {
+            $query->andWhere(['is not', 'num_estrellas', null]);
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -61,10 +65,7 @@ class ValoracionesSearch extends Valoraciones
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'oferta_id' => $this->oferta_id,
             'num_estrellas' => $this->num_estrellas,
-            'pendiente' => $this->pendiente,
         ]);
 
         $query->andFilterWhere(['ilike', 'comentario', $this->comentario]);

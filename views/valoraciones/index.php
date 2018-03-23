@@ -1,37 +1,49 @@
 <?php
 
+use app\helpers\Utiles;
+
+use yii\grid\ActionColumn;
+
 use yii\helpers\Html;
-use yii\grid\GridView;
+
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ValoracionesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Valoraciones';
+$this->title = 'Mis valoraciones';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="valoraciones-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Valoraciones', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        'summary' => '',
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'nullDisplay' => '<span class="text-warning">Pendiente de valorar</span>'
+        ],
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'oferta_id',
+            'usuarioValorado.usuario:text:Usuario a valorar',
             'comentario',
-            'num_estrellas',
-            'pendiente:boolean',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'header' => 'Valoración',
+                'class' => ActionColumn::className(),
+                'template' => '{valorar}',
+                'headerOptions' => ['style' => 'width:20%'],
+                'buttons' => [
+                    'valorar' => function ($url, $model, $key) {
+                        if ($model->num_estrellas === null) {
+                            return Html::a('Valorar ' . Utiles::FA('star'), [
+                                'valoraciones/valorar', 'id' => $model->id
+                            ], ['class' => 'btn btn-sm btn-warning']);
+                        } else {
+                            return Utiles::pintarEstrellas($model->num_estrellas);
+                        }
+                    }
+                ]
+            ]
         ],
     ]); ?>
 </div>
