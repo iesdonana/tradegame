@@ -40,13 +40,13 @@ if (isset($big) && $big === true) {
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-8">
-                            <strong class='titulo text-tradegame'><?= $videojuego->nombre ?></strong><br>
+                            <strong class='titulo text-tradegame'><?= Html::encode($videojuego->nombre) ?></strong><br>
                             <?= Utiles::badgePlataforma($videojuego->plataforma->nombre) ?> <br>
                         </div>
                         <?php if (!isset($busqueda)): ?>
                         <div class="col-md-4">
                             <div class='text-right date-publicado'>
-                                <?= Html::a(Utiles::FA('clock', ['class' => 'far']) . ' Publicado ' .
+                                <?= Html::a(Utiles::FA('clock', ['class' => 'far']) . ' ' .
                                 Yii::$app->formatter->asRelativeTime($model->created_at),
                                 ['videojuegos-usuarios/ver', 'id' => $model->id]) ?>
                                 <?php if ($model->usuario_id !== Yii::$app->user->id): ?>
@@ -64,11 +64,11 @@ if (isset($big) && $big === true) {
 
                         <br>
                         <strong>Descripción:</strong>
-                        <em><?= $videojuego->descripcion ?></em>
+                        <em><?= Html::encode($videojuego->descripcion) ?></em>
                         <?php if (!isset($busqueda)): ?>
                             <hr class='divide'>
                             <strong>Comentarios:</strong>
-                            <div class="comentarios-videojuego"><?= $model->mensaje ?></div>
+                            <div class="comentarios-videojuego"><?= Html::encode($model->mensaje) ?></div>
                         <?php endif ?>
                     </div>
                 </div>

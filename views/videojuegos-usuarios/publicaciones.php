@@ -1,11 +1,13 @@
 <?php
+use yii\helpers\Html;
+
 use yii\widgets\ListView;
 
 $this->title = 'Publicaciones';
 $label = $model->usuario;
 
 $this->params['breadcrumbs'][] = [
-    'label' => $label,
+    'label' => Html::encode($label),
     'url' => ['usuarios/perfil', 'usuario' => $model->usuario]
 ];
 

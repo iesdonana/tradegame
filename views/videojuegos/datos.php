@@ -21,20 +21,20 @@ use yii\helpers\Html;
             </li>
             <li class="list-group-item">
                 <strong>Plataforma:</strong>
-                <?= $model->plataforma->nombre ?>
+                <?= Html::encode($model->plataforma->nombre) ?>
             </li>
             <li class="list-group-item">
                 <strong>Desarrollador:</strong>
-                <?= $model->desarrollador->compania ?>
+                <?= Html::encode($model->desarrollador->compania) ?>
             </li>
             <li class="list-group-item">
                 <strong>Género:</strong>
-                <?= $model->genero->nombre ?>
+                <?= Html::encode($model->genero->nombre) ?>
             </li>
         </ul>
     </div>
 </div>
 <div class="row datos-videojuego">
     <strong>Descripción:</strong><br>
-    <?= $model->descripcion ?>
+    <?= Html::encode($model->descripcion) ?>
 </div>

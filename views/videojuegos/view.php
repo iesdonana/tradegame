@@ -1,4 +1,6 @@
 <?php
+use yii\helpers\Html;
+
 
 $css = <<<CSS
 .datos-videojuego {
@@ -13,7 +15,7 @@ $css = <<<CSS
 CSS;
 $this->registerCss($css);
 
-$this->title = $model->nombre;
+$this->title = Html::encode($model->nombre);
 
 $this->params['breadcrumbs'][] = [
     'label' => 'Videojuegos',

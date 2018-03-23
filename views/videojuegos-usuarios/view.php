@@ -32,10 +32,12 @@ $user = $model->usuario->usuario;
 $videojuego = $model->videojuego;
 $this->title = $videojuego->nombre;
 
-$label = 'Mis publicadones';
-if (Yii::$app->user->id !== $model->usuario_id) {
-    $label = 'Publicaciones de ' . "'$user'";
-}
+$label = 'Publicaciones';
+
+$this->params['breadcrumbs'][] = [
+    'label' => Html::encode($user),
+    'url' => ['usuarios/perfil', 'usuario' => $user]
+];
 
 $this->params['breadcrumbs'][] = [
     'label' => $label,
@@ -58,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ' Esta videojuego ya ha sido intercambiado.',
                         ['class' => 'text-success']) ?><br>
                     <?php endif; ?>
-                    <?= Utiles::FA('clock', ['class' => 'far']) ?> Publicado <?= Yii::$app->formatter->asRelativeTime($model->created_at) ?>
+                    <?= Utiles::FA('clock', ['class' => 'far']) . ' ' . Yii::$app->formatter->asRelativeTime($model->created_at) ?>
                 </div>
             </div>
             <?= $this->render('/videojuegos/datos', [
@@ -66,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ]) ?>
             <div class="datos-videojuego">
                 <strong>Comentarios del usuario: </strong><br>
-                <div class="comentarios-videojuego"><?= $model->mensaje ?></div>
+                <div class="comentarios-videojuego"><?= Html::encode($model->mensaje) ?></div>
             </div>
             <?php if (Yii::$app->user->id !== $model->usuario_id && $model->visible): ?>
                 <hr>

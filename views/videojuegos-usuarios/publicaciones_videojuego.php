@@ -23,7 +23,7 @@ use kartik\grid\GridView;
             'width' => '400px',
             'contentOptions' => ['class' => 'comentarios-videojuego'],
             'value' => function ($model) {
-                return $model->mensaje;
+                return Html::encode($model->mensaje);
             }
         ],
         [
