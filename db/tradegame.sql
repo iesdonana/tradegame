@@ -253,10 +253,10 @@ INSERT INTO videojuegos (nombre, descripcion, fecha_lanzamiento,
         '2004-11-16', 12, 3, 5);
 
 INSERT INTO videojuegos_usuarios (videojuego_id, usuario_id)
-    VALUES (1, 1), (2, 2);
+    VALUES (1, 1), (2, 1), (3, 2);
 
 INSERT INTO ofertas (videojuego_publicado_id, videojuego_ofrecido_id)
-    VALUES (1, 1);
+    VALUES (1, 3), (2, 3);
 
 DROP VIEW IF EXISTS ofertas_usuarios;
 

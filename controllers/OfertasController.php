@@ -105,11 +105,14 @@ class OfertasController extends Controller
                 $publicado->visible = $ofrecido->visible = false;
                 // Se rechazan automáticamente el resto de ofertas por este juego
                 // por el que acabamos de aceptar una oferta, ya que no volverá
-                // a estar visible
-
-                //TODO: Si el usuario ofrece el mismo videojuego dos o mas veces,
-                // tambien hay que buscar ese videojuego para cancelarlos,
-                // ya que lo hemos aceptado anteriormente
+                // a estar visible. Además se borran las ofertas pendientes en
+                // las que el videojuego ofrecido sea el que hemos aceptado que
+                // nos ofrezcan
+                $ofertasOfrecido = $ofrecido->getOfertasOfrecidos()
+                    ->where(['is', 'aceptada', null])->all();
+                foreach ($ofertasOfrecido as $oferta) {
+                    $oferta->delete();
+                }
                 $ofertasPublicados = $publicado->getOfertasPublicados()
                     ->where(['is', 'aceptada', null])->all();
                 foreach ($ofertasPublicados as $oferta) {

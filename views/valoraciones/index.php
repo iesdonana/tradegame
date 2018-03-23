@@ -20,12 +20,18 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'summary' => '',
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'nullDisplay' => '<span class="text-warning">Pendiente de valorar</span>'
+        ],
         'columns' => [
             'usuarioValorado.usuario:text:Usuario a valorar',
             'comentario',
             [
+                'header' => 'Valoración',
                 'class' => ActionColumn::className(),
                 'template' => '{valorar}',
+                'headerOptions' => ['style' => 'width:20%'],
                 'buttons' => [
                     'valorar' => function ($url, $model, $key) {
                         if ($model->num_estrellas === null) {
