@@ -144,6 +144,18 @@ class Utiles
         return Html::tag('span', $plataforma, ['class' => $clase]);
     }
 
+    public static function tagPosicion($pos, $texto)
+    {
+        switch ($pos) {
+            case 1:
+            case 2:
+            case 3:
+                return Html::tag("h$pos", $texto);
+            default:
+                return $texto;
+        }
+    }
+
     /**
      * Pinta un número de estrellas coloreadas, dependiendo de el número que se le pase por
      * parámetro.

@@ -1,10 +1,10 @@
 <?php
 $js = <<<EOT
-$('.nav-pills li').removeClass('active');
+$('.filtros li').removeClass('active');
 var array = window.location.pathname.split('/');
 if (array.length > 0) {
     var encontrado = false;
-    $('.nav-pills a').each(function(e) {
+    $('.filtros a').each(function(e) {
         if ($(this).data('seccion') === array[array.length - 1]) {
             encontrado = true;
             $(this).parent('li').addClass('active');
@@ -12,13 +12,12 @@ if (array.length > 0) {
     });
 }
 if (!encontrado) {
-    $('.nav-pills a').first().parent('li').addClass('active');
+    $('.filtros a').first().parent('li').addClass('active');
 }
 EOT;
 $this->registerJs($js);
 ?>
-
-<div class="ofertas-recibidas">
+<div class="valoraciones-recibidas">
     <div class="row">
         <div class="col-md-2">
             <?= $this->render('panel') ?>

@@ -107,7 +107,7 @@ $this->title = 'TradeGame';
         $pendOf = Utiles::badgeNotificacionesPendientes(OfertasUsuarios::className());
         $pendVal = Utiles::badgeNotificacionesPendientes(Valoraciones::className());
         $items[] = [
-            'label' => Utiles::FA('bell', ['class' => 'far']) . ' Notificaciones ' . Utiles::badgeNotificacionesTotales(),
+            'label' => Utiles::FA('bell', ['class' => 'far']) . ' ' . Utiles::badgeNotificacionesTotales(),
             'items' => [
                 [
                     'label' => Utiles::FA('handshake', ['class' => 'far']) . " Ofertas $pendOf",

@@ -77,6 +77,7 @@ $config = [
                 'publicacion/<id:\d+>' => 'videojuegos-usuarios/ver',
                 'ofrecer/<publicacion:\d+>' => 'ofertas/create',
                 'valoraciones' => 'valoraciones/index',
+                'valoraciones/top' => 'top-valoraciones/top',
                 'valoraciones/valorar' => 'valoraciones/valorar',
                 'valoraciones/<estado:\w+>' => 'valoraciones/index',
                 'ofertas' => 'ofertas-usuarios/index',

@@ -16,7 +16,6 @@ $this->title = 'Mis valoraciones';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="valoraciones-index">
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'summary' => '',

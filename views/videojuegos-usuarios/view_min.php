@@ -50,7 +50,6 @@ if (isset($big) && $big === true) {
                                 Yii::$app->formatter->asRelativeTime($model->created_at),
                                 ['videojuegos-usuarios/ver', 'id' => $model->id]) ?>
                                 <?php if ($model->usuario_id !== Yii::$app->user->id): ?>
-                                    <hr>
                                     <?= Html::a('<strong>Hacer oferta</strong>', [
                                         'ofertas/create',
                                         'publicacion' => $model->id
