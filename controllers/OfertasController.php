@@ -37,6 +37,7 @@ class OfertasController extends Controller
                             $publicacion = Yii::$app->request->get('publicacion');
                             if (($vUsuario = VideojuegosUsuarios::find()
                                 ->where(['id' => $publicacion])
+                                ->andWhere(['borrado' => false])
                                 ->andWhere(['visible' => true])->one()) === null) {
                                 return false;
                             }

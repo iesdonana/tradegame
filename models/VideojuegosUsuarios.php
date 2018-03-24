@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use yii\web\NotFoundHttpException;
+
 /**
  * This is the model class for table "videojuegos_usuarios".
  *
@@ -34,6 +36,7 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
             [['videojuego_id', 'usuario_id'], 'required'],
             [['videojuego_id', 'usuario_id'], 'default', 'value' => null],
             [['visible'], 'default', 'value' => true],
+            [['borrado'], 'default', 'value' => false],
             [['videojuego_id', 'usuario_id'], 'integer'],
             [['mensaje'], 'string', 'max' => 255],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'id']],
@@ -52,6 +55,19 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
             'usuario_id' => 'Usuario ID',
             'mensaje' => 'Comentarios',
         ];
+    }
+
+    /**
+     * Soft-delete.
+     * @return int Número de filas afectadas
+     */
+    public function delete()
+    {
+        self::beforeDelete();
+        $this->borrado = true;
+        $this->save();
+        self::afterDelete();
+        return 1;
     }
 
     /**
@@ -84,5 +100,29 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
     public function getOfertasOfrecidos()
     {
         return $this->hasMany(Ofertas::className(), ['videojuego_ofrecido_id' => 'id']);
+    }
+
+    public function beforeDelete()
+    {
+        if (!$this->visible) {
+            throw new NotFoundHttpException('Este videojuego ya se ha intercambiado');
+        }
+
+        return parent::beforeDelete();
+    }
+
+    public function afterDelete()
+    {
+        parent::afterDelete();
+        $ofrecidos = $this->getOfertasOfrecidos()->where(['is', 'aceptada', null])->all();
+        foreach ($ofrecidos as $v) {
+            $v->delete();
+        }
+        $publicados = $this->getOfertasPublicados()->where(['is', 'aceptada', null])->all();
+        foreach ($publicados as $v) {
+            $v->delete();
+        }
+
+        return true;
     }
 }

@@ -8,6 +8,7 @@ use app\models\VideojuegosUsuarios;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
@@ -20,6 +21,12 @@ class VideojuegosUsuariosController extends Controller
     public function behaviors()
     {
         return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'remove' => ['POST'],
+                ],
+            ],
             'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['publicar'],
@@ -75,6 +82,7 @@ class VideojuegosUsuariosController extends Controller
                 ->select('videojuego_id')
                 ->where(['usuario_id' => $id_usuario])
                 ->andWhere(['visible' => true])
+                ->andWhere(['borrado' => false])
                 ->andWhere(['!=', 'videojuego_id',  $id_videojuego]);
 
             $videojuegos['results'] = Videojuegos::find()
@@ -84,6 +92,7 @@ class VideojuegosUsuariosController extends Controller
                 ->joinWith('videojuegosUsuarios')
                 ->where(['ilike', 'videojuegos.nombre', $q])
                 ->andWhere(['visible' => true])
+                ->andWhere(['borrado' => false])
                 ->andWhere(['videojuegos.id' => $subQuery])
                 ->andWhere(['usuario_id' => $id_usuario])
                 ->limit(10)
@@ -109,7 +118,8 @@ class VideojuegosUsuariosController extends Controller
             'query' => VideojuegosUsuarios::find()
                 ->with('videojuego')
                 ->where(['usuario_id' => $model->id])
-                ->andWhere(['visible' => true]),
+                ->andWhere(['visible' => true])
+                ->andWhere(['borrado' => false]),
             'pagination' => [
                 'pageSize' => 10,
             ],
@@ -119,6 +129,25 @@ class VideojuegosUsuariosController extends Controller
             'model' => $model,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    /**
+     * Hace un soft-delete de un VideojuegoUsuario.
+     * @return mixed
+     */
+    public function actionRemove()
+    {
+        if (($id = Yii::$app->request->post('id')) === null) {
+            throw new NotFoundHttpException('No se ha podido borrar la publicación');
+        }
+
+        if (($publicacion = VideojuegosUsuarios::findOne($id)) === null) {
+            throw new NotFoundHttpException('No existe la publicación');
+        }
+
+        $publicacion->delete();
+        Yii::$app->session->setFlash('success', 'Se ha borrado la publicación correctamente');
+        return $this->redirect(['videojuegos-usuarios/publicaciones', 'usuario' => Yii::$app->user->identity->usuario]);
     }
 
     /**
@@ -133,6 +162,9 @@ class VideojuegosUsuariosController extends Controller
             throw new NotFoundHttpException('No se encontró la publicación');
         }
 
+        if ($videojuego->borrado) {
+            throw new NotFoundHttpException('Esta publicación ha sido eliminada');
+        }
         return $this->render('view', [
             'model' => $videojuego,
         ]);
