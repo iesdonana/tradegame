@@ -24,7 +24,7 @@ class OfertasController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['create'],
+                'only' => ['create', 'contraoferta'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -44,6 +44,11 @@ class OfertasController extends Controller
 
                             return $vUsuario->usuario_id !== Yii::$app->user->id;
                         },
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['contraoferta'],
+                        'roles' => ['@'],
                     ],
                 ],
             ],
@@ -70,6 +75,30 @@ class OfertasController extends Controller
         $model->videojuego_ofrecido_id = null; // No se muestra nuevamente el videojuego ofrecido
         return $this->render('create', [
             'model' => $model,
+        ]);
+    }
+
+    public function actionContraoferta($oferta)
+    {
+        $model = new Ofertas();
+
+        $modelOferta = Ofertas::findOne($oferta);
+        $model->contraoferta_de = $modelOferta->id;
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            // Rechazamos la oferta anterior, al hacerle una contraoferta
+            $ofertaPrincipal = $model->contraofertaDe;
+            $ofertaPrincipal->aceptada = false;
+            $ofertaPrincipal->save();
+            Yii::$app->session->setFlash('success', 'Has realizado la contraoferta correctamente');
+            return $this->goHome();
+        }
+
+        $model->videojuego_publicado_id = $modelOferta->videojuego_publicado_id;
+        $model->videojuego_ofrecido_id = null; // No se muestra nuevamente el videojuego ofrecido
+        return $this->render('create', [
+            'model' => $model,
+            'usuarioOfrecido' => $modelOferta->videojuegoOfrecido->usuario,
         ]);
     }
 

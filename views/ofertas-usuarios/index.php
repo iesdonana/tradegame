@@ -1,6 +1,5 @@
 <?php
 
-use app\models\Videojuegos;
 use app\models\VideojuegosUsuarios;
 
 use app\helpers\Utiles;
@@ -46,7 +45,6 @@ $('.popup-modal').click(function(e) {
     }
     $('.modal-footer form').find('input[name=id]').val($(this).closest('tr').data('key'));
     $('.modal-footer form').find('input[name=valor]').val(estado);
-
 });
 
 $('*[data-toggle="tooltip"]').tooltip({
@@ -56,6 +54,7 @@ $('*[data-toggle="tooltip"]').tooltip({
 });
 JS;
 $this->registerJs($js);
+$this->registerCss('.btn-info {margin-left: 4px;}');
 ?>
 <div class="ofertas-usuarios-index">
     <?= GridView::widget([
@@ -84,7 +83,7 @@ $this->registerJs($js);
                 }
             ],
             [
-                'label' => 'Mi videojuego',
+                'label' => 'Videojuego publicado',
                 'attribute' => 'publicado',
                 'format' => 'raw',
                 'value' => function ($model) {
@@ -114,11 +113,12 @@ $this->registerJs($js);
                 }
             ],
             [
-                'label' => 'Usuario',
+                'label' => 'Ofertante',
                 'attribute' => 'usuario_ofrecido',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return Html::a($model->usuario_ofrecido, ['usuarios/perfil', 'usuario' => $model->usuario_ofrecido]);
+                    $usuario = ($model->contraoferta_de === null) ? $model->usuario_ofrecido : $model->usuario_publicado;
+                    return Html::a($usuario, ['usuarios/perfil', 'usuario' => $model->usuario_ofrecido]);
                 }
             ],
             'created_at:datetime:Fecha de recepción',
@@ -149,12 +149,14 @@ $this->registerJs($js);
                     },
                     'contraoferta' => function($url, $model, $key) {
                         if ($model->contraoferta_de === null && $model->aceptada === null) {
-                            return Html::beginForm(['ofertas/contraoferta'], 'post', ['class' => 'accion']) .
-                            Html::submitButton(Utiles::FA('exchange-alt'), [
-                                'class' => 'btn btn-xs btn-info',
-                                'data-toggle' => 'tooltip',
-                                'title' => 'Realizar contraoferta',
-                                ]) . Html::endForm();
+                            return Html::a(
+                                Utiles::FA('exchange-alt'),
+                                ['ofertas/contraoferta', 'oferta' => $model->id],
+                                [
+                                    'class' => 'btn btn-xs btn-info',
+                                    'data-toggle' => 'tooltip',
+                                    'title' => 'Realizar contraoferta',
+                                ]);
                         }
                     },
                     'estado' => function ($url, $model, $key) {

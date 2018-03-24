@@ -15,14 +15,14 @@ use kartik\select2\Select2;
 /* @var $model app\models\Ofertas */
 /* @var $form yii\widgets\ActiveForm */
 
+$usuario_id = (isset($usuario_id) ? $usuario_id : Yii::$app->user->id);
 $defaultImg = '/' . Yii::getAlias('@caratulas') . '/default.png';
 $this->registerJs("var defaultImg = '$defaultImg'", View::POS_HEAD);
-// $this->registerJs("$('')")
 $this->registerJsFile('@web/js/publicar.js', ['position' => View::POS_HEAD]);
 $this->registerJsFile('@web/js/utiles.js');
 $this->registerJsFile('@web/js/oferta.js', ['position' => View::POS_HEAD]);
 $url = Url::to(['videojuegos-usuarios/buscar-publicados',
-    'id_usuario' => Yii::$app->user->id,
+    'id_usuario' => $usuario_id,
     'id_videojuego' => $model->videojuegoPublicado->videojuego->id
 ]);
 
@@ -47,7 +47,6 @@ $urlDatos = Url::to(['videojuegos/oferta-videojuego']);
 
         <?= $form->field($model, 'videojuego_ofrecido_id')
             ->widget(Select2::classname(), $items)->label(false); ?>
-
     <div class="form-group col-md-offset-2 col-md-8">
         <?= Html::submitButton('Enviar oferta', ['class' => 'btn btn-tradegame btn-block']) ?>
     </div>

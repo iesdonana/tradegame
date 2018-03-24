@@ -44,7 +44,7 @@ class Ofertas extends \yii\db\ActiveRecord
                     'videojuego_publicado_id',
                     'videojuego_ofrecido_id',
                 ],
-                'message' => 'Ya has realizado esta misma oferta anteriormente',
+                'message' => 'Ya hay una oferta pendiente con estos videojuegos',
             ],
             [['contraoferta_de'], 'exist', 'skipOnError' => true, 'targetClass' => self::className(), 'targetAttribute' => ['contraoferta_de' => 'id']],
             [['videojuego_ofrecido_id'], 'exist', 'skipOnError' => true, 'targetClass' => VideojuegosUsuarios::className(), 'targetAttribute' => ['videojuego_ofrecido_id' => 'id']],

@@ -75,6 +75,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 'publicacion/<id:\d+>' => 'videojuegos-usuarios/ver',
+                'contraoferta/<oferta:\d+>' => 'ofertas/contraoferta',
                 'ofrecer/<publicacion:\d+>' => 'ofertas/create',
                 'valoraciones' => 'valoraciones/index',
                 'valoraciones/top' => 'top-valoraciones/top',

@@ -136,15 +136,11 @@ CREATE TABLE valoraciones
 INSERT INTO usuarios_generos (sexo)
     VALUES ('Hombre'), ('Mujer');
 
-INSERT INTO usuarios_id (id) VALUES (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT);
+INSERT INTO usuarios_id (id) VALUES (DEFAULT), (DEFAULT);
 
 INSERT INTO usuarios (id, usuario, email, password, auth_key)
     VALUES (1, 'admin', 'admin@admin.com', crypt('admin123', gen_salt('bf', 13)), 'GnT4M2ZjLDGxNrGe-2THbAjqFLwyJ1fa'),
-            (2, 'celu', 'celu@celu.com', crypt('celu123', gen_salt('bf', 13)), 'qmjxYKMqeOqrIfDwpt0Badk4VvPfts-n'),
-            (3, 'pepe', 'admin@admin.com', crypt('admin123', gen_salt('bf', 13)), 'GnT4M2ZjLDGxNrGe-2THbAjqFLwyJ1fa'),
-            (4, 'juan', 'celu@celu.com', crypt('celu123', gen_salt('bf', 13)), 'qmjxYKMqeOqrIfDwpt0Badk4VvPfts-n'),
-            (5, 'maria', 'admin@admin.com', crypt('admin123', gen_salt('bf', 13)), 'GnT4M2ZjLDGxNrGe-2THbAjqFLwyJ1fa'),
-            (6, 'boss', 'celu@celu.com', crypt('celu123', gen_salt('bf', 13)), 'qmjxYKMqeOqrIfDwpt0Badk4VvPfts-n');
+            (2, 'celu', 'celu@celu.com', crypt('celu123', gen_salt('bf', 13)), 'qmjxYKMqeOqrIfDwpt0Badk4VvPfts-n');
 
 INSERT INTO usuarios_datos (id_usuario, nombre_real, biografia)
     VALUES (1, 'Administrador', 'Soy el administrador que todo lo sabe'),
@@ -258,13 +254,10 @@ INSERT INTO videojuegos (nombre, descripcion, fecha_lanzamiento,
         '2004-11-16', 12, 3, 5);
 
 INSERT INTO videojuegos_usuarios (videojuego_id, usuario_id)
-    VALUES (1, 1), (2, 1), (3, 2);
+    VALUES (1, 1), (2, 1), (3, 2), (4, 2);
 
 INSERT INTO ofertas (videojuego_publicado_id, videojuego_ofrecido_id)
     VALUES (1, 3), (2, 3);
-
-INSERT INTO valoraciones (usuario_valorado_id, usuario_valora_id, num_estrellas)
-    VALUES (1, 2, 5), (1, 4, 3), (2, 1, 5), (2, 1, 5), (2, 4, 3), (4, 1, 5), (5, 3, 1), (6, 1, 3);
 
 DROP VIEW IF EXISTS ofertas_usuarios;
 
