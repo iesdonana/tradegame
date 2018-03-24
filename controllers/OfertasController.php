@@ -65,7 +65,7 @@ class OfertasController extends Controller
     public function actionCreate($publicacion)
     {
         $model = new Ofertas();
-
+        $model->scenario = Ofertas::ESCENARIO_CREATE;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Has realizado la oferta correctamente');
             return $this->goHome();
@@ -84,7 +84,7 @@ class OfertasController extends Controller
 
         $modelOferta = Ofertas::findOne($oferta);
         $model->contraoferta_de = $modelOferta->id;
-
+        $model->scenario = Ofertas::ESCENARIO_CREATE;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             // Rechazamos la oferta anterior, al hacerle una contraoferta
             $ofertaPrincipal = $model->contraofertaDe;

@@ -114,7 +114,6 @@ CREATE TABLE ofertas
                                            ON DELETE NO ACTION ON UPDATE CASCADE
   , created_at                timestamp(0) NOT NULL DEFAULT localtimestamp
   , aceptada                  boolean      DEFAULT NULL
-  , UNIQUE (videojuego_publicado_id, videojuego_ofrecido_id)
 );
 
 DROP TABLE IF EXISTS valoraciones CASCADE;

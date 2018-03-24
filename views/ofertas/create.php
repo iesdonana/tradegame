@@ -18,6 +18,13 @@ $vUsuarioPublicado = $model->videojuegoPublicado;
 $videojuegoPublicado = $vUsuarioPublicado->videojuego;
 
 $this->registerJsFile('@web/js/oferta.js');
+$js = <<<JS
+$('.pop-listado').click(function(e) {
+    e.preventDefault();
+    window.open($(this).attr('href'),'title', 'width=600, height=500');
+});
+JS;
+$this->registerJs($js);
 ?>
 <div class="ofertas-create">
     <div class="row text-center">
@@ -76,7 +83,15 @@ $this->registerJsFile('@web/js/oferta.js');
                     <?= Utiles::FA('info-circle', ['class' => 'fas text-info']) ?>
                     <em>
                         Puedes ver un listado completo de los videojuegos de <?= Html::encode($nom_ofrecido) ?>
-                        <?= Html::a('aquí', ['videojuegos-usuarios/publicaciones', 'usuario' => $nom_ofrecido]) ?>
+                        <?= Html::a(
+                            'aquí',
+                            [
+                                'videojuegos-usuarios/publicaciones',
+                                'usuario' => $nom_ofrecido,
+                                'layout' => 'mini_ventana'
+                            ],
+                            ['class' => 'pop-listado']
+                        ) ?>
                     </em>
                 </span>
             <?php endif; ?>
