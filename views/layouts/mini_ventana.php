@@ -7,7 +7,7 @@ use yii\helpers\Html;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
-$this->title = 'Listado de videojuegos';
+$this->title = 'TradeGame';
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

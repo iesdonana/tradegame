@@ -2,6 +2,8 @@
 
 use app\helpers\Utiles;
 
+use yii\web\View;
+
 use yii\helpers\Html;
 
 
@@ -25,6 +27,7 @@ $('.pop-listado').click(function(e) {
 });
 JS;
 $this->registerJs($js);
+
 ?>
 <div class="ofertas-create">
     <div class="row text-center">

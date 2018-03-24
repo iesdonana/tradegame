@@ -78,11 +78,24 @@ class OfertasController extends Controller
         ]);
     }
 
+    /**
+     * Realiza una contraoferta sobre una oferta ya recibida.
+     * @param  int   $oferta Id de la oferta sobre la cual vamos a hacer uan
+     *                       contraoferta
+     * @return mixed
+     */
     public function actionContraoferta($oferta)
     {
         $model = new Ofertas();
 
-        $modelOferta = Ofertas::findOne($oferta);
+        if (($modelOferta = Ofertas::findOne($oferta)) === null) {
+            throw new NotFoundHttpException('No existe la oferta');
+        }
+
+        if (Ofertas::findOne(['contraoferta_de' => $modelOferta->id]) !== null) {
+            throw new NotFoundHttpException('Ya se ha contraofertado');
+        }
+
         $model->contraoferta_de = $modelOferta->id;
         $model->scenario = Ofertas::ESCENARIO_CREATE;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
