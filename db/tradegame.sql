@@ -97,7 +97,8 @@ CREATE TABLE videojuegos_usuarios
                                ON DELETE NO ACTION ON UPDATE CASCADE
   , mensaje       varchar(255)
   , created_at    timestamp(0) NOT NULL DEFAULT localtimestamp
-  , visible           boolean  DEFAULT true
+  , visible       boolean      DEFAULT true
+  , borrado       boolean      DEFAULT false
 );
 
 DROP TABLE IF EXISTS ofertas CASCADE;

@@ -91,6 +91,7 @@ class VideojuegosController extends Controller
     {
         if (($videojuegoUsuario = VideojuegosUsuarios::find()
                 ->where(['id' => $id])
+                ->andWhere(['borrado' => false])
                 ->andWhere(['visible' => true])->one()) === null) {
             throw new NotFoundHttpException('No se encontró el videojuego');
         }

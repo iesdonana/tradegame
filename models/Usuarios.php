@@ -190,6 +190,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->getVideojuegosUsuarios()
             ->where(['visible' => true])
+            ->andWhere(['borrado' => false])
             ->limit($numero)
             ->orderBy(['created_at' => SORT_DESC])
             ->all();
