@@ -24,7 +24,7 @@ class OfertasController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['create'],
+                'only' => ['create', 'contraoferta'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -45,6 +45,11 @@ class OfertasController extends Controller
                             return $vUsuario->usuario_id !== Yii::$app->user->id;
                         },
                     ],
+                    [
+                        'allow' => true,
+                        'actions' => ['contraoferta'],
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
@@ -60,7 +65,7 @@ class OfertasController extends Controller
     public function actionCreate($publicacion)
     {
         $model = new Ofertas();
-
+        $model->scenario = Ofertas::ESCENARIO_CREATE;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Has realizado la oferta correctamente');
             return $this->goHome();
@@ -70,6 +75,43 @@ class OfertasController extends Controller
         $model->videojuego_ofrecido_id = null; // No se muestra nuevamente el videojuego ofrecido
         return $this->render('create', [
             'model' => $model,
+        ]);
+    }
+
+    /**
+     * Realiza una contraoferta sobre una oferta ya recibida.
+     * @param  int   $oferta Id de la oferta sobre la cual vamos a hacer uan
+     *                       contraoferta
+     * @return mixed
+     */
+    public function actionContraoferta($oferta)
+    {
+        $model = new Ofertas();
+
+        if (($modelOferta = Ofertas::findOne($oferta)) === null) {
+            throw new NotFoundHttpException('No existe la oferta');
+        }
+
+        if (Ofertas::findOne(['contraoferta_de' => $modelOferta->id]) !== null) {
+            throw new NotFoundHttpException('Ya se ha contraofertado');
+        }
+
+        $model->contraoferta_de = $modelOferta->id;
+        $model->scenario = Ofertas::ESCENARIO_CREATE;
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            // Rechazamos la oferta anterior, al hacerle una contraoferta
+            $ofertaPrincipal = $model->contraofertaDe;
+            $ofertaPrincipal->aceptada = false;
+            $ofertaPrincipal->save();
+            Yii::$app->session->setFlash('success', 'Has realizado la contraoferta correctamente');
+            return $this->goHome();
+        }
+
+        $model->videojuego_publicado_id = $modelOferta->videojuego_publicado_id;
+        $model->videojuego_ofrecido_id = null; // No se muestra nuevamente el videojuego ofrecido
+        return $this->render('create', [
+            'model' => $model,
+            'usuarioOfrecido' => $modelOferta->videojuegoOfrecido->usuario,
         ]);
     }
 

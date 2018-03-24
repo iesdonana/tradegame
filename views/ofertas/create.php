@@ -1,5 +1,9 @@
 <?php
 
+use app\helpers\Utiles;
+
+use yii\web\View;
+
 use yii\helpers\Html;
 
 
@@ -9,12 +13,30 @@ use yii\helpers\Html;
 $this->title = 'Hacer oferta';
 $this->params['breadcrumbs'][] = $this->title;
 
+if (isset($usuarioOfrecido)) {
+    $nom_ofrecido = $usuarioOfrecido->usuario;
+}
 $vUsuarioPublicado = $model->videojuegoPublicado;
 $videojuegoPublicado = $vUsuarioPublicado->videojuego;
 
 $this->registerJsFile('@web/js/oferta.js');
+$js = <<<JS
+$('.pop-listado').click(function(e) {
+    e.preventDefault();
+    window.open($(this).attr('href'),'title', 'width=600, height=500');
+});
+JS;
+$this->registerJs($js);
+
 ?>
 <div class="ofertas-create">
+    <div class="row text-center">
+        <h3>
+            <span class="label label-default">
+                <?= $model->contraoferta_de === null ? 'Oferta' : 'Contraoferta' ?>
+            </span>
+        </h3>
+    </div>
     <div class="row">
         <div class="col-md-offset-2 col-md-3 col-sm-3">
             <div class="row">
@@ -59,6 +81,23 @@ $this->registerJsFile('@web/js/oferta.js');
     <hr>
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
+            <?php if (isset($usuarioOfrecido)): ?>
+                <span>
+                    <?= Utiles::FA('info-circle', ['class' => 'fas text-info']) ?>
+                    <em>
+                        Puedes ver un listado completo de los videojuegos de <?= Html::encode($nom_ofrecido) ?>
+                        <?= Html::a(
+                            'aquí',
+                            [
+                                'videojuegos-usuarios/publicaciones',
+                                'usuario' => $nom_ofrecido,
+                                'layout' => 'mini_ventana'
+                            ],
+                            ['class' => 'pop-listado']
+                        ) ?>
+                    </em>
+                </span>
+            <?php endif; ?>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="panel-title">
@@ -66,9 +105,11 @@ $this->registerJsFile('@web/js/oferta.js');
                     </div>
                 </div>
                 <div class="panel-body">
-                    <?= $this->render('_form', [
-                        'model' => $model,
-                        ]) ?>
+                    <?php $datos = ['model' => $model] ?>
+                    <?php if (isset($usuarioOfrecido)): ?>
+                        <?php $datos = array_merge($datos, ['usuario_id' => $usuarioOfrecido->id]) ?>
+                    <?php endif ?>
+                    <?= $this->render('_form', $datos) ?>
                 </div>
             </div>
         </div>

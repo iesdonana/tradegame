@@ -42,7 +42,16 @@ class OfertasUsuariosSearch extends OfertasUsuarios
      */
     public function search($params, $usuario, $estado)
     {
-        $query = OfertasUsuarios::find()->where(['usuario_publicado' => $usuario]);
+        $query = OfertasUsuarios::find()
+            ->where(['usuario_publicado' => $usuario])
+            ->where(['and',
+                ['usuario_publicado' => $usuario],
+                ['is', 'contraoferta_de', null],
+            ])
+            ->orWhere(['and',
+                ['usuario_ofrecido' => $usuario],
+                ['is not', 'contraoferta_de', null],
+            ]);
 
         if ($estado === 'pendientes') {
             $query->andWhere(['is', 'aceptada', null]);

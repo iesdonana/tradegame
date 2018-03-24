@@ -66,8 +66,17 @@ class OfertasUsuarios extends \yii\db\ActiveRecord
      */
     public static function getPendientes()
     {
-        return self::find()->where(['is', 'aceptada', null])
-            ->andWhere(['usuario_publicado' => Yii::$app->user->identity->usuario])
+        $usuario = Yii::$app->user->identity->usuario;
+        return self::find()
+            ->where(['and',
+                ['usuario_publicado' => $usuario],
+                ['is', 'contraoferta_de', null],
+            ])
+            ->orWhere(['and',
+                ['usuario_ofrecido' => $usuario],
+                ['is not', 'contraoferta_de', null],
+            ])
+            ->andWhere(['is', 'aceptada', null])
             ->count();
     }
 }

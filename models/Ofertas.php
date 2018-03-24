@@ -19,6 +19,7 @@ namespace app\models;
  */
 class Ofertas extends \yii\db\ActiveRecord
 {
+    const ESCENARIO_CREATE = 'create';
     /**
      * {@inheritdoc}
      */
@@ -38,13 +39,16 @@ class Ofertas extends \yii\db\ActiveRecord
             [['videojuego_publicado_id', 'videojuego_ofrecido_id', 'contraoferta_de'], 'integer'],
             [['created_at'], 'safe'],
             [['aceptada'], 'boolean'],
-            [
-                ['videojuego_publicado_id', 'videojuego_ofrecido_id'], 'unique',
-                'targetAttribute' => [
-                    'videojuego_publicado_id',
-                    'videojuego_ofrecido_id',
-                ],
-                'message' => 'Ya has realizado esta misma oferta anteriormente',
+            [['videojuego_ofrecido_id'], function ($attribute, $params, $validator) {
+                $oferta = self::find()
+                    ->where(['is', 'aceptada', null])
+                    ->andWhere(['videojuego_ofrecido_id' => $this->videojuego_ofrecido_id])
+                    ->andWhere(['videojuego_publicado_id' => $this->videojuego_publicado_id])->one();
+                if ($oferta !== null) {
+                    $this->addError($attribute, 'Ya existe una oferta pendiente con esos videojuegos');
+                }
+            },
+            'on' => self::ESCENARIO_CREATE,
             ],
             [['contraoferta_de'], 'exist', 'skipOnError' => true, 'targetClass' => self::className(), 'targetAttribute' => ['contraoferta_de' => 'id']],
             [['videojuego_ofrecido_id'], 'exist', 'skipOnError' => true, 'targetClass' => VideojuegosUsuarios::className(), 'targetAttribute' => ['videojuego_ofrecido_id' => 'id']],

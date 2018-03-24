@@ -105,26 +105,35 @@ class VideojuegosUsuariosController extends Controller
     /**
      * Muestra las publicaciones de un usuario pasado por parámetro.
      * @param  string $usuario Nombre de usuario
+     * @param null|mixed $layout
      * @return mixed
      * @throws NotFoundHttpException Si no se ha encontrado el usuario
      */
-    public function actionPublicaciones($usuario)
+    public function actionPublicaciones($usuario, $layout = null)
     {
         if (($model = Usuarios::findOne(['usuario' => $usuario])) === null) {
             throw new NotFoundHttpException("No se ha encontrado el usuario '$usuario'");
         }
 
+        $query = VideojuegosUsuarios::find()
+            ->with('videojuego')
+            ->where(['usuario_id' => $model->id])
+            ->andWhere(['visible' => true])
+            ->andWhere(['borrado' => false]);
+
         $dataProvider = new ActiveDataProvider([
-            'query' => VideojuegosUsuarios::find()
-                ->with('videojuego')
-                ->where(['usuario_id' => $model->id])
-                ->andWhere(['visible' => true])
-                ->andWhere(['borrado' => false]),
+            'query' => $query,
             'pagination' => [
                 'pageSize' => 10,
             ],
         ]);
 
+        if ($layout !== null) {
+            $this->layout = $layout;
+            return $this->render('listado_ventana', [
+                'listado' => $query->all(),
+            ]);
+        }
         return $this->render('publicaciones', [
             'model' => $model,
             'dataProvider' => $dataProvider,
