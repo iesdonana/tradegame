@@ -21,15 +21,19 @@ $('.popup-modal').click(function(e) {
     var fa = $('<i></i>');
     var cols = $('.popup-modal').first().closest('tr').children();
     var estado = 1;
+    var tipo = cols.eq(0).children('span').text();
     if ($(this).data('cambiar') === 'aceptar') {
+        var tuVideojuego = (tipo == 'Contraoferta') ? cols.eq(2).html() : cols.eq(1).html();
+        var suVideojuego = (tipo == 'Contraoferta') ? cols.eq(1).html() : cols.eq(2).html();
+
         fa.addClass('fas fa-check');
         btn.empty().append(fa).append(' Aceptar')
             .removeClass('btn-danger').addClass('btn-success');
         $('.modal-title').html('<span class="text-success">Aceptar oferta</span>');
         $('.modal-text').html(
             '¿<span class="text-success">Aceptas</span> intercambiar tu ' +
-            'videojuego ' + cols.eq(1).html() + ' por ' +
-            'el videojuego ' + cols.eq(2).html() + ' de ' + cols.eq(3).html() + ' ?'
+            'videojuego ' + tuVideojuego + ' por ' +
+            'el videojuego ' + suVideojuego + ' de ' + cols.eq(3).html() + ' ?'
         );
     } else {
         estado = 0;

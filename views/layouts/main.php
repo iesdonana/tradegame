@@ -183,7 +183,10 @@ $this->title = 'TradeGame';
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?= Alert::widget() ?>
+        <?= \lavrentiev\widgets\toastr\NotificationFlash::widget([
+            'options' => [
+                'closeButton' => true,
+            ]]) ?>
         <?= $content ?>
     </div>
 </div>

@@ -71,7 +71,7 @@ class LoginForm extends Model
             $usuario = $this->getUser();
             if ($usuario->token_val !== null) {
                 Yii::$app->session->setFlash(
-                    'danger',
+                    'error',
                     'No has validado tu cuenta todavía. ' .
                     'Para iniciar sesión debes visitar el enlace enviado a su correo electrónico'
                 );
