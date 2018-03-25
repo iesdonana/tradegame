@@ -186,19 +186,16 @@ class UsuariosController extends Controller
     private function enviarEmailValidacion($model)
     {
         $url = Html::a('TradeGame', Url::to(['site/index'], true));
-        return Yii::$app->mailer->compose()
-                    ->setFrom(Yii::$app->params['adminEmail'])
-                    ->setTo($model->email)
-                    ->setSubject('Registro de cuenta en TradeGame')
-                    ->setHtmlBody("Se ha registrado correctamente en $url. <br/>" .
-                        'Para activar su cuenta debe hacer click ' .
-                        Html::a(
-                            'aquí',
-                            Url::to([
-                                'usuarios/validar',
-                                'token_val' => $model->token_val,
-                            ], true)
-                        ))
-                    ->send();
+        Yii::$app->mailer->view->params['usuario'] = $model->usuario;
+        Yii::$app->mailer->view->params['url'] = Url::to([
+            'usuarios/validar',
+            'token_val' => $model->token_val,
+        ], true);
+
+        return Yii::$app->mailer->compose('layouts/validacion')
+            ->setFrom(Yii::$app->params['adminEmail'])
+            ->setTo($model->email)
+            ->setSubject('Registro de cuenta en TradeGame')
+            ->send();
     }
 }

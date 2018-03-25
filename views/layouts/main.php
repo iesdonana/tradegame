@@ -46,11 +46,11 @@ $this->title = 'TradeGame';
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Html::img('@web/logo.png', [
+        'brandLabel' => Html::img('@web/titulo.png', [
                     'alt'=>Yii::$app->name,
-                    'width' => '25px',
-                    'style' => 'display: inline; margin-right: 10px'
-                ]) . Yii::$app->name,
+                    'height' => '30px',
+                    'style' => 'display: inline; margin-top: -4px'
+                ]),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-default navbar-fixed-top',
