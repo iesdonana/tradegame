@@ -47,15 +47,22 @@ use yii\helpers\Url;
             background-color: #55a34b;
         }
 
-        .boton {
+        .boton, .oferta {
             text-decoration: none;
             cursor: pointer;
             display: block;
             margin-top: 20px;
-            background-color: #248217;
             color: white;
             padding: 10px;
             text-align:center;
+        }
+
+        .oferta {
+            background-color: #730000;
+        }
+
+        .boton {
+            background-color: #248217;
         }
 CSS;
 
@@ -70,12 +77,8 @@ CSS;
     </div>
     <div class="row">
         <div class="texto">
-            ¡Hola, <?= $this->params['usuario'] ?>!
-            Bienvenido a <?= Html::a('TradeGame', Url::home('http'), ['class' => 'url']) ?><br>
-            Para completar el registro en TradeGame debes validar tu cuenta, y
-            así poder iniciar sesión en nuestro sitio web.
-            Para validar tu cuenta haz click en el siguiente botón:<br><br><br>
-            <?= Html::a('Validar cuenta', $this->params['url'], ['class' => 'boton']) ?>
+            ¡Hola, <?= $usuario ?>! <br>
+            <?= $content ?>
         </div>
     </div>
 </body>

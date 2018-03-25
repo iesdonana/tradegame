@@ -14,7 +14,12 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="usuarios-form">
-    <?php $form = ActiveForm::begin(['action' => Url::to(['usuarios/registrar'])]); ?>
+    <?php if ($model->scenario === Usuarios::ESCENARIO_CREATE) {
+        $url = Url::to(['usuarios/registrar']);
+    } else {
+        $url = Url::to(['usuarios/modificar/datos']);
+    } ?>
+    <?php $form = ActiveForm::begin(['action' => $url]); ?>
 
     <?= $form->field($model, 'usuario', [
             'enableAjaxValidation' => true,

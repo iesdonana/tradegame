@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Ofertas;
+use app\models\Usuarios;
 use app\models\Valoraciones;
 use app\models\VideojuegosUsuarios;
 use Yii;
@@ -10,6 +11,9 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
+
+use yii\helpers\Url;
+use yii\helpers\Html;
 
 /**
  * OfertasController implements the CRUD actions for Ofertas model.
@@ -67,6 +71,8 @@ class OfertasController extends Controller
         $model = new Ofertas();
         $model->scenario = Ofertas::ESCENARIO_CREATE;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $vjPublicado = $model->videojuegoPublicado;
+            $this->enviarEmailOferta($vjPublicado->usuario, $vjPublicado->videojuego->nombre);
             Yii::$app->session->setFlash('success', 'Has realizado la oferta correctamente');
             return $this->goHome();
         }
@@ -103,6 +109,8 @@ class OfertasController extends Controller
             $ofertaPrincipal = $model->contraofertaDe;
             $ofertaPrincipal->aceptada = false;
             $ofertaPrincipal->save();
+            $vjOfrecido = $model->videojuegoOfrecido;
+            $this->enviarEmailOferta($vjOfrecido->usuario, $model->videojuegoPublicado->videojuego->nombre, true);
             Yii::$app->session->setFlash('success', 'Has realizado la contraoferta correctamente');
             return $this->goHome();
         }
@@ -174,6 +182,36 @@ class OfertasController extends Controller
             }
         }
         return $this->redirect('/ofertas-usuarios/index');
+    }
+
+    /**
+     * Envia un email informativo al usuario pasado por parámetro, para informarle
+     * de una nueva oferta/contraoferta
+     * @param  Usuarios  $usuario      Modelo de Usuarios al cuál le vamos a enviar el correo
+     * @param  string    $videojuego   Nombre del videojuego sobre el cuál se hace la oferta
+     * @param  bool      $contraoferta True si es una contraoferta, false si no lo es
+     * @return bool                    Si se ha completado el envío del correo retornará
+     *                                 true, si no retornará false.
+     */
+    private function enviarEmailOferta($usuario, $videojuego, $contraoferta = false)
+    {
+        $content = 'Parece que has recibido una oferta de alguien por tu ' . $videojuego . '<br>' .
+            'Para ver la oferta pulsa en el siguiente botón:<br>' .
+            Html::a('Ver mis ofertas', Url::to('/ofertas', true), ['class' => 'oferta']);
+        if ($contraoferta) {
+            $content = 'Parece que has recibido una contraoferta de alguien por su ' . $videojuego . '<br>' .
+            'Para ver la contraoferta pulsa en el siguiente botón:<br>' .
+            Html::a('Ver mis ofertas', Url::to('/ofertas', true), ['class' => 'oferta']);
+        }
+
+        return Yii::$app->mailer->compose('custom', [
+                'usuario' => $usuario->usuario,
+                'content' => $content
+            ])
+            ->setFrom(Yii::$app->params['adminEmail'])
+            ->setTo($usuario->email)
+            ->setSubject('¡Has recibido una oferta!')
+            ->send();
     }
 
     /**
