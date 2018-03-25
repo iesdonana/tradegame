@@ -27,7 +27,7 @@ $('.popup-modal').click(function(e) {
         var suVideojuego = (tipo == 'Contraoferta') ? cols.eq(1).html() : cols.eq(2).html();
 
         fa.addClass('fas fa-check');
-        btn.empty().append(fa).append(' Aceptar')
+        btn.empty().append(fa).append(' Aceptar ')
             .removeClass('btn-danger').addClass('btn-success');
         $('.modal-title').html('<span class="text-success">Aceptar oferta</span>');
         $('.modal-text').html(
@@ -38,7 +38,7 @@ $('.popup-modal').click(function(e) {
     } else {
         estado = 0;
         fa.addClass('fas fa-times');
-        btn.empty().append(fa).append(' Rechazar')
+        btn.empty().append(fa).append(' Rechazar ')
             .removeClass('btn-success').addClass('btn-danger');
         $('.modal-title').html('<span class="text-danger">Rechazar oferta</span>');
         $('.modal-text').html(
@@ -56,6 +56,16 @@ $('*[data-toggle="tooltip"]').tooltip({
     placement: 'bottom',
     html: true
 });
+
+$('#modal-oferta form').on('submit', function() {
+    var btn = $(this).find('button');
+    btn.prop('disabled', true);
+    btn.find('svg').remove();
+    var i = $('<i></i>');
+    i.addClass('fa fa-spinner fa-spin');
+    btn.prepend(i);
+});
+
 JS;
 $this->registerJs($js);
 $this->registerCss('.btn-info {margin-left: 4px;}');

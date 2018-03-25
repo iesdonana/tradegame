@@ -11,7 +11,9 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="usuarios-form">
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => [
+        'class' => 'cargaForm'
+    ]]); ?>
     <?= $form->field($model, 'oldPassword', [
         'template' => Utiles::inputTemplate('key', Utiles::FONT_AWESOME),
         'enableAjaxValidation' => true
@@ -25,7 +27,7 @@ use yii\widgets\ActiveForm;
 
     <div class="col-md-offset-2 col-md-8">
         <div class="form-group">
-            <?= Html::submitButton($model->scenario, ['class' => 'btn btn-tradegame btn-block']) ?>
+            <?= Html::submitButton($model->scenario . ' ', ['class' => 'btn btn-tradegame btn-block']) ?>
         </div>
 
     </div>

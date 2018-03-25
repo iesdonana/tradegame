@@ -142,6 +142,10 @@ class OfertasController extends Controller
             throw new NotFoundHttpException('No se encontró la oferta');
         }
 
+        if ($model->aceptada !== null) {
+            throw new NotFoundHttpException('Ya se cambió el estado de esta oferta');
+        }
+
         $validos = [0, 1];
         if (!in_array($valor, $validos)) {
             throw new ForbiddenHttpException('No es posible ejecutar esa acción');
@@ -186,7 +190,10 @@ class OfertasController extends Controller
                     'usuario_valorado_id' => $usuarioValora
                 ]);
                 $valoracion->save();
-                return $this->redirect(['valoraciones/valorar', 'id' => $valoracion->id]);
+                Yii::$app->session->setFlash('info', 'Recuerda valorar ' .
+                    'al usuario con el que has intercambiado el videojuego desde ' .
+                    'el panel de notificaciones');
+                // return $this->redirect(['valoraciones/valorar', 'id' => $valoracion->id]);
             }
         }
         return $this->redirect('/ofertas-usuarios/index');

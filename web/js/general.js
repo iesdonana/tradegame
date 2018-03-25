@@ -30,3 +30,12 @@ function topFunction() {
 }
 
 $('.scrollTop').on('click', topFunction);
+
+$('.cargaForm').on('beforeSubmit', function() {
+    console.log('hola');
+    var btn = $(this).find('button');
+    btn.prop('disabled', true);
+    var i = $('<i></i>');
+    i.addClass('fa fa-spinner fa-spin');
+    btn.append(i);
+});

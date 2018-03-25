@@ -19,7 +19,9 @@ use yii\widgets\ActiveForm;
     } else {
         $url = Url::to(['usuarios/modificar/datos']);
     } ?>
-    <?php $form = ActiveForm::begin(['action' => $url]); ?>
+    <?php $form = ActiveForm::begin(['action' => $url, 'options' => [
+        'class' => 'cargaForm'
+    ]]); ?>
 
     <?= $form->field($model, 'usuario', [
             'enableAjaxValidation' => true,
@@ -40,7 +42,7 @@ use yii\widgets\ActiveForm;
     <?php endif ?>
     <div class="col-md-offset-2 col-md-8">
         <div class="form-group">
-            <?= Html::submitButton($model->scenario, ['class' => 'btn btn-tradegame btn-block']) ?>
+            <?= Html::submitButton($model->scenario . ' ', ['class' => 'btn btn-tradegame btn-block']) ?>
         </div>
     </div>
 

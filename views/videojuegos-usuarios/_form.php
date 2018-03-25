@@ -35,7 +35,9 @@ $this->registerJs($js);
             </div>
         </div>
         <div class="panel-body">
-            <?php $form = ActiveForm::begin(); ?>
+            <?php $form = ActiveForm::begin(['options' => [
+                'class' => 'cargaForm'
+            ]]); ?>
             <?php $url = Url::to(['videojuegos/buscar-videojuegos']) ?>
             <?php $items = [
                 'pluginEvents' => [
@@ -56,7 +58,7 @@ $this->registerJs($js);
             ])->textarea(['maxlength' => true, 'rows' => 8]) ?>
 
             <div class="form-group">
-                <?= Html::submitButton('Publicar',
+                <?= Html::submitButton('Publicar ',
                     ['class' => 'btn btn-tradegame btn-block']) ?>
             </div>
 

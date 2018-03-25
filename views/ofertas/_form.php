@@ -3,7 +3,6 @@
 use app\helpers\Utiles;
 
 use yii\web\View;
-use yii\web\JsExpression;
 
 use yii\helpers\Url;
 use yii\helpers\Html;
@@ -27,20 +26,13 @@ $url = Url::to(['videojuegos-usuarios/buscar-publicados',
 ]);
 
 $urlDatos = Url::to(['videojuegos/oferta-videojuego']);
-$js = <<<JS
-$('form').last().on('beforeSubmit', function() {
-    $('.btn-tradegame').prop('disabled', true);
-    var i = $('<i></i>');
-    i.addClass('fa fa-spinner fa-spin');
-    $('.btn-tradegame').append(i);
-});
-JS;
-$this->registerJs($js);
 ?>
 
 <div class="ofertas-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => [
+        'class' => 'cargaForm'
+    ]]); ?>
 
     <?= $form->field($model, 'videojuego_publicado_id', ['template' => '{input}'])
         ->hiddenInput()->label(false) ?>

@@ -48,7 +48,9 @@ $this->registerCssFile('@web/css/badge.css');
 ?>
 
 <div class="usuarios-datos-form">
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => [
+        'class' => 'cargaForm'
+    ]]); ?>
     <div class="col-md-3">
         <div class="row">
             <?= Html::img($model->avatar, [
@@ -121,7 +123,7 @@ $this->registerCssFile('@web/css/badge.css');
         <div class="row">
             <div class="col-md-offset-2 col-md-8">
                 <div class="form-group">
-                    <?= Html::submitButton('Modificar', ['class' => 'btn btn-tradegame btn-block']) ?>
+                    <?= Html::submitButton('Modificar ', ['class' => 'btn btn-tradegame btn-block']) ?>
                 </div>
             </div>
         </div>

@@ -12,7 +12,9 @@ use kartik\rating\StarRating;
 
 <div class="valoraciones-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => [
+        'class' => 'cargaForm'
+    ]]); ?>
 
     <?= $form->field($model, 'comentario')->textarea(['maxlength' => true, 'rows' => 7]) ?>
 
@@ -21,7 +23,7 @@ use kartik\rating\StarRating;
     ]) ?>
 
     <div class="form-group col-md-offset-2 col-md-8">
-        <?= Html::submitButton('Valorar', ['class' => 'btn btn-tradegame btn-block']) ?>
+        <?= Html::submitButton('Valorar ', ['class' => 'btn btn-tradegame btn-block']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
