@@ -27,6 +27,15 @@ $url = Url::to(['videojuegos-usuarios/buscar-publicados',
 ]);
 
 $urlDatos = Url::to(['videojuegos/oferta-videojuego']);
+$js = <<<JS
+$('form').last().on('beforeSubmit', function() {
+    $('.btn-tradegame').prop('disabled', true);
+    var i = $('<i></i>');
+    i.addClass('fa fa-spinner fa-spin');
+    $('.btn-tradegame').append(i);
+});
+JS;
+$this->registerJs($js);
 ?>
 
 <div class="ofertas-form">
@@ -48,7 +57,7 @@ $urlDatos = Url::to(['videojuegos/oferta-videojuego']);
         <?= $form->field($model, 'videojuego_ofrecido_id')
             ->widget(Select2::classname(), $items)->label(false); ?>
     <div class="form-group col-md-offset-2 col-md-8">
-        <?= Html::submitButton('Enviar oferta', ['class' => 'btn btn-tradegame btn-block']) ?>
+        <?= Html::submitButton('Enviar oferta ', ['class' => 'btn btn-tradegame btn-block']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

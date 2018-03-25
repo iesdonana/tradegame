@@ -51,7 +51,7 @@ class OfertasUsuariosSearch extends OfertasUsuarios
             ->orWhere(['and',
                 ['usuario_ofrecido' => $usuario],
                 ['is not', 'contraoferta_de', null],
-            ]);
+            ])->orderBy('aceptada DESC');
 
         if ($estado === 'pendientes') {
             $query->andWhere(['is', 'aceptada', null]);

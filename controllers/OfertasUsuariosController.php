@@ -9,6 +9,8 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
+use yii\filters\AccessControl;
+
 /**
  * OfertasUsuariosController implements the CRUD actions for OfertasUsuarios model.
  */
@@ -26,6 +28,17 @@ class OfertasUsuariosController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index'],
+                        'roles' => ['@'],
+                    ],
+                ]
+            ]
         ];
     }
 
