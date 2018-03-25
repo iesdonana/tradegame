@@ -2,4 +2,4 @@
 <br>
 <img align="center" src="/web/titulo.png" alt="TradeGame">
 
-La aplicación *Gaming Trade* nos permitirá intercambiar aquellos videojuegos que ya no usamos, por otros que publiquen los demás usuarios. Con esto evitaremos el gasto en nuevos videojuegos y poder disfrutar de los máximos posibles sin coste alguno.
+La aplicación *TradeGame* nos permitirá intercambiar aquellos videojuegos que ya no usamos, por otros que publiquen los demás usuarios. Con esto evitaremos el gasto en nuevos videojuegos y poder disfrutar de los máximos posibles sin coste alguno.

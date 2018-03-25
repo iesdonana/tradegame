@@ -173,9 +173,17 @@ class OfertasController extends Controller
                 $publicado->save();
                 $ofrecido->save();
 
+                $usuarioValora = $publicado->usuario->id;
+                $usuarioValorado = $ofrecido->usuario->id;
+
                 $valoracion = new Valoraciones([
-                    'usuario_valora_id' => Yii::$app->user->id,
-                    'usuario_valorado_id' => $model->videojuegoOfrecido->usuario_id,
+                    'usuario_valora_id' => $usuarioValora,
+                    'usuario_valorado_id' => $usuarioValorado,
+                ]);
+                $valoracion->save();
+                $valoracion = new Valoraciones([
+                    'usuario_valora_id' => $usuarioValorado,
+                    'usuario_valorado_id' => $usuarioValora
                 ]);
                 $valoracion->save();
                 return $this->redirect(['valoraciones/valorar', 'id' => $valoracion->id]);

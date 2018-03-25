@@ -25,7 +25,7 @@ class AppAsset extends AssetBundle
         'css/breadcrumb.css',
     ];
     public $js = [
-        'js/scrollTop.js',
+        'js/general.js',
         'js/busqueda.js',
     ];
     public $depends = [
