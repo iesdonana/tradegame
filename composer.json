@@ -31,7 +31,8 @@
         "kartik-v/yii2-grid": "@dev",
         "kartik-v/yii2-widget-typeahead": "*",
         "kartik-v/yii2-widget-rating": "*",
-        "lavrentiev/yii2-toastr": "^2.0"
+        "lavrentiev/yii2-toastr": "^2.0",
+        "2amigos/yii2-google-maps-library": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

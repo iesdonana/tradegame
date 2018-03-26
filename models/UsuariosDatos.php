@@ -50,7 +50,7 @@ class UsuariosDatos extends \yii\db\ActiveRecord
     {
         return [
             [['id_usuario'], 'required'],
-            [['id_usuario'], 'default', 'value' => null],
+            [['id_usuario', 'geoloc', 'direccion', 'localidad', 'provincia'], 'default', 'value' => null],
             [['id_usuario', 'genero_id'], 'integer'],
             [['fecha_nacimiento'], 'safe'],
             [['nombre_real', 'localidad', 'biografia', 'provincia'], 'string', 'max' => 255],
@@ -167,5 +167,15 @@ class UsuariosDatos extends \yii\db\ActiveRecord
     public function getUsuario()
     {
         return $this->hasOne(Usuarios::className(), ['id' => 'id_usuario'])->inverseOf('usuariosDatos');
+    }
+
+    public function getLat()
+    {
+        return explode(',', $this->geoloc)[0];
+    }
+
+    public function getLng()
+    {
+        return explode(',', $this->geoloc)[1];
     }
 }

@@ -40,6 +40,8 @@ CREATE TABLE usuarios_datos
   , nombre_real      varchar(255)
   , localidad        varchar(255)
   , provincia        varchar(255)
+  , direccion        varchar(255)
+  , geoloc           varchar(255)
   , telefono         varchar(9)
   , biografia        varchar(255)
   , fecha_nacimiento date
