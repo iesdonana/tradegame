@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
     <div class="col-md-offset-1 col-md-4">
-        <div class="panel panel-default">
+        <div class="panel panel-default panel-trade">
             <div class="panel-heading">
                 <div class="panel-title text-center">
                     Iniciar sesión

@@ -33,7 +33,7 @@ $this->registerJs($js);
             ]) ?>
     </div>
     <div class="col-md-9">
-        <div class="panel panel-default">
+        <div class="panel panel-default panel-trade">
             <div class="panel-heading">
                 <div class="panel-title text-center">
                     Datos de la cuenta

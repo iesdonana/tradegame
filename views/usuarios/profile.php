@@ -140,7 +140,6 @@ $this->registerJs("$('.bxslider').bxSlider({auto: true, stopAutoOnClick: true});
             'scaledSize' => new Size(['height' => 50, 'width' => 50]),
             'url' => $datos->avatar
         ]);
-
         $marker = new Marker([
             'position' => $coord,
             'title' => 'Casa de ' . Html::encode($model->usuario->usuario),

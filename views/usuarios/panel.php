@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 ?>
 
-<ul class="nav nav-pills nav-stacked nav-email shadow mb-20 panel panel-default">
+<ul class="nav nav-pills nav-stacked nav-email shadow mb-20 panel panel-default panel-trade">
     <li>
         <?= Html::a('Datos de la cuenta', [
             'usuarios/modificar',

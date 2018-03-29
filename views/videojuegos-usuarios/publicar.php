@@ -14,7 +14,6 @@ CSS;
 $this->registerCss($css);
 ?>
 <div class="videojuegos-usuarios-create">
-
     <div class="row">
         <div class="col-md-5">
             <?= $this->render('_form', [
@@ -24,5 +23,4 @@ $this->registerCss($css);
         <div id="detalles" class="col-md-7">
         </div>
     </div>
-
 </div>

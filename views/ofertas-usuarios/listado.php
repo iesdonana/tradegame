@@ -24,7 +24,7 @@ $this->registerJs($js);
             <?= $this->render('panel') ?>
         </div>
         <div class="col-md-10">
-            <div class="panel panel-default">
+            <div class="panel panel-default panel-trade">
                 <div class="panel-heading">
                     <div class="panel-title text-center">
                         Ofertas recibidas
