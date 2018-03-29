@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="row">
     <div class="col-md-offset-1 col-md-10">
-        <div class="panel panel-default">
+        <div class="panel panel-default panel-trade">
             <div class="panel-body">
                 <?php if (!$model->borrado): ?>
                     <div id='date'>

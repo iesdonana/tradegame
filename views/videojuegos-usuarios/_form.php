@@ -28,7 +28,7 @@ $this->registerJs($js);
 ?>
 
 <div class="videojuegos-usuarios-form">
-    <div class="panel panel-default">
+    <div class="panel panel-default panel-trade">
         <div class="panel-heading">
             <div class="panel-title text-center">
                 <?= Html::encode($this->title) ?>

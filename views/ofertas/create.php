@@ -98,7 +98,7 @@ $this->registerJs($js);
                     </em>
                 </span>
             <?php endif; ?>
-            <div class="panel panel-default">
+            <div class="panel panel-default panel-trade">
                 <div class="panel-heading">
                     <div class="panel-title">
                         Ofrecer videojuego

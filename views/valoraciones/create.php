@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="valoraciones-create">
     <div class="col-md-offset-2 col-md-8">
-        <div class="panel panel-default">
+        <div class="panel panel-default panel-trade">
             <div class="panel-heading">
                 <div class="panel-title text-center">
                     <?php

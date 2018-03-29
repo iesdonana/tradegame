@@ -44,6 +44,9 @@ class UsuariosDatosController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $model->foto = UploadedFile::getInstance($model, 'foto');
+            if ($model->localidad === null && $model->direccion === null) {
+                $model->geoloc = null;
+            }
             if ($model->save() && $model->upload()) {
                 Yii::$app->session->setFlash('success', 'Has actualizado tus datos correctamente');
             }

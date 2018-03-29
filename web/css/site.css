@@ -122,7 +122,8 @@ a.desc:after {
 }
 
 
-.nav-pills > li > a {
+.nav-pills > li > a,
+.page-header a {
     color: #730000;
 }
 
@@ -261,4 +262,16 @@ span[data-plat$='2'] {
 .comentarios-videojuego:empty:after {
     font-style: italic;
     content: 'No se ha proporcionado ningún comentario';
+}
+
+.panel-trade > .panel-heading > .panel-title {
+    color: rgba(115, 0, 0);
+    font-weight: bold;
+}
+.panel-trade > .panel-heading {
+    border-color: rgba(115, 0, 0, 0.5);
+    background-color: rgba(140, 140, 140, 0.5);
+}
+.panel-trade {
+    border: 1px solid rgba(115, 0, 0, 0.5);
 }

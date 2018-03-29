@@ -11,12 +11,15 @@ use kartik\file\FileInput;
 
 use kartik\datecontrol\DateControl;
 
+use dosamigos\google\maps\MapAsset;
+
+MapAsset::register($this);
+
 
 /* @var $this yii\web\View */
 /* @var $model app\models\UsuariosDatos */
 /* @var $form yii\widgets\ActiveForm */
-
-$js = <<<EOT
+$js = <<<JS
 function cargarImagen(input) {
 
   if (input.files && input.files[0]) {
@@ -40,9 +43,26 @@ function cargarImagen(input) {
 }
 
 $("#usuariosdatos-foto").change(function() {
-  cargarImagen(this);
+    cargarImagen(this);
 });
-EOT;
+
+$('.cargaForm button').on('click', function(e) {
+    e.preventDefault();
+    var address = $('#usuariosdatos-localidad').val() + ' ' + $('#usuariosdatos-direccion').val();
+    var geocoder = new google.maps.Geocoder();
+    // Cuando complete la petición asíncrona, enviamos el formulario
+    var resul = '';
+    geocoder.geocode({'address': address}, function(results, status) {
+        if (status === 'OK') {
+            resul = results[0].geometry.location
+            resul = resul.lat() + ',' + resul.lng();
+        }
+        $('#usuariosdatos-geoloc').val(resul);
+        console.log($('.cargaForm').serialize());
+        $('.cargaForm').submit();
+    });
+});
+JS;
 $this->registerJs($js);
 $this->registerCssFile('@web/css/badge.css');
 ?>
@@ -82,6 +102,12 @@ $this->registerCssFile('@web/css/badge.css');
         <?= $form->field($model, 'localidad', [
             'template' => Utiles::inputTemplate('globe', Utiles::GLYPHICON)
             ])->textInput(['maxlength' => true, 'placeholder' => 'Localidad']) ?>
+
+        <?= $form->field($model, 'direccion', [
+            'template' => Utiles::inputTemplate('screenshot', Utiles::GLYPHICON)
+            ])->textInput(['maxlength' => true, 'placeholder' => 'Dirección']) ?>
+
+        <?= $form->field($model, 'geoloc')->hiddenInput()->label(false) ?>
 
         <?= $form->field($model, 'provincia', [
             'template' => Utiles::inputTemplate('map-marker', Utiles::GLYPHICON)

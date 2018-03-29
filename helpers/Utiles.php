@@ -196,4 +196,16 @@ class Utiles
         }
         return '';
     }
+
+    public static function distancia($geoloc1, $geoloc2)
+    {
+        $theta = $geoloc1->lng - $geoloc2->lng;
+        $dist = sin(deg2rad($geoloc1->lat)) * sin(deg2rad($geoloc2->lat)) +
+            cos(deg2rad($geoloc1->lat)) * cos(deg2rad($geoloc2->lat)) * cos(deg2rad($theta));
+        $dist = acos($dist);
+        $dist = rad2deg($dist);
+        $miles = $dist * 60 * 1.1515;
+
+        return $miles * 1.609344;
+    }
 }

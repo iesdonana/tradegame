@@ -32,7 +32,6 @@ function topFunction() {
 $('.scrollTop').on('click', topFunction);
 
 $('.cargaForm').on('beforeSubmit', function() {
-    console.log('hola');
     var btn = $(this).find('button');
     btn.prop('disabled', true);
     var i = $('<i></i>');

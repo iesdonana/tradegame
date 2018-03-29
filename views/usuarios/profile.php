@@ -1,21 +1,30 @@
 <?php
 
 /* @var $this yii\web\View */
+use app\assets\BxAsset;
+
 use app\helpers\Utiles;
 
 use yii\helpers\Html;
 
 use yii\bootstrap\Modal;
 
+use dosamigos\google\maps\Map;
+use dosamigos\google\maps\Size;
+use dosamigos\google\maps\LatLng;
+use dosamigos\google\maps\LatLngBounds;
+
+use dosamigos\google\maps\overlays\Icon;
+use dosamigos\google\maps\overlays\Marker;
+use dosamigos\google\maps\overlays\Animation;
+
 /* @var $model app\models\Usuarios */
 
-use app\assets\BxAsset;
 
 BxAsset::register($this);
 
 $this->title = $model->usuario;
 $this->params['breadcrumbs'][] = $this->title;
-
 $this->registerJs("
     $(function() {
         $('.popup-modal').click(function(e) {
@@ -24,6 +33,9 @@ $this->registerJs("
         });
     });"
 );
+$js = <<<JS
+JS;
+$this->registerJs($js);
 $this->registerCssFile('@web/css/profile.css');
 $this->registerJs("$('.bxslider').bxSlider({auto: true, stopAutoOnClick: true});");
 ?>
@@ -117,6 +129,55 @@ $this->registerJs("$('.bxslider').bxSlider({auto: true, stopAutoOnClick: true});
        <p><?= ($datos->biografia) ? Html::encode($datos->biografia) :
        '<em>El usuario no ha facilitado una biografía</em>' ?></p>
     </div>
+    <?php if ($datos->geoloc !== null) : ?>
+    <div class="bs-callout bs-callout-danger">
+       <h4>Localización</h4>
+       <?php
+        $markers = [];
+        $coord = new LatLng(['lat' => $datos->lat, 'lng' => $datos->lng]);
+
+        $icon = new Icon([
+            'scaledSize' => new Size(['height' => 50, 'width' => 50]),
+            'url' => $datos->avatar
+        ]);
+        $marker = new Marker([
+            'position' => $coord,
+            'title' => 'Casa de ' . Html::encode($model->usuario->usuario),
+            'icon' => $icon,
+            'animation' => Animation::BOUNCE
+        ]);
+        $markers[] = $marker;
+
+        if (!Yii::$app->user->isGuest && Yii::$app->user->identity->usuariosDatos->geoloc !== null) {
+            $me = Yii::$app->user->identity;
+            $meDatos = $me->usuariosDatos;
+            $icon = new Icon([
+                'scaledSize' => new Size(['height' => 50, 'width' => 50]),
+                'url' => $meDatos->avatar
+            ]);
+            $coord = new LatLng(['lat' => $meDatos->lat, 'lng' => $meDatos->lng]);
+            $marker = new Marker([
+                'position' => $coord,
+                'title' => 'Casa de ' . Html::encode($me->usuario),
+                'icon' => $icon,
+                'animation' => Animation::BOUNCE
+            ]);
+            $markers[] = $marker;
+        }
+        $latlng = LatLngBounds::getBoundsOfMarkers($markers);
+        $map = new Map([
+            'center' => $latlng->getCenterCoordinates(),
+            'zoom' => $latlng->getZoom(300),
+            'width' => '100%',
+        ]);
+        foreach ($markers as $marker) {
+            $map->addOverlay($marker);
+        }
+        ?>
+
+       <?= $map->display() ?>
+    </div>
+<?php endif ?>
 
    </div>
    <?php Modal::begin([
