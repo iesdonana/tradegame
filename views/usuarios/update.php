@@ -48,6 +48,7 @@ $this->registerJs($js);
                 <?php else: ?>
                     <?= $this->render('/usuarios-datos/_form_personal', [
                         'model' => $model,
+                        'generos' => $generos
                         ]) ?>
                 <?php endif ?>
 

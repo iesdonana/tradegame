@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\imagine\Image;
 
 /**
  * This is the model class for table "videojuegos".
@@ -21,12 +22,22 @@ use Yii;
  */
 class Videojuegos extends \yii\db\ActiveRecord
 {
+    public $foto;
+
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
         return 'videojuegos';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), ['foto']);
     }
 
     /**
@@ -40,6 +51,7 @@ class Videojuegos extends \yii\db\ActiveRecord
             [['fecha_lanzamiento'], 'safe'],
             [['desarrollador_id', 'genero_id', 'plataforma_id'], 'default', 'value' => null],
             [['desarrollador_id', 'genero_id', 'plataforma_id'], 'integer'],
+            [['foto'], 'file', 'extensions' => 'jpg, png'],
             [['nombre'], 'string', 'max' => 255],
             [['desarrollador_id'], 'exist', 'skipOnError' => true, 'targetClass' => DesarrolladoresVideojuegos::className(), 'targetAttribute' => ['desarrollador_id' => 'id']],
             [['genero_id'], 'exist', 'skipOnError' => true, 'targetClass' => GenerosVideojuegos::className(), 'targetAttribute' => ['genero_id' => 'id']],
@@ -56,10 +68,10 @@ class Videojuegos extends \yii\db\ActiveRecord
             'id' => 'ID',
             'nombre' => 'Nombre',
             'descripcion' => 'Descripcion',
-            'fecha_lanzamiento' => 'Fecha Lanzamiento',
-            'desarrollador_id' => 'Desarrollador ID',
-            'genero_id' => 'Genero ID',
-            'plataforma_id' => 'Plataforma ID',
+            'fecha_lanzamiento' => 'Fecha de lanzamiento',
+            'desarrollador_id' => 'Desarrollador',
+            'genero_id' => 'Género',
+            'plataforma_id' => 'Plataforma',
         ];
     }
 
@@ -94,6 +106,54 @@ class Videojuegos extends \yii\db\ActiveRecord
         }
 
         return "/{$caratulas}default.png";
+    }
+
+    /**
+     * Sube una foto/avatar al directorio de avatares de la aplicación.
+     * @return mixed
+     */
+    public function upload()
+    {
+        if ($this->foto === null) {
+            return true;
+        }
+
+        $this->borrarAnteriores();
+        $extension = $this->foto->extension;
+        $nombreFichero = $this->id . '.' . $extension;
+        $ruta = Yii::getAlias('@caratulas/') . $nombreFichero;
+
+        $res = $this->foto->saveAs($ruta);
+        if ($res) {
+            Image::thumbnail($ruta, 300, null)->save();
+        }
+
+        $s3 = Yii::$app->get('s3');
+        try {
+            $s3->upload($ruta, $ruta);
+        } catch (\Exception $e) {
+            unlink($ruta);
+            return false;
+        }
+        return $res;
+    }
+
+    public function borrarAnteriores()
+    {
+        $id = $this->id;
+        $ficheros = glob(Yii::getAlias('@caratulas/') . $id . '.*');
+        foreach ($ficheros as $fichero) {
+            return unlink($fichero);
+        }
+        $s3 = Yii::$app->get('s3');
+
+        $ruta = Yii::getAlias('@caratulas/') . $id . '.jpg';
+        if ($s3->exist($ruta)) {
+            $s3->delete($ruta);
+        } else {
+            $ruta = Yii::getAlias('@caratulas/') . $id . '.png';
+            $s3->delete($ruta);
+        }
     }
 
     /**

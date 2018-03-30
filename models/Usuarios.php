@@ -196,6 +196,23 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             ->all();
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRol()
+    {
+        return $this->hasOne(Roles::className(), ['id' => 'rol_id'])->inverseOf('usuarios');
+    }
+
+    /**
+     * Comprueba si el usuario es Administrador.
+     * @return bool true si es administrador, false si no lo es
+     */
+    public function esAdmin()
+    {
+        return $this->rol->tipo === 'Administrador';
+    }
+
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {

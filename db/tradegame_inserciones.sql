@@ -4,13 +4,16 @@
 INSERT INTO usuarios_generos (sexo)
     VALUES ('Hombre'), ('Mujer');
 
-INSERT INTO usuarios_id (id) VALUES (DEFAULT), (DEFAULT), (DEFAULT),(DEFAULT);
+INSERT INTO roles (tipo)
+    VALUES ('Administrador'), ('Usuario');
 
-INSERT INTO usuarios (id, usuario, email, password, auth_key)
-    VALUES (1, 'admin', 'admin@admin.com', crypt('admin123', gen_salt('bf', 13)), 'GnT4M2ZjLDGxNrGe-2THbAjqFLwyJ1fa'),
-        (2, 'celu', 'celu@celu.com', crypt('celu123', gen_salt('bf', 13)), 'qmjxYKMqeOqrIfDwpt0Badk4VvPfts-n'),
-        (3, 'ivan', 'ivan@ivan.com', crypt('ivan123', gen_salt('bf', 13)), 'aIL6v0fpj42nuBmouXekziMa1yOCLpa4'),
-        (4, 'pepe', 'pepe@pepe.com', crypt('pepe123', gen_salt('bf', 13)), 'nykqGk2mEA6XjmNOlR2tiinDPQinG7A8');
+INSERT INTO usuarios_id (id) VALUES (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT);
+
+INSERT INTO usuarios (id, usuario, email, password, auth_key, rol_id)
+    VALUES (1, 'admin', 'admin@admin.com', crypt('admin123', gen_salt('bf', 13)), 'GnT4M2ZjLDGxNrGe-2THbAjqFLwyJ1fa', 1),
+        (2, 'celu', 'celu@celu.com', crypt('celu123', gen_salt('bf', 13)), 'qmjxYKMqeOqrIfDwpt0Badk4VvPfts-n', 2),
+        (3, 'ivan', 'ivan@ivan.com', crypt('ivan123', gen_salt('bf', 13)), 'aIL6v0fpj42nuBmouXekziMa1yOCLpa4', 2),
+        (4, 'pepe', 'pepe@pepe.com', crypt('pepe123', gen_salt('bf', 13)), 'nykqGk2mEA6XjmNOlR2tiinDPQinG7A8', 2);
 
 INSERT INTO usuarios_datos (id_usuario, nombre_real, biografia, localidad, geoloc)
     VALUES (1, 'Administrador', 'Soy el administrador que todo lo sabe', 'Sanlúcar de Barrameda', '36.7725774,-6.352968899999951'),

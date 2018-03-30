@@ -198,7 +198,7 @@ class UsuariosController extends Controller
 
         return Yii::$app->mailer->compose('custom', [
                 'usuario' => $model->usuario,
-                'content' => $content
+                'content' => $content,
             ])
             ->setFrom(Yii::$app->params['adminEmail'])
             ->setTo($model->email)

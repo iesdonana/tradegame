@@ -1,4 +1,6 @@
 <?php
+use app\helpers\Utiles;
+
 use yii\helpers\Html;
 
 
@@ -23,6 +25,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="col-md-offset-1 col-md-10">
         <div class="panel panel-default panel-trade">
             <div class="panel-body">
+                <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->esAdmin()): ?>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <?= Html::a('Modificar ' . Utiles::FA('edit'), ['videojuegos/update', 'id' => $model->id], ['class' => 'btn btn-xs btn-warning']) ?>
+                        </div>
+                    </div>
+                <?php endif ?>
                 <?= $this->render('datos', [
                     'model' => $model
                 ]) ?>
