@@ -86,6 +86,9 @@ class Videojuegos extends \yii\db\ActiveRecord
         $s3 = Yii::$app->get('s3');
         $id = $this->id;
         $caratulas = Yii::getAlias('@caratulas/');
+        if ($id === null) {
+            return "/{$caratulas}default.png";
+        }
 
         $archivos = glob($caratulas . "$id.*");
         if (count($archivos) > 0) {
@@ -104,7 +107,6 @@ class Videojuegos extends \yii\db\ActiveRecord
                 ->execute();
             return "/$ruta";
         }
-
         return "/{$caratulas}default.png";
     }
 

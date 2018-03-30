@@ -35,11 +35,11 @@ class VideojuegosController extends Controller
             ],
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['update'],
+                'only' => ['update', 'create'],
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['update'],
+                        'actions' => ['update', 'create'],
                         'matchCallback' => function ($rule, $action) {
                             if (Yii::$app->user->isGuest || !Yii::$app->user->identity->esAdmin()) {
                                 return false;
@@ -187,13 +187,19 @@ class VideojuegosController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id = null)
     {
-        $model = $this->findModel($id);
+        if ($id !== null) {
+            $model = $this->findModel($id);
+        } else {
+            $model = new Videojuegos();
+        }
+
         if ($model->load(Yii::$app->request->post())) {
             $model->foto = UploadedFile::getInstance($model, 'foto');
             if ($model->save() && $model->upload()) {
-                Yii::$app->session->setFlash('success', 'Has modificado el videojuego correctamente');
+                $msg = ($id === null) ? 'creado' : 'modificado';
+                Yii::$app->session->setFlash('success', "Has $msg el videojuego correctamente");
                 return $this->redirect(['ver', 'id' => $model->id]);
             }
         }
