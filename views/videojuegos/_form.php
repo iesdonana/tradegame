@@ -68,7 +68,7 @@ $this->registerCss('.badge-corner { margin-right: 40px}');
                             'showRemove' => false,
                             'browseClass' => 'btn btn-tradegame btn-block',
                             'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
-                            'browseLabel' =>  'Sube tu avatar'
+                            'browseLabel' =>  'Sube la carátula'
                         ],
                         'options' => [
                             'accept' => 'image/*',

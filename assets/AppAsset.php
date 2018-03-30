@@ -27,6 +27,7 @@ class AppAsset extends AssetBundle
     public $js = [
         'js/general.js',
         'js/busqueda.js',
+        'js/jquery.cookie.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
