@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\file\FileInput;
+
 use kartik\datecontrol\DateControl;
 
 /* @var $this yii\web\View */
@@ -14,15 +16,14 @@ $this->registerCss('.badge-corner { margin-right: 40px}');
 ?>
 
 <div class="videojuegos-form">
-
+    <?php $form = ActiveForm::begin([
+        'options' => [
+            'class' => 'cargaForm',
+            'enctype'=>'multipart/form-data'
+        ]
+    ]); ?>
     <div class="row">
         <div class="col-md-9">
-            <?php $form = ActiveForm::begin([
-                'options' => [
-                    'class' => 'cargaForm',
-                    'enctype'=>'multipart/form-data'
-                ]
-            ]); ?>
 
             <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
 
@@ -40,6 +41,7 @@ $this->registerCss('.badge-corner { margin-right: 40px}');
 
                 <?= $form->field($model, 'desarrollador_id')->dropDownList($desarrolla, ['prompt' => 'Selecciona un desarrollador']) ?>
 
+
                 <div class="row">
                     <div class="col-md-6">
                         <?= $form->field($model, 'genero_id')->dropDownList($generos, ['prompt' => 'Selecciona un género']) ?>
@@ -50,10 +52,31 @@ $this->registerCss('.badge-corner { margin-right: 40px}');
                 </div>
         </div>
         <div class="col-md-3 text-center">
-            <?= Html::img($model->caratula, [
-                'id' => 'img-edit',
-                'class' => 'img img-thumbnail img-responsive img-medium'
-            ]) ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <?= Html::img($model->caratula, [
+                        'id' => 'img-edit',
+                        'class' => 'img img-thumbnail img-responsive img-medium'
+                        ]) ?>
+                </div>
+                <div class="col-md-12">
+                    <?= $form->field($model, 'foto')->widget(FileInput::classname(), [
+                        'pluginOptions' => [
+                            'showUpload' => false,
+                            'showPreview' => false,
+                            'showCaption' => false,
+                            'showRemove' => false,
+                            'browseClass' => 'btn btn-tradegame btn-block',
+                            'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
+                            'browseLabel' =>  'Sube tu avatar'
+                        ],
+                        'options' => [
+                            'accept' => 'image/*',
+                            'class' => 'preview_control'
+                        ],
+                        ])->label(false);?>
+                </div>
+            </div>
         </div>
     </div>
     <hr>

@@ -13,6 +13,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
+use yii\web\UploadedFile;
 
 /**
  * VideojuegosUsuariosController implements the CRUD actions for VideojuegosUsuarios model.
@@ -182,9 +183,12 @@ class VideojuegosController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'Has modificado el videojuego correctamente');
-            return $this->redirect(['ver', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->foto = UploadedFile::getInstance($model, 'foto');
+            if ($model->save() && $model->upload()) {
+                Yii::$app->session->setFlash('success', 'Has modificado el videojuego correctamente');
+                return $this->redirect(['ver', 'id' => $model->id]);
+            }
         }
 
         $generos = GenerosVideojuegos::find()
