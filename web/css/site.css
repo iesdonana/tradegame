@@ -275,3 +275,7 @@ span[data-plat$='2'] {
 .panel-trade {
     border: 1px solid rgba(115, 0, 0, 0.5);
 }
+
+.img-medium {
+    width: 250px;
+}

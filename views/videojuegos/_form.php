@@ -1,0 +1,71 @@
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+use kartik\datecontrol\DateControl;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Videojuegos */
+/* @var $form yii\widgets\ActiveForm */
+
+$this->registerJsFile('@web/js/fotos.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerCssFile('@web/css/badge.css');
+$this->registerCss('.badge-corner { margin-right: 40px}');
+?>
+
+<div class="videojuegos-form">
+
+    <div class="row">
+        <div class="col-md-9">
+            <?php $form = ActiveForm::begin([
+                'options' => [
+                    'class' => 'cargaForm',
+                    'enctype'=>'multipart/form-data'
+                ]
+            ]); ?>
+
+            <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'descripcion')->textarea(['rows' => 6]) ?>
+
+            <?= $form->field($model, 'fecha_lanzamiento')->widget(DateControl::classname(), [
+                'readonly' => true,
+                'widgetOptions' => [
+                    'layout' => '{picker}{input}{remove}',
+                    'pluginOptions' => [
+                        'autoclose' => true,
+                    ]
+                ]
+                ]) ?>
+
+                <?= $form->field($model, 'desarrollador_id')->dropDownList($desarrolla, ['prompt' => 'Selecciona un desarrollador']) ?>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <?= $form->field($model, 'genero_id')->dropDownList($generos, ['prompt' => 'Selecciona un género']) ?>
+                    </div>
+                    <div class="col-md-6">
+                        <?= $form->field($model, 'plataforma_id')->dropDownList($plataformas, ['prompt' => 'Selecciona una plataforma']) ?>
+                    </div>
+                </div>
+        </div>
+        <div class="col-md-3 text-center">
+            <?= Html::img($model->caratula, [
+                'id' => 'img-edit',
+                'class' => 'img img-thumbnail img-responsive img-medium'
+            ]) ?>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <div class="form-group">
+                <?= Html::submitButton('Guardar', ['class' => 'btn btn-tradegame btn-block']) ?>
+            </div>
+        </div>
+    </div>
+
+
+    <?php ActiveForm::end(); ?>
+
+</div>

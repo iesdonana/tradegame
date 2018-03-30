@@ -56,10 +56,10 @@ class Videojuegos extends \yii\db\ActiveRecord
             'id' => 'ID',
             'nombre' => 'Nombre',
             'descripcion' => 'Descripcion',
-            'fecha_lanzamiento' => 'Fecha Lanzamiento',
-            'desarrollador_id' => 'Desarrollador ID',
-            'genero_id' => 'Genero ID',
-            'plataforma_id' => 'Plataforma ID',
+            'fecha_lanzamiento' => 'Fecha de lanzamiento',
+            'desarrollador_id' => 'Desarrollador',
+            'genero_id' => 'Género',
+            'plataforma_id' => 'Plataforma',
         ];
     }
 

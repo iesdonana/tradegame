@@ -19,33 +19,8 @@ MapAsset::register($this);
 /* @var $this yii\web\View */
 /* @var $model app\models\UsuariosDatos */
 /* @var $form yii\widgets\ActiveForm */
+$this->registerJsFile('@web/js/fotos.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $js = <<<JS
-function cargarImagen(input) {
-
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-
-    reader.onload = function(e) {
-        $('#img-edit').siblings('a').remove();
-        $('#img-edit').attr('src', e.target.result);
-        var a = $('<a>');
-        a.addClass('badge-corner');
-        a.addClass('badge-corner-base');
-        a.attr('title', 'Avatar pendiente de subida');
-        var span = $('<span></span>');
-        span.addClass('glyphicon glyphicon-cloud-upload');
-        a.append(span);
-        $('#img-edit').parent().append(a);
-    }
-
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-
-$("#usuariosdatos-foto").change(function() {
-    cargarImagen(this);
-});
-
 $('.cargaForm button').on('click', function(e) {
     e.preventDefault();
     var address = $('#usuariosdatos-localidad').val() + ' ' + $('#usuariosdatos-direccion').val();
@@ -58,7 +33,6 @@ $('.cargaForm button').on('click', function(e) {
             resul = resul.lat() + ',' + resul.lng();
         }
         $('#usuariosdatos-geoloc').val(resul);
-        console.log($('.cargaForm').serialize());
         $('.cargaForm').submit();
     });
 });
@@ -89,7 +63,10 @@ $this->registerCssFile('@web/css/badge.css');
                     'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
                     'browseLabel' =>  'Sube tu avatar'
                 ],
-                'options' => ['accept' => 'image/*'],
+                'options' => [
+                    'accept' => 'image/*',
+                    'class' => 'preview_control'
+                ],
                 ])->label(false);?>
         </div>
     </div>
@@ -133,11 +110,7 @@ $this->registerCssFile('@web/css/badge.css');
 
         <?= $form->field($model, 'genero_id', [
             'template' => Utiles::inputTemplate('user', Utiles::GLYPHICON)
-            ])->dropDownList(
-                UsuariosGeneros::find()
-                ->select('sexo')
-                ->indexBy('id')
-                ->column(), ['prompt' => 'Selecciona un género'])
+            ])->dropDownList($generos, ['prompt' => 'Selecciona un género'])
                 ?>
 
         </div>

@@ -2,10 +2,14 @@
 
 namespace app\controllers;
 
+use app\models\DesarrolladoresVideojuegos;
+use app\models\GenerosVideojuegos;
+use app\models\Plataformas;
 use app\models\Videojuegos;
 use app\models\VideojuegosUsuarios;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
@@ -15,6 +19,32 @@ use yii\web\Response;
  */
 class VideojuegosController extends Controller
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['update'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['update'],
+                        'matchCallback' => function ($rule, $action) {
+                            if (Yii::$app->user->isGuest || !Yii::$app->user->identity->esAdmin()) {
+                                return false;
+                            }
+
+                            return true;
+                        },
+                    ],
+                ],
+            ],
+        ];
+    }
+
     /**
      * Hace una búsqueda de videojuegos por el nombre.
      * @param  string $q Búsqueda
@@ -140,5 +170,57 @@ class VideojuegosController extends Controller
             'model' => $videojuego,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    /**
+     * Updates an existing Videojuegos model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param int $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', 'Has modificado el videojuego correctamente');
+            return $this->redirect(['ver', 'id' => $model->id]);
+        }
+
+        $generos = GenerosVideojuegos::find()
+            ->select('nombre')
+            ->indexBy('id')
+            ->column();
+        $plataformas = Plataformas::find()
+            ->select('nombre')
+            ->indexBy('id')
+            ->column();
+        $desarrolla = DesarrolladoresVideojuegos::find()
+            ->select('compania')
+            ->indexBy('id')
+            ->column();
+
+        return $this->render('update', [
+            'model' => $model,
+            'generos' => $generos,
+            'plataformas' => $plataformas,
+            'desarrolla' => $desarrolla,
+        ]);
+    }
+
+    /**
+     * Finds the Ofertas model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param int $id
+     * @return Videojuegos the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Videojuegos::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

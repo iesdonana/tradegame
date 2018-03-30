@@ -9,6 +9,14 @@ CREATE TABLE usuarios_id
     id bigserial PRIMARY KEY
 );
 
+DROP TABLE IF EXISTS roles CASCADE;
+
+CREATE TABLE roles
+(
+    id   bigserial PRIMARY KEY
+  , tipo varchar(255)
+);
+
 DROP TABLE IF EXISTS usuarios CASCADE;
 
 CREATE TABLE usuarios
@@ -19,6 +27,7 @@ CREATE TABLE usuarios
   , password     varchar(255) NOT NULL
   , token_val    varchar(255)
   , auth_key     varchar(255)
+  , rol_id       bigint       REFERENCES roles (id)
   , created_at   timestamp(0) NOT NULL DEFAULT localtimestamp
   , updated_at   timestamp(0)
 );
@@ -79,7 +88,7 @@ CREATE TABLE videojuegos
     id                bigserial    PRIMARY KEY
   , nombre            varchar(255) NOT NULL
   , descripcion       text
-  , fecha_lanzamiento timestamp(0)
+  , fecha_lanzamiento date
   , desarrollador_id  bigint       NOT NULL REFERENCES desarrolladores_videojuegos (id)
                                    ON DELETE NO ACTION ON UPDATE CASCADE
   , genero_id         bigint       NOT NULL REFERENCES generos_videojuegos (id)

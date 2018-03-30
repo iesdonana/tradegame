@@ -2,8 +2,8 @@
 
 namespace app\controllers;
 
-use app\models\Usuarios;
 use app\models\UsuariosDatos;
+use app\models\UsuariosGeneros;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -55,6 +55,10 @@ class UsuariosDatosController extends Controller
         return $this->render('/usuarios/update', [
             'model' => $model,
             'seccion' => 'personal',
+            'generos' => UsuariosGeneros::find()
+                ->select('sexo')
+                ->indexBy('id')
+                ->column(),
         ]);
     }
 
