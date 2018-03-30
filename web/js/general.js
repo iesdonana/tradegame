@@ -38,3 +38,14 @@ $('.cargaForm').on('beforeSubmit', function() {
     i.addClass('fa fa-spinner fa-spin');
     btn.append(i);
 });
+
+$('.panel-admin .title').on('click', function() {
+    var panel = $(this).siblings('.panel');
+    if (panel.css('display') === 'block') {
+        panel.slideUp();
+        $(this).html('Panel admin ' + '<i class="fa fa-angle-down"></i>');
+    } else {
+        panel.slideDown();
+        $(this).html('Panel admin ' + '<i class="fa fa-angle-up"></i>');
+    }
+});

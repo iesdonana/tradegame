@@ -33,9 +33,6 @@ $this->registerJs("
         });
     });"
 );
-$js = <<<JS
-JS;
-$this->registerJs($js);
 $this->registerCssFile('@web/css/profile.css');
 $this->registerJs("$('.bxslider').bxSlider({auto: true, stopAutoOnClick: true});");
 ?>

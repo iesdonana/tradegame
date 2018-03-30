@@ -10,6 +10,7 @@ use app\models\VideojuegosUsuarios;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
@@ -26,6 +27,12 @@ class VideojuegosController extends Controller
     public function behaviors()
     {
         return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'remove' => ['POST'],
+                ],
+            ],
             'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['update'],
@@ -213,6 +220,28 @@ class VideojuegosController extends Controller
     }
 
     /**
+     * Borra un videojuego (siempre que no haya ninguna publicación con este videojuego).
+     * @param  int $id Id del videojuego a eliminar
+     * @return mixed
+     */
+    public function actionRemove($id)
+    {
+        $model = $this->findModel($id);
+
+        if (VideojuegosUsuarios::findOne(['videojuego_id' => $model->id]) !== null) {
+            throw new NotFoundHttpException('El videojuego no se puede borrar, ya que se ha publicado alguna vez.');
+        }
+
+        if (Yii::$app->request->isPost) {
+            $model->delete();
+            Yii::$app->session->setFlash('success', 'Has eliminado el videojuego correctamente');
+            return $this->goHome();
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
      * Finds the Ofertas model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id
@@ -224,7 +253,6 @@ class VideojuegosController extends Controller
         if (($model = Videojuegos::findOne($id)) !== null) {
             return $model;
         }
-
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

@@ -279,3 +279,12 @@ span[data-plat$='2'] {
 .img-medium {
     width: 250px;
 }
+
+.oculto {
+    display: none;
+}
+
+.panel-admin .title {
+    font-weight: bold;
+    cursor: pointer;
+}
