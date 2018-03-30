@@ -12,6 +12,7 @@ $css = <<<CSS
 }
 CSS;
 $this->registerCss($css);
+// $this->registerJsFile('@web/js/jquery.cookie.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 
 $this->title = Html::encode($model->nombre);
 
@@ -27,6 +28,10 @@ $this->registerJs("
             e.preventDefault();
             $('#modal-delete').modal('show');
         });
+
+        if ($.cookie('panel') == 'true') {
+            $('.panel-default.oculto').removeClass('oculto')
+        }
     });"
 );
 ?>
@@ -39,14 +44,26 @@ $this->registerJs("
                     <span class="title">Panel admin <?= Utiles::FA('angle-down') ?></span>
                     <div class="panel panel-default oculto">
                         <div class="panel-body">
-                            <?= Html::a(
-                                'Modificar ' . Utiles::FA('edit'),
-                                ['videojuegos/update', 'id' => $model->id],
-                                ['class' => 'btn btn-xs btn-warning']) ?>
-                            <?= Html::a(
-                                'Borrar ' . Utiles::FA('trash'),
-                                ['videojuegos/delete', 'id' => $model->id],
-                                ['class' => 'btn btn-xs btn-danger popup-modal']) ?>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <?= Html::a(
+                                        'Alta ' . Utiles::FA('plus-circle'),
+                                        ['videojuegos/update'],
+                                        ['class' => 'btn btn-sm btn-success btn-block']) ?>
+                                </div>
+                                <div class="col-md-4">
+                                    <?= Html::a(
+                                        'Modificar ' . Utiles::FA('edit'),
+                                        ['videojuegos/update', 'id' => $model->id],
+                                        ['class' => 'btn btn-sm btn-primary btn-block']) ?>
+                                </div>
+                                <div class="col-md-4">
+                                    <?= Html::a(
+                                        'Borrar ' . Utiles::FA('trash'),
+                                        ['videojuegos/delete', 'id' => $model->id],
+                                        ['class' => 'btn btn-sm btn-danger btn-block popup-modal']) ?>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

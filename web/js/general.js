@@ -44,8 +44,10 @@ $('.panel-admin .title').on('click', function() {
     if (panel.css('display') === 'block') {
         panel.slideUp();
         $(this).html('Panel admin ' + '<i class="fa fa-angle-down"></i>');
+        $.cookie('panel', false);
     } else {
         panel.slideDown();
         $(this).html('Panel admin ' + '<i class="fa fa-angle-up"></i>');
+        $.cookie('panel', true);
     }
 });

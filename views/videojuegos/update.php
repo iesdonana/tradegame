@@ -2,13 +2,14 @@
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Videojuegos */
-use yii\helpers\Html;
 
-
-$this->title = 'Update Videojuegos: ' . $model->id;
+$scenario = ($model->id === null) ? 'Alta de videojuego' : 'Modificar videojuego';
+$this->title = $scenario;
 $this->params['breadcrumbs'][] = ['label' => 'Videojuegos', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->nombre, 'url' => ['ver', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Modificar';
+if ($model->id !== null) {
+    $this->params['breadcrumbs'][] = ['label' => $model->nombre, 'url' => ['ver', 'id' => $model->id]];
+}
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="videojuegos-update">
     <div class="row">
@@ -16,7 +17,7 @@ $this->params['breadcrumbs'][] = 'Modificar';
             <div class="panel panel-default panel-trade">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        Modificar videojuego
+                        <?= $this->title ?>
                     </div>
                 </div>
                 <div class="panel-body">
