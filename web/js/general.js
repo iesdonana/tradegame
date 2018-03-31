@@ -5,10 +5,11 @@ $(function () {
   $(window).scroll(function(event){
     var st = $(this).scrollTop();
 
+    $navbar.stop();
     if (st > lastScrollTop) {
-      $navbar.fadeOut()
+        $navbar.fadeOut();
     } else {
-      $navbar.fadeIn()
+        $navbar.fadeIn();
     }
     lastScrollTop = st;
   });

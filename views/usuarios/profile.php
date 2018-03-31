@@ -126,6 +126,29 @@ $this->registerJs("$('.bxslider').bxSlider({auto: true, stopAutoOnClick: true});
        <p><?= ($datos->biografia) ? Html::encode($datos->biografia) :
        '<em>El usuario no ha facilitado una biografía</em>' ?></p>
     </div>
+    <?php $valRecibidas = $model->usuario->valoraciones ?>
+    <?php if (count($valRecibidas) > 0): ?>
+        <div class="bs-callout bs-callout-danger sticky">
+            <h4>Valoraciones</h4>
+            <ul>
+                <?php
+                $params = [
+                    'valRecibidas' => $valRecibidas,
+                ];
+                if (count($valRecibidas) >= 8) {
+                    $params[] = [
+                        'num' => 8
+                    ];
+                }
+                ?>
+                <?= $this->render('/valoraciones/notas', $params) ?>
+            </ul>
+            <?= Html::a('Ver todas las valoraciones [+]',
+            ['/valoraciones/listado-notas', 'usuario' => Yii::$app->request->get('usuario')],
+            ['class' => 'btn btn-xs btn-tradegame pull-right']
+            ) ?>
+        </div>
+    <?php endif; ?>
     <?php if ($datos->geoloc !== null) : ?>
     <div class="bs-callout bs-callout-danger">
        <h4>Localización</h4>

@@ -2,12 +2,14 @@
 
 namespace app\controllers;
 
+use app\models\Usuarios;
 use app\models\Valoraciones;
 use app\models\ValoracionesSearch;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 /**
  * ValoracionesController implements the CRUD actions for Valoraciones model.
@@ -108,6 +110,32 @@ class ValoracionesController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionListadoNotas($usuario)
+    {
+        if (($user = Usuarios::findOne(['usuario' => $usuario])) === null) {
+            throw new NotFoundHttpException('No se ha encontrado el usuario');
+        }
+
+        return $this->render('listado_notas', [
+            'model' => $user,
+        ]);
+    }
+
+    /**
+     * Busca un modelo de Valoraciones mediante AJAX.
+     * @param  int     $id Id de la valoración
+     * @return object      Modelo de Valoraciones en formato JSON
+     */
+    public function actionBuscar($id)
+    {
+        if (!Yii::$app->request->isAjax) {
+            throw new NotFoundHttpException('No se ha encontrado lo que buscabas');
+        }
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $model = $this->findModel($id);
+        return $model;
     }
 
     /**

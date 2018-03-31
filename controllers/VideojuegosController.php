@@ -235,7 +235,8 @@ class VideojuegosController extends Controller
         $model = $this->findModel($id);
 
         if (VideojuegosUsuarios::findOne(['videojuego_id' => $model->id]) !== null) {
-            throw new NotFoundHttpException('El videojuego no se puede borrar, ya que se ha publicado alguna vez.');
+            Yii::$app->session->setFlash('error', 'El videojuego no se puede borrar, ya que se ha publicado alguna vez');
+            return $this->redirect(['ver', 'id' => $id]);
         }
 
         if (Yii::$app->request->isPost) {
@@ -243,8 +244,6 @@ class VideojuegosController extends Controller
             Yii::$app->session->setFlash('success', 'Has eliminado el videojuego correctamente');
             return $this->goHome();
         }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
     }
 
     /**
