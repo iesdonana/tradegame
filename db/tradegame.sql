@@ -141,6 +141,20 @@ CREATE TABLE valoraciones
                                      CHECK (num_estrellas > 0 AND num_estrellas <= 5)
 );
 
+DROP TABLE IF EXISTS mensajes CASCADE;
+
+CREATE TABLE mensajes
+(
+    id          bigserial    PRIMARY KEY
+  , emisor_id   bigint       NOT NULL REFERENCES usuarios (id)
+                             ON DELETE NO ACTION ON UPDATE CASCADE
+  , receptor_id bigint       NOT NULL REFERENCES usuarios (id)
+                             ON DELETE NO ACTION ON UPDATE CASCADE
+  , contenido   varchar(255) NOT NULL
+  , leido       boolean      NOT NULL DEFAULT false
+  , created_at   timestamp(0) NOT NULL DEFAULT localtimestamp
+);
+
 DROP VIEW IF EXISTS ofertas_usuarios;
 
 CREATE VIEW ofertas_usuarios as

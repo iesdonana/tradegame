@@ -115,7 +115,7 @@ $this->title = 'TradeGame';
                 ],
                 [
                     'label' => Utiles::FA('inbox') . ' Mensajes',
-                    'url' => ['/mensajes/index']
+                    'url' => ['/mensajes/listado']
                 ],
                 [
                     'label' => Utiles::FA('star') . " Valoraciones $pendVal",

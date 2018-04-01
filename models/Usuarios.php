@@ -181,6 +181,22 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMensajes()
+    {
+        return $this->hasMany(Mensajes::className(), ['emisor_id' => 'id'])->inverseOf('emisor');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMensajes0()
+    {
+        return $this->hasMany(Mensajes::className(), ['receptor_id' => 'id'])->inverseOf('receptor');
+    }
+
+    /**
      * Devuelve los $numero útlimos videojuegos que el usuario ha publicado
      * para intercambiar.
      * @param  int   $numero Número de videojuegos del usuario a retornar
