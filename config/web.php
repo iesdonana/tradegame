@@ -80,6 +80,7 @@ $config = [
         'formatter' => [
             'timeZone' => 'Europe/Madrid',
             'dateFormat' => $params['dateFormat'],
+            'datetimeFormat' => $params['dateTimeFormat'],
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,

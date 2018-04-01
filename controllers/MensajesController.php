@@ -6,7 +6,7 @@ use app\models\Mensajes;
 use app\models\MensajesSearch;
 use app\models\Usuarios;
 use Yii;
-use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
@@ -22,10 +22,15 @@ class MensajesController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['listado'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['listado'],
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
@@ -61,6 +66,7 @@ class MensajesController extends Controller
 
         return $this->render('listado', [
             'conversaciones' => $conversaciones,
+            'model' => new Mensajes(),
         ]);
     }
 
@@ -85,6 +91,7 @@ class MensajesController extends Controller
 
         return $this->renderAjax('mensajes', [
             'lista' => $lista,
+            'model' => new Mensajes(),
         ]);
     }
 
@@ -95,15 +102,14 @@ class MensajesController extends Controller
      */
     public function actionCreate()
     {
+        Yii::$app->response->format = Response::FORMAT_JSON;
         $model = new Mensajes();
-
+        $model->emisor_id = Yii::$app->user->id;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $model;
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        return $model;
     }
 
     /**
