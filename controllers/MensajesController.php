@@ -78,6 +78,13 @@ class MensajesController extends Controller
         }
 
         $me = Yii::$app->user->id;
+        Yii::$app->db
+            ->createCommand('UPDATE mensajes SET leido = true WHERE (emisor_id = :emisor AND receptor_id = :receptor)')
+            ->bindValues([
+                ':emisor' => $u->id,
+                ':receptor' => $me,
+            ])->execute();
+
         $lista = Mensajes::find()
             ->where(['and',
                 ['emisor_id' => $u->id],
@@ -87,7 +94,8 @@ class MensajesController extends Controller
                 'and',
                 ['emisor_id' => $me],
                 ['receptor_id' => $u->id],
-            ])->all();
+            ])->orderBy('created_at ASC')
+            ->all();
 
         return $this->renderAjax('mensajes', [
             'lista' => $lista,

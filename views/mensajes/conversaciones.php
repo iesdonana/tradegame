@@ -32,7 +32,12 @@ $this->registerJs($js);
                 <?= Html::img($emisor->usuariosDatos->avatar, [
                     'class' => 'img-circle img-chat'
                     ]) ?>
-                <?= Html::encode($conver->emisor->usuario) ?>
+                    <span class='usuario'>
+                        <?= Html::encode($emisor->usuario) ?>
+                    </span>
+                <?php if (($noLeidos = $emisor->noLeidos) > 0): ?>
+                    <span class="badge"><?= $noLeidos ?></span>
+                <?php endif; ?>
             </a>
         </li>
     <?php endforeach; ?>

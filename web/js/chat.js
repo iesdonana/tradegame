@@ -3,7 +3,7 @@ function peticionConversacion(url, receptor_id, intervalo = false)
     var scrollActual = $('.pre-scrollable').scrollTop();
     $.ajax({
         url: url,
-        data: {usuario: $('.nav-pills li.active').find('a').text().trim()},
+        data: {usuario: $('.nav-pills li.active').find('a').find('.usuario').text().trim()},
         success: function (content) {
             var old = $('.mensajes').html();
             $('.mensajes').html(content);

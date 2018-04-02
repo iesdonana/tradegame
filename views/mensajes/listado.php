@@ -22,7 +22,7 @@ function peticion(usuario) {
         }
     });
 }
-peticion($('.nav-pills').find('li').first().find('a').text().trim());
+peticion($('.nav-pills').find('li').first().find('.usuario').text().trim());
 
 JS;
 $this->registerJs($js);

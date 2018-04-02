@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use Yii;
+
 /**
  * This is the model class for table "mensajes".
  *
@@ -68,5 +70,13 @@ class Mensajes extends \yii\db\ActiveRecord
     public function getReceptor()
     {
         return $this->hasOne(Usuarios::className(), ['id' => 'receptor_id'])->inverseOf('mensajes0');
+    }
+
+    public static function getPendientes()
+    {
+        return self::find()
+            ->where(['receptor_id' => Yii::$app->user->id])
+            ->andWhere(['leido' => false])
+            ->count();
     }
 }

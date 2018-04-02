@@ -3,12 +3,12 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\models\Mensajes;
 use app\models\Valoraciones;
 use app\models\OfertasUsuarios;
 
 use app\helpers\Utiles;
 
-use app\widgets\Alert;
 use yii\web\View;
 use yii\web\JsExpression;
 
@@ -106,6 +106,7 @@ $this->title = 'TradeGame';
 
         $pendOf = Utiles::badgeNotificacionesPendientes(OfertasUsuarios::className());
         $pendVal = Utiles::badgeNotificacionesPendientes(Valoraciones::className());
+        $pendMsg = Utiles::badgeNotificacionesPendientes(Mensajes::className());
         $items[] = [
             'label' => Utiles::FA('bell', ['class' => 'far']) . ' ' . Utiles::badgeNotificacionesTotales(),
             'items' => [
@@ -114,7 +115,7 @@ $this->title = 'TradeGame';
                     'url' => ['/ofertas-usuarios/index']
                 ],
                 [
-                    'label' => Utiles::FA('inbox') . ' Mensajes',
+                    'label' => Utiles::FA('inbox') . " Mensajes $pendMsg",
                     'url' => ['/mensajes/listado']
                 ],
                 [

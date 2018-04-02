@@ -220,6 +220,15 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->hasOne(Roles::className(), ['id' => 'rol_id'])->inverseOf('usuarios');
     }
 
+    public function getNoLeidos()
+    {
+        return Mensajes::find()
+            ->where(['receptor_id' => Yii::$app->user->id])
+            ->andWhere(['emisor_id' => $this->id])
+            ->andWhere(['leido' => false])
+            ->count();
+    }
+
     /**
      * Comprueba si el usuario es Administrador.
      * @return bool true si es administrador, false si no lo es

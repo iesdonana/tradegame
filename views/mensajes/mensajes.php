@@ -27,6 +27,10 @@ $css = <<<CSS
 .mio {
     background-color: #a4ff96;
 }
+
+.nav-pills > .active > a > .badge {
+    color: #730000;
+}
 CSS;
 $this->registerCss($css);
 
@@ -55,7 +59,7 @@ $this->registerJs($js, View::POS_READY);
                 <?php if ($mensaje->emisor_id == $me): ?>
                     <div class="col-md-10 col-xs-8 mensaje">
                         <span class="pull-right mio" data-toggle="tooltip" title="<?= $fecha ?>">
-                            <?= nl2br(Html::encode($msg)) ?>
+                            <?= nl2br($msg) ?>
                         </span>
                     </div>
                     <div class="col-md-1 col-xs-3">
@@ -67,7 +71,7 @@ $this->registerJs($js, View::POS_READY);
                     </div>
                     <div class="col-md-10 col-xs-8 mensaje">
                         <span class="pull-left suyo" data-toggle="tooltip" title="<?= $fecha ?>">
-                            <?= nl2br(Html::encode($msg)) ?>
+                            <?= nl2br($msg) ?>
                         </span>
                     </div>
                 <?php endif ?>
