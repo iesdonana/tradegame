@@ -30,11 +30,15 @@ $this->registerJs($js);
 $create = Url::to(['mensajes/create']);
 $url = Url::to(['mensajes/conversacion']);
 
+$this->registerJsFile('@web/js/chat.js', ['position' => View::POS_HEAD]);
 $js = <<<JS
 $(function () {
     $("[data-toggle='tooltip']").tooltip();
 });
-// $('.pre-scrollable').scrollTop($('.pre-scrollable')[0].scrollHeight);
+
+setInterval(function(){
+    peticionConversacion('$url', $('.nav-pills').find('li.active').find('a').data('id'), true);
+}, 5000);
 
 $('#form-mensaje').on('click', 'button', function(e) {
     e.preventDefault();
@@ -44,18 +48,7 @@ $('#form-mensaje').on('click', 'button', function(e) {
         data: form.serialize(),
         type: 'POST',
         success: function(datos) {
-            var modelo = datos;
-            $.ajax({
-                url: '$url',
-                data: {usuario: $('.nav-pills li.active').find('a').text().trim()},
-                success: function (content) {
-                    $('.mensajes').html(content);
-                    $('.nav-pills').find('a[data-id=' + datos.receptor_id + ']').parent().addClass('active');
-                    $('#mensajes-receptor_id').val(datos.receptor_id);
-                    $('.pre-scrollable').scrollTop($('.pre-scrollable')[0].scrollHeight);
-                    $('#mensajes-contenido').val('');
-                }
-            });
+            peticionConversacion('$url', datos.receptor_id);
         }
     });
 })
