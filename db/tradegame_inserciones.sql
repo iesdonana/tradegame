@@ -21,6 +21,13 @@ INSERT INTO usuarios_datos (id_usuario, nombre_real, biografia, localidad, geolo
             (3, 'Iván Herrera', DEFAULT, 'Chipiona', '36.7348614,-6.4316989999999805'),
             (4, 'Pepe Rodríguez', DEFAULT, 'Córdoba', '37.8881751,-4.7793834999999945');
 
+INSERT INTO mensajes (emisor_id, receptor_id, contenido, leido, created_at)
+    VALUES (1, 2, 'Hola que tal', true, localtimestamp - 'P3M'::interval),
+            (2, 1, 'Hola soy celu', true, localtimestamp - 'P2M'::interval),
+            (1, 2, 'Hola otra vez', true, localtimestamp - 'P1M'::interval),
+            (3, 2, 'Hola otra vez', true, localtimestamp - 'P1M'::interval),
+            (4, 2, 'Hola otra vez', true, localtimestamp - 'P2M'::interval);
+
 INSERT INTO generos_videojuegos (nombre)
     VALUES ('Acción'), ('Terror'), ('Shooter'), ('Deportes'), ('Aventuras')
          , ('Conducción'), ('Rol'), ('Party'), ('Plataforma');

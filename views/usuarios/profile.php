@@ -91,10 +91,16 @@ $this->registerJs("$('.bxslider').bxSlider({auto: true, stopAutoOnClick: true});
                         ['class' => 'btn btn-danger popup-modal']
                     ) ?>
                 <?php else: ?>
-                    <a href="#" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-send"></span>
-                        <span>Enviar mensaje</span>
-                    </a>
+                    <?= Html::a(
+                        'Enviar mensaje ' . Utiles::FA('comment', ['class' => 'far']),
+                        [
+                            'mensajes/nuevo',
+                            'receptor_id' => $model->id
+                        ],
+                        [
+                            'class' => 'btn btn-primary'
+                        ])
+                    ?>
                 <?php endif ?>
             </div>
          </div>

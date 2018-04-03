@@ -2,6 +2,7 @@
 
 namespace app\helpers;
 
+use app\models\Mensajes;
 use app\models\OfertasUsuarios;
 use app\models\Valoraciones;
 use yii\helpers\Html;
@@ -187,7 +188,7 @@ class Utiles
     public static function badgeNotificacionesTotales()
     {
         $sum = 0;
-        $valores = [OfertasUsuarios::className(), Valoraciones::className()];
+        $valores = [OfertasUsuarios::className(), Valoraciones::className(), Mensajes::className()];
         foreach ($valores as $clase) {
             $sum += call_user_func($clase . '::getPendientes');
         }

@@ -191,6 +191,11 @@ a.desc:after {
     width: 100px;
 }
 
+.img-chat {
+    width: 50px;
+    margin-right: 10px;
+}
+
 .accion {
     display: inline;
 }
