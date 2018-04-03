@@ -110,11 +110,11 @@ $this->registerJs("$('.bxslider').bxSlider({auto: true, stopAutoOnClick: true});
        <div class="bs-callout bs-callout-danger">
            <h4>Últimos videojuegos publicados</h4>
            <ul class='bxslider'>
-                <?php foreach ($listado as $model): ?>
+                <?php foreach ($listado as $vp): ?>
                     <li>
                         <div class="col-md-offset-1 col-md-10">
                             <?= $this->render('/videojuegos-usuarios/view_min', [
-                                'model' => $model,
+                                'model' => $vp,
                                 'big' => true
                                 ]) ?>
                         </div>
@@ -132,7 +132,7 @@ $this->registerJs("$('.bxslider').bxSlider({auto: true, stopAutoOnClick: true});
        <p><?= ($datos->biografia) ? Html::encode($datos->biografia) :
        '<em>El usuario no ha facilitado una biografía</em>' ?></p>
     </div>
-    <?php $valRecibidas = $model->usuario->valoraciones ?>
+    <?php $valRecibidas = $model->valoraciones ?>
     <?php if (count($valRecibidas) > 0): ?>
         <div class="bs-callout bs-callout-danger sticky">
             <h4>Valoraciones</h4>
@@ -168,7 +168,7 @@ $this->registerJs("$('.bxslider').bxSlider({auto: true, stopAutoOnClick: true});
         ]);
         $marker = new Marker([
             'position' => $coord,
-            'title' => 'Casa de ' . Html::encode($model->usuario->usuario),
+            'title' => 'Casa de ' . Html::encode($model->usuario),
             'icon' => $icon,
             'animation' => Animation::BOUNCE
         ]);

@@ -169,7 +169,8 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function getValoraciones()
     {
-        return $this->hasMany(Valoraciones::className(), ['usuario_valorado_id' => 'id'])->inverseOf('usuarioValorado');
+        return $this->hasMany(Valoraciones::className(), ['usuario_valorado_id' => 'id'])->inverseOf('usuarioValorado')
+            ->where(['is not', 'num_estrellas', null]);
     }
 
     /**

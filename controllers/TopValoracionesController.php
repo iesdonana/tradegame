@@ -17,7 +17,8 @@ class TopValoracionesController extends Controller
      */
     public function actionTop()
     {
-        $listado = TopValoraciones::find()->orderBy('avg DESC, totales DESC')->all();
+        $listado = TopValoraciones::find()
+            ->orderBy('avg DESC, totales DESC')->all();
 
         return $this->render('top', [
             'listado' => $listado,
