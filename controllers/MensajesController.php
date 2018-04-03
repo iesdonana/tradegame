@@ -9,7 +9,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\web\Response;
+use yiid\web\Response;
 
 /**
  * MensajesController implements the CRUD actions for Mensajes model.

@@ -183,4 +183,5 @@ CREATE VIEW top_valoraciones as
 SELECT ur.usuario, avg(num_estrellas), count(*) as totales
 FROM valoraciones LEFT JOIN usuarios as ur
     ON usuario_valorado_id = ur.id
+WHERE num_estrellas IS NOT null
 GROUP BY ur.usuario;

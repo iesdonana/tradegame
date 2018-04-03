@@ -6,7 +6,7 @@ $(function () {
     var st = $(this).scrollTop();
 
     $navbar.stop();
-    if (st > lastScrollTop) {
+    if (st > lastScrollTop && (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100)) {
         $navbar.fadeOut();
     } else {
         $navbar.fadeIn();

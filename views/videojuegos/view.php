@@ -28,6 +28,10 @@ $this->registerJs("
             e.preventDefault();
             $('#modal-delete').modal('show');
         });
+        $('.caratula-detail').click(function(e) {
+            e.preventDefault();
+            $('#modal-caratula').modal('show');
+        });
 
         if ($.cookie('panel') == 'true') {
             $('.panel-default.oculto').removeClass('oculto')
@@ -86,6 +90,13 @@ $this->registerJs("
         </div>
     </div>
 </div>
+<?php Modal::begin([
+ 'header' => '<h3 class="modal-title">Carátula</h3>',
+ 'id'     => 'modal-caratula',
+ ])
+ ?>
+ <p class="text-center"><?= Html::img($model->caratula) ?></p>
+ <?php Modal::end(); ?>
 <?php Modal::begin([
  'header' => "<h2 class='modal-title'>Borrar videojuego</h2>",
  'id'     => 'modal-delete',

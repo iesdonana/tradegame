@@ -39,7 +39,7 @@ INSERT INTO plataformas (nombre)
 INSERT INTO desarrolladores_videojuegos (compania)
     VALUES ('Naughty Dog'), ('EA Sports'), ('Vicarious Visions'), ('Konami'),
            ('BitBox Ltd.'), ('Guerrilla Games'), ('Ubisoft'), ('Real Time Worlds'),
-           ('Capcom'), ('Bluehole Studio'), ('Turn 10'), ('Valve');
+           ('Capcom'), ('Bluehole Studio'), ('Turn 10'), ('Valve'), ('Nintendo');
 
 INSERT INTO videojuegos (nombre, descripcion, fecha_lanzamiento,
                         desarrollador_id, genero_id, plataforma_id)
@@ -130,10 +130,31 @@ INSERT INTO videojuegos (nombre, descripcion, fecha_lanzamiento,
         'acostumbrando.',
         '2017-10-03', 11, 6, 5),
         ('Counter Strike: Source',
+        'Super Mario Odyssey es el primer juego de Mario en un mundo abierto ' ||
+        'desde Super Mario 64 para Nintendo 64 y Super Mario Sunshine para ' ||
+        'Nintendo GameCube. El título, totalmente tridimensional o en 3D, se ' ||
+        'desarrolla en el planeta Tierra, ya que Mario deja el Reino Champiñón ' ||
+        'para embarcarse en un viaje por lugares misteriosos y vivir nuevas ' ||
+        'aventuras a bordo de una aeronave, demostrando el hábil manejo de ' ||
+        'su gorra, ya que gracias a ella Mario puede tomar el control de los ' ||
+        'enemigos. En el juego hay mucho plataformeo, secretos y sorpresas, ' ||
+        'pero también abundantes partes de acción y hasta pruebas que parecen puzles.',
+        '2017-10-27', 12, 3, 5),
+        -- Nintendo Switch --
+        ('Super Mario Odyssey',
         'Counter-Strike Source es un juego de acción (shooter) desarrollado ' ||
         'por Valve y distribuido por VU Games para PC. La fecha de lanzamiento ' ||
         'de este videojuego es el 16 de noviembre de 2004.',
-        '2004-11-16', 12, 3, 5);
+        '2004-11-16', 13, 9, 4),
+        ('Zelda: Breath of the Wild',
+        'El videojuego más grande en la historia de Nintendo. Esta es la carta ' ||
+        'de presentación de The Legend of Zelda: Breath of the Wild para Wii U y ' ||
+        'Switch, una épica aventura que lleva la acción de esta veterana ' ||
+        'franquicia a un gigantesco mundo abierto que podemos explorar con ' ||
+        'total libertad. ¡No hay límites! Link puede coger un caballo, o ' ||
+        'cualquier otra montura, y explorar la nueva Hyrule siguiendo el orden ' ||
+        'que desee el jugador, pues la historia ya no sigue un camino lineal. ',
+        '2017-03-03', 13, 1, 4);
 
 INSERT INTO videojuegos_usuarios (videojuego_id, usuario_id)
     VALUES (1, 1), (2, 1), (3, 2), (4, 2), (5, 2), (6, 2), (7, 2), (8, 2);
