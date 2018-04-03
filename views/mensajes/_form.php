@@ -11,17 +11,16 @@ use yii\widgets\ActiveForm;
 <div class="mensajes-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'emisor_id')->textInput() ?>
-
-    <?= $form->field($model, 'receptor_id')->textInput() ?>
-
-    <?= $form->field($model, 'contenido')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'leido')->checkbox() ?>
+    Para <strong><?= $model->receptor->usuario ?> </strong>
+    <hr>
+    <?= $form->field($model, 'contenido')->textarea([
+        'maxlength' => true,
+        'rows' => 8,
+        'placeholder' => 'Mensaje'
+        ])->label(false) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Enviar', ['class' => 'btn btn-tradegame']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
