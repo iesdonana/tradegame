@@ -42,6 +42,7 @@ setInterval(function(){
 
 $('#form-mensaje').on('click', 'button', function(e) {
     e.preventDefault();
+    $('.cargaForm').trigger('beforeSubmit');
     var form = $(this).closest('form');
     $.ajax({
         url: '$create',
@@ -49,6 +50,9 @@ $('#form-mensaje').on('click', 'button', function(e) {
         type: 'POST',
         success: function(datos) {
             peticionConversacion('$url', datos.receptor_id);
+            var btn = $('.cargaForm').find('button');
+            btn.prop('disabled', false);
+            btn.find('svg').remove();
         }
     });
 })
@@ -57,9 +61,11 @@ $this->registerJs($js, View::POS_READY);
 ?>
 
 <?php if (count($conversaciones) > 0): ?>
-<div class="row">
+<div class="row alto">
         <div class="col-md-3">
-            <h4>Conversaciones</h4>
+            <h4>Conversaciones <?= Html::a(Utiles::FA('plus-circle'), [
+                'mensajes/nuevo'
+            ], ['class' => 'btn btn-success btn-xs']) ?></h4>
             <?= $this->render('conversaciones', [
                 'conversaciones' => $conversaciones
                 ]) ?>
@@ -70,10 +76,13 @@ $this->registerJs($js, View::POS_READY);
 
                 </div>
 
-                <div class="panel panel-defautl">
+                <div class="panel panel-default">
                     <div class="panel-body">
                         <?php $form = ActiveForm::begin([
-                            'id' => 'form-mensaje'
+                            'id' => 'form-mensaje',
+                            'options' => [
+                                'class' => 'cargaForm'
+                            ]
                         ]); ?>
                         <div class="col-md-10">
                             <?= $form->field($model, 'receptor_id')->hiddenInput(['value' => ''])->label(false) ?>
@@ -85,7 +94,7 @@ $this->registerJs($js, View::POS_READY);
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <?= Html::submitButton('Enviar', ['class' => 'btn btn-tradegame']) ?>
+                                <?= Html::submitButton('Enviar ', ['class' => 'btn btn-tradegame']) ?>
                             </div>
                         </div>
                         <?php ActiveForm::end(); ?>

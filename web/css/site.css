@@ -191,13 +191,17 @@ a.desc:after {
     width: 100px;
 }
 
-.img-chat {
-    width: 50px;
-    margin-right: 10px;
-}
-
 .accion {
     display: inline;
+}
+
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
 }
 
 .scrollTop {
@@ -213,7 +217,6 @@ a.desc:after {
   color: white;
   cursor: pointer;
   padding: 10px;
-  border-radius: 6px;
 }
 
 .scrollTop:hover {
@@ -292,4 +295,8 @@ span[data-plat$='2'] {
 .panel-admin .title {
     font-weight: bold;
     cursor: pointer;
+}
+
+.img-chat {
+    width: 50px;
 }

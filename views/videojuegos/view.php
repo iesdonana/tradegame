@@ -12,7 +12,6 @@ $css = <<<CSS
 }
 CSS;
 $this->registerCss($css);
-// $this->registerJsFile('@web/js/jquery.cookie.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 
 $this->title = Html::encode($model->nombre);
 

@@ -50,7 +50,7 @@ class Mensajes extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'emisor_id' => 'Emisor ID',
-            'receptor_id' => 'Receptor ID',
+            'receptor_id' => 'Receptor',
             'contenido' => 'Contenido',
             'leido' => 'Leido',
         ];
