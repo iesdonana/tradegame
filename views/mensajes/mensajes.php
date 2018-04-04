@@ -1,5 +1,7 @@
 <?php
 
+use app\helpers\Utiles;
+
 use yii\web\View;
 
 use yii\helpers\Url;
@@ -11,26 +13,37 @@ $css = <<<CSS
     padding: 20px;
 }
 
-.panel-body.mensajes {
+.scrollable {
     background-color: #e5e5e5;
 }
 
 .mensaje span {
-    border-radius: 10px;
     padding: 6px;
+    box-shadow: 2px 2px 1px grey;
 }
 
-.suyo {
+span.suyo {
     background-color: #addeff;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
-.mio {
+span.mio {
     background-color: #a4ff96;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
 
 .nav-pills > .active > a > .badge {
     color: #730000;
 }
+.scrollable, .conversaciones {
+    height: 60vh;
+    overflow-y: scroll;
+}
+
 CSS;
 $this->registerCss($css);
 
@@ -41,11 +54,11 @@ $js = <<<JS
 $(function () {
     $("[data-toggle='tooltip']").tooltip();
 });
-$('.pre-scrollable').scrollTop($('.pre-scrollable')[0].scrollHeight);
+$('.scrollable').scrollTop($('.scrollable')[0].scrollHeight);
 JS;
 $this->registerJs($js, View::POS_READY);
 ?>
-<div class="panel panel-default pre-scrollable">
+<div class="panel panel-default scrollable">
     <div class="panel-body mensajes">
         <?php foreach ($lista as $mensaje): ?>
             <?php

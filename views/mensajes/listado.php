@@ -36,9 +36,9 @@ $(function () {
     $("[data-toggle='tooltip']").tooltip();
 });
 
-setInterval(function(){
-    peticionConversacion('$url', $('.nav-pills').find('li.active').find('a').data('id'), true);
-}, 5000);
+// setInterval(function(){
+//     peticionConversacion('$url', $('.nav-pills').find('li.active').find('a').data('id'), true);
+// }, 5000);
 
 $('#form-mensaje').on('click', 'button', function(e) {
     e.preventDefault();
@@ -57,9 +57,11 @@ $this->registerJs($js, View::POS_READY);
 ?>
 
 <?php if (count($conversaciones) > 0): ?>
-<div class="row">
+<div class="row alto">
         <div class="col-md-3">
-            <h4>Conversaciones</h4>
+            <h4>Conversaciones <?= Html::a(Utiles::FA('plus-circle'), [
+                'mensajes/nuevo'
+            ], ['class' => 'btn btn-success btn-xs']) ?></h4> 
             <?= $this->render('conversaciones', [
                 'conversaciones' => $conversaciones
                 ]) ?>
@@ -70,7 +72,7 @@ $this->registerJs($js, View::POS_READY);
 
                 </div>
 
-                <div class="panel panel-defautl">
+                <div class="panel panel-default">
                     <div class="panel-body">
                         <?php $form = ActiveForm::begin([
                             'id' => 'form-mensaje'

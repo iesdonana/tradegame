@@ -1,6 +1,6 @@
 function peticionConversacion(url, receptor_id, intervalo = false)
 {
-    var scrollActual = $('.pre-scrollable').scrollTop();
+    var scrollActual = $('.scrollable').scrollTop();
     $.ajax({
         url: url,
         data: {usuario: $('.nav-pills li.active').find('a').find('.usuario').text().trim()},
@@ -13,9 +13,9 @@ function peticionConversacion(url, receptor_id, intervalo = false)
                 $('#mensajes-contenido').val('');
             }
             if ($('.mensajes').html() != old) {
-                $('.pre-scrollable').scrollTop($('.pre-scrollable')[0].scrollHeight);
+                $('.scrollable').scrollTop($('.scrollable')[0].scrollHeight);
             } else {
-                $('.pre-scrollable').scrollTop(scrollActual);
+                $('.scrollable').scrollTop(scrollActual);
             }
         }
     });

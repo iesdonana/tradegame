@@ -71,14 +71,32 @@ class MensajesController extends Controller
      */
     public function actionListado($userSelect = null)
     {
+        $me = Yii::$app->user->id;
         $conversaciones = Mensajes::find()
             ->select('emisor_id')
-            ->where(['receptor_id' => Yii::$app->user->id])
+            ->where(['receptor_id' => $me])
+            ->distinct()
+            ->all();
+        $misConversaciones = Mensajes::find()
+            ->select('receptor_id')
+            ->where(['emisor_id' => $me])
             ->distinct()
             ->all();
 
+        $res = $conversaciones;
+        for ($i = 0; $i < count($misConversaciones); $i++) {
+            $encontrado = false;
+            for ($j = 0; $j < count($conversaciones); $j++) {
+                if ($misConversaciones[$i]->receptor_id === $conversaciones[$j]->emisor_id) {
+                    $encontrado = true;
+                }
+            }
+            if (!$encontrado) {
+                $res[] = $misConversaciones[$i];
+            }
+        }
         $params = [
-            'conversaciones' => $conversaciones,
+            'conversaciones' => $res,
             'model' => new Mensajes(),
         ];
 
@@ -149,16 +167,18 @@ class MensajesController extends Controller
      * @param  string $receptor Usuario al que se le va a enviar el mensaje
      * @return mixed
      */
-    public function actionNuevo($receptor)
+    public function actionNuevo($receptor = null)
     {
         $model = new Mensajes();
 
-        if (($u = Usuarios::findOne(['usuario' => $receptor])) === null) {
-            throw new NotFoundHttpException('No se ha encontrado el usuario');
+        if ($receptor !== null) {
+            if (($u = Usuarios::findOne(['usuario' => $receptor])) === null) {
+                throw new NotFoundHttpException('No se ha encontrado el usuario');
+            }
+            $model->receptor_id = $u->id;
         }
-
         $model->emisor_id = Yii::$app->user->id;
-        $model->receptor_id = $u->id;
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Has enviado el mensaje correctamente');
             return $this->goHome();

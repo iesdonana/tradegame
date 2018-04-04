@@ -193,7 +193,7 @@ $this->title = 'TradeGame';
 </div>
 
 <footer class="footer">
-    <button class='scrollTop'><?= Utiles::FA('chevron-circle-up') ?></button>
+    <button class='scrollTop btn-circle btn-lg'><?= Utiles::FA('chevron-circle-up') ?></button>
     <div class="container">
         <p class="pull-left">&copy; TradeGame <?= date('Y') ?></p>
     </div>

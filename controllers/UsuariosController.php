@@ -205,4 +205,24 @@ class UsuariosController extends Controller
             ->setSubject('Registro de cuenta en TradeGame')
             ->send();
     }
+
+    public function actionBuscarUsuarios($q = null)
+    {
+        if (!Yii::$app->request->isAjax) {
+            $this->goHome();
+        }
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $usuarios['results'] = [];
+        if ($q !== null && $q !== '') {
+            $usuarios['results'] = Usuarios::find()
+                ->select(['id', 'usuario'])
+                ->where(['ilike', 'usuario', $q])
+                ->andWhere(['!=', 'id', Yii::$app->user->id])
+                ->limit(10)
+                ->orderBy('usuario')
+                ->asArray()->all();
+        }
+        return $usuarios;
+    }
 }
