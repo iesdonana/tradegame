@@ -95,10 +95,20 @@ $this->registerJs("$('.bxslider').bxSlider({auto: true, stopAutoOnClick: true});
                         'Enviar mensaje ' . Utiles::FA('comment', ['class' => 'far']),
                         [
                             'mensajes/nuevo',
-                            'receptor_id' => $model->id
+                            'receptor' => $model->usuario
                         ],
                         [
                             'class' => 'btn btn-primary'
+                        ])
+                    ?>
+                    <?= Html::a(
+                        'Reportar ' . Utiles::FA('flag', ['class' => 'far']),
+                        [
+                            'reportes/create',
+                            'usuario' => $model->usuario
+                        ],
+                        [
+                            'class' => 'btn btn-danger'
                         ])
                     ?>
                 <?php endif ?>
@@ -174,8 +184,11 @@ $this->registerJs("$('.bxslider').bxSlider({auto: true, stopAutoOnClick: true});
         ]);
         $markers[] = $marker;
 
-        if (!Yii::$app->user->isGuest && Yii::$app->user->identity->usuariosDatos->geoloc !== null) {
-            $me = Yii::$app->user->identity;
+        $me = Yii::$app->user;
+        if (!$me->isGuest &&
+            $me->identity->usuariosDatos->geoloc !== null &&
+            $me->id !== $model->id) {
+            $me = $me->identity;
             $meDatos = $me->usuariosDatos;
             $icon = new Icon([
                 'scaledSize' => new Size(['height' => 50, 'width' => 50]),

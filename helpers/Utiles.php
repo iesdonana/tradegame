@@ -209,4 +209,12 @@ class Utiles
 
         return $miles * 1.609344;
     }
+
+    public static function contadorCaracteres($maxCaracteres)
+    {
+        return Html::tag('span', $maxCaracteres, [
+            'class' => 'label label-primary caracteresRestantes',
+            'title' => 'Carácteres restantes'
+        ]);
+    }
 }
