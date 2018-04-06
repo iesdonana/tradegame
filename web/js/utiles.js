@@ -26,3 +26,25 @@ function badgePlataforma(plataforma) {
 
     return `<span class="${clase}">${plataforma}</span>`
 }
+
+$('.caracteresRestantes').each(function() {
+    var campo = $(this).next().val().trim();
+    if (campo != undefined && campo != '') {
+        var valor = $(this).next().data('length') - campo.length;
+        if (valor <= 0) {
+            $(this).prev().css('display', 'none');
+        } else {
+            $(this).prev().css('display', 'inline');
+        }
+        $(this).text(valor);
+    }
+})
+$('.caracteresRestantes').next().on('keyup', function() {
+    var valor = parseInt($(this).data('length')) - $(this).val().trim().length;
+    if (valor <= 0) {
+        $(this).prev().css('display', 'none');
+    } else {
+        $(this).prev().css('display', 'inline');
+    }
+    $(this).prev().text(valor);
+});

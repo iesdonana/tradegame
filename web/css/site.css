@@ -300,3 +300,7 @@ span[data-plat$='2'] {
 .img-chat {
     width: 50px;
 }
+
+.noresize {
+    resize: none;
+}

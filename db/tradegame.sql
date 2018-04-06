@@ -155,6 +155,18 @@ CREATE TABLE mensajes
   , created_at   timestamp(0) NOT NULL DEFAULT localtimestamp
 );
 
+DROP TABLE IF EXISTS reportes CASCADE;
+
+CREATE TABLE reportes
+(
+    id          bigserial    PRIMARY KEY
+  , reporta_id bigint NOT NULL REFERENCES usuarios (id)
+                               ON DELETE NO ACTION ON UPDATE CASCADE
+  , reportado_id bigint NOT NULL REFERENCES usuarios (id)
+                               ON DELETE NO ACTION ON UPDATE CASCADE
+  , mensaje varchar(255) NOT NULL CHECK (length(mensaje) >= 20)
+);
+
 DROP VIEW IF EXISTS ofertas_usuarios;
 
 CREATE VIEW ofertas_usuarios as

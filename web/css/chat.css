@@ -38,10 +38,6 @@ span.mio {
     height: 50px;
 }
 
-.noresize {
-    resize: none;
-}
-
 .msg-hidden {
 
     display:none;
