@@ -8,36 +8,19 @@ use yii\helpers\Html;
 
 use yii\widgets\ActiveForm;
 
-
-$url = Url::to(['mensajes/conversacion']);
-$js = <<<JS
-function peticion(usuario) {
-    $.ajax({
-        url: '$url',
-        data: {usuario: usuario},
-        success: function (data) {
-            $('.mensajes').html(data);
-            $('.nav-pills').find('li').first().addClass('active');
-            $('#mensajes-receptor_id').val($('.nav-pills').find('li').first().find('a').data('id'));
-        }
-    });
-}
-peticion($('.nav-pills').find('li').first().find('.usuario').text().trim());
-
-JS;
-$this->registerJs($js);
-
+$this->registerCssFile('@web/css/chat.css');
+$urlConver = Url::to(['mensajes/conversacion']);
 $create = Url::to(['mensajes/create']);
-$url = Url::to(['mensajes/conversacion']);
-
-$this->registerJsFile('@web/js/chat.js', ['position' => View::POS_HEAD]);
+$urlNuevos = Url::to(['mensajes/mensajes-nuevos']);
 $js = <<<JS
-$(function () {
-    $("[data-toggle='tooltip']").tooltip();
-});
+var primero = $('.nav-pills').find('li').first();
+ $('#mensajes-receptor_id').val(primero.find('a').data('id'));
+$('.cargaForm button').prop('disabled', true);
+$('.nav-pills').find('li').first().addClass('active');
+peticionConversacion('$urlConver', '$urlNuevos', primero.find('a').data('id'));
 
 setInterval(function(){
-    peticionConversacion('$url', $('.nav-pills').find('li.active').find('a').data('id'), true);
+    peticionConversacion('$urlConver', '$urlNuevos', $('.nav-pills').find('li.active').find('a').data('id'), true);
 }, 5000);
 
 $('#form-mensaje').on('click', 'button', function(e) {
@@ -49,13 +32,20 @@ $('#form-mensaje').on('click', 'button', function(e) {
         data: form.serialize(),
         type: 'POST',
         success: function(datos) {
-            peticionConversacion('$url', datos.receptor_id);
+            peticionConversacion('$urlConver', '$urlNuevos', datos.receptor_id);
             var btn = $('.cargaForm').find('button');
             btn.prop('disabled', false);
             btn.find('svg').remove();
         }
     });
 })
+JS;
+$this->registerJs($js);
+
+
+$this->registerJsFile('@web/js/chat.js', ['position' => View::POS_HEAD]);
+$js = <<<JS
+
 JS;
 $this->registerJs($js, View::POS_READY);
 ?>
@@ -65,17 +55,23 @@ $this->registerJs($js, View::POS_READY);
         <div class="col-md-3">
             <h4>Conversaciones <?= Html::a(Utiles::FA('plus-circle'), [
                 'mensajes/nuevo'
-            ], ['class' => 'btn btn-success btn-xs']) ?></h4>
+            ], ['class' => 'btn btn-xs btn-tradegame']) ?></h4>
             <?= $this->render('conversaciones', [
                 'conversaciones' => $conversaciones
                 ]) ?>
             </div>
             <div class="col-md-9">
                 <h4>Mensajes</h4>
-                <div class="mensajes">
+                <div class="conversacion">
+                    <div class="panel panel-default scrollable">
+                        <div class="panel-body mensajes">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="msg-hidden">
 
                 </div>
-
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <?php $form = ActiveForm::begin([
@@ -87,14 +83,15 @@ $this->registerJs($js, View::POS_READY);
                         <div class="col-md-10">
                             <?= $form->field($model, 'receptor_id')->hiddenInput(['value' => ''])->label(false) ?>
                             <?= $form->field($model, 'contenido')->textarea([
+                                'class' => 'form-control noresize',
                                 'maxlength' => true,
-                                'placeholder' => 'Mensaje'
+                                'placeholder' => 'Mensaje',
                             ])
                             ->label(false) ?>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <?= Html::submitButton('Enviar ', ['class' => 'btn btn-tradegame']) ?>
+                                <?= Html::submitButton('Enviar ', ['class' => 'btn btn-tradegame btn-block']) ?>
                             </div>
                         </div>
                         <?php ActiveForm::end(); ?>
