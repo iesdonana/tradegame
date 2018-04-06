@@ -31,6 +31,8 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      */
     const ESCENARIO_CREATE = 'Registrar';
 
+    const ESCENARIO_RECUPERACION = 'Recuperar';
+
     /**
      * Variable en la que se guarda la repetición de la contraseña
      * a la hora de registrar a un usario.
@@ -60,7 +62,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             [['usuario', 'email'], 'required'],
-            [['password', 'repeatPassword'], 'required', 'on' => self::ESCENARIO_CREATE],
+            [['password', 'repeatPassword'], 'required', 'on' => [self::ESCENARIO_CREATE, self::ESCENARIO_RECUPERACION]],
             [['oldPassword'], 'required', 'when' => function ($model) {
                 return Yii::$app->request->get('seccion') === 'password';
             }],
@@ -74,7 +76,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 'compare',
                 'compareAttribute' => 'password',
                 'skipOnEmpty' => false,
-                'on' => [self::ESCENARIO_UPDATE, self::ESCENARIO_CREATE],
+                'on' => [self::ESCENARIO_UPDATE, self::ESCENARIO_CREATE, self::ESCENARIO_RECUPERACION],
                 'message' => 'Las contraseñas deben coincidir.',
             ],
             [['oldPassword'], function ($attribute, $params, $validator) {
@@ -252,7 +254,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                     $this->token_val = $val;
                 }
             } else {
-                if ($this->scenario === self::ESCENARIO_UPDATE) {
+                if ($this->scenario === self::ESCENARIO_UPDATE || $this->scenario === self::ESCENARIO_RECUPERACION) {
                     if ($this->password === '') {
                         $this->password = $this->getOldAttribute('password');
                     } else {

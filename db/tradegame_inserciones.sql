@@ -11,7 +11,7 @@ INSERT INTO usuarios_id (id) VALUES (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT);
 
 INSERT INTO usuarios (id, usuario, email, password, auth_key, rol_id)
     VALUES (1, 'admin', 'admin@admin.com', crypt('admin123', gen_salt('bf', 13)), 'GnT4M2ZjLDGxNrGe-2THbAjqFLwyJ1fa', 1),
-        (2, 'celu', 'celu@celu.com', crypt('celu123', gen_salt('bf', 13)), 'qmjxYKMqeOqrIfDwpt0Badk4VvPfts-n', 2),
+        (2, 'celu', 'joseluis.narvaez@iesdonana.org', crypt('celu123', gen_salt('bf', 13)), 'qmjxYKMqeOqrIfDwpt0Badk4VvPfts-n', 2),
         (3, 'ivan', 'ivan@ivan.com', crypt('ivan123', gen_salt('bf', 13)), 'aIL6v0fpj42nuBmouXekziMa1yOCLpa4', 2),
         (4, 'pepe', 'pepe@pepe.com', crypt('pepe123', gen_salt('bf', 13)), 'nykqGk2mEA6XjmNOlR2tiinDPQinG7A8', 2);
 
