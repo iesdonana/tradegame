@@ -22,16 +22,15 @@ function peticionConversacion(urlConver, urlNuevos, receptor_id, intervalo = fal
 
                         var cargando = $('<div></div>');
                         cargando.addClass('row');
-                        cargando.append($('<h3 class="text-center">Cargando mensajes...</h3>'))
                         var padre = $('<div></div>');
                         padre.addClass('loading');
                         padre.append(cargando);
                         padre.append(row);
 
-                        $('.mensajes').parent().prepend(padre);
+                        $('.mensajes').append(padre);
                     },
                     success: function (content) {
-                        $('.mensajes').parent().find('.loading').remove();
+                        $('.mensajes').find('.loading').remove();
                         $('.mensajes').html(content);
 
                         if (!intervalo) {

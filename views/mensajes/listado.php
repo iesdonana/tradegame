@@ -62,8 +62,12 @@ $this->registerJs($js, View::POS_READY);
             </div>
             <div class="col-md-9">
                 <h4>Mensajes</h4>
-                <div class="mensajes">
+                <div class="conversacion">
+                    <div class="panel panel-default scrollable">
+                        <div class="panel-body mensajes">
 
+                        </div>
+                    </div>
                 </div>
                 <div class="msg-hidden">
 
