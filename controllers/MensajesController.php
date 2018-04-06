@@ -189,6 +189,28 @@ class MensajesController extends Controller
         ]);
     }
 
+    public function actionMensajesNuevos($usuario)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        if (($u = Usuarios::findOne(['usuario' => $usuario])) === null) {
+            throw new NotFoundHttpException('No se ha encontrado el usuario');
+        }
+
+        $me = Yii::$app->user->id;
+        return Mensajes::find()
+            ->select('id')
+            ->where(['and',
+                ['emisor_id' => $u->id],
+                ['receptor_id' => $me],
+            ])
+            ->orWhere([
+                'and',
+                ['emisor_id' => $me],
+                ['receptor_id' => $u->id],
+            ])->orderBy('id')
+            ->column();
+    }
+
     /**
      * Updates an existing Mensajes model.
      * If update is successful, the browser will be redirected to the 'view' page.
