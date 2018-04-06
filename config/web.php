@@ -64,7 +64,7 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => false,
+            'useFileTransport' => true,
             // comment the following array to send mail using php's mail function:
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
@@ -151,7 +151,7 @@ if (YII_ENV_DEV) {
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
-    $config['components']['mailer']['useFileTransport'] = true;
+    $config['components']['mailer']['useFileTransport'] = false;
 }
 
 return $config;

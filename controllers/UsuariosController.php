@@ -6,6 +6,8 @@ use app\models\Usuarios;
 use app\models\UsuariosId;
 use HttpRequestException;
 use Yii;
+use app\models\EmailResetForm;
+
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\Html;
@@ -103,6 +105,65 @@ class UsuariosController extends Controller
 
         Yii::$app->session->setFlash('success', 'Has validado la cuenta correctamente.');
         $this->redirect(['site/login']);
+    }
+
+    /**
+     * Manda un correo al email del usuario que se ha solicitado para recuperar
+     * la contraseña
+     * @return mixed
+     */
+    public function actionRequestRecupera()
+    {
+        $email = Yii::$app->request->post('email');
+        $emailResetForm = new EmailResetForm;
+        if ($email !== null) {
+            $emailResetForm->email = $email;
+
+            if ($emailResetForm->validate()) {
+                do {
+                    $token = Yii::$app->security->generateRandomString();
+                } while (Usuarios::findOne(['token_pass' => $token]) !== null);
+                $user = Usuarios::findOne(['email' => $email]);
+                $user->token_pass = $token;
+                if ($user->save()) {
+                    $emailResetForm->enviarCorreo($user);
+                    Yii::$app->session->setFlash('success', 'Se te ha enviado un' .
+                    ' correo electrónico con las instrucciones para recuperar la contraseña');
+                    return $this->goHome();
+                }
+            }
+        }
+
+        return $this->render('email_recupera', [
+            'model' => $emailResetForm
+        ]);
+    }
+
+    /**
+     * Renderiza un formulario con los campos para introducir la nueva contraseña, y
+     * cambia la contraseña del usuario.
+     * @param  string $token_pass Token de password del usuario
+     * @return mixed
+     */
+    public function actionRecuperar($token_pass)
+    {
+        if (($model = Usuarios::findOne(['token_pass' => $token_pass])) === null) {
+            return $this->goHome();
+        }
+
+        $model->scenario = Usuarios::ESCENARIO_RECUPERACION;
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->token_pass = null;
+            $model->save(false);
+            Yii::$app->session->setFlash('success', 'Has cambiado tu contraseña ' .
+                'correctamente. Ahora ya puedes usar tu nueva contraseña');
+            $this->redirect(['site/login']);
+        }
+        $model->password = '';
+
+        return $this->render('recupera', [
+            'model' => $model
+        ]);
     }
 
     public function actionPerfil($usuario)

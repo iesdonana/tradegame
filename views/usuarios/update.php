@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = [
     'url' => ['usuarios/perfil', 'usuario' => Yii::$app->user->identity->usuario]
 ];
 $this->params['breadcrumbs'][] = $this->title;
-$js = <<<EOT
+$js = <<<JS
 $('.nav-pills li').removeClass('active');
 var array = window.location.pathname.split('/');
 if (array.length > 0) {
@@ -22,7 +22,7 @@ if (array.length > 0) {
 }
 
 $('.panel-title').text($('.nav-pills .active > a').text());
-EOT;
+JS;
 $this->registerJs($js);
 ?>
 

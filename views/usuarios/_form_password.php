@@ -1,5 +1,7 @@
 <?php
 
+use app\models\Usuarios;
+
 use app\helpers\Utiles;
 
 use yii\helpers\Html;
@@ -14,10 +16,12 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(['options' => [
         'class' => 'cargaForm'
     ]]); ?>
-    <?= $form->field($model, 'oldPassword', [
-        'template' => Utiles::inputTemplate('key', Utiles::FONT_AWESOME),
-        'enableAjaxValidation' => true
-        ])->passwordInput(['maxlength' => true, 'placeholder' => 'Contraseña actual']) ?>
+    <?php if ($model->scenario === Usuarios::ESCENARIO_UPDATE): ?>
+        <?= $form->field($model, 'oldPassword', [
+            'template' => Utiles::inputTemplate('key', Utiles::FONT_AWESOME),
+            'enableAjaxValidation' => true
+            ])->passwordInput(['maxlength' => true, 'placeholder' => 'Contraseña actual']) ?>
+    <?php endif ?>
 
     <?= $form->field($model, 'password', ['template' => Utiles::inputTemplate('key', Utiles::FONT_AWESOME)])
         ->passwordInput(['maxlength' => true, 'placeholder' => 'Nueva contraseña']) ?>

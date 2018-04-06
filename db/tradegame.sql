@@ -27,6 +27,7 @@ CREATE TABLE usuarios
   , password     varchar(255) NOT NULL
   , token_val    varchar(255)
   , auth_key     varchar(255)
+  , token_pass   varchar(255)
   , rol_id       bigint       REFERENCES roles (id)
   , created_at   timestamp(0) NOT NULL DEFAULT localtimestamp
   , updated_at   timestamp(0)

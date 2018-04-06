@@ -36,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'password', [
                         'template' => Utiles::inputTemplate('key', Utiles::FONT_AWESOME)
                         ])->passwordInput(['placeholder' => 'Contraseña']) ?>
+                    <?= Html::a('¿Has olvidado tu contraseña?', ['usuarios/request-recupera']) ?>
 
                     <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
