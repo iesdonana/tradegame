@@ -586,6 +586,24 @@
 | **Entrega**     | v1             |
 | **Incidencia**  | [76](https://github.com/jlnarvaez/tradegame/issues/76) |
 
+| **R66**     | **Banear usuario**           |
+| --------------: | :------------------- |
+| **Descripción** | El administrador podrá banear a un usuario por un número de días indicado, si lo cree oportuno.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+| **Incidencia**  | [97](https://github.com/jlnarvaez/tradegame/issues/97) |
+
+| **R67**     | **Filtro avanzado de videojuegos**           |
+| --------------: | :------------------- |
+| **Descripción** | El usuario podrá buscar por los distintos datos del videojuego además de por su nombre             |
+| **Prioridad**   | Opcional           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v3             |
+| **Incidencia**  | [98](https://github.com/jlnarvaez/tradegame/issues/98) |
+
 
 ## Cuadro resumen
 
@@ -656,3 +674,5 @@
 | (**R63**) Desplegar en un Host | Mínimo | Técnico | Media | v3 | [63](https://github.com/jlnarvaez/tradegame/issues/63) |
 | (**R64**) Desplegar en un servidor local | Mínimo | Técnico | Media | v1 | [64](https://github.com/jlnarvaez/tradegame/issues/64) |
 | (**R65**) Listado de videojuegos publicados por un usuario | Importante | Funcional | Media | v1 | [76](https://github.com/jlnarvaez/tradegame/issues/76) |
+| (**R66**) Banear usuario | Importante | Funcional | Media | v2 | [97](https://github.com/jlnarvaez/tradegame/issues/97) |
+| (**R67**) Filtro avanzado de videojuegos | Opcional | Funcional | Media | v3 | [98](https://github.com/jlnarvaez/tradegame/issues/98) |
