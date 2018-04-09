@@ -77,6 +77,16 @@ class LoginForm extends Model
                 );
                 return false;
             }
+
+            if ($usuario->ban > date('Y-m-d')) {
+                Yii::$app->session->setFlash('error', 'Parece que has sido baneado. Vuelve a intentarlo ' .
+                    Yii::$app->formatter->asRelativeTime($usuario->ban));
+                return false;
+            } elseif ($usuario->ban !== null) {
+                $usuario->ban = null;
+                $usuario->save();
+            }
+
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
         return false;

@@ -64,7 +64,7 @@ class Reportes extends \yii\db\ActiveRecord
      */
     public function getReporta()
     {
-        return $this->hasOne(Usuarios::className(), ['id' => 'reporta_id'])->inverseOf('reportes');
+        return $this->hasOne(Usuarios::className(), ['id' => 'reporta_id'])->inverseOf('reportesReporta');
     }
 
     /**
@@ -72,13 +72,13 @@ class Reportes extends \yii\db\ActiveRecord
      */
     public function getReportado()
     {
-        return $this->hasOne(Usuarios::className(), ['id' => 'reportado_id'])->inverseOf('reportes0');
+        return $this->hasOne(Usuarios::className(), ['id' => 'reportado_id'])->inverseOf('reportesReportado');
     }
 
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-            $this->reporta_id = Yii::$app->user->id;
+            // $this->reporta_id = Yii::$app->user->id;
             return true;
         }
         return false;

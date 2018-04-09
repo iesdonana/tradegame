@@ -8,6 +8,7 @@ use app\models\Usuarios;
 use app\models\ReportesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
 /**
@@ -21,6 +22,12 @@ class ReportesController extends Controller
     public function behaviors()
     {
         return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
             'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['create'],
@@ -99,15 +106,18 @@ class ReportesController extends Controller
     /**
      * Deletes an existing Reportes model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete()
     {
-        $this->findModel($id)->delete();
+        if (($id = Yii::$app->request->post('id')) === null) {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
 
-        return $this->redirect(['index']);
+        $this->findModel($id)->delete();
+        Yii::$app->session->setFlash('success', 'Has borrado correctamente el reporte');
+        return $this->redirect(['reportes/index']);
     }
 
     /**
