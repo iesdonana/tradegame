@@ -223,6 +223,22 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->hasOne(Roles::className(), ['id' => 'rol_id'])->inverseOf('usuarios');
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getReportesReporta()
+    {
+        return $this->hasMany(Reportes::className(), ['reporta_id' => 'id'])->inverseOf('reporta');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getReportesReportado()
+    {
+        return $this->hasMany(Reportes::className(), ['reportado_id' => 'id'])->inverseOf('reportado');
+    }
+
     public function getNoLeidos()
     {
         return Mensajes::find()

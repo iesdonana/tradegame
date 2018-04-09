@@ -28,6 +28,12 @@ INSERT INTO mensajes (emisor_id, receptor_id, contenido, leido, created_at)
             (3, 2, 'Hola otra vez', true, localtimestamp - 'P1M'::interval),
             (4, 2, 'Hola otra vez', true, localtimestamp - 'P2M'::interval);
 
+INSERT INTO reportes (reporta_id, reportado_id, mensaje)
+    VALUES (1, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' ||
+    'Nam vel lectus malesuada neque interdum ultricies vitae sit amet elit. Etiam.'),
+    (2, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' ||
+    'Nam vel lectus malesuada neque interdum ultricies vitae sit amet elit. Etiam.');
+
 INSERT INTO generos_videojuegos (nombre)
     VALUES ('Acción'), ('Terror'), ('Shooter'), ('Deportes'), ('Aventuras')
          , ('Conducción'), ('Rol'), ('Party'), ('Plataforma');

@@ -29,6 +29,7 @@ CREATE TABLE usuarios
   , auth_key     varchar(255)
   , token_pass   varchar(255)
   , rol_id       bigint       REFERENCES roles (id)
+  , ban          date 
   , created_at   timestamp(0) NOT NULL DEFAULT localtimestamp
   , updated_at   timestamp(0)
 );

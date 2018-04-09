@@ -107,23 +107,34 @@ $this->title = 'TradeGame';
         $pendOf = Utiles::badgeNotificacionesPendientes(OfertasUsuarios::className());
         $pendVal = Utiles::badgeNotificacionesPendientes(Valoraciones::className());
         $pendMsg = Utiles::badgeNotificacionesPendientes(Mensajes::className());
-        $items[] = [
-            'label' => Utiles::FA('bell', ['class' => 'far']) . ' ' . Utiles::badgeNotificacionesTotales(),
-            'items' => [
-                [
-                    'label' => Utiles::FA('handshake', ['class' => 'far']) . " Ofertas $pendOf",
-                    'url' => ['/ofertas-usuarios/index']
-                ],
-                [
-                    'label' => Utiles::FA('inbox') . " Mensajes $pendMsg",
-                    'url' => ['/mensajes/listado']
-                ],
-                [
-                    'label' => Utiles::FA('star') . " Valoraciones $pendVal",
-                    'url' => ['/valoraciones/index']
-                ]
+
+        $subItems = [
+            [
+                'label' => Utiles::FA('handshake', ['class' => 'far']) . " Ofertas $pendOf",
+                'url' => ['/ofertas-usuarios/index']
+            ],
+            [
+                'label' => Utiles::FA('inbox') . " Mensajes $pendMsg",
+                'url' => ['/mensajes/listado']
+            ],
+            [
+                'label' => Utiles::FA('star') . " Valoraciones $pendVal",
+                'url' => ['/valoraciones/index']
             ]
         ];
+
+        if (Yii::$app->user->identity->esAdmin()) {
+            $subItems[] = [
+                'label' => Utiles::FA('flag') . " Reportes",
+                'url' => ['/reportes/index']
+            ];
+        }
+
+        $items[] = [
+            'label' => Utiles::FA('bell', ['class' => 'far']) . ' ' . Utiles::badgeNotificacionesTotales(),
+            'items' => $subItems
+        ];
+
         $form = Html::beginForm(['/site/logout'], 'post')
         . Html::submitButton(
             Utiles::FA('sign-out-alt') . ' Cerrar sesión',

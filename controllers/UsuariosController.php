@@ -7,6 +7,7 @@ use app\models\UsuariosId;
 use HttpRequestException;
 use Yii;
 use app\models\EmailResetForm;
+use app\models\BanForm;
 
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -29,11 +30,12 @@ class UsuariosController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'remove' => ['POST'],
+                    'banear' => ['POST']
                 ],
             ],
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['registrar', 'modificar'],
+                'only' => ['registrar', 'modificar', 'banear'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -44,6 +46,17 @@ class UsuariosController extends Controller
                         'allow' => true,
                         'actions' => ['modificar'],
                         'roles' => ['@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['banear'],
+                        'matchCallback' => function ($rule, $action) {
+                            if (!Yii::$app->user->isGuest && Yii::$app->user->identity->esAdmin()) {
+                                return true;
+                            }
+
+                            return false;
+                        },
                     ],
                 ],
             ],
@@ -166,6 +179,11 @@ class UsuariosController extends Controller
         ]);
     }
 
+    /**
+     * Renderiza el perfil del usuario pasado por parámetro
+     * @param  string $usuario Nombre de usuario
+     * @return mixed
+     */
     public function actionPerfil($usuario)
     {
         if (($model = Usuarios::findOne(['usuario' => $usuario])) === null) {
@@ -178,6 +196,31 @@ class UsuariosController extends Controller
         ]);
     }
 
+    /**
+     * Banea un usuario
+     * @return mixed
+     */
+    public function actionBanear()
+    {
+        $banForm = new BanForm;
+
+        if ($banForm->load(Yii::$app->request->post()) && $banForm->validate()) {
+            if (($usuario = Usuarios::findOne(['usuario' => $banForm->usuario])) === null) {
+                throw new NotFoundHttpException('El usuario no existe.');
+            }
+            $usuario->ban = $banForm->fecha;
+            if ($usuario->save()) {
+                Yii::$app->session->setFlash('success', 'Has baneado al usuario correctamente.');
+            }
+        }
+
+        return $this->redirect(['reportes/index']);
+    }
+
+    /**
+     * Borra un usuario de la base de datos
+     * @return mixed
+     */
     public function actionRemove()
     {
         $user = Yii::$app->user->identity;
@@ -203,7 +246,6 @@ class UsuariosController extends Controller
 
         $model = Yii::$app->user->identity;
         $model->scenario = Usuarios::ESCENARIO_UPDATE;
-
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
