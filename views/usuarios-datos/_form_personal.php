@@ -104,6 +104,7 @@ $this->registerCssFile('@web/css/badge.css');
                 'layout' => '{picker}{input}{remove}',
                 'pluginOptions' => [
                     'autoclose' => true,
+                    'endDate' => '-12y'
                 ]
             ]
             ])->label(false) ?>

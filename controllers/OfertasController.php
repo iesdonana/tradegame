@@ -8,12 +8,11 @@ use app\models\Valoraciones;
 use app\models\VideojuegosUsuarios;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
-
-use yii\helpers\Url;
-use yii\helpers\Html;
 
 /**
  * OfertasController implements the CRUD actions for Ofertas model.
@@ -52,7 +51,23 @@ class OfertasController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['contraoferta'],
-                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            if (Yii::$app->user->isGuest) {
+                                return false;
+                            }
+
+                            $oferta = Yii::$app->request->get('oferta');
+                            if (($oferta = Ofertas::findOne($oferta)) === null) {
+                                return false;
+                            }
+
+                            if (($oferta->videojuegoPublicado->usuario_id !== Yii::$app->user->identity->id) ||
+                                $oferta->contraoferta_de !== null) {
+                                return false;
+                            }
+
+                            return true;
+                        },
                     ],
                 ],
             ],
@@ -187,7 +202,7 @@ class OfertasController extends Controller
                 $valoracion->save();
                 $valoracion = new Valoraciones([
                     'usuario_valora_id' => $usuarioValorado,
-                    'usuario_valorado_id' => $usuarioValora
+                    'usuario_valorado_id' => $usuarioValora,
                 ]);
                 $valoracion->save();
                 Yii::$app->session->setFlash('info', 'Recuerda valorar ' .
@@ -201,7 +216,7 @@ class OfertasController extends Controller
 
     /**
      * Envia un email informativo al usuario pasado por parámetro, para informarle
-     * de una nueva oferta/contraoferta
+     * de una nueva oferta/contraoferta.
      * @param  Usuarios  $usuario      Modelo de Usuarios al cuál le vamos a enviar el correo
      * @param  string    $videojuego   Nombre del videojuego sobre el cuál se hace la oferta
      * @param  bool      $contraoferta True si es una contraoferta, false si no lo es
@@ -221,7 +236,7 @@ class OfertasController extends Controller
 
         return Yii::$app->mailer->compose('custom', [
                 'usuario' => $usuario->usuario,
-                'content' => $content
+                'content' => $content,
             ])
             ->setFrom(Yii::$app->params['adminEmail'])
             ->setTo($usuario->email)
