@@ -21,9 +21,15 @@ use app\assets\AppAsset;
 
 use kartik\typeahead\Typeahead;
 
+$registroGoogle = Url::to(['usuarios/registrar-google']);
+$loginGoogle = Url::to(['site/login-google']);
 $baseUrl = Url::to(['videojuegos/buscador-videojuegos']);
+$basePath = Url::to(['site/index']);
 $js = <<<JS
 var baseUrl = "$baseUrl";
+var registroGoogle = "$registroGoogle";
+var loginGoogle = "$loginGoogle";
+var basePath = "$basePath";
 JS;
 $this->registerJs($js, View::POS_HEAD);
 AppAsset::register($this);
@@ -33,6 +39,7 @@ $this->title = 'TradeGame';
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
+    <meta name="google-signin-client_id" content="569471360227-qcu0rulbhef1fad6tv00cg9gj1mdihks.apps.googleusercontent.com">
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
