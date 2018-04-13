@@ -70,7 +70,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             [['email'], 'string', 'max' => 100],
             [['email'], 'email'],
             [['password'], 'string', 'max' => 255],
-            [['usuario'], 'unique'],
+            [['usuario', 'email'], 'unique'],
             [
                 'repeatPassword',
                 'compare',

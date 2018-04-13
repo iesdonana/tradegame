@@ -23,13 +23,13 @@ CREATE TABLE usuarios
 (
     id   bigint       PRIMARY KEY REFERENCES usuarios_id (id)
   , usuario      varchar(20)  NOT NULL UNIQUE
-  , email        varchar(100) NOT NULL
-  , password     varchar(255) NOT NULL
+  , email        varchar(100) NOT NULL UNIQUE
+  , password     varchar(255)
   , token_val    varchar(255)
   , auth_key     varchar(255)
   , token_pass   varchar(255)
   , rol_id       bigint       REFERENCES roles (id)
-  , ban          date 
+  , ban          date
   , created_at   timestamp(0) NOT NULL DEFAULT localtimestamp
   , updated_at   timestamp(0)
 );
