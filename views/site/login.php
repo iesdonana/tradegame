@@ -4,11 +4,18 @@
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\LoginForm */
 
+use app\assets\LoginAsset;
+
 use app\helpers\Utiles;
+
+use yii\web\View;
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
+LoginAsset::register($this);
+
+$this->registerJsFile('@web/js/google_login.js', ['position' => View::POS_HEAD]);
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -21,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
             <div class="panel-body">
-                <?php $form = ActiveForm::begin(); ?>
+                <?php $form = ActiveForm::begin(['action' => '/site/login']); ?>
 
                     <?= $form->field($model, 'username', [
                             'template' => Utiles::inputTemplate('user',
@@ -44,13 +51,14 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?= Html::submitButton('Login', ['class' => 'btn btn-tradegame btn-block', 'name' => 'login-button']) ?>
                     </div>
 
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
     </div>
     <div class="col-md-6 site-register">
         <?= $this->render('/usuarios/create', [
-            'model' => $usuario
+            'model' => $modelRegistro
         ]) ?>
     </div>
 </div>

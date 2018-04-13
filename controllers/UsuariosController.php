@@ -9,6 +9,8 @@ use app\models\Usuarios;
 use app\models\UsuariosId;
 use HttpRequestException;
 use Yii;
+use app\helpers\Utiles;
+
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\Html;
@@ -103,6 +105,37 @@ class UsuariosController extends Controller
             'model' => $login,
             'modelRegistro' => $model,
         ]);
+    }
+
+    public function actionRegistrarGoogle()
+    {
+        $usuario = Yii::$app->request->post('usuario');
+        $email = Yii::$app->request->post('email');
+        $model = new Usuarios([
+            'email' => $email
+        ]);
+        $model->usuario = Utiles::generarUsername($email);
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        if ($model->validate()) {
+            $usuariosId = new UsuariosId();
+            $usuariosId->save();
+
+            $model->id = $usuariosId->id;
+            $model->save();
+
+            Yii::$app->session->setFlash('success', 'Te has registrado correctamente con Google.');
+            return true;
+        }
+
+        $errores = $model->errors;
+        $msg = 'No se ha podido registrar con Google.';
+        if (count($errores) > 0) {
+            $msg = str_replace('"', '', reset($errores));
+        }
+
+        Yii::$app->session->setFlash('error', $msg);
+        return false;
     }
 
     /**
@@ -253,11 +286,19 @@ class UsuariosController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
+        if ($model->password === null) {
+            $correo = $model->oldAttributes['email'];
+        } else {
+            $model->password = '';
+        }
 
-        $model->password = '';
-        if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->email = isset($correo) ? $correo : $model->email;
+            $model->save();
             Yii::$app->session->setFlash('success', 'Has actualizado tus datos correctamente');
-            $model->password = $model->repeatPassword = $model->oldPassword = '';
+            if ($model->password !== null) {
+                $model->password = $model->repeatPassword = $model->oldPassword = '';
+            }
         }
 
         return $this->render('update', [

@@ -40,7 +40,7 @@ class UsuariosDatosController extends Controller
      */
     public function actionModificar()
     {
-        $model = Yii::$app->user->identity->usuariosDatos;
+        $model =  Yii::$app->user->identity->usuariosDatos;
 
         if ($model->load(Yii::$app->request->post())) {
             $model->foto = UploadedFile::getInstance($model, 'foto');
@@ -53,7 +53,7 @@ class UsuariosDatosController extends Controller
         }
 
         return $this->render('/usuarios/update', [
-            'model' => $model,
+            'modelDatos' => $model,
             'seccion' => 'personal',
             'generos' => UsuariosGeneros::find()
                 ->select('sexo')

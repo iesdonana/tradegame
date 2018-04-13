@@ -24,6 +24,8 @@ if (array.length > 0) {
 $('.panel-title').text($('.nav-pills .active > a').text());
 JS;
 $this->registerJs($js);
+
+$model = isset($model) ? $model : $modelDatos->usuario;
 ?>
 
 <div class="row">
@@ -47,7 +49,7 @@ $this->registerJs($js);
                         ]) ?>
                 <?php else: ?>
                     <?= $this->render('/usuarios-datos/_form_personal', [
-                        'model' => $model,
+                        'model' => $modelDatos,
                         'generos' => $generos
                         ]) ?>
                 <?php endif ?>

@@ -30,8 +30,14 @@ use yii\widgets\ActiveForm;
         )->textInput(['maxlength' => true, 'placeholder' => 'Nombre de usuario'])
         ->label(false) ?>
 
+        <?php
+        $config = ['maxlength' => true, 'placeholder' => 'Correo electrónico'];
+        if ($model->password === null) {
+            $config['disabled'] = true;
+        }
+        ?>
     <?= $form->field($model, 'email', ['template' => Utiles::inputTemplate('envelope', Utiles::FONT_AWESOME)])
-        ->textInput(['maxlength' => true, 'placeholder' => 'Correo electrónico']) ?>
+            ->textInput($config) ?>
 
     <?php if ($model->scenario === Usuarios::ESCENARIO_CREATE): ?>
         <?= $form->field($model, 'password', ['template' => Utiles::inputTemplate('key', Utiles::FONT_AWESOME)])
@@ -45,6 +51,10 @@ use yii\widgets\ActiveForm;
             <?= Html::submitButton($model->scenario . ' ', ['class' => 'btn btn-tradegame btn-block']) ?>
         </div>
     </div>
+    <?php if ($model->scenario === Usuarios::ESCENARIO_CREATE): ?>
+        <div class="g-signin2" data-onsuccess="onRegisterIn"></div>
+    <?php endif ?>
+
 
     <?php ActiveForm::end(); ?>
 

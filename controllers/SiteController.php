@@ -76,6 +76,7 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
+        $model->scenario = LoginForm::ESCENARIO_DEFAULT;
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         }
@@ -87,6 +88,34 @@ class SiteController extends Controller
             'model' => $model,
             'modelRegistro' => $usuario,
         ]);
+    }
+
+    public function actionLoginGoogle()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $email = Yii::$app->request->post('email');
+        if ($email === null || ($usuario = Usuarios::find()
+                ->where(['email' => $email])
+                ->andWhere(['is', 'password', null])->one()) === null) {
+            Yii::$app->session->setFlash('error', 'No se ha encontrado ningún usuario registrado con Google con ese email');
+            return false;
+        }
+
+        $model = new LoginForm();
+        $model->username = $usuario->usuario;
+        $model->rememberMe = false;
+        if ($model->login()) {
+            return true;
+        }
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $usuario = new Usuarios();
+        $usuario->scenario = Usuarios::ESCENARIO_CREATE;
+        $model->password = '';
+        return false;
     }
 
     /**

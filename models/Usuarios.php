@@ -32,6 +32,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     const ESCENARIO_CREATE = 'Registrar';
 
     const ESCENARIO_RECUPERACION = 'Recuperar';
+    const ESCENARIO_GOOGLE = 'Google';
 
     /**
      * Variable en la que se guarda la repetición de la contraseña
@@ -261,7 +262,10 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     {
         if (parent::beforeSave($insert)) {
             if ($insert) {
-                $this->auth_key = Yii::$app->security->generateRandomString();
+                $this->rol_id = 2;
+                if ($this->password !== null) {
+                    $this->auth_key = Yii::$app->security->generateRandomString();
+                }
                 if ($this->scenario === self::ESCENARIO_CREATE) {
                     $this->password = Yii::$app->security->generatePasswordHash($this->password);
                     do {
@@ -271,7 +275,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 }
             } else {
                 if ($this->scenario === self::ESCENARIO_UPDATE || $this->scenario === self::ESCENARIO_RECUPERACION) {
-                    if ($this->password === '') {
+                    if ($this->password === '' || $this->password === null) {
                         $this->password = $this->getOldAttribute('password');
                     } else {
                         $this->password = Yii::$app->security->generatePasswordHash($this->password);
