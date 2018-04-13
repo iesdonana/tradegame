@@ -2,13 +2,13 @@
 
 namespace app\controllers;
 
+use app\models\BanForm;
+use app\models\EmailResetForm;
+use app\models\LoginForm;
 use app\models\Usuarios;
 use app\models\UsuariosId;
 use HttpRequestException;
 use Yii;
-use app\models\EmailResetForm;
-use app\models\BanForm;
-
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\Html;
@@ -30,7 +30,7 @@ class UsuariosController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'remove' => ['POST'],
-                    'banear' => ['POST']
+                    'banear' => ['POST'],
                 ],
             ],
             'access' => [
@@ -97,8 +97,11 @@ class UsuariosController extends Controller
             throw new HttpRequestException('No se ha podido completar la solicitud.');
         }
 
-        return $this->render('create', [
-            'model' => $model,
+        $login = new LoginForm();
+        $login->load(Yii::$app->request->post());
+        return $this->render('/site/login', [
+            'model' => $login,
+            'modelRegistro' => $model,
         ]);
     }
 
@@ -122,13 +125,13 @@ class UsuariosController extends Controller
 
     /**
      * Manda un correo al email del usuario que se ha solicitado para recuperar
-     * la contraseña
+     * la contraseña.
      * @return mixed
      */
     public function actionRequestRecupera()
     {
         $email = Yii::$app->request->post('email');
-        $emailResetForm = new EmailResetForm;
+        $emailResetForm = new EmailResetForm();
         if ($email !== null) {
             $emailResetForm->email = $email;
 
@@ -148,7 +151,7 @@ class UsuariosController extends Controller
         }
 
         return $this->render('email_recupera', [
-            'model' => $emailResetForm
+            'model' => $emailResetForm,
         ]);
     }
 
@@ -175,12 +178,12 @@ class UsuariosController extends Controller
         $model->password = '';
 
         return $this->render('recupera', [
-            'model' => $model
+            'model' => $model,
         ]);
     }
 
     /**
-     * Renderiza el perfil del usuario pasado por parámetro
+     * Renderiza el perfil del usuario pasado por parámetro.
      * @param  string $usuario Nombre de usuario
      * @return mixed
      */
@@ -197,12 +200,12 @@ class UsuariosController extends Controller
     }
 
     /**
-     * Banea un usuario
+     * Banea un usuario.
      * @return mixed
      */
     public function actionBanear()
     {
-        $banForm = new BanForm;
+        $banForm = new BanForm();
 
         if ($banForm->load(Yii::$app->request->post()) && $banForm->validate()) {
             if (($usuario = Usuarios::findOne(['usuario' => $banForm->usuario])) === null) {
@@ -218,7 +221,7 @@ class UsuariosController extends Controller
     }
 
     /**
-     * Borra un usuario de la base de datos
+     * Borra un usuario de la base de datos.
      * @return mixed
      */
     public function actionRemove()
