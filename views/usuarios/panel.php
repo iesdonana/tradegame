@@ -15,11 +15,13 @@ use yii\helpers\Html;
             'seccion' => 'personal'
         ], ['data-seccion' => 'personal']) ?>
     </li>
-    <li>
-        <?= Html::a('Cambiar contraseña', [
-            'usuarios/modificar',
-            'seccion' => 'password'
-        ], ['data-seccion' => 'password']) ?>
-    </li>
+    <?php if ($model->password !== null): ?>
+        <li>
+            <?= Html::a('Cambiar contraseña', [
+                'usuarios/modificar',
+                'seccion' => 'password'
+            ], ['data-seccion' => 'password']) ?>
+        </li>
+    <?php endif; ?>
 
 </ul>

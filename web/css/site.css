@@ -304,3 +304,8 @@ span[data-plat$='2'] {
 .noresize {
     resize: none;
 }
+
+.google-login img {
+    width: 20px;
+    margin-right: 1em;
+}

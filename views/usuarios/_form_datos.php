@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
     } else {
         $url = Url::to(['usuarios/modificar/datos']);
     } ?>
-    <?php $form = ActiveForm::begin(['action' => $url, 'options' => [
+    <?php $form = ActiveForm::begin(['id'=> 'form-register', 'action' => $url, 'options' => [
         'class' => 'cargaForm'
     ]]); ?>
 
@@ -30,8 +30,14 @@ use yii\widgets\ActiveForm;
         )->textInput(['maxlength' => true, 'placeholder' => 'Nombre de usuario'])
         ->label(false) ?>
 
+        <?php
+        $config = ['maxlength' => true, 'placeholder' => 'Correo electrónico'];
+        if ($model->password === null) {
+            $config['disabled'] = true;
+        }
+        ?>
     <?= $form->field($model, 'email', ['template' => Utiles::inputTemplate('envelope', Utiles::FONT_AWESOME)])
-        ->textInput(['maxlength' => true, 'placeholder' => 'Correo electrónico']) ?>
+            ->textInput($config) ?>
 
     <?php if ($model->scenario === Usuarios::ESCENARIO_CREATE): ?>
         <?= $form->field($model, 'password', ['template' => Utiles::inputTemplate('key', Utiles::FONT_AWESOME)])
@@ -44,7 +50,14 @@ use yii\widgets\ActiveForm;
         <div class="form-group">
             <?= Html::submitButton($model->scenario . ' ', ['class' => 'btn btn-tradegame btn-block']) ?>
         </div>
+        <?php if ($model->scenario === Usuarios::ESCENARIO_CREATE): ?>
+            <div class="form-group google-login">
+                <?= Html::a(Html::img('@web/images/google.png') . 'Registrarse con Google', null, ['class' => 'btn btn-default btn-block']) ?>
+            </div>
+            <div class="g-signin2 google-btn hidden" data-onsuccess="onRegisterIn"></div>
+        <?php endif ?>
     </div>
+
 
     <?php ActiveForm::end(); ?>
 

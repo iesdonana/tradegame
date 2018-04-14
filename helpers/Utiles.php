@@ -3,6 +3,7 @@
 namespace app\helpers;
 
 use app\models\Mensajes;
+use app\models\Usuarios;
 use app\models\OfertasUsuarios;
 use app\models\Valoraciones;
 use yii\helpers\Html;
@@ -216,5 +217,18 @@ class Utiles
             'class' => 'label label-primary caracteresRestantes',
             'title' => 'Carácteres restantes'
         ]);
+    }
+
+    public static function generarUsername($email)
+    {
+        $user = explode('@', $email)[0];
+        $cont = 0;
+        do {
+            if (($exist = (Usuarios::findOne(['usuario' => $user]) !== null))) {
+                $user = $user . ++$cont;
+            }
+        } while ($exist);
+
+        return $user;
     }
 }
