@@ -109,33 +109,30 @@ class MensajesController extends Controller
     /**
      * Devuelve la vista de mensajes de una conversación con un usuario específico,
      * pasado por parámetro. Se buscara la conversación con el usuario logueado.
-     * @param  string $usuario Usuario del cuál queremos buscar la conversación
+     * @param  string $id Id del usuario sobre el que queremos buscar la conversación
      * @return mixed
      */
-    public function actionConversacion($usuario)
+    public function actionConversacion($id)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-        if (($u = Usuarios::findOne(['usuario' => $usuario])) === null) {
-            throw new NotFoundHttpException('No se ha encontrado el usuario');
-        }
 
         $me = Yii::$app->user->id;
         Yii::$app->db
             ->createCommand('UPDATE mensajes SET leido = true WHERE (emisor_id = :emisor AND receptor_id = :receptor)')
             ->bindValues([
-                ':emisor' => $u->id,
+                ':emisor' => $id,
                 ':receptor' => $me,
             ])->execute();
 
         $lista = Mensajes::find()
             ->where(['and',
-                ['emisor_id' => $u->id],
+                ['emisor_id' => $id],
                 ['receptor_id' => $me],
             ])
             ->orWhere([
                 'and',
                 ['emisor_id' => $me],
-                ['receptor_id' => $u->id],
+                ['receptor_id' => $id],
             ])->orderBy('created_at ASC')
             ->all();
 
@@ -146,8 +143,7 @@ class MensajesController extends Controller
     }
 
     /**
-     * Creates a new Mensajes model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Crea un nuevo mensaje
      * @return mixed
      */
     public function actionCreate()
@@ -189,24 +185,27 @@ class MensajesController extends Controller
         ]);
     }
 
-    public function actionMensajesNuevos($usuario)
+    /**
+     * Devuelve un array con los ID de los mensajes que se han interacambiado
+     * el usuario logueado y el usuario pasado por parámetro
+     * @param  [type] $id [description]
+     * @return [type]          [description]
+     */
+    public function actionMensajesNuevos($id)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-        if (($u = Usuarios::findOne(['usuario' => $usuario])) === null) {
-            throw new NotFoundHttpException('No se ha encontrado el usuario');
-        }
 
         $me = Yii::$app->user->id;
         return Mensajes::find()
             ->select('id')
             ->where(['and',
-                ['emisor_id' => $u->id],
+                ['emisor_id' => $id],
                 ['receptor_id' => $me],
             ])
             ->orWhere([
                 'and',
                 ['emisor_id' => $me],
-                ['receptor_id' => $u->id],
+                ['receptor_id' => $id],
             ])->orderBy('id')
             ->column();
     }

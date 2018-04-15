@@ -1,4 +1,6 @@
 <?php
+use app\models\Usuarios;
+
 use yii\helpers\Url;
 use yii\helpers\Html;
 
@@ -27,11 +29,25 @@ $this->registerJs($js);
 
 <ul class="nav nav-pills nav-stacked nav-email shadow mb-20 panel panel-default conversaciones">
     <?php foreach ($conversaciones as $conver): ?>
-        <?php $emisor = $conver->emisor ?>
-        <?php $usuario = ($emisor == null) ? $conver->receptor : $emisor ?>
+        <?php
+        $emisor = $conver->emisor;
+        $id = isset($conver->emisor_id) ? $conver->emisor_id : $conver->receptor_id;
+        $usuario = ($emisor == null) ? $conver->receptor : $emisor;
+        if ($usuario === null) {
+            $usuario = new Usuarios([
+                'id' => $id,
+                'usuario' => 'Desconocido'
+            ]);
+        }
+        $img = '@web/uploads/avatares/default.png';
+        if (($datos = $usuario->usuariosDatos) !== null) {
+            $img = $datos->avatar;
+        }
+        ?>
+
         <li>
             <a href="" data-id="<?= $usuario->id ?>">
-                <?= Html::img($usuario->usuariosDatos->avatar, [
+                <?= Html::img($img, [
                     'class' => 'img-circle img-chat'
                     ]) ?>
                     <span class='usuario'>

@@ -4,13 +4,15 @@ function peticionConversacion(urlConver, urlNuevos, receptor_id, intervalo = fal
 {
     $.ajax({
         url: urlNuevos,
-        data: {usuario: $('.nav-pills li.active').find('a').find('.usuario').text().trim()},
+        data: {id: $('.nav-pills li.active').find('a').data('id')},
         success: function(data) {
+            console.log('old: ' + old);
+            console.log('new: ' + data);
             if (data.join(',') != old.join(',')) {
                 old = data;
                 $.ajax({
                     url: urlConver,
-                    data: {usuario: $('.nav-pills li.active').find('a').find('.usuario').text().trim()},
+                    data: {id: $('.nav-pills li.active').find('a').data('id')},
                     beforeSend: function () {
                         var row = $('<div></div>');
                         row.addClass('row');
@@ -30,6 +32,7 @@ function peticionConversacion(urlConver, urlNuevos, receptor_id, intervalo = fal
                         $('.mensajes').append(padre);
                     },
                     success: function (content) {
+                        console.log(content);
                         $('.mensajes').find('.loading').remove();
                         $('.mensajes').html(content);
 
