@@ -3,12 +3,17 @@
 namespace app\controllers;
 
 use app\models\BanForm;
+use app\models\Ofertas;
+use app\models\Reportes;
+use app\models\Valoraciones;
 use app\models\EmailResetForm;
 use app\models\LoginForm;
 use app\models\Usuarios;
 use app\models\UsuariosId;
 use HttpRequestException;
 use Yii;
+use app\models\VideojuegosUsuarios;
+
 use app\helpers\Utiles;
 
 use yii\filters\AccessControl;
@@ -254,13 +259,52 @@ class UsuariosController extends Controller
     }
 
     /**
-     * Borra un usuario de la base de datos.
+     * Borra un usuario, así como datos relacionados en la base de datos.
+     * Si se borra correctamente, nos mandará a la página de inicio de la aplicación.
      * @return mixed
      */
     public function actionRemove()
     {
         $user = Yii::$app->user->identity;
-        $user->delete();
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            if ($user->delete() !== false) {
+                // Borra todas las ofertas que están pendientes de ser aceptadas o rechazadas
+                $array = Ofertas::find()->joinWith('videojuegoOfrecido')
+                    ->where(['videojuegos_usuarios.usuario_id' => $user->id])
+                    ->andWhere(['is', 'aceptada', null])->all();
+                foreach ($array as $oferta) {
+                    $oferta->delete();
+                }
+                // Borra las valoraciones que están pendientes de realizarse, relacionadas con el usuario
+                Valoraciones::deleteAll(
+                    'usuario_valorado_id = ' . $user->id .
+                    ' or (usuario_valora_id = ' . $user->id . ' and num_estrellas is null)'
+                );
+                $array = VideojuegosUsuarios::find()->where(['usuario_id' => $user->id])->all();
+                foreach ($array as $vu) {
+                    $vu->borrado = true;
+                    $vu->save();
+                }
+            }
+            $transaction->commit();
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+            throw $e;
+        } catch (\Throwable $e) {
+            $transaction->rollBack();
+            throw $e;
+        }
+
+        if ($user->delete() !== false) {
+            $array = Ofertas::find()->joinWith('videojuegoOfrecido')
+                ->where(['videojuegos_usuarios.usuario_id' =>$user->id])
+                ->andWhere(['is', 'aceptada', null])->all();
+            // Borra todas las ofertas que están pendientes de ser aceptadas o rechazadas
+            foreach ($array as $value) {
+                $value->delete();
+            }
+        }
         Yii::$app->session->setFlash('success', 'Su cuenta se ha eliminado correctamente');
         return $this->goHome();
     }

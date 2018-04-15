@@ -36,7 +36,7 @@ $this->registerJs($js);
         if ($usuario === null) {
             $usuario = new Usuarios([
                 'id' => $id,
-                'usuario' => 'Desconocido'
+                'usuario' => 'Desconocido #' . $id
             ]);
         }
         $img = '@web/uploads/avatares/default.png';

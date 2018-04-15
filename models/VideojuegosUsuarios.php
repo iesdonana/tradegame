@@ -39,7 +39,7 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
             [['borrado'], 'default', 'value' => false],
             [['videojuego_id', 'usuario_id'], 'integer'],
             [['mensaje'], 'string', 'max' => 255],
-            [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'id']],
+            [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => UsuariosId::className(), 'targetAttribute' => ['usuario_id' => 'id']],
             [['videojuego_id'], 'exist', 'skipOnError' => true, 'targetClass' => Videojuegos::className(), 'targetAttribute' => ['videojuego_id' => 'id']],
         ];
     }
