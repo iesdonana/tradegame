@@ -22,6 +22,7 @@ DROP TABLE IF EXISTS usuarios CASCADE;
 CREATE TABLE usuarios
 (
     id   bigint       PRIMARY KEY REFERENCES usuarios_id (id)
+                      ON DELETE CASCADE
   , usuario      varchar(20)  NOT NULL UNIQUE
   , email        varchar(100) NOT NULL UNIQUE
   , password     varchar(255)
@@ -134,9 +135,9 @@ DROP TABLE IF EXISTS valoraciones CASCADE;
 CREATE TABLE valoraciones
 (
     id                  bigserial    PRIMARY KEY
-  , usuario_valorado_id    bigint    NOT NULL REFERENCES usuarios (id)
+  , usuario_valorado_id    bigint    NOT NULL REFERENCES usuarios_id (id)
                                      ON DELETE NO ACTION ON UPDATE CASCADE
-  , usuario_valora_id      bigint    NOT NULL REFERENCES usuarios (id)
+  , usuario_valora_id      bigint    NOT NULL REFERENCES usuarios_id (id)
                                      ON DELETE NO ACTION ON UPDATE CASCADE
   , comentario          varchar(255)
   , num_estrellas       numeric(1)   CONSTRAINT ck_estrellas_correctas
@@ -148,9 +149,9 @@ DROP TABLE IF EXISTS mensajes CASCADE;
 CREATE TABLE mensajes
 (
     id          bigserial    PRIMARY KEY
-  , emisor_id   bigint       NOT NULL REFERENCES usuarios (id)
+  , emisor_id   bigint       NOT NULL REFERENCES usuarios_id (id)
                              ON DELETE NO ACTION ON UPDATE CASCADE
-  , receptor_id bigint       NOT NULL REFERENCES usuarios (id)
+  , receptor_id bigint       NOT NULL REFERENCES usuarios_id (id)
                              ON DELETE NO ACTION ON UPDATE CASCADE
   , contenido   varchar(255) NOT NULL
   , leido       boolean      NOT NULL DEFAULT false
@@ -163,9 +164,9 @@ CREATE TABLE reportes
 (
     id          bigserial    PRIMARY KEY
   , reporta_id bigint NOT NULL REFERENCES usuarios (id)
-                               ON DELETE NO ACTION ON UPDATE CASCADE
+                               ON DELETE CASCADE ON UPDATE CASCADE
   , reportado_id bigint NOT NULL REFERENCES usuarios (id)
-                               ON DELETE NO ACTION ON UPDATE CASCADE
+                               ON DELETE CASCADE ON UPDATE CASCADE
   , mensaje varchar(255) NOT NULL CHECK (length(mensaje) >= 20)
 );
 

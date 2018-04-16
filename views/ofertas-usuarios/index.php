@@ -132,6 +132,9 @@ $this->registerCss('.btn-info {margin-left: 4px;}');
                 'format' => 'raw',
                 'value' => function ($model) {
                     $usuario = ($model->contraoferta_de === null) ? $model->usuario_ofrecido : $model->usuario_publicado;
+                    if ($usuario === null) {
+                        return Html::tag('em', 'Desconocido');
+                    }
                     return Html::a($usuario, ['usuarios/perfil', 'usuario' => $model->usuario_ofrecido]);
                 }
             ],

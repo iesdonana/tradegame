@@ -12,7 +12,11 @@ $url = Url::to(['mensajes/conversacion']);
     <?php
     $opt = ['class' => 'img-chat img-circle'];
     $me = Yii::$app->user->id;
-    $avatar = Html::img($mensaje->emisor->usuariosDatos->avatar, $opt);
+    $avatar = '@web/uploads/avatares/default.png';
+    if ($mensaje->emisor !== null) {
+        $avatar = $mensaje->emisor->usuariosDatos->avatar;
+    }
+    $avatar = Html::img($avatar, $opt);
     $msg = Html::encode($mensaje->contenido);
     $fecha = Yii::$app->formatter->asDatetime($mensaje->created_at);
     ?>
