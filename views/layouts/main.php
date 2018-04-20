@@ -198,15 +198,17 @@ $this->title = 'TradeGame';
     NavBar::end();
     ?>
 
-    <div class="container">
+    <div class="container custom-container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= \lavrentiev\widgets\toastr\NotificationFlash::widget([
             'options' => [
                 'closeButton' => true,
-            ]]) ?>
-        <?= $content ?>
+                ]]) ?>
+        <div class="main-content">
+            <?= $content ?>            
+        </div>
     </div>
 </div>
 

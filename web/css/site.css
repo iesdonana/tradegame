@@ -309,3 +309,11 @@ span[data-plat$='2'] {
     width: 20px;
     margin-right: 1em;
 }
+
+.section-title {
+    margin: 30px;
+}
+.section-title h4 {
+    color: #430000;
+    border-bottom: 3px solid #430000;
+}
