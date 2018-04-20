@@ -11,7 +11,7 @@ $js = <<<JS
         var a = $(this);
         $.ajax({
             url: '$url',
-            data: {usuario: $(this).find('.usuario').text().trim()},
+            data: {id: $(this).data('id')},
             success: function (data) {
                 $('.mensajes').html(data);
                 $('.nav-pills').find('li.active').find('.badge').remove();

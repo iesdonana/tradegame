@@ -6,8 +6,6 @@ function peticionConversacion(urlConver, urlNuevos, receptor_id, intervalo = fal
         url: urlNuevos,
         data: {id: $('.nav-pills li.active').find('a').data('id')},
         success: function(data) {
-            console.log('old: ' + old);
-            console.log('new: ' + data);
             if (data.join(',') != old.join(',')) {
                 old = data;
                 $.ajax({
