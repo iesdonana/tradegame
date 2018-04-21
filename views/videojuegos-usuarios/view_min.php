@@ -24,7 +24,7 @@ if (isset($big) && $big === true) {
 ?>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 videojuego-item">
         <div class="row">
             <div class="col-md-<?= $valor ?>">
                 <div class="row">

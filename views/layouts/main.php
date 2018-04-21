@@ -75,6 +75,7 @@ $this->title = 'TradeGame';
         '<li class="buscador center-block">' .
         Typeahead::widget([
         'name' => 'videojuegos',
+        'value' => Yii::$app->request->get('q'),
         'options' => ['placeholder' => 'Busca un videojuego ...', 'class' => 'form-inline'],
         'pluginOptions' => ['highlight'=>true],
         'pluginEvents' => [
@@ -207,7 +208,7 @@ $this->title = 'TradeGame';
                 'closeButton' => true,
                 ]]) ?>
         <div class="main-content">
-            <?= $content ?>            
+            <?= $content ?>
         </div>
     </div>
 </div>

@@ -231,4 +231,14 @@ class Utiles
 
         return $user;
     }
+
+    public static function filtroAvanzado($col, $datos)
+    {
+        $arr = explode(',', $datos);
+        $res = ['or'];
+        foreach ($arr as $dato) {
+            $res[] = [$col => $dato];
+        }
+        return $res;
+    }
 }
