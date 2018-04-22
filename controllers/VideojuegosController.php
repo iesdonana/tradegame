@@ -8,6 +8,8 @@ use app\models\Plataformas;
 use app\models\Videojuegos;
 use app\models\VideojuegosUsuarios;
 use Yii;
+use app\helpers\Utiles;
+
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -84,18 +86,18 @@ class VideojuegosController extends Controller
      * @param null|mixed $q Búsqueda
      * @return string       Respuesta en JSON
      */
-    public function actionBuscadorVideojuegos($q = '')
+    public function actionBuscadorVideojuegos($q = '', $salto = 0)
     {
         $res = [];
 
         $videojuegos = Videojuegos::find()
             ->with('plataforma')
             ->where(['ilike', 'videojuegos.nombre', $q])
-            ->orderBy('videojuegos.nombre')->limit(10);
+            ->orderBy('videojuegos.nombre');
 
         if (Yii::$app->request->isAjax) {
             Yii::$app->response->format = Response::FORMAT_JSON;
-            $videojuegos = $videojuegos->all();
+            $videojuegos = $videojuegos->limit(10)->all();
             foreach ($videojuegos as $videojuego) {
                 $res[] = [
                     'id' => $videojuego->id,
@@ -104,19 +106,71 @@ class VideojuegosController extends Controller
                 ];
             }
         } else {
+            $resultadosTotales = $videojuegos->count();
+            $videojuegos = $videojuegos->offset($salto)->limit(5);
             $dataProvider = new ActiveDataProvider([
                 'query' => $videojuegos,
-                'pagination' => [
-                    'pageSize' => 5,
-                ],
+                'pagination' => false,
             ]);
 
             $res = $this->render('busqueda', [
                 'dataProvider' => $dataProvider,
+                'plataformas' => Plataformas::find()->orderBy('nombre')->all(),
+                'generos' => GenerosVideojuegos::find()->orderBy('nombre')->all(),
+                'desarrolladores' => DesarrolladoresVideojuegos::find()->orderBy('compania')->all(),
+                'resultadosTotales' => $resultadosTotales
             ]);
         }
 
         return $res;
+    }
+
+    /**
+     * Renderiza mediante Ajax una vista con un listado de los videojuegos
+     * filtrados a través de los distintos datos pasados por parámetros.
+     * Los datos se pasarán separados por coma en un string. Ej: 1,20,33,12
+     * @param  string $q               [description]
+     * @param  string $plataformas     Ids de las plataformas
+     * @param  string $generos         Ids de los géneros de los videojuegos
+     * @param  string $desarrolladores Ids de los desarrolladores
+     * @return mixed
+     */
+    public function actionVistaBusqueda($q = '', $plataformas = '', $generos = '', $desarrolladores = '', $salto = 0)
+    {
+        if (!Yii::$app->request->isAjax) {
+            return $this->goHome();
+        }
+
+        $res = [];
+
+        $videojuegos = Videojuegos::find()
+            ->with('plataforma')
+            ->where(['ilike', 'videojuegos.nombre', $q])
+            ->offset($salto)
+            ->orderBy('videojuegos.nombre')
+            ->limit(5);
+
+        if ($plataformas !== '') {
+            $videojuegos = $videojuegos->andWhere(Utiles::filtroAvanzado('plataforma_id', $plataformas));
+        }
+        if ($desarrolladores !== '') {
+            $videojuegos = $videojuegos->andWhere(Utiles::filtroAvanzado('desarrollador_id', $desarrolladores));
+        }
+        if ($generos !== '') {
+            $videojuegos = $videojuegos->andWhere(Utiles::filtroAvanzado('genero_id', $generos));
+        }
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $videojuegos,
+            'pagination' => false,
+        ]);
+
+        $resultadosTotales = $videojuegos->count();
+
+        return $this->renderAjax('listado_busqueda', [
+            'dataProvider' => $dataProvider,
+            'resultadosTotales' => $resultadosTotales,
+        ]);
     }
 
     /**

@@ -30,7 +30,6 @@ function peticionConversacion(urlConver, urlNuevos, receptor_id, intervalo = fal
                         $('.mensajes').append(padre);
                     },
                     success: function (content) {
-                        console.log(content);
                         $('.mensajes').find('.loading').remove();
                         $('.mensajes').html(content);
 

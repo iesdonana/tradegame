@@ -136,6 +136,12 @@ INSERT INTO videojuegos (nombre, descripcion, fecha_lanzamiento,
         'acostumbrando.',
         '2017-10-03', 11, 6, 5),
         ('Counter Strike: Source',
+        'Counter-Strike Source es un juego de acción (shooter) desarrollado ' ||
+        'por Valve y distribuido por VU Games para PC. La fecha de lanzamiento ' ||
+        'de este videojuego es el 16 de noviembre de 2004.',
+        '2017-10-27', 12, 3, 5),
+        -- Nintendo Switch --
+        ('Super Mario Odyssey',
         'Super Mario Odyssey es el primer juego de Mario en un mundo abierto ' ||
         'desde Super Mario 64 para Nintendo 64 y Super Mario Sunshine para ' ||
         'Nintendo GameCube. El título, totalmente tridimensional o en 3D, se ' ||
@@ -145,12 +151,6 @@ INSERT INTO videojuegos (nombre, descripcion, fecha_lanzamiento,
         'su gorra, ya que gracias a ella Mario puede tomar el control de los ' ||
         'enemigos. En el juego hay mucho plataformeo, secretos y sorpresas, ' ||
         'pero también abundantes partes de acción y hasta pruebas que parecen puzles.',
-        '2017-10-27', 12, 3, 5),
-        -- Nintendo Switch --
-        ('Super Mario Odyssey',
-        'Counter-Strike Source es un juego de acción (shooter) desarrollado ' ||
-        'por Valve y distribuido por VU Games para PC. La fecha de lanzamiento ' ||
-        'de este videojuego es el 16 de noviembre de 2004.',
         '2004-11-16', 13, 9, 4),
         ('Zelda: Breath of the Wild',
         'El videojuego más grande en la historia de Nintendo. Esta es la carta ' ||
