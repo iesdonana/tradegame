@@ -3,7 +3,7 @@
 use yii\widgets\ListView;
 
 ?>
-
+<span id="res-totales" data-total="<?= $resultadosTotales ?>"></span>
 <?= ListView::widget([
     'summary' => '',
     'dataProvider' => $dataProvider,

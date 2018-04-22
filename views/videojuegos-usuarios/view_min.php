@@ -41,7 +41,8 @@ if (isset($big) && $big === true) {
                     <div class="row">
                         <div class="col-md-8">
                             <strong class='titulo text-tradegame'><?= Html::encode($videojuego->nombre) ?></strong><br>
-                            <?= Utiles::badgePlataforma($videojuego->plataforma->nombre) ?> <br>
+                            <?= Utiles::badgePlataforma($videojuego->plataforma->nombre) ?>
+                            <span class="label label-default"><?= $videojuego->genero->nombre ?></span> <br>
                         </div>
                         <?php if (!isset($busqueda)): ?>
                         <div class="col-md-4">
@@ -50,6 +51,7 @@ if (isset($big) && $big === true) {
                                 Yii::$app->formatter->asRelativeTime($model->created_at),
                                 ['videojuegos-usuarios/ver', 'id' => $model->id]) ?>
                                 <?php if ($model->usuario_id !== Yii::$app->user->id): ?>
+                                    <br>
                                     <?= Html::a('<strong>Hacer oferta</strong>', [
                                         'ofertas/create',
                                         'publicacion' => $model->id

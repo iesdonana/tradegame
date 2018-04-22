@@ -86,7 +86,7 @@ class VideojuegosController extends Controller
      * @param null|mixed $q Búsqueda
      * @return string       Respuesta en JSON
      */
-    public function actionBuscadorVideojuegos($q = '')
+    public function actionBuscadorVideojuegos($q = '', $salto = 0)
     {
         $res = [];
 
@@ -106,6 +106,8 @@ class VideojuegosController extends Controller
                 ];
             }
         } else {
+            $resultadosTotales = $videojuegos->count();
+            $videojuegos = $videojuegos->offset($salto)->limit(5);
             $dataProvider = new ActiveDataProvider([
                 'query' => $videojuegos,
                 'pagination' => false,
@@ -115,7 +117,8 @@ class VideojuegosController extends Controller
                 'dataProvider' => $dataProvider,
                 'plataformas' => Plataformas::find()->orderBy('nombre')->all(),
                 'generos' => GenerosVideojuegos::find()->orderBy('nombre')->all(),
-                'desarrolladores' => DesarrolladoresVideojuegos::find()->orderBy('compania')->all()
+                'desarrolladores' => DesarrolladoresVideojuegos::find()->orderBy('compania')->all(),
+                'resultadosTotales' => $resultadosTotales
             ]);
         }
 
@@ -132,7 +135,7 @@ class VideojuegosController extends Controller
      * @param  string $desarrolladores Ids de los desarrolladores
      * @return mixed
      */
-    public function actionVistaBusqueda($q = '', $plataformas = '', $generos = '', $desarrolladores = '')
+    public function actionVistaBusqueda($q = '', $plataformas = '', $generos = '', $desarrolladores = '', $salto = 0)
     {
         if (!Yii::$app->request->isAjax) {
             return $this->goHome();
@@ -143,6 +146,7 @@ class VideojuegosController extends Controller
         $videojuegos = Videojuegos::find()
             ->with('plataforma')
             ->where(['ilike', 'videojuegos.nombre', $q])
+            ->offset($salto)
             ->orderBy('videojuegos.nombre')
             ->limit(5);
 
@@ -161,8 +165,11 @@ class VideojuegosController extends Controller
             'pagination' => false,
         ]);
 
+        $resultadosTotales = $videojuegos->count();
+
         return $this->renderAjax('listado_busqueda', [
             'dataProvider' => $dataProvider,
+            'resultadosTotales' => $resultadosTotales,
         ]);
     }
 

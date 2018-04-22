@@ -2,14 +2,42 @@
 
 use app\helpers\Utiles;
 
+use yii\web\View;
+
 use yii\helpers\Url;
 
 $url = Url::to(['videojuegos/vista-busqueda']);
 $js = <<<JS
-$('input[type=checkbox]').on('click', function() {
-    var plataformas = [];
-    var generos = [];
-    var desarrolladores = [];
+var plataformas = [];
+var generos = [];
+var desarrolladores = [];
+
+/**
+ * Comprueba si aún hay más resultados por mostrar en pantalla, y si es así
+ * incluye el botón para cargar más resultados.
+ */
+function comprobarMasResultados()
+{
+    if ($('.videojuego-item').length < $('#res-totales').data('total')) {
+        var cont = $('<div></div>');
+        cont.addClass('container-cargar');
+        var boton = $('<a>Cargar más resultados </a>');
+        boton.addClass('btn btn-xs btn-tradegame cargar-mas center-block cargaForm');
+        cont.append($('<hr>'));
+        cont.append(boton);
+        $('.resultado-busqueda').append(cont);
+    }
+}
+
+/**
+ * Recoge los datos en los arrays globales dependiendo de los checkbox que se
+ * hayan marcado
+ */
+function recogeDatosCheck()
+{
+    plataformas = [];
+    generos = [];
+    desarrolladores = [];
     $('input[type=checkbox]:checked').each(function() {
         var name = $(this).attr('name');
         if (name == 'plataforma') {
@@ -20,6 +48,12 @@ $('input[type=checkbox]').on('click', function() {
             desarrolladores.push($(this).val());
         }
     });
+}
+JS;
+$this->registerJs($js, View::POS_HEAD);
+$js = <<<JS
+$('input[type=checkbox]').on('click', function() {
+    recogeDatosCheck();
     $.ajax({
         url: '$url',
         data: {
@@ -30,6 +64,7 @@ $('input[type=checkbox]').on('click', function() {
         },
         success: function(data) {
             $('.resultado-busqueda').html(data);
+            comprobarMasResultados();
             topFunction();
         }
     });
@@ -47,12 +82,52 @@ $('.filtros h4').on('click', function() {
         filtrosElems.slideDown();
     }
 });
+
+comprobarMasResultados();
+
+$('.resultado-busqueda').on('click', '.cargar-mas', function() {
+    recogeDatosCheck();
+    var cnt = $(this).parent();
+    var btn = $(this);
+    $.ajax({
+        url: '$url',
+        data: {
+            salto: $('.videojuego-item').length,
+            plataformas: plataformas.join(','),
+            generos: generos.join(','),
+            desarrolladores: desarrolladores.join(','),
+            q: $('#w2').val()
+        },
+        beforeSend: function () {
+            btn.attr('disabled', true);
+            var i = $('<i></i>');
+            i.addClass('fa fa-spinner fa-spin');
+            btn.append(i);
+        },
+        success: function(data) {
+            cnt.remove();
+            var hr = $('<hr>');
+            hr.addClass('separador');
+            $('.resultado-busqueda').append(hr).append(data);
+            if ($('.videojuego-item').length < $('#res-totales').data('total')) {
+                $('.resultado-busqueda').append(cnt);
+                btn.attr('disabled', false);
+                btn.children('svg').remove();
+            }
+        }
+    });
+});
 JS;
 $this->registerJs($js);
 $this->registerCssFile('@web/css/checkbox.css');
 ?>
 
 <div class="col-md-2 filtros">
+    <div class="row">
+        <div class="section-mini-title">
+            <h4>Filtros</h4>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <h4>Plataformas <?= Utiles::FA('angle-up') ?></h4>
@@ -100,7 +175,8 @@ $this->registerCssFile('@web/css/checkbox.css');
     <div class="panel panel-default">
         <div class="panel-body resultado-busqueda">
             <?= $this->render('listado_busqueda', [
-                'dataProvider' => $dataProvider
+                'dataProvider' => $dataProvider,
+                'resultadosTotales' => $resultadosTotales
             ]) ?>
         </div>
     </div>

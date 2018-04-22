@@ -313,7 +313,17 @@ span[data-plat$='2'] {
 .section-title {
     margin: 30px;
 }
+
+.section-mini-title {
+    margin: 15px;
+}
+
 .section-title h4 {
     color: #430000;
     border-bottom: 3px solid #430000;
+}
+
+.section-mini-title h4 {
+    color: #430000;
+    border-bottom: 1px solid #430000;
 }
