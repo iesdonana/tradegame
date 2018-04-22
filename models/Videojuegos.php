@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use app\helpers\Utiles;
+
 use yii\imagine\Image;
 
 /**
@@ -120,7 +122,7 @@ class Videojuegos extends \yii\db\ActiveRecord
             return true;
         }
 
-        $this->borrarAnteriores();
+        Utiles::borrarAnteriores('caratulas', $this->id);
         $extension = $this->foto->extension;
         $nombreFichero = $this->id . '.' . $extension;
         $ruta = Yii::getAlias('@caratulas/') . $nombreFichero;
@@ -138,24 +140,6 @@ class Videojuegos extends \yii\db\ActiveRecord
             return false;
         }
         return $res;
-    }
-
-    public function borrarAnteriores()
-    {
-        $id = $this->id;
-        $ficheros = glob(Yii::getAlias('@caratulas/') . $id . '.*');
-        foreach ($ficheros as $fichero) {
-            return unlink($fichero);
-        }
-        $s3 = Yii::$app->get('s3');
-
-        $ruta = Yii::getAlias('@caratulas/') . $id . '.jpg';
-        if ($s3->exist($ruta)) {
-            $s3->delete($ruta);
-        } else {
-            $ruta = Yii::getAlias('@caratulas/') . $id . '.png';
-            $s3->delete($ruta);
-        }
     }
 
     /**

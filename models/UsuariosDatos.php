@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use app\helpers\Utiles;
+
 use yii\imagine\Image;
 
 /**
@@ -119,7 +121,7 @@ class UsuariosDatos extends \yii\db\ActiveRecord
         if ($this->foto === null) {
             return true;
         }
-        $this->borrarAnteriores();
+        Utiles::borrarAnteriores('avatares', $this->id);
         $extension = $this->foto->extension;
         $nombreFichero = $this->id_usuario . '.' . $extension;
         $ruta = Yii::getAlias('@avatares/') . $nombreFichero;
@@ -137,28 +139,6 @@ class UsuariosDatos extends \yii\db\ActiveRecord
             return false;
         }
         return $res;
-    }
-
-    /**
-     * Borra el avatar anterior de un usuario, si ya existiese alguno, tando
-     * de la carpeta uploads, como de Amazon S3.
-     */
-    public function borrarAnteriores()
-    {
-        $id = $this->id_usuario;
-        $ficheros = glob(Yii::getAlias('@avatares/') . $id . '.*');
-        foreach ($ficheros as $fichero) {
-            return unlink($fichero);
-        }
-        $s3 = Yii::$app->get('s3');
-
-        $ruta = Yii::getAlias('@avatares/') . $id . '.jpg';
-        if ($s3->exist($ruta)) {
-            $s3->delete($ruta);
-        } else {
-            $ruta = Yii::getAlias('@avatares/') . $id . '.png';
-            $s3->delete($ruta);
-        }
     }
 
     /**

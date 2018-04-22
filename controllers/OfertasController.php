@@ -145,12 +145,8 @@ class OfertasController extends Controller
      */
     public function actionCambiarEstado()
     {
-        if (($valor = Yii::$app->request->post('valor')) === null) {
-            throw new NotFoundHttpException('No se encontró el valor');
-        }
-
-        if (($id = Yii::$app->request->post('id')) === null) {
-            throw new NotFoundHttpException('No se encontró la oferta');
+        if (($valor = Yii::$app->request->post('valor')) === null || ($id = Yii::$app->request->post('id')) === null) {
+            throw new NotFoundHttpException('No se pasó los parámetros correctos');
         }
 
         if (($model = $this->findModel($id)) === null) {
@@ -161,8 +157,7 @@ class OfertasController extends Controller
             throw new NotFoundHttpException('Ya se cambió el estado de esta oferta');
         }
 
-        $validos = [0, 1];
-        if (!in_array($valor, $validos)) {
+        if (!in_array($valor, [0, 1])) {
             throw new ForbiddenHttpException('No es posible ejecutar esa acción');
         }
 
@@ -208,7 +203,6 @@ class OfertasController extends Controller
                 Yii::$app->session->setFlash('info', 'Recuerda valorar ' .
                     'al usuario con el que has intercambiado el videojuego desde ' .
                     'el panel de notificaciones');
-                // return $this->redirect(['valoraciones/valorar', 'id' => $valoracion->id]);
             }
         }
         return $this->redirect('/ofertas-usuarios/index');

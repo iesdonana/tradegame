@@ -93,7 +93,7 @@ class ReportesController extends Controller
 
         $model->reporta_id = $user->id;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('warning', "Has reportado correctamente a $user->usuario. Tu petición será revisada por los administradores");
+            Yii::$app->session->setFlash('info', "Has reportado correctamente a $user->usuario. Tu petición será revisada por los administradores");
             return $this->goHome();
         }
 

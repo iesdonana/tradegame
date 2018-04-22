@@ -41,10 +41,10 @@ $('.caracteresRestantes').each(function() {
 })
 $('.caracteresRestantes').next().on('keyup', function() {
     var valor = parseInt($(this).data('length')) - $(this).val().trim().length;
+    var estilo = 'inline'
     if (valor <= 0) {
-        $(this).prev().css('display', 'none');
-    } else {
-        $(this).prev().css('display', 'inline');
+        estilo = 'none';
     }
+    $(this).prev().css('display', estilo);
     $(this).prev().text(valor);
 });

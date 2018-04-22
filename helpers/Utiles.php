@@ -2,6 +2,8 @@
 
 namespace app\helpers;
 
+use Yii;
+
 use app\models\Mensajes;
 use app\models\Usuarios;
 use app\models\OfertasUsuarios;
@@ -199,6 +201,12 @@ class Utiles
         return '';
     }
 
+    /**
+     * Calcula la distancia entre dos localizaciones
+     * @param  UsuariosDatos $geoloc1 Primer usuario
+     * @param  UsuariosDatos $geoloc2 Segundo usuario
+     * @return float          Distancia
+     */
     public static function distancia($geoloc1, $geoloc2)
     {
         $theta = $geoloc1->lng - $geoloc2->lng;
@@ -211,6 +219,12 @@ class Utiles
         return $miles * 1.609344;
     }
 
+    /**
+     * Genera una eiqueta span con la clase 'label' de Bootstrap, con un número
+     * dentro de él.
+     * @param  int    $maxCaracteres Número dentro de la etiqueta
+     * @return string                Etiqueta html
+     */
     public static function contadorCaracteres($maxCaracteres)
     {
         return Html::tag('span', $maxCaracteres, [
@@ -219,6 +233,11 @@ class Utiles
         ]);
     }
 
+    /**
+     * Genera un nombre de usuario a través de su correo electrónico.
+     * @param  string $email Correo electrónico
+     * @return string        Nombre de usuario generado
+     */
     public static function generarUsername($email)
     {
         $user = explode('@', $email)[0];
@@ -232,6 +251,13 @@ class Utiles
         return $user;
     }
 
+    /**
+     * Devuelve un array para añadir al filtro en un ActiveQuery. El array se forma
+     * a través del parámetro datos.
+     * @param  string $col   Columna de la base de datos
+     * @param  string $datos Datos a filtrar separados por comas
+     * @return array         Array preparado para colocar en ActiveQuery (where)
+     */
     public static function filtroAvanzado($col, $datos)
     {
         $arr = explode(',', $datos);
@@ -240,5 +266,30 @@ class Utiles
             $res[] = [$col => $dato];
         }
         return $res;
+    }
+
+    /**
+     * Borra imágenes de S3 que ya existan con el nombre pasado por parámetro,
+     * en la carpeta pasada por parámetro.
+     * @param  string $carpeta Carpeta en la que se va a buscar en S3
+     * @param  string $name    Nombre del fichero
+     * @return bool true si se ha borrado correctamente.
+     */
+    public function borrarAnteriores($carpeta, $name)
+    {
+        $path = Yii::getAlias('@' . $carpeta . '/');
+        $ficheros = glob($path . $name . '.*');
+        foreach ($ficheros as $fichero) {
+            return unlink($fichero);
+        }
+        $s3 = Yii::$app->get('s3');
+
+        $ruta = $path . $name . '.jpg';
+        if ($s3->exist($ruta)) {
+            $s3->delete($ruta);
+        } else {
+            $ruta = $path . $name . '.png';
+            $s3->delete($ruta);
+        }
     }
 }

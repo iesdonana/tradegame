@@ -90,6 +90,10 @@ class SiteController extends Controller
         ]);
     }
 
+    /**
+     * Inicia sesión al usuario a través de Google
+     * @return bool true si inicia sesión correctamente; false si no inicia sesión
+     */
     public function actionLoginGoogle()
     {
         if (!Yii::$app->user->isGuest) {

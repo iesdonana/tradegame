@@ -4,7 +4,6 @@ namespace app\controllers;
 
 use app\models\BanForm;
 use app\models\Ofertas;
-use app\models\Reportes;
 use app\models\Valoraciones;
 use app\models\EmailResetForm;
 use app\models\LoginForm;
@@ -112,6 +111,10 @@ class UsuariosController extends Controller
         ]);
     }
 
+    /**
+     * Crea un modelo de Usuario a través de los datos recibidos por Google
+     * @return bool true si se ha registrado correctamente; false si no se ha podido registrar
+     */
     public function actionRegistrarGoogle()
     {
         $usuario = Yii::$app->request->post('usuario');
@@ -311,16 +314,13 @@ class UsuariosController extends Controller
 
     /**
      * Modifica los datos de un usuario
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param mixed $seccion
+     * @param mixed $seccion Sección en la cuál está del apartado Modificación
      * @return mixed
-     * @throws NotFoundHttpException Si el modelo no se puede encontrar
+     * @throws NotFoundHttpException Si la sección no es válida
      */
     public function actionModificar($seccion)
     {
-        $validos = ['datos', 'password', 'personal'];
-
-        if (!in_array($seccion, $validos)) {
+        if (!in_array($seccion, ['datos', 'password', 'personal'])) {
             throw new NotFoundHttpException('No se ha encontrado lo que buscabas');
         }
 
@@ -330,6 +330,7 @@ class UsuariosController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
+
         if ($model->password === null) {
             $correo = $model->oldAttributes['email'];
         } else {
@@ -354,9 +355,9 @@ class UsuariosController extends Controller
     /**
      * Finds the Usuarios model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id
-     * @return Usuarios the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * @param  int      $id Id del usuario a buscar
+     * @return Usuarios El modelo cargado
+     * @throws NotFoundHttpException Si el modelo no se puede encontrar
      */
     protected function findModel($id)
     {
@@ -397,6 +398,11 @@ class UsuariosController extends Controller
             ->send();
     }
 
+    /**
+     * Busca usuarios a través de un texto pasado por parámetro
+     * @param  string $q Cadena con la búsqueda
+     * @return array     Resultados
+     */
     public function actionBuscarUsuarios($q = null)
     {
         if (!Yii::$app->request->isAjax) {

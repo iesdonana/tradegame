@@ -86,7 +86,7 @@ class VideojuegosController extends Controller
      * @param null|mixed $q Búsqueda
      * @return string       Respuesta en JSON
      */
-    public function actionBuscadorVideojuegos($q = '', $salto = 0)
+    public function actionBuscadorVideojuegos($q = '')
     {
         $res = [];
 
@@ -129,14 +129,20 @@ class VideojuegosController extends Controller
      * Renderiza mediante Ajax una vista con un listado de los videojuegos
      * filtrados a través de los distintos datos pasados por parámetros.
      * Los datos se pasarán separados por coma en un string. Ej: 1,20,33,12
-     * @param  string $q               [description]
+     * @param  string $q               Búsqueda del título del videojuego
      * @param  string $plataformas     Ids de las plataformas
      * @param  string $generos         Ids de los géneros de los videojuegos
      * @param  string $desarrolladores Ids de los desarrolladores
+     * @param  string $salto           Valor del offset de la consulta
      * @return mixed
      */
-    public function actionVistaBusqueda($q = '', $plataformas = '', $generos = '', $desarrolladores = '', $salto = 0)
-    {
+    public function actionVistaBusqueda(
+        $q = '',
+        $plataformas = '',
+        $generos = '',
+        $desarrolladores = '',
+        $salto = 0
+    ) {
         if (!Yii::$app->request->isAjax) {
             return $this->goHome();
         }
@@ -165,11 +171,9 @@ class VideojuegosController extends Controller
             'pagination' => false,
         ]);
 
-        $resultadosTotales = $videojuegos->count();
-
         return $this->renderAjax('listado_busqueda', [
             'dataProvider' => $dataProvider,
-            'resultadosTotales' => $resultadosTotales,
+            'resultadosTotales' => $videojuegos->count(),
         ]);
     }
 
