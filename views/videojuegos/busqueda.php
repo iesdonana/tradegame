@@ -7,6 +7,36 @@ use yii\web\View;
 use yii\helpers\Url;
 
 $url = Url::to(['videojuegos/vista-busqueda']);
+$css = <<<CSS
+/* Absolute Center Spinner */
+.loading {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #FFF;
+  opacity: 0.5;
+}
+CSS;
+$this->registerCss($css);
+$this->registerCssFile('@web/css/loader.css');
 $js = <<<JS
 var plataformas = [];
 var generos = [];
@@ -62,7 +92,11 @@ $('input[type=checkbox]').on('click', function() {
             desarrolladores: desarrolladores.join(','),
             q: $('#w2').val()
         },
+        beforeSend: function () {
+            $('.loading').removeClass('hidden');
+        },
         success: function(data) {
+            $('.loading').addClass('hidden');
             $('.resultado-busqueda').html(data);
             comprobarMasResultados();
             topFunction();
@@ -70,7 +104,7 @@ $('input[type=checkbox]').on('click', function() {
     });
 });
 
-$('.filtros h4').on('click', function() {
+$('.filtros h4.col').on('click', function() {
     var filtrosElems = $(this).closest('.row').next();
     if (filtrosElems.css('display') == 'block') {
         $(this).find('svg').remove();
@@ -130,7 +164,7 @@ $this->registerCssFile('@web/css/checkbox.css');
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h4>Plataformas <?= Utiles::FA('angle-up') ?></h4>
+            <h4 class="col">Plataformas <?= Utiles::FA('angle-up') ?></h4>
         </div>
     </div>
     <div class="row filtros-datos">
@@ -144,7 +178,7 @@ $this->registerCssFile('@web/css/checkbox.css');
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h4>Géneros <?= Utiles::FA('angle-up') ?></h4>
+            <h4 class="col">Géneros <?= Utiles::FA('angle-up') ?></h4>
         </div>
     </div>
     <div class="row filtros-datos">
@@ -158,7 +192,7 @@ $this->registerCssFile('@web/css/checkbox.css');
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h4>Desarrolladores <?= Utiles::FA('angle-up') ?></h4>
+            <h4 class="col">Desarrolladores <?= Utiles::FA('angle-up') ?></h4>
         </div>
     </div>
     <div class="row filtros-datos">
@@ -179,5 +213,10 @@ $this->registerCssFile('@web/css/checkbox.css');
                 'resultadosTotales' => $resultadosTotales
             ]) ?>
         </div>
+    </div>
+</div>
+<div class="loading hidden">
+    <div class="loader">
+
     </div>
 </div>

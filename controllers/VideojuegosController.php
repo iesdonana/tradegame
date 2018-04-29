@@ -107,7 +107,7 @@ class VideojuegosController extends Controller
             }
         } else {
             $resultadosTotales = $videojuegos->count();
-            $videojuegos = $videojuegos->offset($salto)->limit(5);
+            $videojuegos = $videojuegos->limit(5);
             $dataProvider = new ActiveDataProvider([
                 'query' => $videojuegos,
                 'pagination' => false,
@@ -128,7 +128,7 @@ class VideojuegosController extends Controller
     /**
      * Renderiza mediante Ajax una vista con un listado de los videojuegos
      * filtrados a través de los distintos datos pasados por parámetros.
-     * Los datos se pasarán separados por coma en un string. Ej: 1,20,33,12
+     * Los datos se pasarán separados por coma en un string. Ej: "1,20,33,12"
      * @param  string $q               Búsqueda del título del videojuego
      * @param  string $plataformas     Ids de las plataformas
      * @param  string $generos         Ids de los géneros de los videojuegos

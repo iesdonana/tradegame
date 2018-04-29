@@ -17,7 +17,7 @@ use kartik\select2\Select2;
 $urlDetalles = Url::to(['videojuegos/detalles']);
 
 $this->registerJsFile('@web/js/publicar.js', ['position' => View::POS_HEAD]);
-$this->registerJsFile('@web/js/utiles.js');
+$this->registerJsFile('@web/js/utiles.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerCssFile('@web/css/loader.css');
 $js = <<<JS
 $(function () {
@@ -55,7 +55,11 @@ $this->registerJs($js);
             <?= $form->field($model, 'mensaje', [
                 'template' => "{label} " . Utiles::glyphicon('info-sign', 'Comentarios acerca del videojuego. Por ejemplo: tu opinión personal.') .
                             "\n{input}\n{hint}\n{error}",
-            ])->textarea(['maxlength' => true, 'rows' => 8]) ?>
+            ])->textarea([
+                'class' => 'form-control noresize',
+                'maxlength' => true,
+                'rows' => 8
+                ]) ?>
 
             <div class="form-group">
                 <?= Html::submitButton('Publicar ',

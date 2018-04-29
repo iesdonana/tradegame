@@ -7,7 +7,7 @@
 $this->title = 'Publicar videojuego';
 $this->params['breadcrumbs'][] = $this->title;
 $css = <<<CSS
-tr:nth-child(even) {
+tr {
     background-color: white;
 }
 CSS;

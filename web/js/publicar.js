@@ -31,12 +31,9 @@ function peticionDetalles(url) {
 
             var cargando = $('<div></div>');
             cargando.addClass('row');
-            cargando.append($('<h3 class="text-center">Cargando detalles...</h3>'))
-            // cargando.addClass('col-md-offset-6')
-
+            cargando.append($('<h3 class="text-center">Cargando detalles...</h3>'));
 
             var padre = $('<div></div>');
-            // padre.addClass('col-md-offset-6')
             padre.append(cargando);
             padre.append(row);
 
