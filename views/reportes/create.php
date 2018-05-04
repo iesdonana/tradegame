@@ -4,19 +4,17 @@
 use yii\helpers\Html;
 
 
-$this->title = 'Create Reportes';
+$this->title = 'Reportar a ' . Html::encode($reportado->usuario) ;
 $this->params['breadcrumbs'][] = ['label' => 'Reportes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reportes-create">
-
-
     <div class="row">
         <div class="col-md-offset-2 col-md-8">
             <div class="panel panel-default panel-trade">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        Reportar a <em><?= Html::encode($reportado->usuario) ?></em>
+                        <?= $this->title ?>
                     </div>
                 </div>
                 <div class="panel-body">
