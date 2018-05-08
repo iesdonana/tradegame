@@ -28,6 +28,13 @@ INSERT INTO mensajes (emisor_id, receptor_id, contenido, leido, created_at)
             (3, 2, 'Hola otra vez', true, localtimestamp - 'P1M'::interval),
             (4, 2, 'Hola otra vez', true, localtimestamp - 'P2M'::interval);
 
+INSERT INTO valoraciones (usuario_valorado_id, usuario_valora_id, comentario, num_estrellas)
+    VALUES (1, 2, 'Todo perfecto sin ningún tipo de problema. Volvería a repetir', 5),
+            (1, 3, 'Rápido y fácil. Es muy atento.', 4),
+            (1, 4, 'Me encanta su amabilidad. Recomendable 100%', 4),
+            (2, 1, 'Tarda mucho en contestar los mensajes, pero después el trato ha sido bueno', 3),
+            (2, 3, 'Atento y videojuego muy cuidado. Parece nuevo.', 5);
+
 INSERT INTO reportes (reporta_id, reportado_id, mensaje)
     VALUES (1, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' ||
     'Nam vel lectus malesuada neque interdum ultricies vitae sit amet elit. Etiam.'),
