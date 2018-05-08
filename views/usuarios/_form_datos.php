@@ -32,7 +32,7 @@ use yii\widgets\ActiveForm;
 
         <?php
         $config = ['maxlength' => true, 'placeholder' => 'Correo electrónico'];
-        if ($model->password === null) {
+        if ($model->password === null && $model->scenario !== Usuarios::ESCENARIO_CREATE) {
             $config['disabled'] = true;
         }
         ?>
