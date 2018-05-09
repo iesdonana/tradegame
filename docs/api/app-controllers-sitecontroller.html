@@ -4,12 +4,12 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="language" content="en" />
-        <link href="./assets/f67380ca/css/bootstrap.css" rel="stylesheet">
-<link href="./assets/df73479/solarized_light.css" rel="stylesheet">
-<link href="./assets/1f9da9c7/style.css" rel="stylesheet">
-<script src="./assets/c26db3fd/jquery.js"></script>
-<script src="./assets/f67380ca/js/bootstrap.js"></script>
-<script src="./assets/9ac5f429/jssearch.js"></script>    <title>SiteController, app\controllers\SiteController - API del proyecto</title>
+        <link href="./assets/65e2b46c/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9e6600df/solarized_light.css" rel="stylesheet">
+<link href="./assets/8c0c9d61/style.css" rel="stylesheet">
+<script src="./assets/8de59952/jquery.js"></script>
+<script src="./assets/65e2b46c/js/bootstrap.js"></script>
+<script src="./assets/954c08f/jssearch.js"></script>    <title>SiteController, app\controllers\SiteController - API del proyecto</title>
 </head>
 <body>
 
@@ -36,7 +36,8 @@
 <a class="list-group-item" href="./yiirequirementchecker.html">YiiRequirementChecker</a></div>
 <a class="list-group-item" href="#navigation-28" data-toggle="collapse" data-parent="#navigation">app\assets <b class="caret"></b></a><div id="navigation-28" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-assets-appasset.html">AppAsset</a>
 <a class="list-group-item" href="./app-assets-bxasset.html">BxAsset</a>
-<a class="list-group-item" href="./app-assets-faasset.html">FAAsset</a></div>
+<a class="list-group-item" href="./app-assets-faasset.html">FAAsset</a>
+<a class="list-group-item" href="./app-assets-loginasset.html">LoginAsset</a></div>
 <a class="list-group-item" href="#navigation-29" data-toggle="collapse" data-parent="#navigation">app\commands <b class="caret"></b></a><div id="navigation-29" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-commands-hellocontroller.html">HelloController</a></div>
 <a class="list-group-item" href="#navigation-30" data-toggle="collapse" data-parent="#navigation">app\components <b class="caret"></b></a><div id="navigation-30" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-components-herokutarget.html">HerokuTarget</a></div>
 <a class="list-group-item active" href="#navigation-31" data-toggle="collapse" data-parent="#navigation">app\controllers <b class="caret"></b></a><div id="navigation-31" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./app-controllers-mensajescontroller.html">MensajesController</a>
@@ -50,7 +51,7 @@
 <a class="list-group-item" href="./app-controllers-valoracionescontroller.html">ValoracionesController</a>
 <a class="list-group-item" href="./app-controllers-videojuegoscontroller.html">VideojuegosController</a>
 <a class="list-group-item" href="./app-controllers-videojuegosusuarioscontroller.html">VideojuegosUsuariosController</a></div>
-<a class="list-group-item" href="#navigation-32" data-toggle="collapse" data-parent="#navigation">app\models <b class="caret"></b></a><div id="navigation-32" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-models-contactform.html">ContactForm</a>
+<a class="list-group-item" href="#navigation-32" data-toggle="collapse" data-parent="#navigation">app\models <b class="caret"></b></a><div id="navigation-32" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-models-banform.html">BanForm</a>
 <a class="list-group-item" href="./app-models-desarrolladoresvideojuegos.html">DesarrolladoresVideojuegos</a>
 <a class="list-group-item" href="./app-models-emailresetform.html">EmailResetForm</a>
 <a class="list-group-item" href="./app-models-generosvideojuegos.html">GenerosVideojuegos</a>
@@ -252,17 +253,22 @@ in the request.</td>
     </tr>
             <tr id="actionIndex()">
         <td><a href="app-controllers-sitecontroller.html#actionIndex()-detail">actionIndex()</a></td>
-        <td>Displays homepage.</td>
+        <td>Muestra la página de inicio del sitio web.</td>
         <td><a href="app-controllers-sitecontroller.html">app\controllers\SiteController</a></td>
     </tr>
             <tr id="actionLogin()">
         <td><a href="app-controllers-sitecontroller.html#actionLogin()-detail">actionLogin()</a></td>
-        <td>Login action.</td>
+        <td>Realiza el login del usuario en el sitio web.</td>
+        <td><a href="app-controllers-sitecontroller.html">app\controllers\SiteController</a></td>
+    </tr>
+            <tr id="actionLoginGoogle()">
+        <td><a href="app-controllers-sitecontroller.html#actionLoginGoogle()-detail">actionLoginGoogle()</a></td>
+        <td>Inicia sesión al usuario a través de Google</td>
         <td><a href="app-controllers-sitecontroller.html">app\controllers\SiteController</a></td>
     </tr>
             <tr id="actionLogout()">
         <td><a href="app-controllers-sitecontroller.html#actionLogout()-detail">actionLogout()</a></td>
-        <td>Logout action.</td>
+        <td>Realiza la acción de logout del usuario en el sitio web.</td>
         <td><a href="app-controllers-sitecontroller.html">app\controllers\SiteController</a></td>
     </tr>
             <tr id="actions()">
@@ -539,9 +545,10 @@ in the request.</td>
 
     
     <div class="doc-description">
-        <p><strong>Displays homepage.</strong></p>
+        <p><strong>Muestra la página de inicio del sitio web.</strong></p>
 
-        
+        <p>Esta página dependerá de si está logueado o no.</p>
+
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
@@ -562,7 +569,7 @@ in the request.</td>
 
     
     <div class="doc-description">
-        <p><strong>Login action.</strong></p>
+        <p><strong>Realiza el login del usuario en el sitio web.</strong></p>
 
         
             </div>
@@ -570,6 +577,35 @@ in the request.</td>
     <table class="detail-table table table-striped table-bordered table-hover">
         <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-web-response.html">yii\web\Response</a>|<a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="app-controllers-sitecontroller.html#actionLogin()-detail">actionLogin</a></strong> ( )</td></tr>
             </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="actionLoginGoogle()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-controllers-sitecontroller.html#actionLoginGoogle()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionLoginGoogle()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Inicia sesión al usuario a través de Google</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.boolean">boolean</a></span> <strong><a href="app-controllers-sitecontroller.html#actionLoginGoogle()-detail">actionLoginGoogle</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.boolean">boolean</a></td>
+                  <td class="param-desc-col"><p>True si inicia sesión correctamente; false si no inicia sesión</p>
+</td>
+                </tr>
+                                    </table>
 
 <!--	-->
 
@@ -585,7 +621,7 @@ in the request.</td>
 
     
     <div class="doc-description">
-        <p><strong>Logout action.</strong></p>
+        <p><strong>Realiza la acción de logout del usuario en el sitio web.</strong></p>
 
         
             </div>
@@ -714,7 +750,7 @@ or be detached using <a href="yii-base-component.html#detachBehavior()-detail">d
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sat, 07 Apr 2018 11:22:11 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Wed, 09 May 2018 16:49:58 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

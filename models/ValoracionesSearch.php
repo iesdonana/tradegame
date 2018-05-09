@@ -28,7 +28,6 @@ class ValoracionesSearch extends Valoraciones
      */
     public function scenarios()
     {
-        // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
@@ -58,12 +57,9 @@ class ValoracionesSearch extends Valoraciones
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 
-        // grid filtering conditions
         $query->andFilterWhere([
             'num_estrellas' => $this->num_estrellas,
         ]);

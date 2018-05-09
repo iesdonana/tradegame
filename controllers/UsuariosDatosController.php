@@ -33,10 +33,8 @@ class UsuariosDatosController extends Controller
     }
 
     /**
-     * Updates an existing UsuariosDatos model.
-     * If update is successful, the browser will be redirected to the 'view' page.
+     * Modifica los datos del usuario logueado.
      * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionModificar()
     {
@@ -60,21 +58,5 @@ class UsuariosDatosController extends Controller
                 ->indexBy('id')
                 ->column(),
         ]);
-    }
-
-    /**
-     * Finds the UsuariosDatos model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id
-     * @return UsuariosDatos the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = UsuariosDatos::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

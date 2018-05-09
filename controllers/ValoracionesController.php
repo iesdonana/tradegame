@@ -36,14 +36,12 @@ class ValoracionesController extends Controller
         ];
     }
     /**
-     * Lists all Valoraciones models.
+     * Muestra las valoraciones con un estado concreto.
+     * @param null|mixed $estado  Puede ser 'valoradas', 'pendientes' o null
      * @return mixed
-     * @param null|mixed $estado
      */
     public function actionIndex($estado = null)
     {
-        $query = Yii::$app->request->queryParams;
-
         // Evitamos que el usuario pase por parámetro cualquier cosa
         $validos = ['valoradas', 'pendientes', null];
         if (!in_array($estado, $validos)) {
@@ -62,22 +60,9 @@ class ValoracionesController extends Controller
     }
 
     /**
-     * Displays a single Valoraciones model.
-     * @param int $id
+     * Crea una valoración
+     * @param mixed $id Id de la valoración
      * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
-     * Creates a new Valoraciones model.
-     * @return mixed
-     * @param mixed $id
      */
     public function actionValorar($id)
     {
@@ -99,23 +84,18 @@ class ValoracionesController extends Controller
     }
 
     /**
-     * Deletes an existing Valoraciones model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id
+     * Muestra una lista con todas las valoraciones que ha recibido un usuario en concreto.
+     * @param  string $usuario Nombre de usuario del cuál queremos ver las valoraciones
      * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
-
     public function actionListadoNotas($usuario)
     {
         if (($user = Usuarios::findOne(['usuario' => $usuario])) === null) {
             throw new NotFoundHttpException('No se ha encontrado el usuario');
+        }
+
+        if (Valoraciones::find()->where(['usuario_valorado_id' => $user->id])->count() === 0) {
+            return $this->goHome();
         }
 
         return $this->render('listado_notas', [
@@ -139,11 +119,10 @@ class ValoracionesController extends Controller
     }
 
     /**
-     * Finds the Valoraciones model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
+     * Busca un modelo de Valoraciones
      * @param int $id
-     * @return Valoraciones the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * @return Valoraciones El modelo encontrado
+     * @throws NotFoundHttpException Si el modelo no se encuentra
      */
     protected function findModel($id)
     {

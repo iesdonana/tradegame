@@ -12,7 +12,7 @@ use yii\web\NotFoundHttpException;
 class TopValoracionesController extends Controller
 {
     /**
-     * Lists all TopValoraciones models.
+     * Muestra un listado con el top de valoraciones de todo el sitio web.
      * @return mixed
      */
     public function actionTop()
@@ -23,23 +23,5 @@ class TopValoracionesController extends Controller
         return $this->render('top', [
             'listado' => $listado,
         ]);
-    }
-
-
-
-    /**
-     * Finds the TopValoraciones model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return TopValoraciones the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = TopValoraciones::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

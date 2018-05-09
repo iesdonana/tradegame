@@ -55,7 +55,8 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays homepage.
+     * Muestra la página de inicio del sitio web.
+     * Esta página dependerá de si está logueado o no.
      *
      * @return string
      */
@@ -68,7 +69,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Login action.
+     * Realiza el login del usuario en el sitio web.
      *
      * @return Response|string
      */
@@ -126,7 +127,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Logout action.
+     * Realiza la acción de logout del usuario en el sitio web.
      *
      * @return Response
      */

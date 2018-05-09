@@ -37,6 +37,11 @@ class EmailResetForm extends Model
         ];
     }
 
+    /**
+     * Envía un correo al usuario para poder resetear la contraseña por otra nueva
+     * @param  string $usuario Usuario al cual le vamos a resetear la contraseña
+     * @return bool            true si se ha mandado el correo correctamente; false si no se envía
+     */
     public function enviarCorreo($usuario)
     {
         $content = 'Para resetear tu contraseña debes pulsar en el siguiente botón:<br>' .

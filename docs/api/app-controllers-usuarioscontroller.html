@@ -4,12 +4,12 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="language" content="en" />
-        <link href="./assets/f67380ca/css/bootstrap.css" rel="stylesheet">
-<link href="./assets/df73479/solarized_light.css" rel="stylesheet">
-<link href="./assets/1f9da9c7/style.css" rel="stylesheet">
-<script src="./assets/c26db3fd/jquery.js"></script>
-<script src="./assets/f67380ca/js/bootstrap.js"></script>
-<script src="./assets/9ac5f429/jssearch.js"></script>    <title>UsuariosController, app\controllers\UsuariosController - API del proyecto</title>
+        <link href="./assets/65e2b46c/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9e6600df/solarized_light.css" rel="stylesheet">
+<link href="./assets/8c0c9d61/style.css" rel="stylesheet">
+<script src="./assets/8de59952/jquery.js"></script>
+<script src="./assets/65e2b46c/js/bootstrap.js"></script>
+<script src="./assets/954c08f/jssearch.js"></script>    <title>UsuariosController, app\controllers\UsuariosController - API del proyecto</title>
 </head>
 <body>
 
@@ -36,7 +36,8 @@
 <a class="list-group-item" href="./yiirequirementchecker.html">YiiRequirementChecker</a></div>
 <a class="list-group-item" href="#navigation-100" data-toggle="collapse" data-parent="#navigation">app\assets <b class="caret"></b></a><div id="navigation-100" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-assets-appasset.html">AppAsset</a>
 <a class="list-group-item" href="./app-assets-bxasset.html">BxAsset</a>
-<a class="list-group-item" href="./app-assets-faasset.html">FAAsset</a></div>
+<a class="list-group-item" href="./app-assets-faasset.html">FAAsset</a>
+<a class="list-group-item" href="./app-assets-loginasset.html">LoginAsset</a></div>
 <a class="list-group-item" href="#navigation-101" data-toggle="collapse" data-parent="#navigation">app\commands <b class="caret"></b></a><div id="navigation-101" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-commands-hellocontroller.html">HelloController</a></div>
 <a class="list-group-item" href="#navigation-102" data-toggle="collapse" data-parent="#navigation">app\components <b class="caret"></b></a><div id="navigation-102" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-components-herokutarget.html">HerokuTarget</a></div>
 <a class="list-group-item active" href="#navigation-103" data-toggle="collapse" data-parent="#navigation">app\controllers <b class="caret"></b></a><div id="navigation-103" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./app-controllers-mensajescontroller.html">MensajesController</a>
@@ -50,7 +51,7 @@
 <a class="list-group-item" href="./app-controllers-valoracionescontroller.html">ValoracionesController</a>
 <a class="list-group-item" href="./app-controllers-videojuegoscontroller.html">VideojuegosController</a>
 <a class="list-group-item" href="./app-controllers-videojuegosusuarioscontroller.html">VideojuegosUsuariosController</a></div>
-<a class="list-group-item" href="#navigation-104" data-toggle="collapse" data-parent="#navigation">app\models <b class="caret"></b></a><div id="navigation-104" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-models-contactform.html">ContactForm</a>
+<a class="list-group-item" href="#navigation-104" data-toggle="collapse" data-parent="#navigation">app\models <b class="caret"></b></a><div id="navigation-104" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-models-banform.html">BanForm</a>
 <a class="list-group-item" href="./app-models-desarrolladoresvideojuegos.html">DesarrolladoresVideojuegos</a>
 <a class="list-group-item" href="./app-models-emailresetform.html">EmailResetForm</a>
 <a class="list-group-item" href="./app-models-generosvideojuegos.html">GenerosVideojuegos</a>
@@ -250,20 +251,24 @@ in the request.</td>
         <td>Sets an object property to null.</td>
         <td><a href="yii-base-baseobject.html">yii\base\BaseObject</a></td>
     </tr>
+            <tr id="actionBanear()">
+        <td><a href="app-controllers-usuarioscontroller.html#actionBanear()-detail">actionBanear()</a></td>
+        <td>Banea un usuario.</td>
+        <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
+    </tr>
             <tr id="actionBuscarUsuarios()">
         <td><a href="app-controllers-usuarioscontroller.html#actionBuscarUsuarios()-detail">actionBuscarUsuarios()</a></td>
-        <td></td>
+        <td>Busca usuarios a través de un texto pasado por parámetro</td>
         <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
     </tr>
             <tr id="actionModificar()">
         <td><a href="app-controllers-usuarioscontroller.html#actionModificar()-detail">actionModificar()</a></td>
-        <td>Modifica los datos de un usuario
-If update is successful, the browser will be redirected to the 'view' page.</td>
+        <td>Modifica los datos de un usuario</td>
         <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
     </tr>
             <tr id="actionPerfil()">
         <td><a href="app-controllers-usuarioscontroller.html#actionPerfil()-detail">actionPerfil()</a></td>
-        <td></td>
+        <td>Renderiza el perfil del usuario pasado por parámetro.</td>
         <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
     </tr>
             <tr id="actionRecuperar()">
@@ -277,15 +282,20 @@ cambia la contraseña del usuario.</td>
         <td>Crea un nuevo modelo de Usuarios y lo guarda en la base de datos.</td>
         <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
     </tr>
+            <tr id="actionRegistrarGoogle()">
+        <td><a href="app-controllers-usuarioscontroller.html#actionRegistrarGoogle()-detail">actionRegistrarGoogle()</a></td>
+        <td>Crea un modelo de Usuario a través de los datos recibidos por Google</td>
+        <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
+    </tr>
             <tr id="actionRemove()">
         <td><a href="app-controllers-usuarioscontroller.html#actionRemove()-detail">actionRemove()</a></td>
-        <td></td>
+        <td>Borra un usuario, así como datos relacionados en la base de datos.</td>
         <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
     </tr>
             <tr id="actionRequestRecupera()">
         <td><a href="app-controllers-usuarioscontroller.html#actionRequestRecupera()-detail">actionRequestRecupera()</a></td>
         <td>Manda un correo al email del usuario que se ha solicitado para recuperar
-la contraseña</td>
+la contraseña.</td>
         <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
     </tr>
             <tr id="actionValidar()">
@@ -378,7 +388,7 @@ la contraseña</td>
         <td>Finds the applicable layout file.</td>
         <td><a href="yii-base-controller.html">yii\base\Controller</a></td>
     </tr>
-                <tr class="inherited" id="getBehavior()">
+            <tr class="inherited" id="getBehavior()">
         <td><a href="yii-base-component.html#getBehavior()-detail">getBehavior()</a></td>
         <td>Returns the named behavior object.</td>
         <td><a href="yii-base-component.html">yii\base\Component</a></td>
@@ -516,28 +526,6 @@ la contraseña</td>
     </table>
 </div>
 
-<div class="summary doc-method">
-<h2>Protected Methods</h2>
-
-<p><a href="#" class="toggle">Hide inherited methods</a></p>
-
-<table class="summary-table table table-striped table-bordered table-hover">
-<colgroup>
-    <col class="col-method" />
-    <col class="col-description" />
-    <col class="col-defined" />
-</colgroup>
-<tr>
-  <th>Method</th><th>Description</th><th>Defined By</th>
-</tr>
-                                                                                                                                        <tr id="findModel()">
-        <td><a href="app-controllers-usuarioscontroller.html#findModel()-detail">findModel()</a></td>
-        <td>Finds the Usuarios model based on its primary key value.</td>
-        <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
-    </tr>
-                                                                                                                </table>
-</div>
-
 <a id="events"></a>
 <div class="summary doc-event">
     <h2>Events</h2>
@@ -577,6 +565,29 @@ la contraseña</td>
 
 <div class="method-doc">
 
+    <div class="detail-header h3" id="actionBanear()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-controllers-usuarioscontroller.html#actionBanear()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionBanear()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Banea un usuario.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-usuarioscontroller.html#actionBanear()-detail">actionBanear</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
     <div class="detail-header h3" id="actionBuscarUsuarios()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="app-controllers-usuarioscontroller.html#actionBuscarUsuarios()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
@@ -589,19 +600,26 @@ la contraseña</td>
 
     
     <div class="doc-description">
-        <p><strong></strong></p>
+        <p><strong>Busca usuarios a través de un texto pasado por parámetro</strong></p>
 
         
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="app-controllers-usuarioscontroller.html#actionBuscarUsuarios()-detail">actionBuscarUsuarios</a></strong> ( <span style="color: #0000BB">$q&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span> )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="app-controllers-usuarioscontroller.html#actionBuscarUsuarios()-detail">actionBuscarUsuarios</a></strong> ( <span style="color: #0000BB">$q&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span> )</td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$q</span></td>
-                  <td class="param-type-col"></td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>Cadena con la búsqueda</p>
+</td>
                 </tr>
-                                                </table>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>Resultados</p>
+</td>
+                </tr>
+                                    </table>
 
 <!--	-->
 
@@ -617,8 +635,7 @@ la contraseña</td>
 
     
     <div class="doc-description">
-        <p><strong>Modifica los datos de un usuario
-If update is successful, the browser will be redirected to the 'view' page.</strong></p>
+        <p><strong>Modifica los datos de un usuario</strong></p>
 
         
             </div>
@@ -628,12 +645,13 @@ If update is successful, the browser will be redirected to the 'view' page.</str
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$seccion</span></td>
                   <td class="param-type-col">mixed</td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-desc-col"><p>Sección en la cuál está del apartado Modificación</p>
+</td>
                 </tr>
                                                     <tr>
                   <th class="param-name-col">throws</th>
                   <td class="param-type-col"><a href="yii-web-notfoundhttpexception.html">yii\web\NotFoundHttpException</a></td>
-                  <td class="param-desc-col"><p>Si el modelo no se puede encontrar</p>
+                  <td class="param-desc-col"><p>Si la sección no es válida</p>
 </td>
                 </tr>
                         </table>
@@ -652,17 +670,18 @@ If update is successful, the browser will be redirected to the 'view' page.</str
 
     
     <div class="doc-description">
-        <p><strong></strong></p>
+        <p><strong>Renderiza el perfil del usuario pasado por parámetro.</strong></p>
 
         
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="app-controllers-usuarioscontroller.html#actionPerfil()-detail">actionPerfil</a></strong> ( <span style="color: #0000BB">$usuario</span> )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-usuarioscontroller.html#actionPerfil()-detail">actionPerfil</a></strong> ( <span style="color: #0000BB">$usuario</span> )</td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$usuario</span></td>
-                  <td class="param-type-col"></td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>Nombre de usuario</p>
+</td>
                 </tr>
                                                 </table>
 
@@ -728,6 +747,35 @@ cambia la contraseña del usuario.</strong></p>
 
 <!--	-->
 
+    <div class="detail-header h3" id="actionRegistrarGoogle()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-controllers-usuarioscontroller.html#actionRegistrarGoogle()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionRegistrarGoogle()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Crea un modelo de Usuario a través de los datos recibidos por Google</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.boolean">boolean</a></span> <strong><a href="app-controllers-usuarioscontroller.html#actionRegistrarGoogle()-detail">actionRegistrarGoogle</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.boolean">boolean</a></td>
+                  <td class="param-desc-col"><p>True si se ha registrado correctamente; false si no se ha podido registrar</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
     <div class="detail-header h3" id="actionRemove()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="app-controllers-usuarioscontroller.html#actionRemove()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
@@ -740,13 +788,14 @@ cambia la contraseña del usuario.</strong></p>
 
     
     <div class="doc-description">
-        <p><strong></strong></p>
+        <p><strong>Borra un usuario, así como datos relacionados en la base de datos.</strong></p>
 
-        
+        <p>Si se borra correctamente, nos mandará a la página de inicio de la aplicación.</p>
+
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="app-controllers-usuarioscontroller.html#actionRemove()-detail">actionRemove</a></strong> ( )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-usuarioscontroller.html#actionRemove()-detail">actionRemove</a></strong> ( )</td></tr>
             </table>
 
 <!--	-->
@@ -764,7 +813,7 @@ cambia la contraseña del usuario.</strong></p>
     
     <div class="doc-description">
         <p><strong>Manda un correo al email del usuario que se ha solicitado para recuperar
-la contraseña</strong></p>
+la contraseña.</strong></p>
 
         
             </div>
@@ -826,47 +875,6 @@ la contraseña</strong></p>
             </table>
 
 <!--	-->
-
-    <div class="detail-header h3" id="findModel()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-controllers-usuarioscontroller.html#findModel()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        findModel()
-        <span class="detail-header-tag small">
-            protected                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Finds the Usuarios model based on its primary key value.</strong></p>
-
-        <p>If the model is not found, a 404 HTTP exception will be thrown.</p>
-
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="app-models-usuarios.html">app\models\Usuarios</a></span> <strong><a href="app-controllers-usuarioscontroller.html#findModel()-detail">findModel</a></strong> ( <span style="color: #0000BB">$id</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$id</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
-                  <td class="param-desc-col"><p>The loaded model</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col"><a href="yii-web-notfoundhttpexception.html">yii\web\NotFoundHttpException</a></td>
-                  <td class="param-desc-col"><p>if the model cannot be found</p>
-</td>
-                </tr>
-                        </table>
-
-<!--	-->
 </div>
         </div>
 </div>
@@ -906,7 +914,7 @@ la contraseña</strong></p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sat, 07 Apr 2018 11:22:11 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Wed, 09 May 2018 16:49:58 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

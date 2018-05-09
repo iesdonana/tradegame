@@ -6,18 +6,36 @@ use Yii;
 use yii\base\Model;
 
 /**
- * LoginForm is the model behind the login form.
+ * LoginForm es el modelo que recoge los datos del formulario de Login
  *
  * @property User|null $user This property is read-only.
  */
 class LoginForm extends Model
 {
+    /**
+     * Escenario para el login normal
+     * @var string
+     */
     const ESCENARIO_DEFAULT = 'custom_scenario';
-
+    /**
+     * Nombre de usuario
+     * @var string
+     */
     public $username;
+    /**
+     * Contraseña del usuario
+     * @var string
+     */
     public $password;
+    /**
+     * Recuerda al usuario
+     * @var bool
+     */
     public $rememberMe = true;
-
+    /**
+     * Usuario cacheado
+     * @var string|bool
+     */
     private $_user = false;
 
 

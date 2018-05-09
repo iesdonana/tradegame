@@ -102,6 +102,9 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
         return $this->hasMany(Ofertas::className(), ['videojuego_ofrecido_id' => 'id']);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function beforeDelete()
     {
         if (!$this->visible) {
@@ -111,6 +114,9 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
         return parent::beforeDelete();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function afterDelete()
     {
         parent::afterDelete();

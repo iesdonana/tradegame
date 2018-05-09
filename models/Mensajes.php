@@ -72,6 +72,10 @@ class Mensajes extends \yii\db\ActiveRecord
         return $this->hasOne(Usuarios::className(), ['id' => 'receptor_id'])->inverseOf('mensajes0');
     }
 
+    /**
+     * Devuelve los mensajes que no se han leído del usuario logueado
+     * @return int Número de mensajes no leídos
+     */
     public static function getPendientes()
     {
         return self::find()

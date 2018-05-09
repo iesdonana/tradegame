@@ -74,13 +74,4 @@ class Reportes extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Usuarios::className(), ['id' => 'reportado_id'])->inverseOf('reportesReportado');
     }
-
-    public function beforeSave($insert)
-    {
-        if (parent::beforeSave($insert)) {
-            // $this->reporta_id = Yii::$app->user->id;
-            return true;
-        }
-        return false;
-    }
 }

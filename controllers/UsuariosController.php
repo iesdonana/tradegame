@@ -353,22 +353,6 @@ class UsuariosController extends Controller
     }
 
     /**
-     * Finds the Usuarios model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param  int      $id Id del usuario a buscar
-     * @return Usuarios El modelo cargado
-     * @throws NotFoundHttpException Si el modelo no se puede encontrar
-     */
-    protected function findModel($id)
-    {
-        if (($model = Usuarios::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('La página solicitada no existe.');
-    }
-
-    /**
      * Envía un email al usuario que se ha registrado para validar su cuenta
      * a través de un enlace.
      * @param  Usuarios $model Usuario el cuál se quiere validar

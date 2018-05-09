@@ -2,9 +2,8 @@
 
 namespace app\models;
 
-use Yii;
 use app\helpers\Utiles;
-
+use Yii;
 use yii\imagine\Image;
 
 /**
@@ -149,11 +148,19 @@ class UsuariosDatos extends \yii\db\ActiveRecord
         return $this->hasOne(Usuarios::className(), ['id' => 'id_usuario'])->inverseOf('usuariosDatos');
     }
 
+    /**
+     * Devuelve la latitud de la geolocalización del usuario.
+     * @return string
+     */
     public function getLat()
     {
         return explode(',', $this->geoloc)[0];
     }
 
+    /**
+     * Devuelve a longitud de la geolocalización del usuario.
+     * @return string
+     */
     public function getLng()
     {
         return explode(',', $this->geoloc)[1];

@@ -4,12 +4,12 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="language" content="en" />
-        <link href="./assets/f67380ca/css/bootstrap.css" rel="stylesheet">
-<link href="./assets/df73479/solarized_light.css" rel="stylesheet">
-<link href="./assets/1f9da9c7/style.css" rel="stylesheet">
-<script src="./assets/c26db3fd/jquery.js"></script>
-<script src="./assets/f67380ca/js/bootstrap.js"></script>
-<script src="./assets/9ac5f429/jssearch.js"></script>    <title>MensajesController, app\controllers\MensajesController - API del proyecto</title>
+        <link href="./assets/65e2b46c/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9e6600df/solarized_light.css" rel="stylesheet">
+<link href="./assets/8c0c9d61/style.css" rel="stylesheet">
+<script src="./assets/8de59952/jquery.js"></script>
+<script src="./assets/65e2b46c/js/bootstrap.js"></script>
+<script src="./assets/954c08f/jssearch.js"></script>    <title>MensajesController, app\controllers\MensajesController - API del proyecto</title>
 </head>
 <body>
 
@@ -36,7 +36,8 @@
 <a class="list-group-item" href="./yiirequirementchecker.html">YiiRequirementChecker</a></div>
 <a class="list-group-item" href="#navigation-37" data-toggle="collapse" data-parent="#navigation">app\assets <b class="caret"></b></a><div id="navigation-37" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-assets-appasset.html">AppAsset</a>
 <a class="list-group-item" href="./app-assets-bxasset.html">BxAsset</a>
-<a class="list-group-item" href="./app-assets-faasset.html">FAAsset</a></div>
+<a class="list-group-item" href="./app-assets-faasset.html">FAAsset</a>
+<a class="list-group-item" href="./app-assets-loginasset.html">LoginAsset</a></div>
 <a class="list-group-item" href="#navigation-38" data-toggle="collapse" data-parent="#navigation">app\commands <b class="caret"></b></a><div id="navigation-38" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-commands-hellocontroller.html">HelloController</a></div>
 <a class="list-group-item" href="#navigation-39" data-toggle="collapse" data-parent="#navigation">app\components <b class="caret"></b></a><div id="navigation-39" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-components-herokutarget.html">HerokuTarget</a></div>
 <a class="list-group-item active" href="#navigation-40" data-toggle="collapse" data-parent="#navigation">app\controllers <b class="caret"></b></a><div id="navigation-40" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./app-controllers-mensajescontroller.html">MensajesController</a>
@@ -50,7 +51,7 @@
 <a class="list-group-item" href="./app-controllers-valoracionescontroller.html">ValoracionesController</a>
 <a class="list-group-item" href="./app-controllers-videojuegoscontroller.html">VideojuegosController</a>
 <a class="list-group-item" href="./app-controllers-videojuegosusuarioscontroller.html">VideojuegosUsuariosController</a></div>
-<a class="list-group-item" href="#navigation-41" data-toggle="collapse" data-parent="#navigation">app\models <b class="caret"></b></a><div id="navigation-41" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-models-contactform.html">ContactForm</a>
+<a class="list-group-item" href="#navigation-41" data-toggle="collapse" data-parent="#navigation">app\models <b class="caret"></b></a><div id="navigation-41" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-models-banform.html">BanForm</a>
 <a class="list-group-item" href="./app-models-desarrolladoresvideojuegos.html">DesarrolladoresVideojuegos</a>
 <a class="list-group-item" href="./app-models-emailresetform.html">EmailResetForm</a>
 <a class="list-group-item" href="./app-models-generosvideojuegos.html">GenerosVideojuegos</a>
@@ -258,37 +259,24 @@ pasado por parámetro. Se buscara la conversación con el usuario logueado.</td>
     </tr>
             <tr id="actionCreate()">
         <td><a href="app-controllers-mensajescontroller.html#actionCreate()-detail">actionCreate()</a></td>
-        <td>Creates a new Mensajes model.</td>
-        <td><a href="app-controllers-mensajescontroller.html">app\controllers\MensajesController</a></td>
-    </tr>
-            <tr id="actionDelete()">
-        <td><a href="app-controllers-mensajescontroller.html#actionDelete()-detail">actionDelete()</a></td>
-        <td>Deletes an existing Mensajes model.</td>
-        <td><a href="app-controllers-mensajescontroller.html">app\controllers\MensajesController</a></td>
-    </tr>
-            <tr id="actionIndex()">
-        <td><a href="app-controllers-mensajescontroller.html#actionIndex()-detail">actionIndex()</a></td>
-        <td>Lists all Mensajes models.</td>
+        <td>Crea un nuevo mensaje</td>
         <td><a href="app-controllers-mensajescontroller.html">app\controllers\MensajesController</a></td>
     </tr>
             <tr id="actionListado()">
         <td><a href="app-controllers-mensajescontroller.html#actionListado()-detail">actionListado()</a></td>
-        <td>Displays a single Mensajes model.</td>
+        <td>Renderiza la vista en la que se mostrará el listado de conversaciones, con sus
+mensajes correspndientes</td>
         <td><a href="app-controllers-mensajescontroller.html">app\controllers\MensajesController</a></td>
     </tr>
             <tr id="actionMensajesNuevos()">
         <td><a href="app-controllers-mensajescontroller.html#actionMensajesNuevos()-detail">actionMensajesNuevos()</a></td>
-        <td></td>
+        <td>Busca los mensajes que se han intercambiado
+el usuario logueado y el usuario pasado por parámetro</td>
         <td><a href="app-controllers-mensajescontroller.html">app\controllers\MensajesController</a></td>
     </tr>
             <tr id="actionNuevo()">
         <td><a href="app-controllers-mensajescontroller.html#actionNuevo()-detail">actionNuevo()</a></td>
         <td>Crea un nuevo modelo de Mensajes, enviado por el usuario logueado.</td>
-        <td><a href="app-controllers-mensajescontroller.html">app\controllers\MensajesController</a></td>
-    </tr>
-            <tr id="actionUpdate()">
-        <td><a href="app-controllers-mensajescontroller.html#actionUpdate()-detail">actionUpdate()</a></td>
-        <td>Updates an existing Mensajes model.</td>
         <td><a href="app-controllers-mensajescontroller.html">app\controllers\MensajesController</a></td>
     </tr>
             <tr class="inherited" id="actions()">
@@ -376,7 +364,7 @@ pasado por parámetro. Se buscara la conversación con el usuario logueado.</td>
         <td>Finds the applicable layout file.</td>
         <td><a href="yii-base-controller.html">yii\base\Controller</a></td>
     </tr>
-                <tr class="inherited" id="getBehavior()">
+            <tr class="inherited" id="getBehavior()">
         <td><a href="yii-base-component.html#getBehavior()-detail">getBehavior()</a></td>
         <td>Returns the named behavior object.</td>
         <td><a href="yii-base-component.html">yii\base\Component</a></td>
@@ -514,28 +502,6 @@ pasado por parámetro. Se buscara la conversación con el usuario logueado.</td>
     </table>
 </div>
 
-<div class="summary doc-method">
-<h2>Protected Methods</h2>
-
-<p><a href="#" class="toggle">Hide inherited methods</a></p>
-
-<table class="summary-table table table-striped table-bordered table-hover">
-<colgroup>
-    <col class="col-method" />
-    <col class="col-description" />
-    <col class="col-defined" />
-</colgroup>
-<tr>
-  <th>Method</th><th>Description</th><th>Defined By</th>
-</tr>
-                                                                                                                                        <tr id="findModel()">
-        <td><a href="app-controllers-mensajescontroller.html#findModel()-detail">findModel()</a></td>
-        <td>Finds the Mensajes model based on its primary key value.</td>
-        <td><a href="app-controllers-mensajescontroller.html">app\controllers\MensajesController</a></td>
-    </tr>
-                                                                                                                </table>
-</div>
-
 <a id="events"></a>
 <div class="summary doc-event">
     <h2>Events</h2>
@@ -594,11 +560,11 @@ pasado por parámetro. Se buscara la conversación con el usuario logueado.</str
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-mensajescontroller.html#actionConversacion()-detail">actionConversacion</a></strong> ( <span style="color: #0000BB">$usuario</span> )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-mensajescontroller.html#actionConversacion()-detail">actionConversacion</a></strong> ( <span style="color: #0000BB">$id</span> )</td></tr>
                                     <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$usuario</span></td>
+                  <td class="param-name-col"><span style="color: #0000BB">$id</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
-                  <td class="param-desc-col"><p>Usuario del cuál queremos buscar la conversación</p>
+                  <td class="param-desc-col"><p>Id del usuario sobre el que queremos buscar la conversación</p>
 </td>
                 </tr>
                                                 </table>
@@ -617,72 +583,13 @@ pasado por parámetro. Se buscara la conversación con el usuario logueado.</str
 
     
     <div class="doc-description">
-        <p><strong>Creates a new Mensajes model.</strong></p>
+        <p><strong>Crea un nuevo mensaje</strong></p>
 
-        <p>If creation is successful, the browser will be redirected to the 'view' page.</p>
-
+        
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
         <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-mensajescontroller.html#actionCreate()-detail">actionCreate</a></strong> ( )</td></tr>
-            </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="actionDelete()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-controllers-mensajescontroller.html#actionDelete()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        actionDelete()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Deletes an existing Mensajes model.</strong></p>
-
-        <p>If deletion is successful, the browser will be redirected to the 'index' page.</p>
-
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-mensajescontroller.html#actionDelete()-detail">actionDelete</a></strong> ( <span style="color: #0000BB">$id</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$id</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                                                    <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col"><a href="yii-web-notfoundhttpexception.html">yii\web\NotFoundHttpException</a></td>
-                  <td class="param-desc-col"><p>if the model cannot be found</p>
-</td>
-                </tr>
-                        </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="actionIndex()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-controllers-mensajescontroller.html#actionIndex()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        actionIndex()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Lists all Mensajes models.</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-mensajescontroller.html#actionIndex()-detail">actionIndex</a></strong> ( )</td></tr>
             </table>
 
 <!--	-->
@@ -699,7 +606,8 @@ pasado por parámetro. Se buscara la conversación con el usuario logueado.</str
 
     
     <div class="doc-description">
-        <p><strong>Displays a single Mensajes model.</strong></p>
+        <p><strong>Renderiza la vista en la que se mostrará el listado de conversaciones, con sus
+mensajes correspndientes</strong></p>
 
         
             </div>
@@ -712,13 +620,7 @@ pasado por parámetro. Se buscara la conversación con el usuario logueado.</str
                   <td class="param-desc-col"><p>Id del usuario que vamos a seleccionar en la vista del listado</p>
 </td>
                 </tr>
-                                                    <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col"><a href="yii-web-notfoundhttpexception.html">yii\web\NotFoundHttpException</a></td>
-                  <td class="param-desc-col"><p>if the model cannot be found</p>
-</td>
-                </tr>
-                        </table>
+                                                </table>
 
 <!--	-->
 
@@ -734,19 +636,27 @@ pasado por parámetro. Se buscara la conversación con el usuario logueado.</str
 
     
     <div class="doc-description">
-        <p><strong></strong></p>
+        <p><strong>Busca los mensajes que se han intercambiado
+el usuario logueado y el usuario pasado por parámetro</strong></p>
 
         
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="app-controllers-mensajescontroller.html#actionMensajesNuevos()-detail">actionMensajesNuevos</a></strong> ( <span style="color: #0000BB">$usuario</span> )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="app-controllers-mensajescontroller.html#actionMensajesNuevos()-detail">actionMensajesNuevos</a></strong> ( <span style="color: #0000BB">$id</span> )</td></tr>
                                     <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$usuario</span></td>
-                  <td class="param-type-col"></td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-name-col"><span style="color: #0000BB">$id</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"><p>Id del usuario con el que nos intercambiamos los mensajes</p>
+</td>
                 </tr>
-                                                </table>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>Array con los ID de los mensajes intercambiados entre los usuarios</p>
+</td>
+                </tr>
+                                    </table>
 
 <!--	-->
 
@@ -776,41 +686,6 @@ pasado por parámetro. Se buscara la conversación con el usuario logueado.</str
 </td>
                 </tr>
                                                 </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="actionUpdate()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-controllers-mensajescontroller.html#actionUpdate()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        actionUpdate()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Updates an existing Mensajes model.</strong></p>
-
-        <p>If update is successful, the browser will be redirected to the 'view' page.</p>
-
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-mensajescontroller.html#actionUpdate()-detail">actionUpdate</a></strong> ( <span style="color: #0000BB">$id</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$id</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                                                    <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col"><a href="yii-web-notfoundhttpexception.html">yii\web\NotFoundHttpException</a></td>
-                  <td class="param-desc-col"><p>if the model cannot be found</p>
-</td>
-                </tr>
-                        </table>
 
 <!--	-->
 
@@ -856,47 +731,6 @@ or be detached using <a href="yii-base-component.html#detachBehavior()-detail">d
                                     </table>
 
 <!--	-->
-
-    <div class="detail-header h3" id="findModel()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-controllers-mensajescontroller.html#findModel()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        findModel()
-        <span class="detail-header-tag small">
-            protected                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Finds the Mensajes model based on its primary key value.</strong></p>
-
-        <p>If the model is not found, a 404 HTTP exception will be thrown.</p>
-
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="app-models-mensajes.html">app\models\Mensajes</a></span> <strong><a href="app-controllers-mensajescontroller.html#findModel()-detail">findModel</a></strong> ( <span style="color: #0000BB">$id</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$id</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="app-models-mensajes.html">app\models\Mensajes</a></td>
-                  <td class="param-desc-col"><p>The loaded model</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col"><a href="yii-web-notfoundhttpexception.html">yii\web\NotFoundHttpException</a></td>
-                  <td class="param-desc-col"><p>if the model cannot be found</p>
-</td>
-                </tr>
-                        </table>
-
-<!--	-->
 </div>
         </div>
 </div>
@@ -936,7 +770,7 @@ or be detached using <a href="yii-base-component.html#detachBehavior()-detail">d
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sat, 07 Apr 2018 11:22:11 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Wed, 09 May 2018 16:49:58 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

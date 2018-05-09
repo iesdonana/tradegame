@@ -4,12 +4,12 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="language" content="en" />
-        <link href="./assets/f67380ca/css/bootstrap.css" rel="stylesheet">
-<link href="./assets/df73479/solarized_light.css" rel="stylesheet">
-<link href="./assets/1f9da9c7/style.css" rel="stylesheet">
-<script src="./assets/c26db3fd/jquery.js"></script>
-<script src="./assets/f67380ca/js/bootstrap.js"></script>
-<script src="./assets/9ac5f429/jssearch.js"></script>    <title>ReportesController, app\controllers\ReportesController - API del proyecto</title>
+        <link href="./assets/65e2b46c/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9e6600df/solarized_light.css" rel="stylesheet">
+<link href="./assets/8c0c9d61/style.css" rel="stylesheet">
+<script src="./assets/8de59952/jquery.js"></script>
+<script src="./assets/65e2b46c/js/bootstrap.js"></script>
+<script src="./assets/954c08f/jssearch.js"></script>    <title>ReportesController, app\controllers\ReportesController - API del proyecto</title>
 </head>
 <body>
 
@@ -36,7 +36,8 @@
 <a class="list-group-item" href="./yiirequirementchecker.html">YiiRequirementChecker</a></div>
 <a class="list-group-item" href="#navigation-82" data-toggle="collapse" data-parent="#navigation">app\assets <b class="caret"></b></a><div id="navigation-82" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-assets-appasset.html">AppAsset</a>
 <a class="list-group-item" href="./app-assets-bxasset.html">BxAsset</a>
-<a class="list-group-item" href="./app-assets-faasset.html">FAAsset</a></div>
+<a class="list-group-item" href="./app-assets-faasset.html">FAAsset</a>
+<a class="list-group-item" href="./app-assets-loginasset.html">LoginAsset</a></div>
 <a class="list-group-item" href="#navigation-83" data-toggle="collapse" data-parent="#navigation">app\commands <b class="caret"></b></a><div id="navigation-83" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-commands-hellocontroller.html">HelloController</a></div>
 <a class="list-group-item" href="#navigation-84" data-toggle="collapse" data-parent="#navigation">app\components <b class="caret"></b></a><div id="navigation-84" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-components-herokutarget.html">HerokuTarget</a></div>
 <a class="list-group-item active" href="#navigation-85" data-toggle="collapse" data-parent="#navigation">app\controllers <b class="caret"></b></a><div id="navigation-85" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./app-controllers-mensajescontroller.html">MensajesController</a>
@@ -50,7 +51,7 @@
 <a class="list-group-item" href="./app-controllers-valoracionescontroller.html">ValoracionesController</a>
 <a class="list-group-item" href="./app-controllers-videojuegoscontroller.html">VideojuegosController</a>
 <a class="list-group-item" href="./app-controllers-videojuegosusuarioscontroller.html">VideojuegosUsuariosController</a></div>
-<a class="list-group-item" href="#navigation-86" data-toggle="collapse" data-parent="#navigation">app\models <b class="caret"></b></a><div id="navigation-86" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-models-contactform.html">ContactForm</a>
+<a class="list-group-item" href="#navigation-86" data-toggle="collapse" data-parent="#navigation">app\models <b class="caret"></b></a><div id="navigation-86" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-models-banform.html">BanForm</a>
 <a class="list-group-item" href="./app-models-desarrolladoresvideojuegos.html">DesarrolladoresVideojuegos</a>
 <a class="list-group-item" href="./app-models-emailresetform.html">EmailResetForm</a>
 <a class="list-group-item" href="./app-models-generosvideojuegos.html">GenerosVideojuegos</a>
@@ -252,22 +253,17 @@ in the request.</td>
     </tr>
             <tr id="actionCreate()">
         <td><a href="app-controllers-reportescontroller.html#actionCreate()-detail">actionCreate()</a></td>
-        <td>Creates a new Reportes model.</td>
+        <td>Crea un nuevo Reporte.</td>
         <td><a href="app-controllers-reportescontroller.html">app\controllers\ReportesController</a></td>
     </tr>
             <tr id="actionDelete()">
         <td><a href="app-controllers-reportescontroller.html#actionDelete()-detail">actionDelete()</a></td>
-        <td>Deletes an existing Reportes model.</td>
+        <td>Elimina un Reporte de la base de datos.</td>
         <td><a href="app-controllers-reportescontroller.html">app\controllers\ReportesController</a></td>
     </tr>
             <tr id="actionIndex()">
         <td><a href="app-controllers-reportescontroller.html#actionIndex()-detail">actionIndex()</a></td>
-        <td>Lists all Reportes models.</td>
-        <td><a href="app-controllers-reportescontroller.html">app\controllers\ReportesController</a></td>
-    </tr>
-            <tr id="actionView()">
-        <td><a href="app-controllers-reportescontroller.html#actionView()-detail">actionView()</a></td>
-        <td>Displays a single Reportes model.</td>
+        <td>Lista los reportes enviados por los usuarios</td>
         <td><a href="app-controllers-reportescontroller.html">app\controllers\ReportesController</a></td>
     </tr>
             <tr class="inherited" id="actions()">
@@ -507,9 +503,9 @@ in the request.</td>
 <tr>
   <th>Method</th><th>Description</th><th>Defined By</th>
 </tr>
-                                                                                                                        <tr id="findModel()">
+                                                                                                                    <tr id="findModel()">
         <td><a href="app-controllers-reportescontroller.html#findModel()-detail">findModel()</a></td>
-        <td>Finds the Reportes model based on its primary key value.</td>
+        <td>Busca un modelo de Reportes a través de su id.</td>
         <td><a href="app-controllers-reportescontroller.html">app\controllers\ReportesController</a></td>
     </tr>
                                                                                                                 </table>
@@ -566,9 +562,9 @@ in the request.</td>
 
     
     <div class="doc-description">
-        <p><strong>Creates a new Reportes model.</strong></p>
+        <p><strong>Crea un nuevo Reporte.</strong></p>
 
-        <p>If creation is successful, the browser will be redirected to the 'view' page.</p>
+        <p>Si se reporta correctamente, se mandará al usuario a la página de inicio.</p>
 
             </div>
 
@@ -577,7 +573,8 @@ in the request.</td>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$usuario</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-desc-col"><p>Nombre de usuario al cuál se va a reportar.</p>
+</td>
                 </tr>
                                                 </table>
 
@@ -595,23 +592,18 @@ in the request.</td>
 
     
     <div class="doc-description">
-        <p><strong>Deletes an existing Reportes model.</strong></p>
+        <p><strong>Elimina un Reporte de la base de datos.</strong></p>
 
-        <p>If deletion is successful, the browser will be redirected to the 'index' page.</p>
+        <p>Si se reporta correctamente, se mandará al usuario al listado de reportes.</p>
 
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-reportescontroller.html#actionDelete()-detail">actionDelete</a></strong> ( <span style="color: #0000BB">$id</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$id</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                                                    <tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-reportescontroller.html#actionDelete()-detail">actionDelete</a></strong> ( )</td></tr>
+                                                            <tr>
                   <th class="param-name-col">throws</th>
                   <td class="param-type-col"><a href="yii-web-notfoundhttpexception.html">yii\web\NotFoundHttpException</a></td>
-                  <td class="param-desc-col"><p>if the model cannot be found</p>
+                  <td class="param-desc-col"><p>Si no se puede encontrar el reporte</p>
 </td>
                 </tr>
                         </table>
@@ -630,7 +622,7 @@ in the request.</td>
 
     
     <div class="doc-description">
-        <p><strong>Lists all Reportes models.</strong></p>
+        <p><strong>Lista los reportes enviados por los usuarios</strong></p>
 
         
             </div>
@@ -638,40 +630,6 @@ in the request.</td>
     <table class="detail-table table table-striped table-bordered table-hover">
         <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-reportescontroller.html#actionIndex()-detail">actionIndex</a></strong> ( )</td></tr>
             </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="actionView()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-controllers-reportescontroller.html#actionView()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        actionView()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Displays a single Reportes model.</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-reportescontroller.html#actionView()-detail">actionView</a></strong> ( <span style="color: #0000BB">$id</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$id</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                                                    <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col"><a href="yii-web-notfoundhttpexception.html">yii\web\NotFoundHttpException</a></td>
-                  <td class="param-desc-col"><p>if the model cannot be found</p>
-</td>
-                </tr>
-                        </table>
 
 <!--	-->
 
@@ -730,10 +688,9 @@ or be detached using <a href="yii-base-component.html#detachBehavior()-detail">d
 
     
     <div class="doc-description">
-        <p><strong>Finds the Reportes model based on its primary key value.</strong></p>
+        <p><strong>Busca un modelo de Reportes a través de su id.</strong></p>
 
-        <p>If the model is not found, a 404 HTTP exception will be thrown.</p>
-
+        
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
@@ -741,18 +698,19 @@ or be detached using <a href="yii-base-component.html#detachBehavior()-detail">d
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$id</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-desc-col"><p>Id del Reporte a buscar</p>
+</td>
                 </tr>
                                         <tr>
                   <th class="param-name-col">return</th>
                   <td class="param-type-col"><a href="app-models-reportes.html">app\models\Reportes</a></td>
-                  <td class="param-desc-col"><p>The loaded model</p>
+                  <td class="param-desc-col"><p>El modelo del Reporte encontrado</p>
 </td>
                 </tr>
                                         <tr>
                   <th class="param-name-col">throws</th>
                   <td class="param-type-col"><a href="yii-web-notfoundhttpexception.html">yii\web\NotFoundHttpException</a></td>
-                  <td class="param-desc-col"><p>if the model cannot be found</p>
+                  <td class="param-desc-col"><p>Si el modelo no se puede encontrar.</p>
 </td>
                 </tr>
                         </table>
@@ -797,7 +755,7 @@ or be detached using <a href="yii-base-component.html#detachBehavior()-detail">d
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sat, 07 Apr 2018 11:22:11 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Wed, 09 May 2018 16:49:58 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

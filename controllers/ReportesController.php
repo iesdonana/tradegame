@@ -51,7 +51,7 @@ class ReportesController extends Controller
     }
 
     /**
-     * Lists all Reportes models.
+     * Lista los reportes enviados por los usuarios
      * @return mixed
      */
     public function actionIndex()
@@ -66,29 +66,16 @@ class ReportesController extends Controller
     }
 
     /**
-     * Displays a single Reportes model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
-     * Creates a new Reportes model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @param string $usuario
+     * Crea un nuevo Reporte.
+     * Si se reporta correctamente, se mandará al usuario a la página de inicio.
+     * @param string $usuario Nombre de usuario al cuál se va a reportar.
      * @return mixed
      */
     public function actionCreate($usuario)
     {
         $model = new Reportes();
         if (($user = Usuarios::findOne(['usuario' => $usuario])) === null) {
-            throw new NotFoundHttpException('Usuario no encontrado');
+            throw new NotFoundHttpException('No se ha podido encontrar el usuario.');
         }
 
         $model->reporta_id = $user->id;
@@ -104,15 +91,15 @@ class ReportesController extends Controller
     }
 
     /**
-     * Deletes an existing Reportes model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * Elimina un Reporte de la base de datos.
+     * Si se reporta correctamente, se mandará al usuario al listado de reportes.
      * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException Si no se puede encontrar el reporte
      */
     public function actionDelete()
     {
         if (($id = Yii::$app->request->post('id')) === null) {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('No se ha podido ejecutar la acción.');
         }
 
         $this->findModel($id)->delete();
@@ -121,11 +108,10 @@ class ReportesController extends Controller
     }
 
     /**
-     * Finds the Reportes model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Reportes the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * Busca un modelo de Reportes a través de su id.
+     * @param int $id Id del Reporte a buscar
+     * @return Reportes El modelo del Reporte encontrado
+     * @throws NotFoundHttpException Si el modelo no se puede encontrar.
      */
     protected function findModel($id)
     {
@@ -133,6 +119,6 @@ class ReportesController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('No se ha podido encontrar el reporte.');
     }
 }

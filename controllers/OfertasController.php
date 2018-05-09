@@ -75,8 +75,8 @@ class OfertasController extends Controller
     }
 
     /**
-     * Creates a new Ofertas model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Crea un nuevo modelo de Ofertas.
+     * Si la oferta se crea correctamente, se redireccionará a la página de inicio.
      * @param mixed $publicacion Id del videojuego del usuario al que le vamos a
      *                           hacer la oferta
      * @return mixed

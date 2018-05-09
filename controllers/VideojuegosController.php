@@ -239,11 +239,9 @@ class VideojuegosController extends Controller
     }
 
     /**
-     * Updates an existing Videojuegos model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id
+     * Modifica o crea un modelo de Videojuegos
+     * @param int $id Id del videojuego
      * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate($id = null)
     {
@@ -284,7 +282,8 @@ class VideojuegosController extends Controller
     }
 
     /**
-     * Borra un videojuego (siempre que no haya ninguna publicación con este videojuego).
+     * Borra un videojuego
+     * Si el videojuego se ha podido borrar correctamente, se mandará al usuario a la Home
      * @param  int $id Id del videojuego a eliminar
      * @return mixed
      */
@@ -305,11 +304,10 @@ class VideojuegosController extends Controller
     }
 
     /**
-     * Finds the Ofertas model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
+     * Busca un modelo de Videojuegos
      * @param int $id
-     * @return Videojuegos the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * @return Videojuegos El modelo encontrado
+     * @throws NotFoundHttpException Si el modelo no se puede encontrar
      */
     protected function findModel($id)
     {

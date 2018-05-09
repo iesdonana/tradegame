@@ -65,8 +65,8 @@ class VideojuegosUsuariosController extends Controller
      * Hace una búsqueda de videojuegos publicados de un usuariom por el nombre
      * del videojuego.
      * @param  int $id_usuario    Usuario por el cual vamos a filtrar
-     * @param  string $q          Búsqueda
      * @param  int $id_videojuego Id del videojuego publicado
+     * @param  string $q          Búsqueda del título
      * @return string             Respuesta en JSON
      */
     public function actionBuscarPublicados($id_usuario, $id_videojuego, $q = null)
@@ -105,7 +105,8 @@ class VideojuegosUsuariosController extends Controller
     /**
      * Muestra las publicaciones de un usuario pasado por parámetro.
      * @param  string $usuario Nombre de usuario
-     * @param null|mixed $layout
+     * @param null|mixed $layout Layout en el que vamos a renderizar la vista
+     *                           Si es null la renderizaremos en el layout que usa todas las páginas
      * @return mixed
      * @throws NotFoundHttpException Si no se ha encontrado el usuario
      */

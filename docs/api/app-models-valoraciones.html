@@ -4,12 +4,12 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="language" content="en" />
-        <link href="./assets/f67380ca/css/bootstrap.css" rel="stylesheet">
-<link href="./assets/df73479/solarized_light.css" rel="stylesheet">
-<link href="./assets/1f9da9c7/style.css" rel="stylesheet">
-<script src="./assets/c26db3fd/jquery.js"></script>
-<script src="./assets/f67380ca/js/bootstrap.js"></script>
-<script src="./assets/9ac5f429/jssearch.js"></script>    <title>Valoraciones, app\models\Valoraciones - API del proyecto</title>
+        <link href="./assets/65e2b46c/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9e6600df/solarized_light.css" rel="stylesheet">
+<link href="./assets/8c0c9d61/style.css" rel="stylesheet">
+<script src="./assets/8de59952/jquery.js"></script>
+<script src="./assets/65e2b46c/js/bootstrap.js"></script>
+<script src="./assets/954c08f/jssearch.js"></script>    <title>Valoraciones, app\models\Valoraciones - API del proyecto</title>
 </head>
 <body>
 
@@ -36,7 +36,8 @@
 <a class="list-group-item" href="./yiirequirementchecker.html">YiiRequirementChecker</a></div>
 <a class="list-group-item" href="#navigation-316" data-toggle="collapse" data-parent="#navigation">app\assets <b class="caret"></b></a><div id="navigation-316" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-assets-appasset.html">AppAsset</a>
 <a class="list-group-item" href="./app-assets-bxasset.html">BxAsset</a>
-<a class="list-group-item" href="./app-assets-faasset.html">FAAsset</a></div>
+<a class="list-group-item" href="./app-assets-faasset.html">FAAsset</a>
+<a class="list-group-item" href="./app-assets-loginasset.html">LoginAsset</a></div>
 <a class="list-group-item" href="#navigation-317" data-toggle="collapse" data-parent="#navigation">app\commands <b class="caret"></b></a><div id="navigation-317" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-commands-hellocontroller.html">HelloController</a></div>
 <a class="list-group-item" href="#navigation-318" data-toggle="collapse" data-parent="#navigation">app\components <b class="caret"></b></a><div id="navigation-318" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-components-herokutarget.html">HerokuTarget</a></div>
 <a class="list-group-item" href="#navigation-319" data-toggle="collapse" data-parent="#navigation">app\controllers <b class="caret"></b></a><div id="navigation-319" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-controllers-mensajescontroller.html">MensajesController</a>
@@ -50,7 +51,7 @@
 <a class="list-group-item" href="./app-controllers-valoracionescontroller.html">ValoracionesController</a>
 <a class="list-group-item" href="./app-controllers-videojuegoscontroller.html">VideojuegosController</a>
 <a class="list-group-item" href="./app-controllers-videojuegosusuarioscontroller.html">VideojuegosUsuariosController</a></div>
-<a class="list-group-item active" href="#navigation-320" data-toggle="collapse" data-parent="#navigation">app\models <b class="caret"></b></a><div id="navigation-320" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./app-models-contactform.html">ContactForm</a>
+<a class="list-group-item active" href="#navigation-320" data-toggle="collapse" data-parent="#navigation">app\models <b class="caret"></b></a><div id="navigation-320" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./app-models-banform.html">BanForm</a>
 <a class="list-group-item" href="./app-models-desarrolladoresvideojuegos.html">DesarrolladoresVideojuegos</a>
 <a class="list-group-item" href="./app-models-emailresetform.html">EmailResetForm</a>
 <a class="list-group-item" href="./app-models-generosvideojuegos.html">GenerosVideojuegos</a>
@@ -421,7 +422,7 @@
         <td>Returns the list of fields that should be returned by default by <a href="yii-base-arrayabletrait.html#toArray()-detail">toArray()</a> when no specific fields are specified.</td>
         <td><a href="yii-base-arrayabletrait.html">yii\base\ArrayableTrait</a></td>
     </tr>
-                <tr class="inherited" id="find()">
+            <tr class="inherited" id="find()">
         <td><a href="yii-db-activerecord.html#find()-detail">find()</a></td>
         <td>Creates an <a href="yii-db-activequeryinterface.html">yii\db\ActiveQueryInterface</a> instance for query purpose.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
@@ -915,12 +916,7 @@ The previous example would extract "id".</td>
         <td>Extracts the root field names from nested fields.</td>
         <td><a href="yii-base-arrayabletrait.html">yii\base\ArrayableTrait</a></td>
     </tr>
-                <tr class="inherited" id="filterCondition()">
-        <td><a href="yii-db-activerecord.html#filterCondition()-detail">filterCondition()</a></td>
-        <td>Filters array condition before it is assiged to a Query filter.</td>
-        <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
-    </tr>
-                    <tr class="inherited" id="findByCondition()">
+                        <tr class="inherited" id="findByCondition()">
         <td><a href="yii-db-activerecord.html#findByCondition()-detail">findByCondition()</a></td>
         <td>Finds ActiveRecord instance(s) by the given condition.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
@@ -1400,7 +1396,7 @@ if the table is not named after this convention.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sat, 07 Apr 2018 11:22:12 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Wed, 09 May 2018 16:49:58 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

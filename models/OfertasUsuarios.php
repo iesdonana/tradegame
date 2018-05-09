@@ -61,7 +61,7 @@ class OfertasUsuarios extends \yii\db\ActiveRecord
     }
 
     /**
-     * Devuelve el número de ofertas que están pendientes de aprobar o rechazar.
+     * Devuelve el número de ofertas que están pendientes de aprobar o rechazar del usuario logueado.
      * @return int Número de ofertas pendientes
      */
     public static function getPendientes()

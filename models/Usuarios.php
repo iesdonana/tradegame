@@ -31,7 +31,15 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      */
     const ESCENARIO_CREATE = 'Registrar';
 
+    /**
+     * Escenario de recuperación de contraseña
+     * @var string
+     */
     const ESCENARIO_RECUPERACION = 'Recuperar';
+    /**
+     * Escenario de creación de usuario por Google
+     * @var string
+     */
     const ESCENARIO_GOOGLE = 'Google';
 
     /**
