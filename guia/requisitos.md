@@ -604,6 +604,15 @@
 | **Entrega**     | v3             |
 | **Incidencia**  | [98](https://github.com/jlnarvaez/tradegame/issues/98) |
 
+| **R68**     | **Cambiar de idioma**           |
+| --------------: | :------------------- |
+| **Descripción** | El usuario podrá cambiar de idioma el sitio web. Tendremos dos idiomas disponibles: Inglés y Español.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+| **Incidencia**  | [103](https://github.com/jlnarvaez/tradegame/issues/103) |
+
 
 ## Cuadro resumen
 
@@ -676,3 +685,4 @@
 | (**R65**) Listado de videojuegos publicados por un usuario | Importante | Funcional | Media | v1 | [76](https://github.com/jlnarvaez/tradegame/issues/76) |
 | (**R66**) Banear usuario | Importante | Funcional | Media | v2 | [97](https://github.com/jlnarvaez/tradegame/issues/97) |
 | (**R67**) Filtro avanzado de videojuegos | Opcional | Funcional | Media | v3 | [98](https://github.com/jlnarvaez/tradegame/issues/98) |
+| (**R68**) Cambiar de idioma | Importante | Funcional | Media | v2 | [103](https://github.com/jlnarvaez/tradegame/issues/103) |
