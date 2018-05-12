@@ -25,11 +25,13 @@ $registroGoogle = Url::to(['usuarios/registrar-google']);
 $loginGoogle = Url::to(['site/login-google']);
 $baseUrl = Url::to(['videojuegos/buscador-videojuegos']);
 $basePath = Url::to(['site/index']);
+$langPath = Url::to(['site/cambiar-idioma']);
 $js = <<<JS
 var baseUrl = "$baseUrl";
 var registroGoogle = "$registroGoogle";
 var loginGoogle = "$loginGoogle";
 var basePath = "$basePath";
+var langPath = "$langPath";
 JS;
 $this->registerJs($js, View::POS_HEAD);
 AppAsset::register($this);
@@ -190,7 +192,36 @@ $this->title = 'TradeGame';
             ],
             'active' => in_array(Yii::$app->controller->action->id, ['modificar']),
         ];
+
+
     }
+
+    $params = Yii::$app->params;
+    $currentLang = $params['sourceLanguage'];
+    $cookieLang = Yii::$app->getRequest()->getCookies()->getValue('lang');
+    if (array_key_exists($cookieLang, $params['languages'])) {
+        $currentLang = [
+            $cookieLang => $params['languages'][$cookieLang]
+        ];
+    }
+
+    $subItems = [];
+    $keyLang = key($currentLang);
+    foreach ($params['languages'] as $key => $value) {
+        if ($key !== $keyLang) {
+            $subItems[] = [
+                'label' => Html::tag('div', Html::img('@web/images/' . $value . '.png', ['class' => 'flag-img', 'data-lang' => $key]) .
+                        ' <span class="name-language">' . $value . '</span>', ['class' => 'flag-selectable'])
+
+            ];
+        }
+    }
+
+    $items[] = [
+        'label' => Html::img('@web/images/' . $currentLang[$keyLang] . '.png', ['class' => 'flag-img', 'data-lang' => $keyLang]),
+        'items' => $subItems
+    ];
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $items,
