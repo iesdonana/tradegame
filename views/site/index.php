@@ -50,7 +50,7 @@ $this->title = 'TradeGame';
     <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->usuariosDatos->geoloc !== null) : ?>
         <div class="row">
             <div class="section-title">
-                <h4>Usuarios cercanos</h4>
+                <h4><?= \Yii::t('app', 'Usuarios cercanos') ?></h4>
             </div>
             <div class="col-md-12 usuarios-cercanos">
             <?php

@@ -36,7 +36,7 @@ $this->registerJs($js);
         if ($usuario === null) {
             $usuario = new Usuarios([
                 'id' => $id,
-                'usuario' => 'Desconocido #' . $id
+                'usuario' => Yii::t('app', 'Desconocido') . ' #' . $id
             ]);
         }
         $img = '@web/uploads/avatares/default.png';

@@ -4,9 +4,9 @@
 /* @var $model app\models\Usuarios */
 /* @var $seccion string*/
 
-$this->title = 'Modificar perfil';
+$this->title = Yii::t('app', 'Modificar perfil');
 $this->params['breadcrumbs'][] = [
-    'label' => 'Mi perfil',
+    'label' => Yii::t('app', 'Mi perfil'),
     'url' => ['usuarios/perfil', 'usuario' => Yii::$app->user->identity->usuario]
 ];
 $this->params['breadcrumbs'][] = $this->title;
@@ -43,7 +43,6 @@ $model = isset($model) ? $model : $modelDatos->usuario;
             </div>
             <div class="panel-body">
                 <?php if ($seccion !== 'personal'): ?>
-                    <?php $dir = '/usuarios-datos/_form_personal' ?>
                     <?= $this->render('_form_' . $seccion, [
                         'model' => $model,
                         ]) ?>

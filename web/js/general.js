@@ -15,6 +15,16 @@ $(function () {
   });
 });
 
+function cambiarIdioma(lang) {
+    $.post(langPath, {'lang': lang}, function(data) {
+        location.reload();
+    });
+}
+
+$('.flag-selectable').on('click', function() {
+    cambiarIdioma($(this).children('img').data('lang'));
+});
+
 
 window.onscroll = function() {scrollFunction()};
 

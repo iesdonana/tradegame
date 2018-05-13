@@ -18,17 +18,27 @@ use yii\widgets\DetailView;
             'model' => $videojuego,
             'attributes' => [
                 'nombre',
-                'descripcion',
+                [
+                    'attribute' => 'descripcion',
+                    'value' => function ($model) {
+                        return Utiles::translate($model->descripcion);
+                    }
+                ],
                 [
                     'attribute' => 'plataforma.nombre',
-                    'label' => 'Plataforma',
+                    'label' => Yii::t('app', 'Plataforma'),
                     'format' => 'html',
                     'value' => function ($model) {
                         return Utiles::badgePlataforma($model->plataforma->nombre);
                     }
                 ],
-                'fecha_lanzamiento:date:Fecha de lanzamiento',
-                'genero.nombre:text:Género'
+                'fecha_lanzamiento:date',
+                [
+                    'label' => Yii::t('app', 'Género'),
+                    'value' => function ($model) {
+                        return Yii::t('app', $model->genero->nombre);
+                    }
+                ]
             ]
             ]) ?>
     </div>

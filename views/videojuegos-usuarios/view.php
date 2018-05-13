@@ -11,11 +11,6 @@ $css = <<<CSS
     margin: 10px;
 }
 
-.comentarios-videojuego:empty:after {
-    font-style: italic;
-    content: 'No se ha proporcionado ningún comentario';
-}
-
 .borrar {
     margin-left: 10px;
 }
@@ -64,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php if (!$model->borrado): ?>
                     <div id='date'>
                         <div class="col-md-6 text-left">
-                            <?= Utiles::FA('user') ?> Publicado por
+                            <?= Utiles::FA('user') . ' ' . Yii::t('app', 'Publicado por') ?>
                             <?= Html::a($user, ['usuarios/perfil', 'usuario' => $user]) ?>
                         </div>
                         <div class="col-md-6 text-right">
@@ -83,7 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'model' => $videojuego
                     ]) ?>
                     <div class="datos-videojuego">
-                        <strong>Comentarios del usuario: </strong><br>
+                        <strong><?= Yii::t('app', 'Comentarios del usuario') ?>: </strong><br>
                         <div class="comentarios-videojuego"><?= Html::encode($model->mensaje) ?></div>
                     </div>
                     <?php if (Yii::$app->user->id !== $model->usuario_id && $model->visible): ?>
@@ -99,7 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php endif; ?>
                 <?php else: ?>
                     <div class="row text-center">
-                        <h3 class="text-danger">Esta publicación ya no existe <?= Utiles::FA('frown', ['class' => 'far']) ?></h3>
+                        <h3 class="text-danger"><?= Yii::t('app' , 'Esta publicación ya no existe') . ' ' . Utiles::FA('frown', ['class' => 'far']) ?></h3>
                     </div>
                 <?php endif; ?>
             </div>
@@ -107,18 +102,18 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 <?php Modal::begin([
- 'header' => '<h2 class="modal-title">Borrar publicación</h2>',
+ 'header' => '<h2 class="modal-title">' . Yii::t('app', 'Borrar publicación') . '</h2>',
  'id'     => 'modal-delete',
  'footer' => Html::beginForm(['/videojuegos-usuarios/remove'], 'post') .
             Html::hiddenInput('id', $model->id) .
              Html::submitButton(
-                 Utiles::FA('trash-alt') . ' Borrar publicación',
+                 Utiles::FA('trash-alt') . ' ' . Yii::t('app', 'Borrar publicación'),
                  ['class' => 'btn btn-danger']
              )
              . Html::endForm()
  ])
  ?>
- <p>¿Estás seguro de que deseas borrar permanentemente la publicación?</p>
+ <p><?= Yii::t('app', '¿Estás seguro de que deseas borrar permanentemente la publicación?') ?></p>
 
- <p class="text-warning"><?= Utiles::FA('exclamation-triangle') ?> No volverá a recibir ofertas por este videojuego</p>
+ <p class="text-warning"><?= Utiles::FA('exclamation-triangle') ?> <?= Yii::t('app', 'No volverá a recibir ofertas por este videojuego') ?></p>
  <?php Modal::end(); ?>

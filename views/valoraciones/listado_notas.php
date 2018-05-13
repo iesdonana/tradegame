@@ -8,10 +8,10 @@ $this->params['breadcrumbs'][] = [
     'url' => ['usuarios/perfil', 'usuario' => $model->usuario]
 ];
 
-$this->params['breadcrumbs'][] = 'Valoraciones';
+$this->params['breadcrumbs'][] = Yii::t('app', 'Valoraciones');
 ?>
 <div class="valoraciones">
-    <h2 class="text-center"><?= Html::encode('Valoraciones de ' . $this->title) ?></h2>
+    <h2 class="text-center"><?= Html::encode(Yii::t('app', 'Valoraciones de') . $this->title) ?></h2>
     <div class="row">
         <div class="col-md-12">
             <div class="sticky">

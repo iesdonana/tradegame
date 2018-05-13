@@ -2,8 +2,6 @@
 
 use app\helpers\Utiles;
 
-use yii\web\View;
-
 use yii\helpers\Html;
 
 
@@ -33,7 +31,7 @@ $this->registerJs($js);
     <div class="row text-center">
         <h3>
             <span class="label label-default">
-                <?= $model->contraoferta_de === null ? 'Oferta' : 'Contraoferta' ?>
+                <?= $model->contraoferta_de === null ? Yii::t('app', 'Oferta') : Yii::t('app', 'Contraoferta') ?>
             </span>
         </h3>
     </div>
@@ -52,7 +50,7 @@ $this->registerJs($js);
             <div class="row">
                 <p class="text-center">
                     <?php $usuario = $vUsuarioPublicado->usuario->usuario ?>
-                    <strong>Publicado por:</strong>
+                    <strong><?= Yii::t('app', 'Publicado por') ?>:</strong>
                     <?= Html::a(
                         Html::encode($usuario),
                         ['usuarios/perfil', 'usuario' => $usuario]) ?>
@@ -85,9 +83,11 @@ $this->registerJs($js);
                 <span>
                     <?= Utiles::FA('info-circle', ['class' => 'fas text-info']) ?>
                     <em>
-                        Puedes ver un listado completo de los videojuegos de <?= Html::encode($nom_ofrecido) ?>
+                        <?= Yii::t('app', 'Puedes ver un listado completo de los videojuegos de {username}', [
+                            'username' => Html::encode($nom_ofrecido)
+                        ]) ?>
                         <?= Html::a(
-                            'aquí',
+                            Yii::t('app', 'aquí'),
                             [
                                 'videojuegos-usuarios/publicaciones',
                                 'usuario' => $nom_ofrecido,
@@ -101,7 +101,7 @@ $this->registerJs($js);
             <div class="panel panel-default panel-trade">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        Ofrecer videojuego
+                        <?= Yii::t('app', 'Ofrecer videojuego') ?>
                     </div>
                 </div>
                 <div class="panel-body">

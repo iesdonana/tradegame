@@ -50,8 +50,8 @@ class Mensajes extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'emisor_id' => 'Emisor ID',
-            'receptor_id' => 'Receptor',
-            'contenido' => 'Contenido',
+            'receptor_id' => Yii::t('app', 'Receptor'),
+            'contenido' => Yii::t('app', 'Contenido'),
             'leido' => 'Leido',
         ];
     }

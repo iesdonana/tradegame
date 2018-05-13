@@ -7,7 +7,7 @@
         <div class="panel panel-default panel-trade">
             <div class="panel-heading">
                 <div class="panel-title">
-                    Enviar mensaje
+                    <?= Yii::t('app', 'Enviar mensaje') ?>
                 </div>
             </div>
             <div class="panel-body">

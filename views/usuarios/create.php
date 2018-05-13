@@ -6,7 +6,7 @@
 <div class="panel panel-default panel-trade">
     <div class="panel-heading">
         <div class="panel-title text-center">
-            Registrar usuario
+            <?= Yii::t('app', 'Registrar usuario') ?>
         </div>
     </div>
     <div class="panel-body">

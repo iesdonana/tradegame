@@ -12,7 +12,7 @@ use kartik\grid\GridView;
 /* @var $searchModel app\models\ValoracionesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Mis valoraciones';
+$this->title = Yii::t('app', 'Mis valoraciones');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="valoraciones-index">
@@ -21,20 +21,26 @@ $this->params['breadcrumbs'][] = $this->title;
         'summary' => '',
         'formatter' => [
             'class' => 'yii\i18n\Formatter',
-            'nullDisplay' => '<span class="text-warning">Pendiente de valorar</span>'
+            'nullDisplay' => '<span class="text-warning">' . Yii::t('app', 'Pendiente de valorar') . '</span>'
         ],
         'columns' => [
-            'usuarioValorado.usuario:text:Usuario a valorar',
-            'comentario',
             [
-                'header' => 'Valoración',
+                'header' => Yii::t('app', 'Usuario a valorar'),
+                'value' => 'usuarioValorado.usuario'
+            ],
+            [
+                'header' => Yii::t('app', 'Comentario'),
+                'value' => 'comentario'
+            ],
+            [
+                'header' => Yii::t('app', 'Valoración'),
                 'class' => ActionColumn::className(),
                 'template' => '{valorar}',
                 'headerOptions' => ['style' => 'width:20%'],
                 'buttons' => [
                     'valorar' => function ($url, $model, $key) {
                         if ($model->num_estrellas === null) {
-                            return Html::a('Valorar ' . Utiles::FA('star'), [
+                            return Html::a(Yii::t('app', 'Valorar') . ' ' . Utiles::FA('star'), [
                                 'valoraciones/valorar', 'id' => $model->id
                             ], ['class' => 'btn btn-sm btn-warning']);
                         } else {

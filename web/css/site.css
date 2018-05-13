@@ -267,11 +267,6 @@ span[data-plat$='2'] {
     color: #e5dd00;
 }
 
-.comentarios-videojuego:empty:after {
-    font-style: italic;
-    content: 'No se ha proporcionado ningún comentario';
-}
-
 .panel-trade > .panel-heading > .panel-title {
     color: rgba(115, 0, 0);
     font-weight: bold;
@@ -326,4 +321,16 @@ span[data-plat$='2'] {
 .section-mini-title h4 {
     color: #430000;
     border-bottom: 1px solid #430000;
+}
+
+.flag-img {
+    width: 20px;
+}
+.flag-selectable {
+    cursor: pointer;
+}
+.name-language {
+    text-transform: capitalize;
+    color:#333;
+    font-size: 14px;
 }

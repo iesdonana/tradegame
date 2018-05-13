@@ -4,7 +4,7 @@
 /* @var $this yii\web\View */
 /* @var $model app\models\VideojuegosUsuarios */
 
-$this->title = 'Publicar videojuego';
+$this->title = Yii::t('app', 'Publicar videojuego');
 $this->params['breadcrumbs'][] = $this->title;
 $css = <<<CSS
 tr {
@@ -20,7 +20,14 @@ $this->registerCss($css);
                 'model' => $model,
                 ]) ?>
         </div>
-        <div id="detalles" class="col-md-7">
+        <div id="detalles" class="col-md-7"></div>
+        <div class="loading-container hidden">
+            <div class="row">
+                <h3 class="text-center"><?= Yii::t('app', 'Cargando detalles...') ?></h3>
+            </div>
+            <div class="row">
+                <div class="loader center-block"></div>
+            </div>
         </div>
     </div>
 </div>

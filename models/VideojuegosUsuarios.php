@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use Yii;
+
 use yii\web\NotFoundHttpException;
 
 /**
@@ -51,9 +53,9 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'videojuego_id' => 'Título del videojuego',
+            'videojuego_id' => Yii::t('app', 'Título del videojuego'),
             'usuario_id' => 'Usuario ID',
-            'mensaje' => 'Comentarios',
+            'mensaje' => Yii::t('app', 'Comentarios'),
         ];
     }
 

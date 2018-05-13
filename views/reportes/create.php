@@ -4,8 +4,8 @@
 use yii\helpers\Html;
 
 
-$this->title = 'Reportar a ' . Html::encode($reportado->usuario) ;
-$this->params['breadcrumbs'][] = ['label' => 'Reportes', 'url' => ['index']];
+$this->title = Yii::t('app', 'Reportar a') . ' ' . Html::encode($reportado->usuario) ;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Reportes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reportes-create">

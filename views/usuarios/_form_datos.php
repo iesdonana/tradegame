@@ -27,11 +27,11 @@ use yii\widgets\ActiveForm;
             'enableAjaxValidation' => true,
             'template' => Utiles::inputTemplate('user', Utiles::FONT_AWESOME)
         ]
-        )->textInput(['maxlength' => true, 'placeholder' => 'Nombre de usuario'])
+        )->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Nombre de usuario')])
         ->label(false) ?>
 
         <?php
-        $config = ['maxlength' => true, 'placeholder' => 'Correo electrónico'];
+        $config = ['maxlength' => true, 'placeholder' => Yii::t('app', 'Correo electrónico')];
         if ($model->password === null && $model->scenario !== Usuarios::ESCENARIO_CREATE) {
             $config['disabled'] = true;
         }
@@ -41,18 +41,18 @@ use yii\widgets\ActiveForm;
 
     <?php if ($model->scenario === Usuarios::ESCENARIO_CREATE): ?>
         <?= $form->field($model, 'password', ['template' => Utiles::inputTemplate('key', Utiles::FONT_AWESOME)])
-            ->passwordInput(['maxlength' => true, 'placeholder' => 'Contraseña']) ?>
+            ->passwordInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Contraseña')]) ?>
 
         <?= $form->field($model, 'repeatPassword', ['template' => Utiles::inputTemplate('key', Utiles::FONT_AWESOME)])
-            ->passwordInput(['maxlength' => true, 'placeholder' => 'Vuelve a introducir la contraseña']) ?>
+            ->passwordInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Vuelve a introducir la contraseña')]) ?>
     <?php endif ?>
     <div class="col-md-offset-2 col-md-8">
         <div class="form-group">
-            <?= Html::submitButton($model->scenario . ' ', ['class' => 'btn btn-tradegame btn-block']) ?>
+            <?= Html::submitButton(Yii::t('app', $model->scenario) . ' ', ['class' => 'btn btn-tradegame btn-block']) ?>
         </div>
         <?php if ($model->scenario === Usuarios::ESCENARIO_CREATE): ?>
             <div class="form-group google-login">
-                <?= Html::a(Html::img('@web/images/google.png') . 'Registrarse con Google', null, ['class' => 'btn btn-default btn-block']) ?>
+                <?= Html::a(Html::img('@web/images/google.png') . Yii::t('app', 'Registrarse con Google'), null, ['class' => 'btn btn-default btn-block']) ?>
             </div>
             <div class="g-signin2 google-btn hidden" data-onsuccess="onRegisterIn"></div>
         <?php endif ?>

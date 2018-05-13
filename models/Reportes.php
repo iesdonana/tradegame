@@ -37,7 +37,7 @@ class Reportes extends \yii\db\ActiveRecord
             [['mensaje'], 'filter', 'filter' => 'trim'],
             [['mensaje'], function ($attribute, $params) {
                 if (mb_strlen(trim($this->$attribute)) < 20) {
-                    $this->addError($attribute, 'El mensaje debe contener al menos 20 carácteres');
+                    $this->addError($attribute, Yii::t('app', 'El mensaje debe contener al menos 20 carácteres'));
                 }
             }],
             [['mensaje'], 'string', 'max' => 255],

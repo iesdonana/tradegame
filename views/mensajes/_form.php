@@ -1,5 +1,7 @@
 <?php
 
+use app\helpers\Utiles;
+
 use yii\web\View;
 use yii\web\JsExpression;
 
@@ -34,6 +36,7 @@ $this->registerJs($js, View::POS_HEAD);
     <?php $form = ActiveForm::begin(); ?>
     <?php if ($model->receptor_id === null): ?>
         <?= $form->field($model, 'receptor_id')->widget(Select2::classname(), [
+            'language' => Yii::$app->language,
             'pluginOptions' => [
                 'allowClear' => true,
                 'minimumInputLength' => 1,
@@ -48,17 +51,17 @@ $this->registerJs($js, View::POS_HEAD);
             ],
         ]); ?>
     <?php else: ?>
-        Para <strong><?= $model->receptor->usuario ?> </strong>
+        <?= Yii::t('app', 'Para') ?> <strong><?= $model->receptor->usuario ?> </strong>
     <?php endif ?>
     <hr>
     <?= $form->field($model, 'contenido')->textarea([
         'maxlength' => true,
         'rows' => 8,
-        'placeholder' => 'Mensaje'
+        'placeholder' => Yii::t('app', 'Mensaje')
         ])->label(false) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Enviar', ['class' => 'btn btn-tradegame']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Enviar'), ['class' => 'btn btn-tradegame']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

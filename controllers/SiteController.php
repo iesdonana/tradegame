@@ -54,6 +54,26 @@ class SiteController extends Controller
         ];
     }
 
+
+    /**
+     * Cambia el idioma de la aplicación
+     * @return string Idioma de la aplicación después del cambio
+     */
+    public function actionCambiarIdioma()
+    {
+        $lang = Yii::$app->request->post('lang');
+        if ($lang !== null) {
+            Yii::$app->language = $lang;
+            $cookies = Yii::$app->response->cookies;
+
+            $cookies->add(new \yii\web\Cookie([
+                'name' => 'lang',
+                'value' => $lang,
+            ]));
+        }
+        return Yii::$app->language;
+    }
+
     /**
      * Muestra la página de inicio del sitio web.
      * Esta página dependerá de si está logueado o no.
@@ -108,7 +128,7 @@ class SiteController extends Controller
         if ($email === null || ($usuario = Usuarios::find()
                 ->where(['email' => $email])
                 ->andWhere(['is', 'password', null])->one()) === null) {
-            Yii::$app->session->setFlash('error', 'No se ha encontrado ningún usuario registrado con Google con ese email');
+            Yii::$app->session->setFlash('error', Yii::t('app', 'No se ha encontrado ningún usuario registrado con Google con ese email'));
             return false;
         }
 

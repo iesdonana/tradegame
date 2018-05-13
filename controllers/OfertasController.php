@@ -88,7 +88,7 @@ class OfertasController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $vjPublicado = $model->videojuegoPublicado;
             $this->enviarEmailOferta($vjPublicado->usuario, $vjPublicado->videojuego->nombre);
-            Yii::$app->session->setFlash('success', 'Has realizado la oferta correctamente');
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Has realizado la oferta correctamente'));
             return $this->goHome();
         }
 
@@ -110,11 +110,11 @@ class OfertasController extends Controller
         $model = new Ofertas();
 
         if (($modelOferta = Ofertas::findOne($oferta)) === null) {
-            throw new NotFoundHttpException('No existe la oferta');
+            throw new NotFoundHttpException(Yii::t('app', 'No existe la oferta'));
         }
 
         if (Ofertas::findOne(['contraoferta_de' => $modelOferta->id]) !== null) {
-            throw new NotFoundHttpException('Ya se ha contraofertado');
+            throw new NotFoundHttpException(Yii::t('app', 'Ya se ha realizado una contraoferta anteriormente.'));
         }
 
         $model->contraoferta_de = $modelOferta->id;
@@ -126,7 +126,7 @@ class OfertasController extends Controller
             $ofertaPrincipal->save();
             $vjOfrecido = $model->videojuegoOfrecido;
             $this->enviarEmailOferta($vjOfrecido->usuario, $model->videojuegoPublicado->videojuego->nombre, true);
-            Yii::$app->session->setFlash('success', 'Has realizado la contraoferta correctamente');
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Has realizado la contraoferta correctamente'));
             return $this->goHome();
         }
 
@@ -146,24 +146,24 @@ class OfertasController extends Controller
     public function actionCambiarEstado()
     {
         if (($valor = Yii::$app->request->post('valor')) === null || ($id = Yii::$app->request->post('id')) === null) {
-            throw new NotFoundHttpException('No se pasó los parámetros correctos');
+            throw new NotFoundHttpException(Yii::t('app', 'La página solicitada no existe.'));
         }
 
         if (($model = $this->findModel($id)) === null) {
-            throw new NotFoundHttpException('No se encontró la oferta');
+            throw new NotFoundHttpException(Yii::t('app', 'No se encontró la oferta'));
         }
 
         if ($model->aceptada !== null) {
-            throw new NotFoundHttpException('Ya se cambió el estado de esta oferta');
+            throw new NotFoundHttpException(Yii::t('app', 'Esta oferta ya ha sido aceptada/rechazada anteriormente'));
         }
 
         if (!in_array($valor, [0, 1])) {
-            throw new ForbiddenHttpException('No es posible ejecutar esa acción');
+            throw new ForbiddenHttpException(Yii::t('app', 'No es posible ejecutar esa acción'));
         }
 
         $model->aceptada = $valor;
         if ($model->save()) {
-            Yii::$app->session->setFlash('success', 'Se ha cambiado el estado correctamente');
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Se ha cambiado el estado correctamente'));
             if ($model->aceptada) {
                 $publicado = $model->videojuegoPublicado;
                 $ofrecido = $model->videojuegoOfrecido;
@@ -200,9 +200,9 @@ class OfertasController extends Controller
                     'usuario_valorado_id' => $usuarioValora,
                 ]);
                 $valoracion->save();
-                Yii::$app->session->setFlash('info', 'Recuerda valorar ' .
+                Yii::$app->session->setFlash('info', Yii::t('app', 'Recuerda valorar ' .
                     'al usuario con el que has intercambiado el videojuego desde ' .
-                    'el panel de notificaciones');
+                    'el panel de notificaciones'));
             }
         }
         return $this->redirect('/ofertas-usuarios/index');
@@ -219,13 +219,13 @@ class OfertasController extends Controller
      */
     private function enviarEmailOferta($usuario, $videojuego, $contraoferta = false)
     {
-        $content = 'Parece que has recibido una oferta de alguien por tu ' . $videojuego . '<br>' .
-            'Para ver la oferta pulsa en el siguiente botón:<br>' .
-            Html::a('Ver mis ofertas', Url::to('/ofertas', true), ['class' => 'oferta']);
+        $content = Yii::t('app', 'Parece que has recibido una oferta de alguien por tu') . ' ' . $videojuego . '<br>' .
+            Yii::t('app', 'Para ver la oferta pulsa en el siguiente botón') . ':<br>' .
+            Html::a(Yii::t('app', 'Ver mis ofertas'), Url::to('/ofertas', true), ['class' => 'oferta']);
         if ($contraoferta) {
-            $content = 'Parece que has recibido una contraoferta de alguien por su ' . $videojuego . '<br>' .
-            'Para ver la contraoferta pulsa en el siguiente botón:<br>' .
-            Html::a('Ver mis ofertas', Url::to('/ofertas', true), ['class' => 'oferta']);
+            $content = Yii::t('app', 'Parece que has recibido una contraoferta de alguien por su') . ' ' . $videojuego . '<br>' .
+            Yii::t('app', 'Para ver la contraoferta pulsa en el siguiente botón') . ':<br>' .
+            Html::a(Yii::t('app', 'Ver mis ofertas'), Url::to('/ofertas', true), ['class' => 'oferta']);
         }
 
         return Yii::$app->mailer->compose('custom', [
@@ -234,7 +234,7 @@ class OfertasController extends Controller
             ])
             ->setFrom(Yii::$app->params['adminEmail'])
             ->setTo($usuario->email)
-            ->setSubject('¡Has recibido una oferta!')
+            ->setSubject(Yii::t('app', '¡Has recibido una oferta!'))
             ->send();
     }
 
@@ -251,6 +251,6 @@ class OfertasController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('app', 'La página solicitada no existe.'));
     }
 }

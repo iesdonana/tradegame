@@ -23,7 +23,7 @@ use kartik\rating\StarRating;
     ]) ?>
 
     <div class="form-group col-md-offset-2 col-md-8">
-        <?= Html::submitButton('Valorar ', ['class' => 'btn btn-tradegame btn-block']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Valorar') . ' ', ['class' => 'btn btn-tradegame btn-block']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

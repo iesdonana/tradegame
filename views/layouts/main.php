@@ -25,11 +25,13 @@ $registroGoogle = Url::to(['usuarios/registrar-google']);
 $loginGoogle = Url::to(['site/login-google']);
 $baseUrl = Url::to(['videojuegos/buscador-videojuegos']);
 $basePath = Url::to(['site/index']);
+$langPath = Url::to(['site/cambiar-idioma']);
 $js = <<<JS
 var baseUrl = "$baseUrl";
 var registroGoogle = "$registroGoogle";
 var loginGoogle = "$loginGoogle";
 var basePath = "$basePath";
+var langPath = "$langPath";
 JS;
 $this->registerJs($js, View::POS_HEAD);
 AppAsset::register($this);
@@ -76,7 +78,7 @@ $this->title = 'TradeGame';
         Typeahead::widget([
         'name' => 'videojuegos',
         'value' => Yii::$app->request->get('q'),
-        'options' => ['placeholder' => 'Busca un videojuego ...', 'class' => 'form-inline'],
+        'options' => ['placeholder' => Yii::t('app', 'Busca un videojuego ...'), 'class' => 'form-inline'],
         'pluginOptions' => ['highlight'=>true],
         'pluginEvents' => [
             'typeahead:select' => "function(ev, resp) {window.location.href = '$url/videojuegos/' + resp.id }",
@@ -99,16 +101,16 @@ $this->title = 'TradeGame';
         '</li>',
         [
             'label' => Utiles::FA('gamepad') .
-                ' Publicar',
+                ' ' . Yii::t('app', 'Publicar'),
             'url' => ['/videojuegos-usuarios/publicar']
         ]
     ];
 
     if (Yii::$app->user->isGuest) {
-        $items[] = ['label' => Utiles::FA('sign-in-alt') . ' Login / Registro', 'url' => ['/site/login']];
+        $items[] = ['label' => Utiles::FA('sign-in-alt') . ' Login / ' . Yii::t('app', 'Registro'), 'url' => ['/site/login']];
     } else {
         $items[] = [
-            'label' => Utiles::FA('list', ['class' => 'fas']) . ' Mis publicaciones',
+            'label' => Utiles::FA('list', ['class' => 'fas']) . ' ' . Yii::t('app', 'Mis publicaciones'),
             'url' => ['/videojuegos-usuarios/publicaciones', 'usuario' => Yii::$app->user->identity->usuario]
         ];
 
@@ -118,22 +120,23 @@ $this->title = 'TradeGame';
 
         $subItems = [
             [
-                'label' => Utiles::FA('handshake', ['class' => 'far']) . " Ofertas $pendOf",
+                'label' => Utiles::FA('handshake', ['class' => 'far']) . " " .
+                    Yii::t('app', 'Ofertas') . " $pendOf",
                 'url' => ['/ofertas-usuarios/index']
             ],
             [
-                'label' => Utiles::FA('inbox') . " Mensajes $pendMsg",
+                'label' => Utiles::FA('inbox') . " " . Yii::t('app', 'Messages') . " $pendMsg",
                 'url' => ['/mensajes/listado']
             ],
             [
-                'label' => Utiles::FA('star') . " Valoraciones $pendVal",
+                'label' => Utiles::FA('star') . " " . Yii::t('app', 'Valoraciones') . " $pendVal",
                 'url' => ['/valoraciones/index']
             ]
         ];
 
         if (Yii::$app->user->identity->esAdmin()) {
             $subItems[] = [
-                'label' => Utiles::FA('flag') . " Reportes",
+                'label' => Utiles::FA('flag') . " " . Yii::t('app', 'Reportes'),
                 'url' => ['/reportes/index']
             ];
         }
@@ -145,7 +148,7 @@ $this->title = 'TradeGame';
 
         $form = Html::beginForm(['/site/logout'], 'post')
         . Html::submitButton(
-            Utiles::FA('sign-out-alt') . ' Cerrar sesión',
+            Utiles::FA('sign-out-alt') . ' ' . Yii::t('app', 'Cerrar sesión'),
             ['class' => 'btn btn-danger btn-block logout']
         )
         . Html::endForm();
@@ -175,7 +178,7 @@ $this->title = 'TradeGame';
                             . "</p>
                             <p class='text-left'>" .
                                 Html::a(
-                                    Utiles::FA('cog') . ' Modificar datos',
+                                    Utiles::FA('cog') . ' ' . Yii::t('app', 'Modificar datos'),
                                     ['usuarios/modificar', 'seccion' => 'datos'],
                                     ['class' => 'btn btn-xs btn-info']
                                 )
@@ -190,7 +193,36 @@ $this->title = 'TradeGame';
             ],
             'active' => in_array(Yii::$app->controller->action->id, ['modificar']),
         ];
+
+
     }
+
+    $params = Yii::$app->params;
+    $currentLang = $params['sourceLanguage'];
+    $cookieLang = Yii::$app->getRequest()->getCookies()->getValue('lang');
+    if (array_key_exists($cookieLang, $params['languages'])) {
+        $currentLang = [
+            $cookieLang => $params['languages'][$cookieLang]
+        ];
+    }
+
+    $subItems = [];
+    $keyLang = key($currentLang);
+    foreach ($params['languages'] as $key => $value) {
+        if ($key !== $keyLang) {
+            $subItems[] = [
+                'label' => Html::tag('div', Html::img('@web/images/' . $value . '.png', ['class' => 'flag-img', 'data-lang' => $key]) .
+                        ' <span class="name-language">' . $value . '</span>', ['class' => 'flag-selectable'])
+
+            ];
+        }
+    }
+
+    $items[] = [
+        'label' => Html::img('@web/images/' . $currentLang[$keyLang] . '.png', ['class' => 'flag-img', 'data-lang' => $keyLang]),
+        'items' => $subItems
+    ];
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $items,

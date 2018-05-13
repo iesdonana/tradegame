@@ -4,6 +4,8 @@ namespace app\helpers;
 
 use Yii;
 
+use Statickidz\GoogleTranslate;
+
 use app\models\Mensajes;
 use app\models\Usuarios;
 use app\models\OfertasUsuarios;
@@ -275,7 +277,7 @@ class Utiles
      * @param  string $name    Nombre del fichero
      * @return bool true si se ha borrado correctamente.
      */
-    public function borrarAnteriores($carpeta, $name)
+    public static function borrarAnteriores($carpeta, $name)
     {
         $path = Yii::getAlias('@' . $carpeta . '/');
         $ficheros = glob($path . $name . '.*');
@@ -291,5 +293,34 @@ class Utiles
             $ruta = $path . $name . '.png';
             $s3->delete($ruta);
         }
+    }
+
+    /**
+     * Aplica la internacionalización a un array
+     * @param  array $arr Array que queremos traducir
+     * @return array      Array traducido
+     */
+    public static function translateArray($arr)
+    {
+        $res = $arr;
+        foreach ($arr as $key => $value) {
+            $res[$key] = Yii::t('app', $value);
+        }
+        return $res;
+    }
+
+    /**
+     * Traduce, si fuera necesario, la cadena pasada por parámetro al idioma de la aplicación
+     * @param  string $text Texto a traducir
+     * @return string       Texto traducido
+     */
+    public static function translate($text)
+    {
+        $trans = new GoogleTranslate();
+        $source = array_keys(Yii::$app->params['sourceLanguage'])[0];
+        if ($source !== Yii::$app->language) {
+            $text = $trans->translate($source, Yii::$app->language, $text);
+        }
+        return $text;
     }
 }

@@ -95,12 +95,12 @@ class UsuariosController extends Controller
             if ($this->enviarEmailValidacion($model)) {
                 Yii::$app->session->setFlash(
                     'success',
-                    'Se ha enviado un correo de confirmación a su correo electrónico. ' .
-                    'Revíselo para poder iniciar sesión.'
+                    Yii::t('app', 'Se ha enviado un correo de confirmación a su correo electrónico. ' .
+                    'Revíselo para poder iniciar sesión.')
                 );
                 return $this->redirect(['site/login']);
             }
-            throw new HttpRequestException('No se ha podido completar la solicitud.');
+            throw new HttpRequestException(Yii::t('app', 'No se ha podido completar la solicitud.'));
         }
 
         $login = new LoginForm();
@@ -132,12 +132,12 @@ class UsuariosController extends Controller
             $model->id = $usuariosId->id;
             $model->save();
 
-            Yii::$app->session->setFlash('success', 'Te has registrado correctamente con Google.');
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Te has registrado correctamente con Google.'));
             return true;
         }
 
         $errores = $model->errors;
-        $msg = 'No se ha podido registrar con Google.';
+        $msg = Yii::t('app', 'No se ha podido registrar con Google.');
         if (count($errores) > 0) {
             $msg = str_replace('"', '', reset($errores));
         }
@@ -160,7 +160,7 @@ class UsuariosController extends Controller
         $user->token_val = null;
         $user->save(false);
 
-        Yii::$app->session->setFlash('success', 'Has validado la cuenta correctamente.');
+        Yii::$app->session->setFlash('success', Yii::t('app', 'Has validado la cuenta correctamente.'));
         $this->redirect(['site/login']);
     }
 
@@ -184,8 +184,8 @@ class UsuariosController extends Controller
                 $user->token_pass = $token;
                 if ($user->save()) {
                     $emailResetForm->enviarCorreo($user);
-                    Yii::$app->session->setFlash('success', 'Se te ha enviado un' .
-                    ' correo electrónico con las instrucciones para recuperar la contraseña');
+                    Yii::$app->session->setFlash('success', Yii::t('app', 'Se te ha enviado un' .
+                    ' correo electrónico con las instrucciones para recuperar la contraseña'));
                     return $this->goHome();
                 }
             }
@@ -212,8 +212,8 @@ class UsuariosController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $model->token_pass = null;
             $model->save(false);
-            Yii::$app->session->setFlash('success', 'Has cambiado tu contraseña ' .
-                'correctamente. Ahora ya puedes usar tu nueva contraseña');
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Has cambiado tu contraseña ' .
+                'correctamente. Ahora ya puedes usar tu nueva contraseña'));
             $this->redirect(['site/login']);
         }
         $model->password = '';
@@ -231,7 +231,9 @@ class UsuariosController extends Controller
     public function actionPerfil($usuario)
     {
         if (($model = Usuarios::findOne(['usuario' => $usuario])) === null) {
-            throw new NotFoundHttpException('El usuario no existe.');
+            throw new NotFoundHttpException(Yii::t('app', "No se ha encontrado el usuario '{username}'", [
+                'username' => Html::encode($usuario)
+            ]));
         }
 
         return $this->render('profile', [
@@ -250,11 +252,13 @@ class UsuariosController extends Controller
 
         if ($banForm->load(Yii::$app->request->post()) && $banForm->validate()) {
             if (($usuario = Usuarios::findOne(['usuario' => $banForm->usuario])) === null) {
-                throw new NotFoundHttpException('El usuario no existe.');
+                throw new NotFoundHttpException(Yii::t('app', "No se ha encontrado el usuario '{username}'", [
+                    'username' => Html::encode($usuario)
+                ]));
             }
             $usuario->ban = $banForm->fecha;
             if ($usuario->save()) {
-                Yii::$app->session->setFlash('success', 'Has baneado al usuario correctamente.');
+                Yii::$app->session->setFlash('success', Yii::t('app', 'Has baneado al usuario correctamente.'));
             }
         }
 
@@ -308,7 +312,7 @@ class UsuariosController extends Controller
                 $value->delete();
             }
         }
-        Yii::$app->session->setFlash('success', 'Su cuenta se ha eliminado correctamente');
+        Yii::$app->session->setFlash('success', Yii::t('app', 'Su cuenta se ha eliminado correctamente'));
         return $this->goHome();
     }
 
@@ -321,7 +325,7 @@ class UsuariosController extends Controller
     public function actionModificar($seccion)
     {
         if (!in_array($seccion, ['datos', 'password', 'personal'])) {
-            throw new NotFoundHttpException('No se ha encontrado lo que buscabas');
+            throw new NotFoundHttpException(Yii::t('app', 'No se ha podido completar la solicitud.'));
         }
 
         $model = Yii::$app->user->identity;
@@ -340,7 +344,7 @@ class UsuariosController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->email = isset($correo) ? $correo : $model->email;
             $model->save();
-            Yii::$app->session->setFlash('success', 'Has actualizado tus datos correctamente');
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Has actualizado tus datos correctamente'));
             if ($model->password !== null) {
                 $model->password = $model->repeatPassword = $model->oldPassword = '';
             }
@@ -366,11 +370,11 @@ class UsuariosController extends Controller
             'token_val' => $model->token_val,
         ], true);
 
-        $content = 'Bienvenido a ' . Html::a('TradeGame', Url::home('http'), ['class' => 'url']) . '<br>' .
-        'Para completar el registro en TradeGame debes validar tu cuenta, y
-        así poder iniciar sesión en nuestro sitio web.
-        Para validar tu cuenta haz click en el siguiente botón:<br><br><br>' .
-        Html::a('Validar cuenta', $url, ['class' => 'boton']);
+        $content = Yii::t('app', 'Bienvenido a') . ' ' . Html::a('TradeGame', Url::home('http'), ['class' => 'url']) . '<br>' .
+        Yii::t('app', 'Para completar el registro en TradeGame debes validar tu cuenta, y ' .
+        'así poder iniciar sesión en nuestro sitio web. ' .
+        'Para validar tu cuenta haz click en el siguiente botón') . ':<br><br><br>' .
+        Html::a(Yii::t('app', 'Validar cuenta'), $url, ['class' => 'boton']);
 
         return Yii::$app->mailer->compose('custom', [
                 'usuario' => $model->usuario,
@@ -378,7 +382,7 @@ class UsuariosController extends Controller
             ])
             ->setFrom(Yii::$app->params['adminEmail'])
             ->setTo($model->email)
-            ->setSubject('Registro de cuenta en TradeGame')
+            ->setSubject(Yii::t('app', 'Registro de cuenta en TradeGame'))
             ->send();
     }
 

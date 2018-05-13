@@ -37,6 +37,7 @@ $urlDatos = Url::to(['videojuegos/oferta-videojuego']);
     <?= $form->field($model, 'videojuego_publicado_id', ['template' => '{input}'])
         ->hiddenInput()->label(false) ?>
         <?php $items = [
+            'language' => Yii::$app->language,
             'pluginEvents' => [
                 'select2:select' => "function() {
                     peticionVideojuego('$urlDatos');
@@ -49,7 +50,7 @@ $urlDatos = Url::to(['videojuegos/oferta-videojuego']);
         <?= $form->field($model, 'videojuego_ofrecido_id')
             ->widget(Select2::classname(), $items)->label(false); ?>
     <div class="form-group col-md-offset-2 col-md-8">
-        <?= Html::submitButton('Enviar oferta ', ['class' => 'btn btn-tradegame btn-block']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Enviar oferta') . ' ', ['class' => 'btn btn-tradegame btn-block']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

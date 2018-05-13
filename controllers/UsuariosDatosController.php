@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-use app\models\UsuariosDatos;
 use app\models\UsuariosGeneros;
 use Yii;
+use app\helpers\Utiles;
+
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
 
 /**
@@ -46,17 +46,17 @@ class UsuariosDatosController extends Controller
                 $model->geoloc = null;
             }
             if ($model->save() && $model->upload()) {
-                Yii::$app->session->setFlash('success', 'Has actualizado tus datos correctamente');
+                Yii::$app->session->setFlash('success', Yii::t('app', 'Has actualizado tus datos correctamente'));
             }
         }
 
         return $this->render('/usuarios/update', [
             'modelDatos' => $model,
             'seccion' => 'personal',
-            'generos' => UsuariosGeneros::find()
+            'generos' => Utiles::translateArray(UsuariosGeneros::find()
                 ->select('sexo')
                 ->indexBy('id')
-                ->column(),
+                ->column()),
         ]);
     }
 }

@@ -53,7 +53,7 @@ $this->registerJs($js, View::POS_READY);
 <?php if (count($conversaciones) > 0): ?>
 <div class="row alto">
         <div class="col-md-3">
-            <h4>Conversaciones <?= Html::a(Utiles::FA('plus-circle'), [
+            <h4><?= Yii::t('app', 'Conversaciones') ?> <?= Html::a(Utiles::FA('plus-circle'), [
                 'mensajes/nuevo'
             ], ['class' => 'btn btn-xs btn-tradegame']) ?></h4>
             <?= $this->render('conversaciones', [
@@ -61,7 +61,7 @@ $this->registerJs($js, View::POS_READY);
                 ]) ?>
             </div>
             <div class="col-md-9">
-                <h4>Mensajes</h4>
+                <h4><?= Yii::t('app', 'Mensajes') ?></h4>
                 <div class="conversacion">
                     <div class="panel panel-default scrollable">
                         <div class="panel-body mensajes">
@@ -85,13 +85,13 @@ $this->registerJs($js, View::POS_READY);
                             <?= $form->field($model, 'contenido')->textarea([
                                 'class' => 'form-control noresize',
                                 'maxlength' => true,
-                                'placeholder' => 'Mensaje',
+                                'placeholder' => Yii::t('app', 'Mensaje'),
                             ])
                             ->label(false) ?>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <?= Html::submitButton('Enviar ', ['class' => 'btn btn-tradegame btn-block']) ?>
+                                <?= Html::submitButton(Yii::t('app', 'Enviar') . ' ', ['class' => 'btn btn-tradegame btn-block']) ?>
                             </div>
                         </div>
                         <?php ActiveForm::end(); ?>
@@ -104,7 +104,7 @@ $this->registerJs($js, View::POS_READY);
         <div class="col-md-offset-2 col-md-8">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3>Aún no has intercambiado mensajes con ningún usuario <?= Utiles::FA('frown', ['class' => 'far']) ?></h3>
+                    <h3><?= Yii::t('app', 'Aún no has intercambiado mensajes con ningún usuario') ?> <?= Utiles::FA('frown', ['class' => 'far']) ?></h3>
                 </div>
             </div>
         </div>

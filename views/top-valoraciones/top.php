@@ -46,27 +46,27 @@ $trophy = [
     <div class="panel panel-default panel-trade">
         <div class="panel-heading">
             <div class="panel-title text-center">
-                Top valoraciones
+                <?= Yii::t('app', 'Top valoraciones') ?>
             </div>
         </div>
         <div class="panel-body">
             <?php if (count($listado) === 0): ?>
                 <div class="row text-center">
                     <h3>
-                        Aún no se han realizado valoraciones
+                        <?= Yii::t('app', 'Aún no se han realizado valoraciones') ?>
                         <?= Utiles::FA('frown', ['class' => 'far']) ?>
                     </h3>
                 </div>
             <?php else: ?>
                 <div class="row">
                     <div class="col-md-2 text-tradegame text-center">
-                        Posición
+                        <?= Yii::t('app', 'Posición') ?>
                     </div>
                     <div class="col-md-6 text-tradegame">
-                        Usuario
+                        <?= Yii::t('app', 'Usuario') ?>
                     </div>
                     <div class="col-md-4 text-tradegame text-center">
-                        Media de valoración
+                        <?= Yii::t('app', 'Media de valoración') ?>
                     </div>
                 </div>
                 <?php for ($i=0; $i < count($listado) ; $i++): ?>
@@ -96,7 +96,7 @@ $trophy = [
                                     'class' => 'label label-default'
                                 ])
                             ) ?> <br>
-                            <span class="label label-info">Total: <?= $model->totales ?></span>
+                            <span class="label label-info"><?= Yii::t('app', 'Total') ?>: <?= $model->totales ?></span>
                         </div>
                     </div>
                 <?php endfor ?>

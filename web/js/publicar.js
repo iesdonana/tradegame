@@ -21,23 +21,9 @@ function peticionDetalles(url) {
             $('#detalles').html(data);
         },
         beforeSend: function () {
-            var row = $('<div></div>');
-            row.addClass('row');
-
-            var loader = $('<div></div>');
-            loader.addClass('loader');
-            loader.addClass('center-block')
-            row.append(loader);
-
-            var cargando = $('<div></div>');
-            cargando.addClass('row');
-            cargando.append($('<h3 class="text-center">Cargando detalles...</h3>'));
-
-            var padre = $('<div></div>');
-            padre.append(cargando);
-            padre.append(row);
-
-            $('#detalles').append(padre);
+            var copia = $('.loading-container').clone();
+            copia.removeClass('hidden');
+            copia.appendTo('#detalles');
         }
     })
 }

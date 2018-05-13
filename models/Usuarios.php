@@ -114,11 +114,11 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'usuario' => 'Usuario',
-            'email' => 'Correo electrónico',
-            'password' => 'Contraseña',
-            'repeatPassword' => 'Repite la contraseña',
-            'oldPassword' => 'Contraseña actual',
+            'usuario' => Yii::t('app', 'Usuario'),
+            'email' => Yii::t('app', 'Correo electrónico'),
+            'password' => Yii::t('app', 'Contraseña'),
+            'repeatPassword' => Yii::t('app', 'Repite la contraseña'),
+            'oldPassword' => Yii::t('app', 'Contraseña actual')
         ];
     }
 

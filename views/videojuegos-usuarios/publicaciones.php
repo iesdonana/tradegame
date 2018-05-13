@@ -3,7 +3,7 @@ use yii\helpers\Html;
 
 use yii\widgets\ListView;
 
-$this->title = 'Publicaciones';
+$this->title = Yii::t('app', 'Publicaciones');
 $label = $model->usuario;
 
 $this->params['breadcrumbs'][] = [

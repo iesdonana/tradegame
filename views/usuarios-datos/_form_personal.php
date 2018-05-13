@@ -1,7 +1,4 @@
 <?php
-
-use app\models\UsuariosGeneros;
-
 use app\helpers\Utiles;
 
 use yii\helpers\Html;
@@ -61,7 +58,7 @@ $this->registerCssFile('@web/css/badge.css');
                     'showRemove' => false,
                     'browseClass' => 'btn btn-tradegame btn-block',
                     'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
-                    'browseLabel' =>  'Sube tu avatar'
+                    'browseLabel' =>  Yii::t('app', 'Sube tu avatar')
                 ],
                 'options' => [
                     'accept' => 'image/*',
@@ -74,29 +71,29 @@ $this->registerCssFile('@web/css/badge.css');
 
         <?= $form->field($model, 'nombre_real', [
             'template' => Utiles::inputTemplate('tag', Utiles::GLYPHICON)
-            ])->textInput(['maxlength' => true, 'placeholder' => 'Nombre real']) ?>
+            ])->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Nombre real')]) ?>
 
         <?= $form->field($model, 'localidad', [
             'template' => Utiles::inputTemplate('globe', Utiles::GLYPHICON)
-            ])->textInput(['maxlength' => true, 'placeholder' => 'Localidad']) ?>
+            ])->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Localidad')]) ?>
 
         <?= $form->field($model, 'direccion', [
             'template' => Utiles::inputTemplate('screenshot', Utiles::GLYPHICON)
-            ])->textInput(['maxlength' => true, 'placeholder' => 'Dirección']) ?>
+            ])->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Dirección')]) ?>
 
         <?= $form->field($model, 'geoloc')->hiddenInput()->label(false) ?>
 
         <?= $form->field($model, 'provincia', [
             'template' => Utiles::inputTemplate('map-marker', Utiles::GLYPHICON)
-            ])->textInput(['maxlength' => true, 'placeholder' => 'Provincia']) ?>
+            ])->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Provincia')]) ?>
 
         <?= $form->field($model, 'telefono', [
             'template' => Utiles::inputTemplate('earphone', Utiles::GLYPHICON)
-            ])->textInput(['maxlength' => true, 'placeholder' => 'Teléfono']) ?>
+            ])->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Teléfono')]) ?>
 
         <?= $form->field($model, 'biografia', [
             'template' => Utiles::inputTemplate('book', Utiles::GLYPHICON)
-            ])->textarea(['maxlength' => true, 'placeholder' => 'Biografía']) ?>
+            ])->textarea(['maxlength' => true, 'placeholder' => Yii::t('app', 'Biografía')]) ?>
 
         <?= $form->field($model, 'fecha_nacimiento')->widget(DateControl::classname(), [
             'readonly' => true,
@@ -111,7 +108,7 @@ $this->registerCssFile('@web/css/badge.css');
 
         <?= $form->field($model, 'genero_id', [
             'template' => Utiles::inputTemplate('user', Utiles::GLYPHICON)
-            ])->dropDownList($generos, ['prompt' => 'Selecciona un género'])
+            ])->dropDownList($generos, ['prompt' => Yii::t('app', 'Selecciona un género')])
                 ?>
 
         </div>
@@ -123,7 +120,7 @@ $this->registerCssFile('@web/css/badge.css');
         <div class="row">
             <div class="col-md-offset-2 col-md-8">
                 <div class="form-group">
-                    <?= Html::submitButton('Modificar ', ['class' => 'btn btn-tradegame btn-block']) ?>
+                    <?= Html::submitButton(Yii::t('app', 'Modificar') . ' ', ['class' => 'btn btn-tradegame btn-block']) ?>
                 </div>
             </div>
         </div>

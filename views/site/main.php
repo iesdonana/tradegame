@@ -148,10 +148,10 @@ $this->title = 'TradeGame';
     <div class="jumbotron">
         <div class="text-content text-center">
             <h1>TradeGame</h1>
-            <h4>¿Por qué dejar tus juegos guardados en un cajón pudiéndole sacar más partido?</h4>
-            <h3>Intercambia los videojuegos que ya no usas por otros de tu interés</h3>
-            <h4>Juega a infinidad de juegos sin gastar un sólo céntimo</h4>
-            <a href="<?= Url::to(['site/login']) ?>" class="boton">Comienza</a>
+            <h4><?= Yii::t('app', '¿Por qué dejar tus juegos guardados en un cajón pudiéndole sacar más partido?') ?></h4>
+            <h3><?= Yii::t('app', 'Intercambia los videojuegos que ya no usas por otros de tu interés') ?></h3>
+            <h4><?= Yii::t('app', 'Juega a infinidad de juegos sin gastar un sólo céntimo') ?></h4>
+            <a href="<?= Url::to(['site/login']) ?>" class="boton"><?= Yii::t('app', 'Comienza') ?></a>
         </div>
     </div>
 </div>

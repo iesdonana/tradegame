@@ -3,9 +3,9 @@
 /* @var $this yii\web\View */
 /* @var $model app\models\Videojuegos */
 
-$scenario = ($model->id === null) ? 'Alta de videojuego' : 'Modificar videojuego';
+$scenario = ($model->id === null) ? Yii::t('app', 'Alta de videojuego') : Yii::t('app', 'Modificar videojuego');
 $this->title = $scenario;
-$this->params['breadcrumbs'][] = ['label' => 'Videojuegos', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Videojuegos'), 'url' => ['index']];
 if ($model->id !== null) {
     $this->params['breadcrumbs'][] = ['label' => $model->nombre, 'url' => ['ver', 'id' => $model->id]];
 }
