@@ -1,7 +1,11 @@
 <?php
+use Statickidz\GoogleTranslate;
+
 use app\helpers\Utiles;
 
 use yii\helpers\Html;
+
+
 
 $this->registerCssFile('@web/css/listado_videojuegos.css');
 
@@ -65,13 +69,13 @@ if (isset($big) && $big === true) {
 
                         <br>
                         <strong><?= Yii::t('app', 'Descripción') ?>:</strong>
-                        <em><?= Html::encode($videojuego->descripcion) ?></em>
+                        <em><?= Html::encode(Utiles::translate($videojuego->descripcion)) ?></em>
                         <?php if (!isset($busqueda)): ?>
                             <hr class='divide'>
                             <strong><?= Yii::t('app', 'Comentarios') ?>:</strong>
                             <div class="comentarios-videojuego">
                                 <?php if (trim($model->mensaje) != ''): ?>
-                                    <?= Html::encode($model->mensaje) ?>
+                                    <?= Html::encode(Utiles::translate($model->mensaje)) ?>
                                 <?php else: ?>
                                     <?= Html::tag('em', Yii::t('app', 'No se ha proporcionado ningún comentario')) ?>
                                 <?php endif ?>

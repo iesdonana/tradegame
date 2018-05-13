@@ -1,5 +1,7 @@
 <?php
 
+use app\helpers\Utiles;
+
 use yii\helpers\Html;
 
 ?>
@@ -36,5 +38,5 @@ use yii\helpers\Html;
 </div>
 <div class="row datos-videojuego">
     <strong><?= Yii::t('app', 'Descripción') ?>:</strong><br>
-    <?= Html::encode($model->descripcion) ?>
+    <?= Html::encode(Utiles::translate($model->descripcion)) ?>
 </div>

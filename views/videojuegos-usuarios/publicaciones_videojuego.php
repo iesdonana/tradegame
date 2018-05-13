@@ -1,4 +1,6 @@
 <?php
+use app\helpers\Utiles;
+
 use yii\helpers\Html;
 
 use kartik\grid\GridView;
@@ -26,7 +28,7 @@ use kartik\grid\GridView;
                 if ($model->mensaje == '') {
                     return Yii::t('app', 'No se ha proporcionado ningún comentario');
                 }
-                return Html::encode($model->mensaje);
+                return Utiles::translate($model->mensaje);
             }
         ],
         [

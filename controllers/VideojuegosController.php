@@ -277,7 +277,7 @@ class VideojuegosController extends Controller
 
         return $this->render('update', [
             'model' => $model,
-            'generos' => $generos,
+            'generos' => Utiles::translateArray($generos),
             'plataformas' => $plataformas,
             'desarrolla' => $desarrolla,
         ]);

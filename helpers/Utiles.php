@@ -4,6 +4,8 @@ namespace app\helpers;
 
 use Yii;
 
+use Statickidz\GoogleTranslate;
+
 use app\models\Mensajes;
 use app\models\Usuarios;
 use app\models\OfertasUsuarios;
@@ -293,9 +295,32 @@ class Utiles
         }
     }
 
-    public static function getCurrentLanguage()
+    /**
+     * Aplica la internacionalización a un array
+     * @param  array $arr Array que queremos traducir
+     * @return array      Array traducido
+     */
+    public static function translateArray($arr)
     {
-        return Yii::$app->getRequest()->getCookies()->has('lang') ?
-            Yii::$app->getRequest()->getCookies()->getValue('lang') : array_values(Yii::$params['sourceLanguage'])[0];
+        $res = $arr;
+        foreach ($arr as $key => $value) {
+            $res[$key] = Yii::t('app', $value);
+        }
+        return $res;
+    }
+
+    /**
+     * Traduce, si fuera necesario, la cadena pasada por parámetro al idioma de la aplicación
+     * @param  string $text Texto a traducir
+     * @return string       Texto traducido
+     */
+    public static function translate($text)
+    {
+        $trans = new GoogleTranslate();
+        $source = array_keys(Yii::$app->params['sourceLanguage'])[0];
+        if ($source !== Yii::$app->language) {
+            $text = $trans->translate($source, Yii::$app->language, $text);
+        }
+        return $text;
     }
 }

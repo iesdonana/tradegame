@@ -18,7 +18,12 @@ use yii\widgets\DetailView;
             'model' => $videojuego,
             'attributes' => [
                 'nombre',
-                'descripcion',
+                [
+                    'attribute' => 'descripcion',
+                    'value' => function ($model) {
+                        return Utiles::translate($model->descripcion);
+                    }
+                ],
                 [
                     'attribute' => 'plataforma.nombre',
                     'label' => Yii::t('app', 'Plataforma'),

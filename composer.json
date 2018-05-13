@@ -32,7 +32,8 @@
         "kartik-v/yii2-widget-typeahead": "*",
         "kartik-v/yii2-widget-rating": "*",
         "lavrentiev/yii2-toastr": "^2.0",
-        "2amigos/yii2-google-maps-library": "*"
+        "2amigos/yii2-google-maps-library": "*",
+        "statickidz/php-google-translate-free": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
