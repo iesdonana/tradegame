@@ -1,7 +1,4 @@
 <?php
-
-use app\models\UsuariosGeneros;
-
 use app\helpers\Utiles;
 
 use yii\helpers\Html;

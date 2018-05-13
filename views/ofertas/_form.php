@@ -37,7 +37,7 @@ $urlDatos = Url::to(['videojuegos/oferta-videojuego']);
     <?= $form->field($model, 'videojuego_publicado_id', ['template' => '{input}'])
         ->hiddenInput()->label(false) ?>
         <?php $items = [
-            'language' => Utiles::getCurrentLanguage(),
+            'language' => Yii::$app->language,
             'pluginEvents' => [
                 'select2:select' => "function() {
                     peticionVideojuego('$urlDatos');

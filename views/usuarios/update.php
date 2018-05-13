@@ -43,7 +43,6 @@ $model = isset($model) ? $model : $modelDatos->usuario;
             </div>
             <div class="panel-body">
                 <?php if ($seccion !== 'personal'): ?>
-                    <?php $dir = '/usuarios-datos/_form_personal' ?>
                     <?= $this->render('_form_' . $seccion, [
                         'model' => $model,
                         ]) ?>

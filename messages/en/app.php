@@ -207,9 +207,6 @@ return [
     'Ver mis ofertas' => 'View my offers',
     'Has enviado el mensaje correctamente' => 'You have sent the message correctly',
     'El mensaje debe contener al menos 20 carácteres' => 'The message must contain at least 20 characters',
-    
-
-
 
 
     // GÉNEROS DE VIDEOJUEGOS
@@ -222,4 +219,7 @@ return [
     'Terror' => 'Horror',
     'Shooter' => 'Shooter',
     'Conducción' => 'Driving',
+    // GÉNEROS DE USUARIOS
+    'Hombre' => 'Man',
+    'Mujer' => 'Woman',
 ];

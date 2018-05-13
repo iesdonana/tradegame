@@ -16,7 +16,7 @@ class CheckLanguage extends \yii\base\Behavior
     public function changeLanguage()
     {
         if (Yii::$app->request->cookies->has('lang')) {
-            Yii::$app->language = Yii::$app->request->cookies->get('lang');
+            Yii::$app->language = Yii::$app->getRequest()->getCookies()->getValue('lang');
         }
     }
 }

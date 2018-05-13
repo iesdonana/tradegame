@@ -39,7 +39,7 @@ $this->registerJs($js);
             ]]); ?>
             <?php $url = Url::to(['videojuegos/buscar-videojuegos']) ?>
             <?php $items = [
-                'language' => Utiles::getCurrentLanguage(),
+                'language' => Yii::$app->language,
                 'pluginEvents' => [
                     'select2:select' => "function() {
                         $('#detalles').empty();

@@ -36,7 +36,7 @@ $this->registerJs($js, View::POS_HEAD);
     <?php $form = ActiveForm::begin(); ?>
     <?php if ($model->receptor_id === null): ?>
         <?= $form->field($model, 'receptor_id')->widget(Select2::classname(), [
-            'language' => Utiles::getCurrentLanguage(),
+            'language' => Yii::$app->language,
             'pluginOptions' => [
                 'allowClear' => true,
                 'minimumInputLength' => 1,
