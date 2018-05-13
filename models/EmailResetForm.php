@@ -32,7 +32,7 @@ class EmailResetForm extends Model
             ['email', 'email'],
             ['email', 'exist',
                 'targetClass' => Usuarios::className(),
-                'message' => 'No hay ningún usuario registrado con ese email.',
+                'message' => Yii::t('app', 'No hay ningún usuario registrado con ese email.'),
             ],
         ];
     }
@@ -44,15 +44,15 @@ class EmailResetForm extends Model
      */
     public function enviarCorreo($usuario)
     {
-        $content = 'Para resetear tu contraseña debes pulsar en el siguiente botón:<br>' .
-        Html::a('Recuperar contraseña', Url::to(['usuarios/recuperar', 'token_pass' => $usuario->token_pass], true), ['class' => 'oferta']);
+        $content = Yii::t('app', 'Para resetear tu contraseña debes pulsar en el siguiente botón') . ':<br>' .
+        Html::a(Yii::t('app', 'Recuperar contraseña'), Url::to(['usuarios/recuperar', 'token_pass' => $usuario->token_pass], true), ['class' => 'oferta']);
         return Yii::$app->mailer->compose('custom', [
                 'usuario' => $usuario->usuario,
                 'content' => $content
             ])
             ->setFrom(Yii::$app->params['adminEmail'])
             ->setTo($usuario->email)
-            ->setSubject('Recuperación de contraseña')
+            ->setSubject(Yii::t('app', 'Recuperación de contraseña'))
             ->send();
     }
 }

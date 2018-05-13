@@ -13,6 +13,14 @@ use kartik\grid\GridView;
 /* @var $searchModel app\models\OfertasUsuariosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+$aceptar = Yii::t('app', 'Aceptar oferta');
+$rechazar = Yii::t('app', 'Rechazar oferta');
+$aceptas = Yii::t('app' , '¿Aceptas intercambiar tu videojuego');
+$rechazas = Yii::t('app', '¿Rechazas intercambiar tu videojuego');
+$por = Yii::t('app', 'por');
+$str = Yii::t('app', 'el videojuego');
+$de = Yii::t('app', 'de');
+
 $js = <<<JS
 $('.popup-modal').click(function(e) {
     e.preventDefault();
@@ -21,30 +29,29 @@ $('.popup-modal').click(function(e) {
     var fa = $('<i></i>');
     var cols = $('.popup-modal').first().closest('tr').children();
     var estado = 1;
-    var tipo = cols.eq(0).children('span').text();
+    var tipo = cols.eq(0).children('span').data('tipo');
     if ($(this).data('cambiar') === 'aceptar') {
         var tuVideojuego = (tipo == 'Contraoferta') ? cols.eq(2).html() : cols.eq(1).html();
         var suVideojuego = (tipo == 'Contraoferta') ? cols.eq(1).html() : cols.eq(2).html();
 
         fa.addClass('fas fa-check');
-        btn.empty().append(fa).append(' Aceptar ')
+        btn.empty().append(fa).append(' $aceptar ')
             .removeClass('btn-danger').addClass('btn-success');
-        $('.modal-title').html('<span class="text-success">Aceptar oferta</span>');
+        $('.modal-title').html('<span class="text-success">$aceptar</span>');
         $('.modal-text').html(
-            '¿<span class="text-success">Aceptas</span> intercambiar tu ' +
-            'videojuego ' + tuVideojuego + ' por ' +
-            'el videojuego ' + suVideojuego + ' de ' + cols.eq(3).html() + ' ?'
+            '$aceptas ' +
+            ' ' + tuVideojuego + ' $por ' +
+            '$str ' + suVideojuego + ' $de ' + cols.eq(3).html() + ' ?'
         );
     } else {
         estado = 0;
         fa.addClass('fas fa-times');
-        btn.empty().append(fa).append(' Rechazar ')
+        btn.empty().append(fa).append(' $rechazar ')
             .removeClass('btn-success').addClass('btn-danger');
-        $('.modal-title').html('<span class="text-danger">Rechazar oferta</span>');
+        $('.modal-title').html('<span class="text-danger">$rechazar</span>');
         $('.modal-text').html(
-            '¿<span class="text-danger">Rechazas</span> intercambiar tu ' +
-            'videojuego ' + cols.eq(1).html() + ' por ' +
-            'el videojuego ' + cols.eq(2).html() + ' de ' + cols.eq(3).html() + ' ?'
+            '$rechazas '  + cols.eq(1).html() + ' $por ' +
+            '$str ' + cols.eq(2).html() + ' $de ' + cols.eq(3).html() + ' ?'
         );
     }
     $('.modal-footer form').find('input[name=id]').val($(this).closest('tr').data('key'));
@@ -91,9 +98,12 @@ $this->registerCss('.btn-info {margin-left: 4px;}');
                 'format' => 'raw',
                 'value' => function ($model) {
                     if ($model->contraoferta_de === null) {
-                        return Html::tag('span', 'Oferta', ['class' => 'label label-default center-block']);
+                        return Html::tag('span', Yii::t('app', 'Oferta'), ['class' => 'label label-default center-block']);
                     }
-                    return Html::tag('span', 'Contraoferta', ['class' => 'label label-primary center-block']);
+                    return Html::tag('span', Yii::t('app', 'Contraoferta'), [
+                        'class' => 'label label-primary center-block',
+                        'data-tipo' => 'Contraoferta',
+                    ]);
                 }
             ],
             [
@@ -150,7 +160,7 @@ $this->registerCss('.btn-info {margin-left: 4px;}');
                                 'class' => 'btn btn-xs btn-success popup-modal',
                                 'data-cambiar' => 'aceptar',
                                 'data-toggle' => 'tooltip',
-                                'title' => 'Aceptar oferta',
+                                'title' => Yii::t('app', 'Aceptar oferta'),
                             ]);
                         }
                     },
@@ -160,7 +170,7 @@ $this->registerCss('.btn-info {margin-left: 4px;}');
                             Html::submitButton(Utiles::FA('times'), [
                                 'class' => 'btn btn-xs btn-danger popup-modal',
                                 'data-toggle' => 'tooltip',
-                                'title' => 'Rechazar oferta',
+                                'title' => Yii::t('app', 'Rechazar oferta'),
                                 ]) . Html::endForm();
                         }
                     },
@@ -172,7 +182,7 @@ $this->registerCss('.btn-info {margin-left: 4px;}');
                                 [
                                     'class' => 'btn btn-xs btn-info',
                                     'data-toggle' => 'tooltip',
-                                    'title' => 'Realizar contraoferta',
+                                    'title' => Yii::t('app', 'Realizar contraoferta'),
                                 ]);
                         }
                     },
@@ -180,12 +190,12 @@ $this->registerCss('.btn-info {margin-left: 4px;}');
                         if ($model->aceptada === true) {
                             return Utiles::FA('handshake', [
                                 'class' => 'far fa-2x text-success',
-                                'tooltip' => 'Oferta aceptada',
+                                'tooltip' => Yii::t('app', 'Oferta aceptada'),
                             ]);
                         } else if ($model->aceptada === false) {
                             return Utiles::FA('ban', [
                                 'class' => 'fas fa-2x text-danger',
-                                'tooltip' => 'Oferta rechazada',
+                                'tooltip' => Yii::t('app', 'Oferta rechazada'),
                             ]);
                         }
                     }
@@ -196,7 +206,7 @@ $this->registerCss('.btn-info {margin-left: 4px;}');
     ]); ?>
 
     <?php Modal::begin([
-     'header' => '<h2 class="modal-title">Oferta</h2>',
+     'header' => '<h2 class="modal-title">' . Yii::t('app', 'Oferta') . '</h2>',
      'id'     => 'modal-oferta',
      'footer' => Html::beginForm(['/ofertas/cambiar-estado'], 'post') .
                 Html::hiddenInput('id', 0) .

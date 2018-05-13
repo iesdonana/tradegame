@@ -39,15 +39,15 @@ $this->registerCss('.badge-corner { margin-right: 40px}');
                 ]
                 ]) ?>
 
-                <?= $form->field($model, 'desarrollador_id')->dropDownList($desarrolla, ['prompt' => 'Selecciona un desarrollador']) ?>
+                <?= $form->field($model, 'desarrollador_id')->dropDownList($desarrolla, ['prompt' => Yii::t('app', 'Selecciona un desarrollador')]) ?>
 
 
                 <div class="row">
                     <div class="col-md-6">
-                        <?= $form->field($model, 'genero_id')->dropDownList($generos, ['prompt' => 'Selecciona un género']) ?>
+                        <?= $form->field($model, 'genero_id')->dropDownList($generos, ['prompt' => Yii::t('app', 'Selecciona un género')]) ?>
                     </div>
                     <div class="col-md-6">
-                        <?= $form->field($model, 'plataforma_id')->dropDownList($plataformas, ['prompt' => 'Selecciona una plataforma']) ?>
+                        <?= $form->field($model, 'plataforma_id')->dropDownList($plataformas, ['prompt' => Yii::t('app', 'Selecciona una plataforma')]) ?>
                     </div>
                 </div>
         </div>
@@ -68,7 +68,7 @@ $this->registerCss('.badge-corner { margin-right: 40px}');
                             'showRemove' => false,
                             'browseClass' => 'btn btn-tradegame btn-block',
                             'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
-                            'browseLabel' =>  'Sube la carátula'
+                            'browseLabel' =>  Yii::t('app', 'Sube la carátula')
                         ],
                         'options' => [
                             'accept' => 'image/*',
@@ -83,7 +83,7 @@ $this->registerCss('.badge-corner { margin-right: 40px}');
     <div class="row">
         <div class="col-md-offset-2 col-md-8">
             <div class="form-group">
-                <?= Html::submitButton('Guardar', ['class' => 'btn btn-tradegame btn-block']) ?>
+                <?= Html::submitButton(Yii::t('app', 'Guardar'), ['class' => 'btn btn-tradegame btn-block']) ?>
             </div>
         </div>
     </div>

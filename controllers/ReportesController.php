@@ -99,11 +99,11 @@ class ReportesController extends Controller
     public function actionDelete()
     {
         if (($id = Yii::$app->request->post('id')) === null) {
-            throw new NotFoundHttpException('No se ha podido ejecutar la acción.');
+            throw new NotFoundHttpException(Yii::t('app', 'No se ha podido completar la solicitud.'));
         }
 
         $this->findModel($id)->delete();
-        Yii::$app->session->setFlash('success', 'Has borrado correctamente el reporte');
+        Yii::$app->session->setFlash('success', Yii::t('app', 'Has borrado correctamente el reporte'));
         return $this->redirect(['reportes/index']);
     }
 
@@ -119,6 +119,6 @@ class ReportesController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('No se ha podido encontrar el reporte.');
+        throw new NotFoundHttpException(Yii::t('app', 'No se ha podido completar la solicitud.'));
     }
 }

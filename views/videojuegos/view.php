@@ -16,7 +16,7 @@ $this->registerCss($css);
 $this->title = Html::encode($model->nombre);
 
 $this->params['breadcrumbs'][] = [
-    'label' => 'Videojuegos',
+    'label' => Yii::t('app', 'Videojuegos'),
     'url' => ['videojuegos/buscador-videojuegos']
 ];
 
@@ -44,25 +44,25 @@ $this->registerJs("
         <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->esAdmin()): ?>
             <div class="row">
                 <div class="col-md-12 text-right panel-admin">
-                    <span class="title">Panel admin <?= Utiles::FA('angle-down') ?></span>
+                    <span class="title"><?= Yii::t('app', 'Panel admin') . ' ' . Utiles::FA('angle-down') ?></span>
                     <div class="panel panel-default oculto">
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-4">
                                     <?= Html::a(
-                                        'Alta ' . Utiles::FA('plus-circle'),
+                                        Yii::t('app', 'Alta') .' ' . Utiles::FA('plus-circle'),
                                         ['videojuegos/update'],
                                         ['class' => 'btn btn-sm btn-success btn-block']) ?>
                                 </div>
                                 <div class="col-md-4">
                                     <?= Html::a(
-                                        'Modificar ' . Utiles::FA('edit'),
+                                        Yii::t('app', 'Modificar') . ' ' . Utiles::FA('edit'),
                                         ['videojuegos/update', 'id' => $model->id],
                                         ['class' => 'btn btn-sm btn-primary btn-block']) ?>
                                 </div>
                                 <div class="col-md-4">
                                     <?= Html::a(
-                                        'Borrar ' . Utiles::FA('trash'),
+                                        Yii::t('app', 'Borrar') . ' ' . Utiles::FA('trash'),
                                         ['videojuegos/delete', 'id' => $model->id],
                                         ['class' => 'btn btn-sm btn-danger btn-block popup-modal']) ?>
                                 </div>
@@ -78,7 +78,7 @@ $this->registerJs("
                     'model' => $model
                 ]) ?>
                 <div class="row datos-videojuego">
-                    <h4 class="text-tradegame">Videojuegos publicados:</h4>
+                    <h4 class="text-tradegame"><?= Yii::t('app', 'Videojuegos publicados') ?>:</h4>
                 </div>
                 <div class="row datos-videojuegos">
                     <?= $this->render('/videojuegos-usuarios/publicaciones_videojuego', [
@@ -90,22 +90,21 @@ $this->registerJs("
     </div>
 </div>
 <?php Modal::begin([
- 'header' => '<h3 class="modal-title">Carátula</h3>',
  'id'     => 'modal-caratula',
  ])
  ?>
  <p class="text-center"><?= Html::img($model->caratula) ?></p>
  <?php Modal::end(); ?>
 <?php Modal::begin([
- 'header' => "<h2 class='modal-title'>Borrar videojuego</h2>",
+ 'header' => "<h2 class='modal-title'>" . Yii::t('app', 'Borrar videojuego') . "</h2>",
  'id'     => 'modal-delete',
  'footer' => Html::beginForm(['/videojuegos/remove', 'id' => $model->id], 'post') .
              Html::submitButton(
-                 Utiles::FA('trash-alt') . ' Borrar definitivamente',
+                 Utiles::FA('trash-alt') . ' ' . Yii::t('app', 'Borrar definitivamente'),
                  ['class' => 'btn btn-danger logout']
              )
              . Html::endForm()
  ])
  ?>
- <p>¿Estás seguro de que deseas borrar permanentemente este juego?</p>
+ <p><?= Yii::t('app', '¿Estás seguro de que deseas borrar permanentemente este juego?') ?></p>
  <?php Modal::end(); ?>

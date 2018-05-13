@@ -16,25 +16,25 @@ use yii\helpers\Html;
     <div class="col-md-9">
         <ul class="list-group">
             <li class="list-group-item">
-                <strong>Fecha lanzamiento:</strong>
+                <strong><?= Yii::t('app', 'Fecha lanzamiento') ?>:</strong>
                 <?= Yii::$app->formatter->asDate($model->fecha_lanzamiento) ?>
             </li>
             <li class="list-group-item">
-                <strong>Plataforma:</strong>
+                <strong><?= Yii::t('app', 'Plataforma') ?>:</strong>
                 <?= Html::encode($model->plataforma->nombre) ?>
             </li>
             <li class="list-group-item">
-                <strong>Desarrollador:</strong>
+                <strong><?= Yii::t('app', 'Desarrollador') ?>:</strong>
                 <?= Html::encode($model->desarrollador->compania) ?>
             </li>
             <li class="list-group-item">
-                <strong>Género:</strong>
+                <strong><?= Yii::t('app', 'Género') ?>:</strong>
                 <?= Html::encode($model->genero->nombre) ?>
             </li>
         </ul>
     </div>
 </div>
 <div class="row datos-videojuego">
-    <strong>Descripción:</strong><br>
+    <strong><?= Yii::t('app', 'Descripción') ?>:</strong><br>
     <?= Html::encode($model->descripcion) ?>
 </div>

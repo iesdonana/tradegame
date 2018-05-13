@@ -31,7 +31,7 @@ if (isset($big) && $big === true) {
                     <?= Html::img($videojuego->caratula, ['class' => $clase . ' img-thumbnail center-block']) ?>
                 </div>
                 <div class="row text-center">
-                    <?= Html::a(Utiles::FA('info-circle') . ' Ficha completa',
+                    <?= Html::a(Utiles::FA('info-circle') . ' ' . Yii::t('app', 'Ficha completa'),
                         ['videojuegos/ver', 'id' => $videojuego->id],
                         ['class' => 'btn btn-xs btn-primary']) ?>
                 </div>
@@ -42,7 +42,7 @@ if (isset($big) && $big === true) {
                         <div class="col-md-8">
                             <strong class='titulo text-tradegame'><?= Html::encode($videojuego->nombre) ?></strong><br>
                             <?= Utiles::badgePlataforma($videojuego->plataforma->nombre) ?>
-                            <span class="label label-default"><?= $videojuego->genero->nombre ?></span> <br>
+                            <span class="label label-default"><?= Yii::t('app', $videojuego->genero->nombre) ?></span> <br>
                         </div>
                         <?php if (!isset($busqueda)): ?>
                         <div class="col-md-4">
@@ -52,7 +52,7 @@ if (isset($big) && $big === true) {
                                 ['videojuegos-usuarios/ver', 'id' => $model->id]) ?>
                                 <?php if ($model->usuario_id !== Yii::$app->user->id): ?>
                                     <br>
-                                    <?= Html::a('<strong>Hacer oferta</strong>', [
+                                    <?= Html::a('<strong>' . Yii::t('app', 'Hacer oferta') . '</strong>', [
                                         'ofertas/create',
                                         'publicacion' => $model->id
                                     ], ['class' => 'btn btn-sm btn-warning']) ?>
@@ -64,12 +64,18 @@ if (isset($big) && $big === true) {
                     <div>
 
                         <br>
-                        <strong>Descripción:</strong>
+                        <strong><?= Yii::t('app', 'Descripción') ?>:</strong>
                         <em><?= Html::encode($videojuego->descripcion) ?></em>
                         <?php if (!isset($busqueda)): ?>
                             <hr class='divide'>
-                            <strong>Comentarios:</strong>
-                            <div class="comentarios-videojuego"><?= Html::encode($model->mensaje) ?></div>
+                            <strong><?= Yii::t('app', 'Comentarios') ?>:</strong>
+                            <div class="comentarios-videojuego">
+                                <?php if (trim($model->mensaje) != ''): ?>
+                                    <?= Html::encode($model->mensaje) ?>
+                                <?php else: ?>
+                                    <?= Html::tag('em', Yii::t('app', 'No se ha proporcionado ningún comentario')) ?>
+                                <?php endif ?>
+                            </div>
                         <?php endif ?>
                     </div>
                 </div>

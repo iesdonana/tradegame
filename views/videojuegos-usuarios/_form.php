@@ -15,7 +15,6 @@ use kartik\select2\Select2;
 /* @var $form yii\widgets\ActiveForm */
 
 $urlDetalles = Url::to(['videojuegos/detalles']);
-
 $this->registerJsFile('@web/js/publicar.js', ['position' => View::POS_HEAD]);
 $this->registerJsFile('@web/js/utiles.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerCssFile('@web/css/loader.css');
@@ -40,6 +39,7 @@ $this->registerJs($js);
             ]]); ?>
             <?php $url = Url::to(['videojuegos/buscar-videojuegos']) ?>
             <?php $items = [
+                'language' => Utiles::getCurrentLanguage(),
                 'pluginEvents' => [
                     'select2:select' => "function() {
                         $('#detalles').empty();
@@ -53,7 +53,7 @@ $this->registerJs($js);
             <?= $form->field($model, 'videojuego_id')->widget(Select2::classname(), $items); ?>
 
             <?= $form->field($model, 'mensaje', [
-                'template' => "{label} " . Utiles::glyphicon('info-sign', 'Comentarios acerca del videojuego. Por ejemplo: tu opinión personal.') .
+                'template' => "{label} " . Utiles::glyphicon('info-sign', Yii::t('app', 'Comentarios acerca del videojuego. Por ejemplo: tu opinión personal.')) .
                             "\n{input}\n{hint}\n{error}",
             ])->textarea([
                 'class' => 'form-control noresize',
@@ -62,7 +62,7 @@ $this->registerJs($js);
                 ]) ?>
 
             <div class="form-group">
-                <?= Html::submitButton('Publicar ',
+                <?= Html::submitButton(Yii::t('app', 'Publicar') . ' ',
                     ['class' => 'btn btn-tradegame btn-block']) ?>
             </div>
 

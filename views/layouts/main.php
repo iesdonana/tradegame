@@ -78,7 +78,7 @@ $this->title = 'TradeGame';
         Typeahead::widget([
         'name' => 'videojuegos',
         'value' => Yii::$app->request->get('q'),
-        'options' => ['placeholder' => 'Busca un videojuego ...', 'class' => 'form-inline'],
+        'options' => ['placeholder' => Yii::t('app', 'Busca un videojuego ...'), 'class' => 'form-inline'],
         'pluginOptions' => ['highlight'=>true],
         'pluginEvents' => [
             'typeahead:select' => "function(ev, resp) {window.location.href = '$url/videojuegos/' + resp.id }",
@@ -101,16 +101,16 @@ $this->title = 'TradeGame';
         '</li>',
         [
             'label' => Utiles::FA('gamepad') .
-                ' Publicar',
+                ' ' . Yii::t('app', 'Publicar'),
             'url' => ['/videojuegos-usuarios/publicar']
         ]
     ];
 
     if (Yii::$app->user->isGuest) {
-        $items[] = ['label' => Utiles::FA('sign-in-alt') . ' Login / Registro', 'url' => ['/site/login']];
+        $items[] = ['label' => Utiles::FA('sign-in-alt') . ' Login / ' . Yii::t('app', 'Registro'), 'url' => ['/site/login']];
     } else {
         $items[] = [
-            'label' => Utiles::FA('list', ['class' => 'fas']) . ' Mis publicaciones',
+            'label' => Utiles::FA('list', ['class' => 'fas']) . ' ' . Yii::t('app', 'Mis publicaciones'),
             'url' => ['/videojuegos-usuarios/publicaciones', 'usuario' => Yii::$app->user->identity->usuario]
         ];
 
@@ -120,22 +120,23 @@ $this->title = 'TradeGame';
 
         $subItems = [
             [
-                'label' => Utiles::FA('handshake', ['class' => 'far']) . " Ofertas $pendOf",
+                'label' => Utiles::FA('handshake', ['class' => 'far']) . " " .
+                    Yii::t('app', 'Ofertas') . " $pendOf",
                 'url' => ['/ofertas-usuarios/index']
             ],
             [
-                'label' => Utiles::FA('inbox') . " Mensajes $pendMsg",
+                'label' => Utiles::FA('inbox') . " " . Yii::t('app', 'Messages') . " $pendMsg",
                 'url' => ['/mensajes/listado']
             ],
             [
-                'label' => Utiles::FA('star') . " Valoraciones $pendVal",
+                'label' => Utiles::FA('star') . " " . Yii::t('app', 'Valoraciones') . " $pendVal",
                 'url' => ['/valoraciones/index']
             ]
         ];
 
         if (Yii::$app->user->identity->esAdmin()) {
             $subItems[] = [
-                'label' => Utiles::FA('flag') . " Reportes",
+                'label' => Utiles::FA('flag') . " " . Yii::t('app', 'Reportes'),
                 'url' => ['/reportes/index']
             ];
         }
@@ -147,7 +148,7 @@ $this->title = 'TradeGame';
 
         $form = Html::beginForm(['/site/logout'], 'post')
         . Html::submitButton(
-            Utiles::FA('sign-out-alt') . ' Cerrar sesión',
+            Utiles::FA('sign-out-alt') . ' ' . Yii::t('app', 'Cerrar sesión'),
             ['class' => 'btn btn-danger btn-block logout']
         )
         . Html::endForm();
@@ -177,7 +178,7 @@ $this->title = 'TradeGame';
                             . "</p>
                             <p class='text-left'>" .
                                 Html::a(
-                                    Utiles::FA('cog') . ' Modificar datos',
+                                    Utiles::FA('cog') . ' ' . Yii::t('app', 'Modificar datos'),
                                     ['usuarios/modificar', 'seccion' => 'datos'],
                                     ['class' => 'btn btn-xs btn-info']
                                 )

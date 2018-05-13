@@ -128,7 +128,7 @@ class SiteController extends Controller
         if ($email === null || ($usuario = Usuarios::find()
                 ->where(['email' => $email])
                 ->andWhere(['is', 'password', null])->one()) === null) {
-            Yii::$app->session->setFlash('error', 'No se ha encontrado ningún usuario registrado con Google con ese email');
+            Yii::$app->session->setFlash('error', Yii::t('app', 'No se ha encontrado ningún usuario registrado con Google con ese email'));
             return false;
         }
 

@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Valoraciones */
 
-$this->title = 'Valorar intercambio';
-$this->params['breadcrumbs'][] = ['label' => 'Valoraciones', 'url' => ['index']];
+$this->title = Yii::t('app', 'Valorar intercambio');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Valoraciones'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="valoraciones-create">
@@ -23,7 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
             <div class="panel-body">
-                Valora tu intercambio con el usuario <?= $urlPerfil ?><hr>
+                <?= Yii::t('app', 'Valora tu intercambio con el usuario {user}', [
+                    'user' => $urlPerfil
+                ]) ?><hr>
                 <?= $this->render('_form', [
                     'model' => $model,
                     ]) ?>

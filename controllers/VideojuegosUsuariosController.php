@@ -13,6 +13,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
+use yii\helpers\Html;
+
 /**
  * VideojuegosUsuariosController implements the CRUD actions for VideojuegosUsuarios model.
  */
@@ -52,7 +54,7 @@ class VideojuegosUsuariosController extends Controller
         $model->usuario_id = Yii::$app->user->id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'Has publicado el videojuego correctamente');
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Has publicado el videojuego correctamente'));
             return $this->goHome();
         }
 
@@ -113,7 +115,9 @@ class VideojuegosUsuariosController extends Controller
     public function actionPublicaciones($usuario, $layout = null)
     {
         if (($model = Usuarios::findOne(['usuario' => $usuario])) === null) {
-            throw new NotFoundHttpException("No se ha encontrado el usuario '$usuario'");
+            throw new NotFoundHttpException(Yii::t('app', "No se ha encontrado el usuario '{username}'", [
+                'username' => Html::encode($usuario)
+            ]));
         }
 
         $query = VideojuegosUsuarios::find()
@@ -148,15 +152,15 @@ class VideojuegosUsuariosController extends Controller
     public function actionRemove()
     {
         if (($id = Yii::$app->request->post('id')) === null) {
-            throw new NotFoundHttpException('No se ha podido borrar la publicación');
+            throw new NotFoundHttpException(Yii::t('app', 'No se ha podido borrar la publicación'));
         }
 
         if (($publicacion = VideojuegosUsuarios::findOne($id)) === null) {
-            throw new NotFoundHttpException('No existe la publicación');
+            throw new NotFoundHttpException(Yii::t('app', 'No existe la publicación'));
         }
 
         $publicacion->delete();
-        Yii::$app->session->setFlash('success', 'Se ha borrado la publicación correctamente');
+        Yii::$app->session->setFlash('success', Yii::t('app', 'Se ha borrado la publicación correctamente'));
         return $this->redirect(['videojuegos-usuarios/publicaciones', 'usuario' => Yii::$app->user->identity->usuario]);
     }
 
@@ -169,11 +173,11 @@ class VideojuegosUsuariosController extends Controller
     public function actionVer($id)
     {
         if (($videojuego = VideojuegosUsuarios::findOne($id)) === null) {
-            throw new NotFoundHttpException('No se encontró la publicación');
+            throw new NotFoundHttpException(Yii::t('app', 'No se encontró la publicación'));
         }
 
         if ($videojuego->borrado) {
-            throw new NotFoundHttpException('Esta publicación ha sido eliminada');
+            throw new NotFoundHttpException(Yii::t('app', 'Esta publicación ha sido eliminada'));
         }
         return $this->render('view', [
             'model' => $videojuego,

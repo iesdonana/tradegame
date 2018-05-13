@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use Yii;
+
 /**
  * This is the model class for table "ofertas".
  *
@@ -45,7 +47,7 @@ class Ofertas extends \yii\db\ActiveRecord
                     ->andWhere(['videojuego_ofrecido_id' => $this->videojuego_ofrecido_id])
                     ->andWhere(['videojuego_publicado_id' => $this->videojuego_publicado_id])->one();
                 if ($oferta !== null) {
-                    $this->addError($attribute, 'Ya existe una oferta pendiente con esos videojuegos');
+                    $this->addError($attribute, Yii::t('app', 'Ya existe una oferta pendiente con esos videojuegos'));
                 }
             },
             'on' => self::ESCENARIO_CREATE,
@@ -64,8 +66,8 @@ class Ofertas extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'videojuego_publicado_id' => 'Videojuego Publicado ID',
-            'videojuego_ofrecido_id' => 'Videojuego ofrecido',
-            'contraoferta_de' => 'Contraoferta De',
+            'videojuego_ofrecido_id' => Yii::t('app', 'Videojuego ofrecido'),
+            'contraoferta_de' => Yii::t('app', 'Contraoferta De'),
             'created_at' => 'Created At',
             'aceptada' => 'Aceptada',
         ];

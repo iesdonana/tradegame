@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel panel-default panel-trade">
             <div class="panel-heading">
                 <div class="panel-title text-center">
-                    Iniciar sesión
+                    <?= Yii::t('app', 'Iniciar sesión') ?>
                 </div>
             </div>
             <div class="panel-body">
@@ -47,13 +47,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             )
                         ])->textInput([
                             'autofocus' => true,
-                            'placeHolder' => 'Usuario'
+                            'placeHolder' => Yii::t('app', 'Usuario')
                         ]) ?>
 
                     <?= $form->field($model, 'password', [
                         'template' => Utiles::inputTemplate('key', Utiles::FONT_AWESOME)
-                        ])->passwordInput(['placeholder' => 'Contraseña']) ?>
-                    <?= Html::a('¿Has olvidado tu contraseña?', ['usuarios/request-recupera']) ?>
+                        ])->passwordInput(['placeholder' => Yii::t('app', 'Contraseña')]) ?>
+                    <?= Html::a(Yii::t('app', '¿Has olvidado tu contraseña?'), ['usuarios/request-recupera']) ?>
 
                     <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= Html::submitButton('Login', ['class' => 'btn btn-tradegame btn-block', 'name' => 'login-button']) ?>
                     </div>
                     <div class="form-group google-login">
-                        <?= Html::a(Html::img('@web/images/google.png') . 'Acceder con Google', null, ['class' => 'btn btn-default btn-block']) ?>
+                        <?= Html::a(Html::img('@web/images/google.png') . Yii::t('app', 'Acceder con Google'), null, ['class' => 'btn btn-default btn-block']) ?>
                     </div>
 
                     <div class="g-signin2 google-btn hidden" data-onsuccess="onSignIn"></div>

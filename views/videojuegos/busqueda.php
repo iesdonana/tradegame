@@ -35,6 +35,7 @@ $css = <<<CSS
   opacity: 0.5;
 }
 CSS;
+$cargarMas = Yii::t('app', 'Cargar más resultados');
 $this->registerCss($css);
 $this->registerCssFile('@web/css/loader.css');
 $js = <<<JS
@@ -51,7 +52,7 @@ function comprobarMasResultados()
     if ($('.videojuego-item').length < $('#res-totales').data('total')) {
         var cont = $('<div></div>');
         cont.addClass('container-cargar');
-        var boton = $('<a>Cargar más resultados </a>');
+        var boton = $('<a>$cargarMas </a>');
         boton.addClass('btn btn-xs btn-tradegame cargar-mas center-block cargaForm');
         cont.append($('<hr>'));
         cont.append(boton);
@@ -159,12 +160,12 @@ $this->registerCssFile('@web/css/checkbox.css');
 <div class="col-md-2 filtros">
     <div class="row">
         <div class="section-mini-title">
-            <h4>Filtros</h4>
+            <h4><?= Yii::t('app', 'Filtros') ?></h4>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h4 class="col">Plataformas <?= Utiles::FA('angle-up') ?></h4>
+            <h4 class="col"><?= Yii::t('app', 'Plataformas') ?> <?= Utiles::FA('angle-up') ?></h4>
         </div>
     </div>
     <div class="row filtros-datos">
@@ -178,7 +179,7 @@ $this->registerCssFile('@web/css/checkbox.css');
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h4 class="col">Géneros <?= Utiles::FA('angle-up') ?></h4>
+            <h4 class="col"><?= Yii::t('app', 'Géneros') ?> <?= Utiles::FA('angle-up') ?></h4>
         </div>
     </div>
     <div class="row filtros-datos">
@@ -186,13 +187,13 @@ $this->registerCssFile('@web/css/checkbox.css');
             <div class="col-md-12">
                 <?php $id = 'gen' . $gen->id ?>
                 <input id="<?= $id ?>" type="checkbox" name="generos_videojuegos" value="<?= $gen->id ?>">
-                <label for="<?= $id ?>"><?= $gen->nombre ?></label>
+                <label for="<?= $id ?>"><?= Yii::t('app', $gen->nombre) ?></label>
             </div>
         <?php endforeach; ?>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h4 class="col">Desarrolladores <?= Utiles::FA('angle-up') ?></h4>
+            <h4 class="col"><?= Yii::t('app', 'Desarrolladores') ?> <?= Utiles::FA('angle-up') ?></h4>
         </div>
     </div>
     <div class="row filtros-datos">

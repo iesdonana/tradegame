@@ -40,14 +40,14 @@ $this->registerJs("
     });"
 );
 
-$this->title = 'Reportes';
+$this->title = Yii::t('app', 'Reportes');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reportes-index">
     <div class="panel panel-default panel-trade">
         <div class="panel-heading">
             <div class="panel-title text-center">
-                Listado de reportes
+                <?= Yii::t('app', 'Listado de reportes') ?>
             </div>
         </div>
         <div class="panel-body">
@@ -55,25 +55,25 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'columns' => [
                     [
-                        'header' => 'Enviado por',
+                        'header' => Yii::t('app', 'Enviado por'),
                         'format' => 'text',
                         'attribute' => 'reporta.usuario',
                         'headerOptions' => ['style' => 'width:15%'],
                     ],
                     [
-                        'header' => 'Reportado',
+                        'header' => Yii::t('app', 'Reportado'),
                         'format' => 'text',
                         'attribute' => 'reportado.usuario',
                         'headerOptions' => ['style' => 'width:15%'],
                     ],
                     [
-                        'header' => 'Mensaje',
+                        'header' => Yii::t('app', 'Mensaje'),
                         'format' => 'text',
                         'attribute' => 'mensaje',
                         'headerOptions' => ['style' => 'width:60%'],
                     ],
                     [
-                        'header' => 'Acción',
+                        'header' => Yii::t('app', 'Acción'),
                         'class' => ActionColumn::className(),
                         'headerOptions' => ['style' => 'width:10%'],
                         'template' => '{banear} {delete}',

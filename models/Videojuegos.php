@@ -68,12 +68,12 @@ class Videojuegos extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'nombre' => 'Nombre',
-            'descripcion' => 'Descripcion',
-            'fecha_lanzamiento' => 'Fecha de lanzamiento',
-            'desarrollador_id' => 'Desarrollador',
-            'genero_id' => 'Género',
-            'plataforma_id' => 'Plataforma',
+            'nombre' => Yii::t('app', 'Título'),
+            'descripcion' => Yii::t('app', 'Descripción'),
+            'fecha_lanzamiento' => Yii::t('app', 'Fecha de lanzamiento'),
+            'desarrollador_id' => Yii::t('app', 'Desarrollador'),
+            'genero_id' => Yii::t('app', 'Género'),
+            'plataforma_id' => Yii::t('app', 'Plataforma'),
         ];
     }
 

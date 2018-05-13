@@ -58,9 +58,9 @@ class LoginForm extends Model
     public function attributeLabels()
     {
         return [
-            'username' => 'Usuario',
-            'password' => 'Contraseña',
-            'rememberMe' => 'Recuérdame',
+            'username' => Yii::t('app', 'Usuario'),
+            'password' => Yii::t('app', 'Contraseña'),
+            'rememberMe' => Yii::t('app', 'Recuérdame'),
         ];
     }
 
@@ -93,14 +93,14 @@ class LoginForm extends Model
             if ($usuario->token_val !== null) {
                 Yii::$app->session->setFlash(
                     'error',
-                    'No has validado tu cuenta todavía. ' .
-                    'Para iniciar sesión debes visitar el enlace enviado a su correo electrónico'
+                    Yii::t('app', 'No has validado tu cuenta todavía.') . ' ' .
+                    Yii::t('app', 'Para iniciar sesión debes visitar el enlace enviado a su correo electrónico.')
                 );
                 return false;
             }
 
             if ($usuario->ban > date('Y-m-d')) {
-                Yii::$app->session->setFlash('error', 'Parece que has sido baneado. Vuelve a intentarlo ' .
+                Yii::$app->session->setFlash('error', Yii::t('app', 'Parece que has sido baneado. Vuelve a intentarlo') . ' ' .
                     Yii::$app->formatter->asRelativeTime($usuario->ban));
                 return false;
             } elseif ($usuario->ban !== null) {

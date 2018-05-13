@@ -19,15 +19,18 @@ use kartik\grid\GridView;
     'columns' => [
         'usuario.usuario',
         [
-            'label' => 'Comentarios',
+            'label' => Yii::t('app', 'Comentarios'),
             'width' => '400px',
             'contentOptions' => ['class' => 'comentarios-videojuego'],
             'value' => function ($model) {
+                if ($model->mensaje == '') {
+                    return Yii::t('app', 'No se ha proporcionado ningún comentario');
+                }
                 return Html::encode($model->mensaje);
             }
         ],
         [
-            'label' => 'Publicado',
+            'label' => Yii::t('app', 'Publicado'),
             'attribute' => 'created_at',
             'value' => function ($model) {
                 return Yii::$app->formatter->asRelativeTime($model->created_at);
@@ -35,7 +38,7 @@ use kartik\grid\GridView;
         ],
         [
             'class' => 'yii\grid\ActionColumn',
-            'header' => 'Operación',
+            'header' => Yii::t('app', 'Operación'),
             'template' => '<div class="text-center">{oferta}</div>',
             'buttons' => [
                 'oferta' => function ($url, $model, $key) {

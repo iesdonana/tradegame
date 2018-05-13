@@ -27,7 +27,7 @@ $this->registerJs($js);
             <div class="panel panel-default panel-trade">
                 <div class="panel-heading">
                     <div class="panel-title text-center">
-                        Ofertas recibidas
+                        <?= Yii::t('app', 'Ofertas recibidas') ?>
                     </div>
                 </div>
                 <div class="panel-body">

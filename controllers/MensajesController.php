@@ -161,14 +161,16 @@ class MensajesController extends Controller
 
         if ($receptor !== null) {
             if (($u = Usuarios::findOne(['usuario' => $receptor])) === null) {
-                throw new NotFoundHttpException('No se ha encontrado el usuario');
+                throw new NotFoundHttpException(Yii::t('app', "No se ha encontrado el usuario '{username}'", [
+                    'username' => $receptor
+                ]));
             }
             $model->receptor_id = $u->id;
         }
         $model->emisor_id = Yii::$app->user->id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'Has enviado el mensaje correctamente');
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Has enviado el mensaje correctamente'));
             return $this->goHome();
         }
 

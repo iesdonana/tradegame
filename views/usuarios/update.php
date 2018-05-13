@@ -4,9 +4,9 @@
 /* @var $model app\models\Usuarios */
 /* @var $seccion string*/
 
-$this->title = 'Modificar perfil';
+$this->title = Yii::t('app', 'Modificar perfil');
 $this->params['breadcrumbs'][] = [
-    'label' => 'Mi perfil',
+    'label' => Yii::t('app', 'Mi perfil'),
     'url' => ['usuarios/perfil', 'usuario' => Yii::$app->user->identity->usuario]
 ];
 $this->params['breadcrumbs'][] = $this->title;

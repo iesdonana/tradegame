@@ -275,7 +275,7 @@ class Utiles
      * @param  string $name    Nombre del fichero
      * @return bool true si se ha borrado correctamente.
      */
-    public function borrarAnteriores($carpeta, $name)
+    public static function borrarAnteriores($carpeta, $name)
     {
         $path = Yii::getAlias('@' . $carpeta . '/');
         $ficheros = glob($path . $name . '.*');
@@ -291,5 +291,11 @@ class Utiles
             $ruta = $path . $name . '.png';
             $s3->delete($ruta);
         }
+    }
+
+    public static function getCurrentLanguage()
+    {
+        return Yii::$app->getRequest()->getCookies()->has('lang') ?
+            Yii::$app->getRequest()->getCookies()->getValue('lang') : array_values(Yii::$params['sourceLanguage'])[0];
     }
 }

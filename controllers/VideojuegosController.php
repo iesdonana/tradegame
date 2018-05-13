@@ -189,7 +189,7 @@ class VideojuegosController extends Controller
                 ->where(['id' => $id])
                 ->andWhere(['borrado' => false])
                 ->andWhere(['visible' => true])->one()) === null) {
-            throw new NotFoundHttpException('No se encontró el videojuego');
+            throw new NotFoundHttpException(Yii::t('app', 'No se encontró el videojuego'));
         }
         Yii::$app->response->format = Response::FORMAT_JSON;
         $videojuego = $videojuegoUsuario->videojuego;
@@ -209,7 +209,7 @@ class VideojuegosController extends Controller
     public function actionDetalles($id)
     {
         if (($videojuego = Videojuegos::findOne($id)) === null) {
-            throw new NotFoundHttpException('No se encontró el videojuego');
+            throw new NotFoundHttpException(Yii::t('app', 'No se encontró el videojuego'));
         }
 
         return $this->renderAjax('detalles', [
@@ -225,7 +225,7 @@ class VideojuegosController extends Controller
     public function actionVer($id)
     {
         if (($videojuego = Videojuegos::findOne($id)) === null) {
-            throw new NotFoundHttpException('No se encontró el videojuego');
+            throw new NotFoundHttpException(Yii::t('app', 'No se encontró el videojuego'));
         }
 
         $dataProvider = new ActiveDataProvider([
@@ -254,8 +254,10 @@ class VideojuegosController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->foto = UploadedFile::getInstance($model, 'foto');
             if ($model->save() && $model->upload()) {
-                $msg = ($id === null) ? 'creado' : 'modificado';
-                Yii::$app->session->setFlash('success', "Has $msg el videojuego correctamente");
+                $msg = ($id === null) ? Yii::t('app', 'creado') : Yii::t('app', 'modificado');
+                Yii::$app->session->setFlash('success', Yii::t('app', 'Has {msg} el videojuego correctamente', [
+                    'msg' => $msg
+                ]));
                 return $this->redirect(['ver', 'id' => $model->id]);
             }
         }
@@ -292,13 +294,13 @@ class VideojuegosController extends Controller
         $model = $this->findModel($id);
 
         if (VideojuegosUsuarios::findOne(['videojuego_id' => $model->id]) !== null) {
-            Yii::$app->session->setFlash('error', 'El videojuego no se puede borrar, ya que se ha publicado alguna vez');
+            Yii::$app->session->setFlash('error', Yii::t('app', 'El videojuego no se puede borrar, ya que se ha publicado alguna vez'));
             return $this->redirect(['ver', 'id' => $id]);
         }
 
         if (Yii::$app->request->isPost) {
             $model->delete();
-            Yii::$app->session->setFlash('success', 'Has eliminado el videojuego correctamente');
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Has eliminado el videojuego correctamente'));
             return $this->goHome();
         }
     }
@@ -314,6 +316,6 @@ class VideojuegosController extends Controller
         if (($model = Videojuegos::findOne($id)) !== null) {
             return $model;
         }
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('La página solicitada no existe.');
     }
 }

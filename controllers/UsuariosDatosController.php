@@ -46,7 +46,7 @@ class UsuariosDatosController extends Controller
                 $model->geoloc = null;
             }
             if ($model->save() && $model->upload()) {
-                Yii::$app->session->setFlash('success', 'Has actualizado tus datos correctamente');
+                Yii::$app->session->setFlash('success', Yii::t('app', 'Has actualizado tus datos correctamente'));
             }
         }
 

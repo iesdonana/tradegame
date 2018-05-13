@@ -14,7 +14,7 @@ $this->registerJsFile('@web/js/utiles.js', ['depends' => [\yii\web\JqueryAsset::
 <div class="reportes-form">
 
     <?php $form = ActiveForm::begin(); ?>
-    
+
     <?= $form->field($model, 'reportado_id')->hiddenInput(['value' => 1])->label(false) ?>
 
     <?= $form->field($model, 'mensaje', [
@@ -27,7 +27,7 @@ $this->registerJsFile('@web/js/utiles.js', ['depends' => [\yii\web\JqueryAsset::
         ]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Enviar reporte', ['class' => 'btn btn-tradegame btn-block']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Enviar reporte'), ['class' => 'btn btn-tradegame btn-block']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

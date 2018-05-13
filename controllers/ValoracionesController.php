@@ -11,6 +11,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
+use yii\helpers\Html;
+
 /**
  * ValoracionesController implements the CRUD actions for Valoraciones model.
  */
@@ -74,7 +76,7 @@ class ValoracionesController extends Controller
         $model->scenario = Valoraciones::ESCENARIO_CREATE;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'Has valorado la oferta correctamente');
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Has valorado la oferta correctamente'));
             return $this->goHome();
         }
 
@@ -91,7 +93,9 @@ class ValoracionesController extends Controller
     public function actionListadoNotas($usuario)
     {
         if (($user = Usuarios::findOne(['usuario' => $usuario])) === null) {
-            throw new NotFoundHttpException('No se ha encontrado el usuario');
+            throw new NotFoundHttpException(Yii::t('app', "No se ha encontrado el usuario '{username}'", [
+                'username' => Html::encode($usuario)
+            ]));
         }
 
         if (Valoraciones::find()->where(['usuario_valorado_id' => $user->id])->count() === 0) {
@@ -111,7 +115,7 @@ class ValoracionesController extends Controller
     public function actionBuscar($id)
     {
         if (!Yii::$app->request->isAjax) {
-            throw new NotFoundHttpException('No se ha encontrado lo que buscabas');
+            return $this->goHome();
         }
         Yii::$app->response->format = Response::FORMAT_JSON;
         $model = $this->findModel($id);
@@ -130,6 +134,6 @@ class ValoracionesController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('app', 'La página solicitada no existe.'));
     }
 }
