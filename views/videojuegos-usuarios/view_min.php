@@ -37,7 +37,7 @@ if (isset($big) && $big === true) {
                 <div class="row text-center">
                     <?= Html::a(Utiles::FA('info-circle') . ' ' . Yii::t('app', 'Ficha completa'),
                         ['videojuegos/ver', 'id' => $videojuego->id],
-                        ['class' => 'btn btn-xs btn-primary']) ?>
+                        ['class' => 'btn btn-xs btn-primary ' . $clase]) ?>
                 </div>
             </div>
             <div class="col-md-<?= 12 - $valor ?>">

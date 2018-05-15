@@ -87,6 +87,9 @@
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
           color: #730000;
     }
+    .name-language {
+        color: white;
+    }
 }
 
 .navbar-login
@@ -131,5 +134,18 @@ white-space: nowrap;
     margin-top: 8px;
     margin-right: 20px;
     margin-left: 8px;
-    width: 350px;
+    /* width: 350px; */
+}
+
+.buscador .tt-suggestion.tt-selectable {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
+.buscador .badge {
+    overflow:hidden;
+}
+
+.tt-menu.tt-open {
+    left: 20px !important;
 }

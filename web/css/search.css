@@ -1,0 +1,92 @@
+
+	.navbar-collapse form[role="search"] {
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		width: 100%;
+		padding: 0px;
+		margin: 0px;
+		z-index: 0;
+        margin-right: 1em;
+	}
+	.navbar-collapse form[role="search"] button,
+	.navbar-collapse form[role="search"] input {
+		padding: 8px 12px;
+		border-radius: 0px;
+		border-width: 0px;
+		color: #fff;
+		background-color: #8c8c8c;
+		border-color: #fff;
+		box-shadow: none;
+		outline: none;
+	}
+	.navbar-collapse form[role="search"] input {
+		padding: 16px 12px;
+		font-size: 14pt;
+		font-style: italic;
+		color: #fff;
+		box-shadow: none;
+        margin-left: 1em;
+	}
+
+    form[role="search"] ::placeholder {
+        color: #5e5e5e !important;
+        opacity: 1;
+    }
+
+    .tt-hint {
+        color: #5e5e5e !important;
+    }
+
+    form[role="search"] .input-group-btn {
+        z-index: 10;
+    }
+
+    @media (max-width: 768px) {
+        .navbar-collapse {
+    		position: relative;
+    		padding-top: 30px !important;
+            max-height: 270px;
+    	}
+    }
+
+	@media (min-width: 768px) {
+
+		.navbar-collapse {
+			padding-top: 0px !important;
+			padding-right: 38px !important;
+		}
+		.navbar-collapse form[role="search"] {
+			width: 38px;
+		}
+		.navbar-collapse form[role="search"] button,
+		.navbar-collapse form[role="search"] input {
+			padding: 15px 12px;
+		}
+		.navbar-collapse form[role="search"] input {
+			padding: 25px 12px;
+			font-size: 18pt;
+			opacity: 0;
+			display: none;
+		}
+		.navbar-collapse form[role="search"].active,
+        .navbar-collapse form[role="search"].active>div.input-group {
+			width: 100%;
+		}
+		.navbar-collapse form[role="search"].active button,
+		.navbar-collapse form[role="search"].active input {
+			display: table-cell;
+			opacity: 1;
+		}
+    	.navbar-collapse form[role="search"].active input {
+			width: 100%;
+            /* text-align: right; */
+		}
+        .navbar-collapse form[role="search"].active button[type="submit"] {
+            background-color: #8c8c8c;
+	    }
+
+        .navbar-form[role="search"] .input-group .input-group-btn {
+            width: 1%;
+        }
+	}

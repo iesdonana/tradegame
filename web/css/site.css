@@ -5,6 +5,7 @@ body {
 
 body {
     background-image: url('../back.png');
+    font-family: 'Roboto';
 }
 
 #toast-container {

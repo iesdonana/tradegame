@@ -23,11 +23,12 @@ class AppAsset extends AssetBundle
         'css/site.css',
         'css/navbar.css',
         'css/breadcrumb.css',
+        'css/search.css',
     ];
     public $js = [
         'js/general.js',
-        'js/busqueda.js',
         'js/jquery.cookie.js',
+        'js/navbar_search.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

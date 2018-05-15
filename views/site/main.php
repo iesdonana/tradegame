@@ -1,7 +1,6 @@
 <?php
 use yii\helpers\Url;
 
-use Codeception\Module\AngularJS;
 /* @var $this yii\web\View */
 $css = <<<CSS
 
