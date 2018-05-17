@@ -152,6 +152,10 @@ $('.resultado-busqueda').on('click', '.cargar-mas', function() {
         }
     });
 });
+
+if (screen.width <= 768) {
+    $('.filtros h4.col').trigger('click');
+}
 JS;
 $this->registerJs($js);
 $this->registerCssFile('@web/css/checkbox.css');
@@ -206,7 +210,7 @@ $this->registerCssFile('@web/css/checkbox.css');
         <?php endforeach; ?>
     </div>
 </div>
-<div class="col-md-10">
+<div class="col-md-10 col-xs-12">
     <div class="panel panel-default">
         <div class="panel-body resultado-busqueda">
             <?= $this->render('listado_busqueda', [
