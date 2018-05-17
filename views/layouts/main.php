@@ -45,6 +45,7 @@ $this->title = 'TradeGame';
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -67,44 +68,43 @@ $this->title = 'TradeGame';
     ]);
 
     $template =
-    "<div>" .
+    "<div title=\'{{nombre}}\'>" .
         "{{nombre}} " .
         "<span class=\'badge\' data-plat=\'{{plataforma}}\'>{{plataforma}}</span>".
     "</div>";
     $url = Yii::$app->request->baseUrl;
-    $items = [
-
-        '<li class="buscador center-block">' .
-        Typeahead::widget([
-        'name' => 'videojuegos',
-        'value' => Yii::$app->request->get('q'),
-        'options' => ['placeholder' => Yii::t('app', 'Busca un videojuego ...'), 'class' => 'form-inline'],
-        'pluginOptions' => ['highlight'=>true],
-        'pluginEvents' => [
-            'typeahead:select' => "function(ev, resp) {window.location.href = '$url/videojuegos/' + resp.id }",
-        ],
-        'dataset' => [
-            [
-                'datumTokenizer' => "Bloodhound.tokenizers.obj.whitespace('nombre')",
-                'display' => 'nombre',
-                'templates' => [
-                    'notFound' => '<div class="text-danger" style="padding:0 8px">No se ha podido encontrar ningún videojuego</div>',
-                    'suggestion' => new JsExpression("Handlebars.compile('{$template}')")
-                ],
-                'remote' => [
-                    'url' => Url::to(['videojuegos/buscador-videojuegos']) . '?q=%QUERY',
-                    'wildcard' => '%QUERY'
-                ]
-            ]
-        ]
-        ]) .
-        '</li>',
-        [
-            'label' => Utiles::FA('gamepad') .
-                ' ' . Yii::t('app', 'Publicar'),
-            'url' => ['/videojuegos-usuarios/publicar']
-        ]
-    ];
+    // $items = [
+    //     '<li class="buscador center-block">' .
+    //     Typeahead::widget([
+    //         'name' => 'videojuegos',
+    //         'value' => Yii::$app->request->get('q'),
+    //         'options' => ['placeholder' => Yii::t('app', 'Busca un videojuego ...'), 'class' => 'form-inline'],
+    //         'pluginOptions' => ['highlight'=>true],
+    //         'pluginEvents' => [
+    //             'typeahead:select' => "function(ev, resp) {window.location.href = '$url/videojuegos/' + resp.id }",
+    //         ],
+    //         'dataset' => [
+    //             [
+    //                 'datumTokenizer' => "Bloodhound.tokenizers.obj.whitespace('nombre')",
+    //                 'display' => 'nombre',
+    //                 'templates' => [
+    //                     'notFound' => '<div class="text-danger" style="padding:0 8px">' . Yii::t('app', 'No se ha podido encontrar ningún videojuego') . '</div>',
+    //                     'suggestion' => new JsExpression("Handlebars.compile('{$template}')")
+    //                 ],
+    //                 'remote' => [
+    //                     'url' => Url::to(['videojuegos/buscador-videojuegos']) . '?q=%QUERY',
+    //                     'wildcard' => '%QUERY'
+    //                 ]
+    //             ]
+    //         ]
+    //     ]) .
+    //     '</li>',
+    //     [
+    //         'label' => Utiles::FA('gamepad') .
+    //             ' ' . Yii::t('app', 'Publicar'),
+    //         'url' => ['/videojuegos-usuarios/publicar']
+    //     ]
+    // ];
 
     if (Yii::$app->user->isGuest) {
         $items[] = ['label' => Utiles::FA('sign-in-alt') . ' Login / ' . Yii::t('app', 'Registro'), 'url' => ['/site/login']];
@@ -142,7 +142,7 @@ $this->title = 'TradeGame';
         }
 
         $items[] = [
-            'label' => Utiles::FA('bell', ['class' => 'far']) . ' ' . Utiles::badgeNotificacionesTotales(),
+            'label' => Utiles::FA('bell', ['class' => 'far']) . ' ' . '<span class=\'hidden-md hidden-lg hidden-sm\'>' .  Yii::t('app', 'Notificaciones') . '</span>' . ' '.  Utiles::badgeNotificacionesTotales(),
             'items' => $subItems
         ];
 
@@ -219,7 +219,7 @@ $this->title = 'TradeGame';
     }
 
     $items[] = [
-        'label' => Html::img('@web/images/' . $currentLang[$keyLang] . '.png', ['class' => 'flag-img', 'data-lang' => $keyLang]),
+        'label' => Html::img('@web/images/' . $currentLang[$keyLang] . '.png', ['class' => 'flag-img', 'data-lang' => $keyLang]) . ' ' . ' <span class="name-language hidden-md hidden-lg hidden-sm">' . $currentLang[$keyLang] . '</span>',
         'items' => $subItems
     ];
 
@@ -228,6 +228,44 @@ $this->title = 'TradeGame';
         'items' => $items,
         'encodeLabels' => false
     ]);
+    echo '<form class="navbar-form" role="search">
+            <div class="input-group">' .
+
+            Typeahead::widget([
+                'name' => 'videojuegos',
+                'value' => Yii::$app->request->get('q'),
+                'options' => ['placeholder' => Yii::t('app', 'Busca un videojuego ...'), 'class' => 'form-inline'],
+                'pluginOptions' => ['highlight'=>true],
+                'pluginEvents' => [
+                    'typeahead:select' => "function(ev, resp) {window.location.href = '$url/videojuegos/' + resp.id }",
+                ],
+                'dataset' => [
+                    [
+                        'datumTokenizer' => "Bloodhound.tokenizers.obj.whitespace('nombre')",
+                        'display' => 'nombre',
+                        'templates' => [
+                            'notFound' => '<div class="text-danger" style="padding:0 8px">' . Yii::t('app', 'No se ha podido encontrar ningún videojuego') . '</div>',
+                            'suggestion' => new JsExpression("Handlebars.compile('{$template}')")
+                        ],
+                        'remote' => [
+                            'url' => Url::to(['videojuegos/buscador-videojuegos']) . '?q=%QUERY',
+                            'wildcard' => '%QUERY'
+                        ]
+                    ]
+                ]
+            ]) 
+
+
+            . '
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-search">
+                            <span class="sr-only"></span>
+                        </span>
+                    </button>
+                </span>
+            </div>
+        </form>';
     NavBar::end();
     ?>
 

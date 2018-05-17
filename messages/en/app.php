@@ -207,7 +207,8 @@ return [
     'Ver mis ofertas' => 'View my offers',
     'Has enviado el mensaje correctamente' => 'You have sent the message correctly',
     'El mensaje debe contener al menos 20 carácteres' => 'The message must contain at least 20 characters',
-
+    'No se ha podido encontrar ningún videojuego' => 'No videogames could be found',
+    'Notificaciones' => 'Notifications',
 
     // GÉNEROS DE VIDEOJUEGOS
     'Acción' => 'Action',
