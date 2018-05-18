@@ -28,7 +28,7 @@ if (isset($big) && $big === true) {
 ?>
 
 <div class="row">
-    <div class="col-md-12 videojuego-item">
+    <div class="col-md-12 videojuego-item"  itemscope itemtype="http://schema.org/VideoGame">
         <div class="row">
             <div class="col-md-<?= $valor ?>">
                 <div class="row">
@@ -44,8 +44,8 @@ if (isset($big) && $big === true) {
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-8">
-                            <strong class='titulo text-tradegame'><?= Html::encode($videojuego->nombre) ?></strong><br>
-                            <?= Utiles::badgePlataforma($videojuego->plataforma->nombre) ?>
+                            <strong class='titulo text-tradegame' itemprop="name"><?= Html::encode($videojuego->nombre) ?></strong><br>
+                            <span itemprop="gamePlatform"><?= Utiles::badgePlataforma($videojuego->plataforma->nombre) ?></span>
                             <span class="label label-default"><?= Yii::t('app', $videojuego->genero->nombre) ?></span> <br>
                         </div>
                         <?php if (!isset($busqueda)): ?>
@@ -69,7 +69,7 @@ if (isset($big) && $big === true) {
 
                         <br>
                         <strong><?= Yii::t('app', 'Descripción') ?>:</strong>
-                        <em><?= Html::encode(Utiles::translate($videojuego->descripcion)) ?></em>
+                        <em itemprop="about"><?= Html::encode(Utiles::translate($videojuego->descripcion)) ?></em>
                         <?php if (!isset($busqueda)): ?>
                             <hr class='divide'>
                             <strong><?= Yii::t('app', 'Comentarios') ?>:</strong>

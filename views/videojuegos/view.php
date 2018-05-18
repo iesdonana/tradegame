@@ -73,7 +73,7 @@ $this->registerJs("
             </div>
         <?php endif ?>
         <div class="panel panel-default panel-trade">
-            <div class="panel-body">
+            <div class="panel-body" itemscope itemtype="http://schema.org/VideoGame">
                 <?= $this->render('datos', [
                     'model' => $model
                 ]) ?>
