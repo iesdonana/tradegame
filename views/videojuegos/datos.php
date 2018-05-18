@@ -12,18 +12,18 @@ use yii\helpers\Html;
     </div>
 </div>
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3" itemprop="name">
         <?= Html::img($model->caratula, ['class' => 'img-thumbnail center-block caratula-detail']) ?>
     </div>
     <div class="col-md-9">
         <ul class="list-group">
             <li class="list-group-item">
                 <strong><?= Yii::t('app', 'Fecha lanzamiento') ?>:</strong>
-                <?= Yii::$app->formatter->asDate($model->fecha_lanzamiento) ?>
+                <span itemprop="datePublished"><?= Yii::$app->formatter->asDate($model->fecha_lanzamiento) ?></span>
             </li>
             <li class="list-group-item">
                 <strong><?= Yii::t('app', 'Plataforma') ?>:</strong>
-                <?= Html::encode($model->plataforma->nombre) ?>
+                <span itemprop="gamePlatform"><?= Html::encode($model->plataforma->nombre) ?></span>
             </li>
             <li class="list-group-item">
                 <strong><?= Yii::t('app', 'Desarrollador') ?>:</strong>
@@ -31,12 +31,12 @@ use yii\helpers\Html;
             </li>
             <li class="list-group-item">
                 <strong><?= Yii::t('app', 'Género') ?>:</strong>
-                <?= Html::encode($model->genero->nombre) ?>
+                <span itemprop="genre"><?= Html::encode($model->genero->nombre) ?></span>
             </li>
         </ul>
     </div>
 </div>
 <div class="row datos-videojuego">
     <strong><?= Yii::t('app', 'Descripción') ?>:</strong><br>
-    <?= Html::encode(Utiles::translate($model->descripcion)) ?>
+    <span itemprop="about"><?= Html::encode(Utiles::translate($model->descripcion)) ?></span>
 </div>
