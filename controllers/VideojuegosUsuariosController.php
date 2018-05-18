@@ -6,6 +6,8 @@ use app\models\Usuarios;
 use app\models\Videojuegos;
 use app\models\VideojuegosUsuarios;
 use Yii;
+use yii\web\UploadedFile;
+
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -53,9 +55,13 @@ class VideojuegosUsuariosController extends Controller
         $model = new VideojuegosUsuarios();
         $model->usuario_id = Yii::$app->user->id;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'Has publicado el videojuego correctamente'));
-            return $this->goHome();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->fotos = UploadedFile::getInstances($model, 'fotos');
+            $model->save();
+            if ($model->upload()) {
+                Yii::$app->session->setFlash('success', Yii::t('app', 'Has publicado el videojuego correctamente'));
+                return $this->goHome();
+            }
         }
 
         return $this->render('publicar', [
