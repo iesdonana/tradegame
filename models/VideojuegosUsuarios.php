@@ -174,7 +174,7 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
             }
         }
 
-        return $res;
+        return true;
     }
 
     /**

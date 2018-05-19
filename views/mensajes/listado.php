@@ -42,14 +42,8 @@ $('#form-mensaje').on('click', 'button', function(e) {
 JS;
 $this->registerJs($js);
 
-
 $this->registerJsFile('@web/js/chat.js', ['position' => View::POS_HEAD]);
-$js = <<<JS
-
-JS;
-$this->registerJs($js, View::POS_READY);
 ?>
-
 <?php if (count($conversaciones) > 0): ?>
 <div class="row alto">
         <div class="col-md-3">

@@ -13,21 +13,23 @@ $(function () {
            $form.addClass('active');
             if (screen.width > 768) {
                 $form.prev().css('visibility', 'hidden');
+                var fa = $('<i></i>');
+                fa.addClass('fas fa-times');
+                $(this).html(fa);
             }
            $input.focus();
        });
-       // ONLY FOR DEMO // Please use $('form').submit(function(event)) to track from submission
-       // if your form is ajax remember to call `closeSearch()` to close the search container
+
        $(document).on('click', '.navbar-collapse form[role="search"].active button[type="submit"]', function(event) {
            event.preventDefault();
            var $form = $(this).closest('form'),
                $input = $form.find('input');
             if (screen.width > 768) {
                 $form.prev().css('visibility', 'visible');
+                var fa = $('<i></i>');
+                fa.addClass('fas fa-search');
+                $(this).html(fa);
             }
-
-           console.log(event.keyCode);
-           console.log('hola');
            closeSearch();
 
            if (event.keyCode == 13) {

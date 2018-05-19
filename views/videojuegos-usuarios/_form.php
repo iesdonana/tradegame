@@ -71,6 +71,7 @@ $this->registerJs($js);
                     'showUpload' => false,
                     'showRemove' => false,
                     'showPreview' => false,
+                    'browseClass' => 'btn btn-tradegame',
                 ]
             ]); ?>
 

@@ -114,7 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel panel-default panel-trade">
             <div class="panel-body">
                 <?php if (!$model->borrado): ?>
-                    <div id='date'>
+                    <div id='date' class="row">
                         <div class="col-md-6 text-left">
                             <?= Utiles::FA('user') . ' ' . Yii::t('app', 'Publicado por') ?>
                             <?= Html::a($user, ['usuarios/perfil', 'usuario' => $user]) ?>
@@ -136,7 +136,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
                     <div class="datos-videojuego">
                         <strong><?= Yii::t('app', 'Comentarios del usuario') ?>: </strong><br>
-                        <div class="comentarios-videojuego"><?= Html::encode($model->mensaje) ?></div>
+                        <?php if (trim($model->mensaje) != ''): ?>
+                            <?= Html::encode(Utiles::translate($model->mensaje)) ?>
+                        <?php else: ?>
+                            <?= Html::tag('em', Yii::t('app', 'No se ha proporcionado ningún comentario')) ?>
+                        <?php endif ?>
                     </div>
                     <?php $imagenes = $model->getFotos() ?>
                     <?php if (count($imagenes) > 0): ?>

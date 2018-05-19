@@ -73,38 +73,12 @@ $this->title = 'TradeGame';
         "<span class=\'badge\' data-plat=\'{{plataforma}}\'>{{plataforma}}</span>".
     "</div>";
     $url = Yii::$app->request->baseUrl;
-    // $items = [
-    //     '<li class="buscador center-block">' .
-    //     Typeahead::widget([
-    //         'name' => 'videojuegos',
-    //         'value' => Yii::$app->request->get('q'),
-    //         'options' => ['placeholder' => Yii::t('app', 'Busca un videojuego ...'), 'class' => 'form-inline'],
-    //         'pluginOptions' => ['highlight'=>true],
-    //         'pluginEvents' => [
-    //             'typeahead:select' => "function(ev, resp) {window.location.href = '$url/videojuegos/' + resp.id }",
-    //         ],
-    //         'dataset' => [
-    //             [
-    //                 'datumTokenizer' => "Bloodhound.tokenizers.obj.whitespace('nombre')",
-    //                 'display' => 'nombre',
-    //                 'templates' => [
-    //                     'notFound' => '<div class="text-danger" style="padding:0 8px">' . Yii::t('app', 'No se ha podido encontrar ningún videojuego') . '</div>',
-    //                     'suggestion' => new JsExpression("Handlebars.compile('{$template}')")
-    //                 ],
-    //                 'remote' => [
-    //                     'url' => Url::to(['videojuegos/buscador-videojuegos']) . '?q=%QUERY',
-    //                     'wildcard' => '%QUERY'
-    //                 ]
-    //             ]
-    //         ]
-    //     ]) .
-    //     '</li>',
-    //     [
-    //         'label' => Utiles::FA('gamepad') .
-    //             ' ' . Yii::t('app', 'Publicar'),
-    //         'url' => ['/videojuegos-usuarios/publicar']
-    //     ]
-    // ];
+    $items = [
+        [
+            'label' => Utiles::FA('gamepad') . ' ' . Yii::t('app', 'Publicar'),
+            'url' => ['/videojuegos-usuarios/publicar']
+        ]
+    ];
 
     if (Yii::$app->user->isGuest) {
         $items[] = ['label' => Utiles::FA('sign-in-alt') . ' Login / ' . Yii::t('app', 'Registro'), 'url' => ['/site/login']];
@@ -125,7 +99,7 @@ $this->title = 'TradeGame';
                 'url' => ['/ofertas-usuarios/index']
             ],
             [
-                'label' => Utiles::FA('inbox') . " " . Yii::t('app', 'Messages') . " $pendMsg",
+                'label' => Utiles::FA('inbox') . " " . Yii::t('app', 'Mensajes') . " $pendMsg",
                 'url' => ['/mensajes/listado']
             ],
             [
@@ -253,7 +227,7 @@ $this->title = 'TradeGame';
                         ]
                     ]
                 ]
-            ]) 
+            ])
 
 
             . '
