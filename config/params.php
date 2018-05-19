@@ -10,5 +10,6 @@ return [
     'languages' => [
         'es' => 'español',
         'en' => 'english'
-    ]
+    ],
+    'maxFotos' => 3,
 ];

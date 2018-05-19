@@ -8,6 +8,8 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+use kartik\file\FileInput;
+
 use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
@@ -60,6 +62,17 @@ $this->registerJs($js);
                 'maxlength' => true,
                 'rows' => 8
                 ]) ?>
+
+            <?= $form->field($model, 'fotos[]')->widget(FileInput::classname(), [
+                'options' => ['accept' => 'image/*'],
+                'options' => ['multiple' => true],
+                'pluginOptions' => [
+                    'maxFileCount' => 3,
+                    'showUpload' => false,
+                    'showRemove' => false,
+                    'showPreview' => false,
+                ]
+            ]); ?>
 
             <div class="form-group">
                 <?= Html::submitButton(Yii::t('app', 'Publicar') . ' ',

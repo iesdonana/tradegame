@@ -18,18 +18,75 @@ $css = <<<CSS
 #date {
     margin: 20px;
 }
+
+img.fotos-videojuego {
+    width: 300px;
+    opacity: 0.8;
+}
+
+img.fotos-videojuego:hover {
+    opacity: 1;
+}
+
+.side-crop {
+    max-height: 150px;
+    overflow: hidden;
+}
+.side-crop img { max-height: initial;}
+
+#modal-foto .modal-footer {
+    text-align: inherit;
+}
+
 CSS;
 $this->registerCss($css);
 
+$js = <<<JS
+$(function() {
+    $('.popup-modal').click(function(e) {
+        e.preventDefault();
+        $('#modal-delete').modal('show');
+    });
 
-$this->registerJs("
-    $(function() {
-        $('.popup-modal').click(function(e) {
-            e.preventDefault();
-            $('#modal-delete').modal('show');
-        });
-    });"
-);
+    $('img.fotos-videojuego').click(function(e) {
+        e.preventDefault();
+        var copy = $(this).clone();
+        copy.removeClass('fotos-videojuego');
+        $('#imagen-modal').html(copy);
+        if ($('.fotos-videojuego img.fotos-videojuego').length == 1) {
+            $('.btn-siguiente').remove();
+            $('.btn-anterior').remove();
+        }
+        $('#modal-foto').modal('show');
+    });
+
+    $('.btn-siguiente').on('click', function(e) {
+        e.preventDefault();
+        pasar($('#imagen-modal img').data('num-foto'));
+    });
+});
+
+function pasar(current, paso = '>') {
+
+    var imgs = $('.fotos-videojuego img.fotos-videojuego');
+    var numImagenes = imgs.length;
+
+    var prox = current + 1;
+    if (paso == '<') {
+        prox = current - 1;
+    }
+
+    if (prox > numImagenes) {
+        prox = 1;
+    } else if (prox < 1) {
+        prox = numImagenes;
+    }
+
+    var copia = imgs.filter('[data-num-foto=' + prox + ']').clone();
+    $('#imagen-modal').html(copia)
+}
+JS;
+$this->registerJs($js);
 
 $user = $model->usuario->usuario;
 $videojuego = $model->videojuego;
@@ -81,6 +138,26 @@ $this->params['breadcrumbs'][] = $this->title;
                         <strong><?= Yii::t('app', 'Comentarios del usuario') ?>: </strong><br>
                         <div class="comentarios-videojuego"><?= Html::encode($model->mensaje) ?></div>
                     </div>
+                    <?php $imagenes = $model->getFotos() ?>
+                    <?php if (count($imagenes) > 0): ?>
+                        <?php $col = 12 / count($imagenes) ?>
+                        <div class="fotos-videojuego datos-videojuego">
+                            <strong><?= Yii::t('app', 'Fotos del videojuego') ?>: </strong><br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <?php $cont = 0 ?>
+                                    <?php foreach ($imagenes as $imagen): ?>
+                                        <div class="side-crop col-md-<?= $col ?> text-center">
+                                            <?= Html::img('@web' . '/' . $imagen, [
+                                                'class' => 'img-thumbnail fotos-videojuego',
+                                                'data-num-foto' => ++$cont
+                                            ]) ?>
+                                        </div>
+                                    <?php endforeach ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                     <?php if (Yii::$app->user->id !== $model->usuario_id && $model->visible): ?>
                         <hr>
                         <div class="row">
@@ -101,6 +178,20 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+<?php Modal::begin([
+    'header' => '<h3 class="modal-title">' . Yii::t('app', 'Foto del videojuego') . '</h3>',
+    'id' => 'modal-foto',
+    'footer' => '<div class="col-md-6">' .
+        Html::a('Anterior', null, ['class' => 'btn btn-default pull-left btn-anterior']) .
+        '</div>' .
+        '<div class="col-md-6">' .
+            Html::a('Siguiente', null, ['class' => 'btn btn-default pull-right btn-siguiente']) .
+            '</div>'
+]) ?>
+<div id="imagen-modal" class="text-center">
+
+</div>
+<?php Modal::end() ?>
 <?php Modal::begin([
  'header' => '<h2 class="modal-title">' . Yii::t('app', 'Borrar publicación') . '</h2>',
  'id'     => 'modal-delete',

@@ -16,6 +16,7 @@ $config = [
         '@npm' => '@vendor/npm-asset',
         '@avatares' => 'uploads/avatares',
         '@caratulas' => 'uploads/caratulas',
+        '@fotos_videojuegos' => 'uploads/fotos_videojuegos',
     ],
     'language' => 'es-ES',
     'container' => [

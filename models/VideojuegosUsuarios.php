@@ -6,6 +6,8 @@ use Yii;
 
 use yii\web\NotFoundHttpException;
 
+use yii\imagine\Image;
+
 /**
  * This is the model class for table "videojuegos_usuarios".
  *
@@ -21,6 +23,12 @@ use yii\web\NotFoundHttpException;
  */
 class VideojuegosUsuarios extends \yii\db\ActiveRecord
 {
+    /**
+     * Contiene la fotos de los videojuegos
+     * @var UploadedFile[]
+     */
+    public $fotos;
+
     /**
      * {@inheritdoc}
      */
@@ -41,6 +49,7 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
             [['borrado'], 'default', 'value' => false],
             [['videojuego_id', 'usuario_id'], 'integer'],
             [['mensaje'], 'string', 'max' => 255],
+            [['fotos'], 'file', 'extensions' => 'jpg, png', 'maxSize' => 5242880,'maxFiles' => Yii::$app->params['maxFotos']],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => UsuariosId::className(), 'targetAttribute' => ['usuario_id' => 'id']],
             [['videojuego_id'], 'exist', 'skipOnError' => true, 'targetClass' => Videojuegos::className(), 'targetAttribute' => ['videojuego_id' => 'id']],
         ];
@@ -56,6 +65,7 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
             'videojuego_id' => Yii::t('app', 'Título del videojuego'),
             'usuario_id' => 'Usuario ID',
             'mensaje' => Yii::t('app', 'Comentarios'),
+            'fotos' => Yii::t('app', 'Fotos')
         ];
     }
 
@@ -132,5 +142,74 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
         }
 
         return true;
+    }
+
+    /**
+     * Sube una foto al directorio de fotos_videojuegos de la aplicación.
+     * @return mixed
+     */
+    public function upload()
+    {
+        $fotos = $this->fotos;
+        if ($fotos === null) {
+            return true;
+        }
+
+        $cont = 1;
+        foreach ($fotos as $foto) {
+            $extension = $foto->extension;
+            $nombreFichero = $this->id . '_' . $cont . '.' . $extension;
+            $ruta = Yii::getAlias('@fotos_videojuegos/') . $nombreFichero;
+            $res = $foto->saveAs($ruta);
+            if ($res) {
+                Image::thumbnail($ruta, 300, null)
+                    ->save($ruta, ['quality' => 80]);
+            }
+            $s3 = Yii::$app->get('s3');
+            try {
+                $s3->upload($ruta, $ruta);
+                $cont++;
+            } catch (\Exception $e) {
+                unlink($ruta);
+            }
+        }
+
+        return $res;
+    }
+
+    /**
+     * Retorna las posibles fotos que se han subido a la publicacíon
+     * @return array Las fotos subidas
+     */
+    public function getFotos()
+    {
+        $arr = [];
+        $s3 = Yii::$app->get('s3');
+        $id = $this->id;
+        $fotos = Yii::getAlias('@fotos_videojuegos/');
+
+        $archivos = glob($fotos . "{$id}_*");
+        if (count($archivos) > 0) {
+            return $archivos;
+        }
+        $max = Yii::$app->params['maxFotos'];
+        for ($i=1; $i <= $max; $i++) {
+            $name = $fotos . $id . '_' . $i;
+            $ruta = $name . '.jpg';
+            if (!$s3->exist($ruta)) {
+                $ruta = $name . '.png';
+                if (!$s3->exist($ruta)) {
+                    return $arr;
+                }
+            }
+
+            $s3->commands()->get($ruta)
+            ->saveAs($ruta)
+            ->execute();
+
+            $arr[] = $ruta;
+        }
+
+        return $arr;
     }
 }
