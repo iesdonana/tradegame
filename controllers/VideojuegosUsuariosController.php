@@ -55,12 +55,14 @@ class VideojuegosUsuariosController extends Controller
         $model = new VideojuegosUsuarios();
         $model->usuario_id = Yii::$app->user->id;
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+        if ($model->load(Yii::$app->request->post())) {
             $model->fotos = UploadedFile::getInstances($model, 'fotos');
-            $model->save();
-            if ($model->upload()) {
-                Yii::$app->session->setFlash('success', Yii::t('app', 'Has publicado el videojuego correctamente'));
-                return $this->goHome();
+            if ($model->validate()) {
+                $model->save();
+                if ($model->upload()) {
+                    Yii::$app->session->setFlash('success', Yii::t('app', 'Has publicado el videojuego correctamente'));
+                    return $this->goHome();
+                }
             }
         }
 

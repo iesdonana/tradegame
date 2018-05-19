@@ -209,6 +209,7 @@ return [
     'El mensaje debe contener al menos 20 carácteres' => 'The message must contain at least 20 characters',
     'No se ha podido encontrar ningún videojuego' => 'No videogames could be found',
     'Notificaciones' => 'Notifications',
+    'Fotos' => 'Photos',
 
     // GÉNEROS DE VIDEOJUEGOS
     'Acción' => 'Action',

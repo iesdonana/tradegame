@@ -49,7 +49,7 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
             [['borrado'], 'default', 'value' => false],
             [['videojuego_id', 'usuario_id'], 'integer'],
             [['mensaje'], 'string', 'max' => 255],
-            [['fotos'], 'file', 'extensions' => 'jpg, png', 'maxFiles' => 3],
+            [['fotos'], 'file', 'extensions' => 'jpg, png', 'maxSize' => 5242880,'maxFiles' => Yii::$app->params['maxFotos']],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => UsuariosId::className(), 'targetAttribute' => ['usuario_id' => 'id']],
             [['videojuego_id'], 'exist', 'skipOnError' => true, 'targetClass' => Videojuegos::className(), 'targetAttribute' => ['videojuego_id' => 'id']],
         ];
@@ -175,5 +175,41 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
         }
 
         return $res;
+    }
+
+    /**
+     * Retorna las posibles fotos que se han subido a la publicacíon
+     * @return array Las fotos subidas
+     */
+    public function getFotos()
+    {
+        $arr = [];
+        $s3 = Yii::$app->get('s3');
+        $id = $this->id;
+        $fotos = Yii::getAlias('@fotos_videojuegos/');
+
+        $archivos = glob($fotos . "{$id}_*");
+        if (count($archivos) > 0) {
+            return $archivos;
+        }
+        $max = Yii::$app->params['maxFotos'];
+        for ($i=1; $i <= $max; $i++) {
+            $name = $fotos . $id . '_' . $i;
+            $ruta = $name . '.jpg';
+            if (!$s3->exist($ruta)) {
+                $ruta = $name . '.png';
+                if (!$s3->exist($ruta)) {
+                    return $arr;
+                }
+            }
+
+            $s3->commands()->get($ruta)
+            ->saveAs($ruta)
+            ->execute();
+
+            $arr[] = $ruta;
+        }
+
+        return $arr;
     }
 }
