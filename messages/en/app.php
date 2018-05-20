@@ -1,8 +1,8 @@
 <?php
 
 /**
-* Translation map for en-EN
-*/
+ * Translation map for en-EN.
+ */
 return [
     'Registro' => 'Register',
     'Usuarios cercanos' => 'Nearest users',
@@ -210,6 +210,10 @@ return [
     'No se ha podido encontrar ningún videojuego' => 'No videogames could be found',
     'Notificaciones' => 'Notifications',
     'Fotos' => 'Photos',
+    'Fecha de recepción' => 'Reception date',
+    'Videojuego publicado' => 'Published video game',
+    'Tipo' => 'Type',
+    'Ofertante' => 'Provider',
 
     // GÉNEROS DE VIDEOJUEGOS
     'Acción' => 'Action',

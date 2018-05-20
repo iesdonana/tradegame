@@ -93,7 +93,7 @@ $this->registerCss('.btn-info {margin-left: 4px;}');
         },
         'columns' => [
             [
-                'label' => 'Tipo',
+                'label' => Yii::t('app', 'Tipo'),
                 'attribute' => 'contraoferta_de',
                 'format' => 'raw',
                 'value' => function ($model) {
@@ -107,7 +107,7 @@ $this->registerCss('.btn-info {margin-left: 4px;}');
                 }
             ],
             [
-                'label' => 'Videojuego publicado',
+                'label' => Yii::t('app', 'Videojuego publicado'),
                 'attribute' => 'publicado',
                 'format' => 'raw',
                 'value' => function ($model) {
@@ -122,7 +122,7 @@ $this->registerCss('.btn-info {margin-left: 4px;}');
                 }
             ],
             [
-                'label' => 'Videojuego ofrecido',
+                'label' => Yii::t('app', 'Videojuego ofrecido'),
                 'attribute' => 'ofrecido',
                 'format' => 'raw',
                 'value' => function ($model) {
@@ -137,7 +137,7 @@ $this->registerCss('.btn-info {margin-left: 4px;}');
                 }
             ],
             [
-                'label' => 'Ofertante',
+                'label' => Yii::t('app', 'Ofertante'),
                 'attribute' => 'usuario_ofrecido',
                 'format' => 'raw',
                 'value' => function ($model) {
@@ -148,10 +148,14 @@ $this->registerCss('.btn-info {margin-left: 4px;}');
                     return Html::a($usuario, ['usuarios/perfil', 'usuario' => $model->usuario_ofrecido]);
                 }
             ],
-            'created_at:datetime:Fecha de recepción',
+            [
+                'attribute' => 'created_at',
+                'format' => 'datetime',
+                'label' => Yii::t('app', 'Fecha de recepción'),
+            ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                'header' => 'Operación',
+                'header' => Yii::t('app', 'Acción'),
                 'template' => '<div class="text-center">{aceptar}{rechazar}{contraoferta}{estado}</div>',
                 'buttons' => [
                     'aceptar' => function($url, $model, $key) {
