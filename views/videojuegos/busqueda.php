@@ -131,7 +131,7 @@ $('.resultado-busqueda').on('click', '.cargar-mas', function() {
             plataformas: plataformas.join(','),
             generos: generos.join(','),
             desarrolladores: desarrolladores.join(','),
-            q: $('#w2').val()
+            q: $('.twitter-typeahead .tt-input').val()
         },
         beforeSend: function () {
             btn.attr('disabled', true);
