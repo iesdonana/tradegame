@@ -3,10 +3,8 @@
 namespace app\models;
 
 use Yii;
-
-use yii\web\NotFoundHttpException;
-
 use yii\imagine\Image;
+use yii\web\NotFoundHttpException;
 
 /**
  * This is the model class for table "videojuegos_usuarios".
@@ -24,7 +22,7 @@ use yii\imagine\Image;
 class VideojuegosUsuarios extends \yii\db\ActiveRecord
 {
     /**
-     * Contiene la fotos de los videojuegos
+     * Contiene la fotos de los videojuegos.
      * @var UploadedFile[]
      */
     public $fotos;
@@ -49,7 +47,7 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
             [['borrado'], 'default', 'value' => false],
             [['videojuego_id', 'usuario_id'], 'integer'],
             [['mensaje'], 'string', 'max' => 255],
-            [['fotos'], 'file', 'extensions' => 'jpg, png', 'maxSize' => 5242880,'maxFiles' => Yii::$app->params['maxFotos']],
+            [['fotos'], 'file', 'extensions' => 'jpg, png', 'maxSize' => 5242880, 'maxFiles' => Yii::$app->params['maxFotos']],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => UsuariosId::className(), 'targetAttribute' => ['usuario_id' => 'id']],
             [['videojuego_id'], 'exist', 'skipOnError' => true, 'targetClass' => Videojuegos::className(), 'targetAttribute' => ['videojuego_id' => 'id']],
         ];
@@ -65,7 +63,7 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
             'videojuego_id' => Yii::t('app', 'Título del videojuego'),
             'usuario_id' => 'Usuario ID',
             'mensaje' => Yii::t('app', 'Comentarios'),
-            'fotos' => Yii::t('app', 'Fotos')
+            'fotos' => Yii::t('app', 'Fotos'),
         ];
     }
 
@@ -162,7 +160,7 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
             $ruta = Yii::getAlias('@fotos_videojuegos/') . $nombreFichero;
             $res = $foto->saveAs($ruta);
             if ($res) {
-                Image::thumbnail($ruta, 300, null)
+                Image::thumbnail($ruta, 500, null)
                     ->save($ruta, ['quality' => 80]);
             }
             $s3 = Yii::$app->get('s3');
@@ -178,7 +176,7 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
     }
 
     /**
-     * Retorna las posibles fotos que se han subido a la publicacíon
+     * Retorna las posibles fotos que se han subido a la publicacíon.
      * @return array Las fotos subidas
      */
     public function getFotos()
@@ -193,7 +191,7 @@ class VideojuegosUsuarios extends \yii\db\ActiveRecord
             return $archivos;
         }
         $max = Yii::$app->params['maxFotos'];
-        for ($i=1; $i <= $max; $i++) {
+        for ($i = 1; $i <= $max; $i++) {
             $name = $fotos . $id . '_' . $i;
             $ruta = $name . '.jpg';
             if (!$s3->exist($ruta)) {

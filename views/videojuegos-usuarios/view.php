@@ -32,10 +32,17 @@ img.fotos-videojuego:hover {
     max-height: 150px;
     overflow: hidden;
 }
-.side-crop img { max-height: initial;}
+.side-crop img {
+    max-height: initial;
+    margin-top: -150px;
+}
 
 #modal-foto .modal-footer {
     text-align: inherit;
+}
+
+.container-fotos {
+    margin-top: 20px;
 }
 
 CSS;
@@ -64,6 +71,11 @@ $(function() {
         e.preventDefault();
         pasar($('#imagen-modal img').data('num-foto'));
     });
+
+    $('.btn-anterior').on('click', function(e) {
+        e.preventDefault();
+        pasar($('#imagen-modal img').data('num-foto'), '<');
+    })
 });
 
 function pasar(current, paso = '>') {
@@ -83,6 +95,7 @@ function pasar(current, paso = '>') {
     }
 
     var copia = imgs.filter('[data-num-foto=' + prox + ']').clone();
+    copia.removeClass('fotos-videojuego img-thumbnail');
     $('#imagen-modal').html(copia)
 }
 JS;
@@ -148,12 +161,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="fotos-videojuego datos-videojuego">
                             <strong><?= Yii::t('app', 'Fotos del videojuego') ?>: </strong><br>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-12 container-fotos">
                                     <?php $cont = 0 ?>
                                     <?php foreach ($imagenes as $imagen): ?>
                                         <div class="side-crop col-md-<?= $col ?> text-center">
                                             <?= Html::img('@web' . '/' . $imagen, [
-                                                'class' => 'img-thumbnail fotos-videojuego',
+                                                'class' => 'fotos-videojuego',
                                                 'data-num-foto' => ++$cont
                                             ]) ?>
                                         </div>
