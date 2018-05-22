@@ -5,11 +5,11 @@ return [
     'dateFormat' => 'dd/MM/yyyy',
     'dateTimeFormat' => 'php:d M Y H:i',
     'sourceLanguage' => [
-        'es' => 'spain',
+        'es' => 'español',
     ],
     'languages' => [
         'es' => 'español',
-        'en' => 'english'
+        'en' => 'english',
     ],
     'maxFotos' => 3,
 ];
