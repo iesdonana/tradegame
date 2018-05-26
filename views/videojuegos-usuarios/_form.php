@@ -77,7 +77,7 @@ $this->registerJs($js);
 
             <div class="form-group">
                 <?= Html::submitButton(Yii::t('app', 'Publicar') . ' ',
-                    ['class' => 'btn btn-tradegame btn-block']) ?>
+                    ['class' => 'btn btn-tradegame btn-block btn-publicar']) ?>
             </div>
 
             <?php ActiveForm::end(); ?>

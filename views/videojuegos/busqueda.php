@@ -7,37 +7,8 @@ use yii\web\View;
 use yii\helpers\Url;
 
 $url = Url::to(['videojuegos/vista-busqueda']);
-$css = <<<CSS
-/* Absolute Center Spinner */
-.loading {
-  position: fixed;
-  z-index: 999;
-  height: 2em;
-  width: 2em;
-  overflow: show;
-  margin: auto;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-
-/* Transparent Overlay */
-.loading:before {
-  content: '';
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #FFF;
-  opacity: 0.5;
-}
-CSS;
 $cargarMas = Yii::t('app', 'Cargar más resultados');
-$this->registerCss($css);
-$this->registerCssFile('@web/css/loader.css');
+$this->registerCssFile('@web/css/pacman.css');
 $js = <<<JS
 var plataformas = [];
 var generos = [];
@@ -94,10 +65,10 @@ $('input[type=checkbox]').on('click', function() {
             q: $('#w2').val()
         },
         beforeSend: function () {
-            $('.loading').removeClass('hidden');
+            $('.container-loader').removeClass('hidden');
         },
         success: function(data) {
-            $('.loading').addClass('hidden');
+            $('.container-loader').addClass('hidden');
             $('.resultado-busqueda').html(data);
             comprobarMasResultados();
             topFunction();
@@ -220,8 +191,18 @@ $this->registerCssFile('@web/css/checkbox.css');
         </div>
     </div>
 </div>
-<div class="loading hidden">
-    <div class="loader">
-
+<div class="container-loader hidden">
+    <div class="loader-pacman">
+      <div class="circles">
+        <span class="one"></span>
+        <span class="two"></span>
+        <span class="three"></span>
+      </div>
+      <div class="pacman">
+        <span class="top"></span>
+        <span class="bottom"></span>
+        <span class="left"></span>
+        <div class="eye"></div>
+      </div>
     </div>
 </div>

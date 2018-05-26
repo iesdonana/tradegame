@@ -12,6 +12,13 @@ tr {
 }
 CSS;
 $this->registerCss($css);
+$this->registerCssFile('@web/css/pacman.css');
+$js = <<<JS
+    $('.btn-publicar').on('click', function(e) {
+        $('.container-loader').removeClass('hidden');
+    });
+JS;
+$this->registerJs($js);
 ?>
 <div class="videojuegos-usuarios-create">
     <div class="row">
@@ -29,5 +36,20 @@ $this->registerCss($css);
                 <div class="loader center-block"></div>
             </div>
         </div>
+    </div>
+</div>
+<div class="container-loader hidden">
+    <div class="loader-pacman">
+      <div class="circles">
+        <span class="one"></span>
+        <span class="two"></span>
+        <span class="three"></span>
+      </div>
+      <div class="pacman">
+        <span class="top"></span>
+        <span class="bottom"></span>
+        <span class="left"></span>
+        <div class="eye"></div>
+      </div>
     </div>
 </div>

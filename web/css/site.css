@@ -335,3 +335,23 @@ span[data-plat$='2'] {
     color:#333;
     font-size: 14px;
 }
+
+/* PAGINADOR */
+
+.pagination > li > a,
+.pagination > li > a:hover {
+    color: #730000;
+}
+
+.pagination > li >a,
+.pagination > li >span {
+    border-radius: 50% !important;
+    margin: 0 5px;
+}
+
+.pagination > li.active > a,
+.pagination > li.active > a:hover {
+    background-color: #730000;
+    border: none;
+    color: #fff;
+}

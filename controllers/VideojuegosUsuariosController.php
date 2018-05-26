@@ -6,16 +6,14 @@ use app\models\Usuarios;
 use app\models\Videojuegos;
 use app\models\VideojuegosUsuarios;
 use Yii;
-use yii\web\UploadedFile;
-
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
-
-use yii\helpers\Html;
+use yii\web\UploadedFile;
 
 /**
  * VideojuegosUsuariosController implements the CRUD actions for VideojuegosUsuarios model.
@@ -61,7 +59,7 @@ class VideojuegosUsuariosController extends Controller
                 $model->save();
                 if ($model->upload()) {
                     Yii::$app->session->setFlash('success', Yii::t('app', 'Has publicado el videojuego correctamente'));
-                    return $this->goHome();
+                    return $this->redirect(['videojuegos-usuarios/ver', 'id' => $model->id]);
                 }
             }
         }
@@ -124,7 +122,7 @@ class VideojuegosUsuariosController extends Controller
     {
         if (($model = Usuarios::findOne(['usuario' => $usuario])) === null) {
             throw new NotFoundHttpException(Yii::t('app', "No se ha encontrado el usuario '{username}'", [
-                'username' => Html::encode($usuario)
+                'username' => Html::encode($usuario),
             ]));
         }
 

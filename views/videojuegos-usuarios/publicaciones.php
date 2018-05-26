@@ -18,6 +18,13 @@ $css = <<<CSS
 }
 CSS;
 $this->registerCss($css);
+$js = <<<JS
+var container = $('<div class="row"></div>');
+var subcontainer = $('<div class="col-md-12 text-center"></div>');
+container.append(subcontainer);
+$('.pagination').wrap(container);
+JS;
+$this->registerJs($js);
 ?>
 
 <div class="col-md-offset-1 col-md-10">

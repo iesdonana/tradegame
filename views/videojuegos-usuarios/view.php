@@ -45,6 +45,14 @@ img.fotos-videojuego:hover {
     margin-top: 20px;
 }
 
+.zoom-landscape {
+    max-height: 450px;
+}
+
+.zoom-portrait {
+    max-width: 450px;
+}
+
 CSS;
 $this->registerCss($css);
 
@@ -59,6 +67,7 @@ $(function() {
         e.preventDefault();
         var copy = $(this).clone();
         copy.removeClass('fotos-videojuego');
+        copy.width > copy.height ? copy.addClass('zoom-landscape') : copy.addClass('zoom-portrait');
         $('#imagen-modal').html(copy);
         if ($('.fotos-videojuego img.fotos-videojuego').length == 1) {
             $('.btn-siguiente').remove();
@@ -69,7 +78,7 @@ $(function() {
 
     $('.btn-siguiente').on('click', function(e) {
         e.preventDefault();
-        pasar($('#imagen-modal img').data('num-foto'));
+        pasar($('#imagen-modal img').data('num-foto'), '>');
     });
 
     $('.btn-anterior').on('click', function(e) {
@@ -78,8 +87,7 @@ $(function() {
     })
 });
 
-function pasar(current, paso = '>') {
-
+function pasar(current, paso) {
     var imgs = $('.fotos-videojuego img.fotos-videojuego');
     var numImagenes = imgs.length;
 
@@ -96,6 +104,11 @@ function pasar(current, paso = '>') {
 
     var copia = imgs.filter('[data-num-foto=' + prox + ']').clone();
     copia.removeClass('fotos-videojuego img-thumbnail');
+    if (copia.width > copia.height) {
+        copia.addClass('zoom-landscape')
+    } else {
+        copia.addClass('zoom-portrait')
+    }
     $('#imagen-modal').html(copia)
 }
 JS;
