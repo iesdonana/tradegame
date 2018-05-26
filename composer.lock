@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "25380ce4a2ffe3f3a9ff76884b029abc",
+    "content-hash": "018c89b1e10a0d311374e70a922a4dfb",
     "packages": [
         {
             "name": "2amigos/yii2-google-maps-library",
@@ -1542,6 +1542,37 @@
                 "shasum": null
             },
             "type": "npm-asset"
+        },
+        {
+            "name": "npm-asset/jquery",
+            "version": "3.3.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/jquery/-/jquery-3.3.1.tgz",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/vide",
+            "version": "0.5.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/vide/-/vide-0.5.1.tgz",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "npm-asset/jquery": "*"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "psr/http-message",

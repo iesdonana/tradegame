@@ -1,22 +1,32 @@
 <?php
+use app\assets\VideAsset;
+
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 $css = <<<CSS
-
 body {
     background-color: #000;
     background-image: url();
 }
 
-video {
+.video {
     position: fixed;
     right: 0;
     bottom: 0;
     top: 0;
-    height: 100vh;
     min-width: 100%;
     object-fit:fill;
+}
+
+.background {
+    background-color: rgba(0,0,0,0.5);
+    top: 0;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
 }
 
 h1 {
@@ -35,11 +45,8 @@ h3 {
 
 
 .content {
-    position: fixed;
     right: 0;
     bottom: 0;
-    top: 50px;
-    background: rgba(0,0,0,0.5);
     color: #fff;
     width: 100%;
     min-height: 100%;
@@ -121,9 +128,10 @@ a.boton:hover:before {
 CSS;
 $this->registerCss($css);
 $path = Url::to('@web/images/');
+
+VideAsset::register($this);
+
 $js = <<<JS
-var videos = 3;
-var current = 1;
 $('footer').remove();
 $('.navbar-fixed-top.navbar input[type=text]').on('focus', function() {
     $(this).closest('.navbar').css('opacity', 1);
@@ -131,25 +139,27 @@ $('.navbar-fixed-top.navbar input[type=text]').on('focus', function() {
 $('.navbar-fixed-top.navbar input[type=text]').on('focusout', function() {
     $(this).closest('.navbar').css('opacity', 0.5);
 });
-$('video').on('ended', function() {
-    if (current + 1 > videos) {
-        current = 0;
-    }
-    $(this).prop('src', '$path' + 'video' + (++current) + '.mp4')
+
+$('.video').vide({
+    mp4: '$path' + 'video1.mp4'
+}, {
+    posterType: 'auto-detection; "none"'
 });
 JS;
 $this->registerJs($js);
 $this->title = 'TradeGame';
 ?>
-<video src="<?= Url::to('@web/images/video1.mp4') ?>" autoplay muted>
-</video>
-<div class="content col-md-12">
+<div class="video">
+</div>
+<div class="background">
+
+</div>
+<div class=" col-md-12">
     <div class="jumbotron">
-        <div class="text-content text-center">
+        <div class="content text-content text-center">
             <h1>TradeGame</h1>
             <h4><?= Yii::t('app', '¿Por qué dejar tus juegos guardados en un cajón pudiéndole sacar más partido?') ?></h4>
             <h3><?= Yii::t('app', 'Intercambia los videojuegos que ya no usas por otros de tu interés') ?></h3>
-            <h4><?= Yii::t('app', 'Juega a infinidad de juegos sin gastar un sólo céntimo') ?></h4>
             <a href="<?= Url::to(['site/login']) ?>" class="boton"><?= Yii::t('app', 'Comienza') ?></a>
         </div>
     </div>
