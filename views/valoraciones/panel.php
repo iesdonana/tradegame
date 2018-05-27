@@ -3,7 +3,7 @@ use app\helpers\Utiles;
 
 use yii\helpers\Html;
 ?>
-<?= Html::a(Yii::t('app', 'Top valoraciones') . ' ' . Utiles::FA('star'), ['top-valoraciones/top'], ['class' => 'btn btn-warning btn-block']) ?> <br>
+<?= Html::a(Yii::t('app', 'Top valoraciones') . ' ' . Utiles::FA('star'), ['top-valoraciones/top'], ['class' => 'btn btn-valora btn-block']) ?> <br>
 <ul class="nav nav-pills nav-stacked nav-email shadow mb-20 panel panel-default filtros panel-trade">
     <li>
         <?= Html::a(Yii::t('app', 'Todas'), [

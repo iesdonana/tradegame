@@ -214,6 +214,8 @@ return [
     'Videojuego publicado' => 'Published video game',
     'Tipo' => 'Type',
     'Ofertante' => 'Provider',
+    'Comentario' => 'Comment',
+    'Valoración' => 'Rating',
 
     // GÉNEROS DE VIDEOJUEGOS
     'Acción' => 'Action',

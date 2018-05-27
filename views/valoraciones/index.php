@@ -30,7 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'header' => Yii::t('app', 'Comentario'),
-                'value' => 'comentario'
+                'value' => function ($model) {
+                    if ($model->comentario !== null) {
+                        return Html::encode(Utiles::translate($model->comentario));
+                    }
+                }
             ],
             [
                 'header' => Yii::t('app', 'Valoración'),

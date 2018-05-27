@@ -265,7 +265,7 @@ span[data-plat$='2'] {
 .rating-container .filled-stars,
 .puntuacion
 {
-    color: #e5dd00;
+    color: #F7CE08;
 }
 
 .panel-trade > .panel-heading > .panel-title {
@@ -334,6 +334,17 @@ span[data-plat$='2'] {
     text-transform: capitalize;
     color:#333;
     font-size: 14px;
+}
+
+.btn-valora {
+    background-color: #F7CE08;
+    color: #000;
+    border-color: #edc309;
+}
+
+.btn-valora:hover {
+    background-color: #edc309;
+    color: #000;
 }
 
 /* PAGINADOR */

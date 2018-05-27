@@ -53,8 +53,8 @@ class Valoraciones extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'usuario_valorado_id' => 'Usuario a valorar',
-            'comentario' => 'Comentario',
-            'num_estrellas' => 'Valoración',
+            'comentario' => Yii::t('app', 'Comentario'),
+            'num_estrellas' => Yii::t('app', 'Valoración'),
         ];
     }
 
