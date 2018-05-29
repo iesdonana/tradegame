@@ -13,7 +13,7 @@ $css = <<<CSS
 CSS;
 $this->registerCss($css);
 
-$this->title = Html::encode($model->nombre);
+$this->title = $model->nombre;
 
 $this->params['breadcrumbs'][] = [
     'label' => Yii::t('app', 'Videojuegos'),

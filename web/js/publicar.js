@@ -5,7 +5,7 @@ var formatVideojuego = function (videojuego) {
     var markup =
         '<div class="row">' +
             '<div class="col-sm-12">' +
-            videojuego.nombre + ' ' +
+            escapeHtml(videojuego.nombre) + ' ' +
             badgePlataforma(videojuego.plataforma.nombre) +
             '</div>' +
         '</div>';

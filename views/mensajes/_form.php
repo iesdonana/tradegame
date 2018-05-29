@@ -22,7 +22,7 @@ var formatUsuario = function (usuario) {
     var markup =
         '<div class="row">' +
             '<div class="col-sm-12">' +
-            usuario.usuario +
+            escapeHtml(usuario.usuario) +
             '</div>' +
         '</div>';
     return markup;
