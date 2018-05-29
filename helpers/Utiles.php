@@ -8,6 +8,7 @@ use Statickidz\GoogleTranslate;
 
 use app\models\Mensajes;
 use app\models\Usuarios;
+use app\models\UsuariosDatos;
 use app\models\OfertasUsuarios;
 use app\models\Valoraciones;
 use yii\helpers\Html;
@@ -155,18 +156,6 @@ class Utiles
         return Html::tag('span', $plataforma, ['class' => $clase]);
     }
 
-    public static function tagPosicion($pos, $texto)
-    {
-        switch ($pos) {
-            case 1:
-            case 2:
-            case 3:
-                return Html::tag("h$pos", $texto);
-            default:
-                return $texto;
-        }
-    }
-
     /**
      * Pinta un número de estrellas coloreadas, dependiendo de el número que se le pase por
      * parámetro.
@@ -186,6 +175,11 @@ class Utiles
         return $res;
     }
 
+    /**
+     * Muestra un badge de Bootstrap con los elementos pendientes de la clase pasada por parámetro
+     * @param  mixed $clase Clase de la cuál queremos sacar los pendientes
+     * @return string       Etiqueta span con el número de pendientes
+     */
     public static function badgeNotificacionesPendientes($clase)
     {
         $pendientes = call_user_func($clase . '::getPendientes');
@@ -195,6 +189,11 @@ class Utiles
         return '';
     }
 
+    /**
+     * Muestra un badge de Bootstrap con los elementos pendientes que quedan en total
+     * del apartado de notificaciones
+     * @return string       Etiqueta span con el número de pendientes
+     */
     public static function badgeNotificacionesTotales()
     {
         $sum = 0;
@@ -329,6 +328,10 @@ class Utiles
         return $text;
     }
 
+    /**
+     * Retorna el loader del Pacman
+     * @return string
+     */
     public static function loaderPacman()
     {
         return '<div class="container-loader hidden">
