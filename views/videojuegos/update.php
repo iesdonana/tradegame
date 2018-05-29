@@ -2,14 +2,20 @@
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Videojuegos */
+use app\helpers\Utiles;
+
 
 $scenario = ($model->id === null) ? Yii::t('app', 'Alta de videojuego') : Yii::t('app', 'Modificar videojuego');
 $this->title = $scenario;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Videojuegos'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = [
+    'label' => Yii::t('app', 'Videojuegos'),
+    'url' => ['videojuegos/buscador-videojuegos']
+];
 if ($model->id !== null) {
     $this->params['breadcrumbs'][] = ['label' => $model->nombre, 'url' => ['ver', 'id' => $model->id]];
 }
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerCssFile('@web/css/pacman.css');
 ?>
 <div class="videojuegos-update">
     <div class="row">
@@ -31,3 +37,4 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+<?= Utiles::loaderPacman() ?>

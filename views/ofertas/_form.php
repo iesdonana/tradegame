@@ -18,7 +18,7 @@ $usuario_id = (isset($usuario_id) ? $usuario_id : Yii::$app->user->id);
 $defaultImg = '/' . Yii::getAlias('@caratulas') . '/default.png';
 $this->registerJs("var defaultImg = '$defaultImg'", View::POS_HEAD);
 $this->registerJsFile('@web/js/publicar.js', ['position' => View::POS_HEAD]);
-$this->registerJsFile('@web/js/utiles.js');
+$this->registerJsFile('@web/js/utiles.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerJsFile('@web/js/oferta.js', ['position' => View::POS_HEAD]);
 $url = Url::to(['videojuegos-usuarios/buscar-publicados',
     'id_usuario' => $usuario_id,

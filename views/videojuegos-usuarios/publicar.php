@@ -3,6 +3,8 @@
 
 /* @var $this yii\web\View */
 /* @var $model app\models\VideojuegosUsuarios */
+use app\helpers\Utiles;
+
 
 $this->title = Yii::t('app', 'Publicar videojuego');
 $this->params['breadcrumbs'][] = $this->title;
@@ -38,18 +40,4 @@ $this->registerJs($js);
         </div>
     </div>
 </div>
-<div class="container-loader hidden">
-    <div class="loader-pacman">
-      <div class="circles">
-        <span class="one"></span>
-        <span class="two"></span>
-        <span class="three"></span>
-      </div>
-      <div class="pacman">
-        <span class="top"></span>
-        <span class="bottom"></span>
-        <span class="left"></span>
-        <div class="eye"></div>
-      </div>
-    </div>
-</div>
+<?= Utiles::loaderPacman() ?>

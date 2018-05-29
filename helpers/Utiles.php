@@ -97,6 +97,11 @@ class Utiles
         return Html::tag('i', null, $array);
     }
 
+    /**
+     * Configuración común para el plugin Typeahead.
+     * @param  string $urlAjax Url de la petición AJAX
+     * @return array           Configuración
+     */
     public static function optionsSelect2($urlAjax)
     {
         return [
@@ -322,5 +327,24 @@ class Utiles
             $text = $trans->translate($source, Yii::$app->language, $text);
         }
         return $text;
+    }
+
+    public static function loaderPacman()
+    {
+        return '<div class="container-loader hidden">
+            <div class="loader-pacman">
+              <div class="circles">
+                <span class="one"></span>
+                <span class="two"></span>
+                <span class="three"></span>
+              </div>
+              <div class="pacman">
+                <span class="top"></span>
+                <span class="bottom"></span>
+                <span class="left"></span>
+                <div class="eye"></div>
+              </div>
+            </div>
+        </div>';
     }
 }

@@ -13,6 +13,12 @@ use kartik\datecontrol\DateControl;
 $this->registerJsFile('@web/js/fotos.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerCssFile('@web/css/badge.css');
 $this->registerCss('.badge-corner { margin-right: 40px}');
+$js = <<<JS
+    $('.btn-guardar').on('click', function(e) {
+        $('.container-loader').removeClass('hidden');
+    });
+JS;
+$this->registerJs($js);
 ?>
 
 <div class="videojuegos-form">
@@ -83,7 +89,7 @@ $this->registerCss('.badge-corner { margin-right: 40px}');
     <div class="row">
         <div class="col-md-offset-2 col-md-8">
             <div class="form-group">
-                <?= Html::submitButton(Yii::t('app', 'Guardar'), ['class' => 'btn btn-tradegame btn-block']) ?>
+                <?= Html::submitButton(Yii::t('app', 'Guardar'), ['class' => 'btn btn-tradegame btn-block btn-guardar']) ?>
             </div>
         </div>
     </div>

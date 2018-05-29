@@ -17,6 +17,15 @@ if (isset($usuarioOfrecido)) {
 $vUsuarioPublicado = $model->videojuegoPublicado;
 $videojuegoPublicado = $vUsuarioPublicado->videojuego;
 
+$css = <<<CSS
+.tipo-oferta {
+    text-transform: uppercase;
+    font-size: 5vh;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+CSS;
+$this->registerCss($css);
 $this->registerJsFile('@web/js/oferta.js');
 $js = <<<JS
 $('.pop-listado').click(function(e) {
@@ -30,10 +39,11 @@ $this->registerJs($js);
 <div class="ofertas-create">
     <div class="row text-center">
         <h3>
-            <span class="label label-default">
+            <span class="text-tradegame tipo-oferta">
                 <?= $model->contraoferta_de === null ? Yii::t('app', 'Oferta') : Yii::t('app', 'Contraoferta') ?>
             </span>
         </h3>
+        <hr>
     </div>
     <div class="row">
         <div class="col-md-offset-2 col-md-3 col-sm-3">

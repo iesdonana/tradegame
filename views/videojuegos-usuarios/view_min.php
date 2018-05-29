@@ -32,7 +32,7 @@ if (isset($big) && $big === true) {
         <div class="row">
             <div class="col-md-<?= $valor ?>">
                 <div class="row">
-                    <?= Html::img($videojuego->caratula, ['class' => $clase . ' img-thumbnail center-block']) ?>
+                    <?= Html::img($videojuego->caratula, ['class' => $clase . ' center-block']) ?>
                 </div>
                 <div class="row text-center">
                     <?= Html::a(Utiles::FA('info-circle') . ' ' . Yii::t('app', 'Ficha completa'),
