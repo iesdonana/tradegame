@@ -34,7 +34,6 @@ img.fotos-videojuego:hover {
 }
 .side-crop img {
     max-height: initial;
-    margin-top: -150px;
 }
 
 #modal-foto .modal-footer {

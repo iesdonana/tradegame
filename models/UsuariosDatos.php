@@ -120,14 +120,15 @@ class UsuariosDatos extends \yii\db\ActiveRecord
         if ($this->foto === null) {
             return true;
         }
-        Utiles::borrarAnteriores('avatares', $this->id);
+        Utiles::borrarAnteriores('avatares', $this->id_usuario);
         $extension = $this->foto->extension;
         $nombreFichero = $this->id_usuario . '.' . $extension;
         $ruta = Yii::getAlias('@avatares/') . $nombreFichero;
 
         $res = $this->foto->saveAs($ruta);
         if ($res) {
-            Image::crop($ruta, 300, 300);
+            Image::thumbnail($ruta, 300, null)->save();
+            Image::crop($ruta, 300, 300)->save();
         }
 
         $s3 = Yii::$app->get('s3');

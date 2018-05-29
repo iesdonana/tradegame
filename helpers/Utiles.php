@@ -282,7 +282,7 @@ class Utiles
         $path = Yii::getAlias('@' . $carpeta . '/');
         $ficheros = glob($path . $name . '.*');
         foreach ($ficheros as $fichero) {
-            return unlink($fichero);
+            unlink($fichero);
         }
         $s3 = Yii::$app->get('s3');
 

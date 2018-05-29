@@ -48,9 +48,8 @@ class Videojuegos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'desarrollador_id', 'genero_id', 'plataforma_id'], 'required'],
+            [['nombre', 'desarrollador_id', 'genero_id', 'plataforma_id','fecha_lanzamiento'], 'required'],
             [['descripcion'], 'string'],
-            [['fecha_lanzamiento'], 'safe'],
             [['desarrollador_id', 'genero_id', 'plataforma_id'], 'default', 'value' => null],
             [['desarrollador_id', 'genero_id', 'plataforma_id'], 'integer'],
             [['foto'], 'file', 'extensions' => 'jpg, png'],
