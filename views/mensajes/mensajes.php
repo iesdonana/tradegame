@@ -7,6 +7,12 @@ $this->registerCssFile('@web/css/mini_loader.css');
 
 $create = Url::to(['mensajes/create']);
 $url = Url::to(['mensajes/conversacion']);
+$css = <<<CSS
+.mensaje {
+    word-break: break-all;
+}
+CSS;
+$this->registerCss($css);
 ?>
 <?php foreach ($lista as $mensaje): ?>
     <?php

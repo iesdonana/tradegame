@@ -130,56 +130,71 @@ if (screen.width <= 768) {
 JS;
 $this->registerJs($js);
 $this->registerCssFile('@web/css/checkbox.css');
+$css = <<<CSS
+.filtros {
+    padding-right: 0;
+}
+
+.title-filtro {
+    padding-right: 0;
+}
+CSS;
+$this->registerCss($css);
 ?>
 
 <div class="col-md-2 filtros">
-    <div class="row">
-        <div class="section-mini-title">
-            <h4><?= Yii::t('app', 'Filtros') ?></h4>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <h4 class="col"><?= Yii::t('app', 'Plataformas') ?> <?= Utiles::FA('angle-up') ?></h4>
-        </div>
-    </div>
-    <div class="row filtros-datos">
-        <?php foreach ($plataformas as $key => $plat): ?>
-            <div class="col-md-12">
-                <?php $id = 'plat' . $plat->id ?>
-                <input id="<?= $id ?>" type="checkbox" name="plataforma" value="<?= $plat->id ?>">
-                <label for="<?= $id ?>"><?= $plat->nombre ?></label>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="section-mini-title">
+                    <h4><?= Yii::t('app', 'Filtros') ?></h4>
+                </div>
             </div>
-        <?php endforeach; ?>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <h4 class="col"><?= Yii::t('app', 'Géneros') ?> <?= Utiles::FA('angle-up') ?></h4>
+            <div class="row">
+                <div class="col-md-12 title-filtro">
+                    <h4 class="col"><?= Yii::t('app', 'Plataformas') ?> <?= Utiles::FA('angle-up') ?></h4>
+                </div>
+            </div>
+            <div class="row filtros-datos">
+                <?php foreach ($plataformas as $key => $plat): ?>
+                    <div class="col-md-12">
+                        <?php $id = 'plat' . $plat->id ?>
+                        <input id="<?= $id ?>" type="checkbox" name="plataforma" value="<?= $plat->id ?>">
+                        <label for="<?= $id ?>"><?= $plat->nombre ?></label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="row">
+                <div class="col-md-12 title-filtro">
+                    <h4 class="col"><?= Yii::t('app', 'Géneros') ?> <?= Utiles::FA('angle-up') ?></h4>
+                </div>
+            </div>
+            <div class="row filtros-datos">
+                <?php foreach ($generos as $gen): ?>
+                    <div class="col-md-12">
+                        <?php $id = 'gen' . $gen->id ?>
+                        <input id="<?= $id ?>" type="checkbox" name="generos_videojuegos" value="<?= $gen->id ?>">
+                        <label for="<?= $id ?>"><?= Yii::t('app', $gen->nombre) ?></label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="row">
+                <div class="col-md-12 title-filtro">
+                    <h4 class="col"><?= Yii::t('app', 'Desarrolladores') ?> <?= Utiles::FA('angle-up') ?></h4>
+                </div>
+            </div>
+            <div class="row filtros-datos">
+                <?php foreach ($desarrolladores as $des): ?>
+                    <div class="col-md-12">
+                        <?php $id = 'des' . $des->id ?>
+                        <input id="<?= $id ?>" type="checkbox" name="desarrolladores" value="<?= $des->id ?>">
+                        <label for="<?= $id ?>"><?= $des->compania ?></label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
-    <div class="row filtros-datos">
-        <?php foreach ($generos as $gen): ?>
-            <div class="col-md-12">
-                <?php $id = 'gen' . $gen->id ?>
-                <input id="<?= $id ?>" type="checkbox" name="generos_videojuegos" value="<?= $gen->id ?>">
-                <label for="<?= $id ?>"><?= Yii::t('app', $gen->nombre) ?></label>
-            </div>
-        <?php endforeach; ?>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <h4 class="col"><?= Yii::t('app', 'Desarrolladores') ?> <?= Utiles::FA('angle-up') ?></h4>
-        </div>
-    </div>
-    <div class="row filtros-datos">
-        <?php foreach ($desarrolladores as $des): ?>
-            <div class="col-md-12">
-                <?php $id = 'des' . $des->id ?>
-                <input id="<?= $id ?>" type="checkbox" name="desarrolladores" value="<?= $des->id ?>">
-                <label for="<?= $id ?>"><?= $des->compania ?></label>
-            </div>
-        <?php endforeach; ?>
-    </div>
+
 </div>
 <div class="col-md-10 col-xs-12">
     <div class="panel panel-default">

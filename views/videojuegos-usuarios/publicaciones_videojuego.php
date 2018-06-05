@@ -33,9 +33,10 @@ use kartik\grid\GridView;
         ],
         [
             'label' => Yii::t('app', 'Publicado'),
+            'format' => 'html',
             'attribute' => 'created_at',
             'value' => function ($model) {
-                return Yii::$app->formatter->asRelativeTime($model->created_at);
+                return Html::a(Yii::$app->formatter->asRelativeTime($model->created_at), ['videojuegos-usuarios/ver', 'id' => $model->id]);
             }
         ],
         [

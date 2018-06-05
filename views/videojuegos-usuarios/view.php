@@ -147,7 +147,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="col-md-6 text-right">
                             <?php if (!$model->visible): ?>
                                 <?= Html::tag('span', Utiles::FA('check') .
-                                ' Esta videojuego ya ha sido intercambiado.',
+                                ' ' . Yii::t('app', 'Este videojuego ya ha sido intercambiado.'),
                                 ['class' => 'text-success']) ?><br>
                             <?php endif; ?>
                             <?= Utiles::FA('clock', ['class' => 'far']) . ' ' . Yii::$app->formatter->asRelativeTime($model->created_at) ?>

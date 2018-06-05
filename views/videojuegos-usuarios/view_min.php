@@ -5,8 +5,6 @@ use app\helpers\Utiles;
 
 use yii\helpers\Html;
 
-
-
 $this->registerCssFile('@web/css/listado_videojuegos.css');
 
 // Busqueda se pasará a 'true' si viene para buscar videojuegos, y por lo tanto,

@@ -2,14 +2,13 @@
 
 namespace app\controllers;
 
+use app\helpers\Utiles;
 use app\models\DesarrolladoresVideojuegos;
 use app\models\GenerosVideojuegos;
 use app\models\Plataformas;
 use app\models\Videojuegos;
 use app\models\VideojuegosUsuarios;
 use Yii;
-use app\helpers\Utiles;
-
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -118,7 +117,7 @@ class VideojuegosController extends Controller
                 'plataformas' => Plataformas::find()->orderBy('nombre')->all(),
                 'generos' => GenerosVideojuegos::find()->orderBy('nombre')->all(),
                 'desarrolladores' => DesarrolladoresVideojuegos::find()->orderBy('compania')->all(),
-                'resultadosTotales' => $resultadosTotales
+                'resultadosTotales' => $resultadosTotales,
             ]);
         }
 
@@ -128,7 +127,7 @@ class VideojuegosController extends Controller
     /**
      * Renderiza mediante Ajax una vista con un listado de los videojuegos
      * filtrados a través de los distintos datos pasados por parámetros.
-     * Los datos se pasarán separados por coma en un string. Ej: "1,20,33,12"
+     * Los datos se pasarán separados por coma en un string. Ej: "1,20,33,12".
      * @param  string $q               Búsqueda del título del videojuego
      * @param  string $plataformas     Ids de las plataformas
      * @param  string $generos         Ids de los géneros de los videojuegos
@@ -229,7 +228,11 @@ class VideojuegosController extends Controller
         }
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $videojuego->getVideojuegosUsuarios()->orderBy('created_at DESC'),
+            'query' => $videojuego
+                ->getVideojuegosUsuarios()
+                ->where(['borrado' => false])
+                ->andWhere(['visible' => true])
+                ->orderBy('created_at DESC'),
         ]);
 
         return $this->render('view', [
@@ -239,7 +242,7 @@ class VideojuegosController extends Controller
     }
 
     /**
-     * Modifica o crea un modelo de Videojuegos
+     * Modifica o crea un modelo de Videojuegos.
      * @param int $id Id del videojuego
      * @return mixed
      */
@@ -256,7 +259,7 @@ class VideojuegosController extends Controller
             if ($model->save() && $model->upload()) {
                 $msg = ($id === null) ? Yii::t('app', 'creado') : Yii::t('app', 'modificado');
                 Yii::$app->session->setFlash('success', Yii::t('app', 'Has {msg} el videojuego correctamente', [
-                    'msg' => $msg
+                    'msg' => $msg,
                 ]));
                 return $this->redirect(['ver', 'id' => $model->id]);
             }
@@ -285,7 +288,7 @@ class VideojuegosController extends Controller
 
     /**
      * Borra un videojuego
-     * Si el videojuego se ha podido borrar correctamente, se mandará al usuario a la Home
+     * Si el videojuego se ha podido borrar correctamente, se mandará al usuario a la Home.
      * @param  int $id Id del videojuego a eliminar
      * @return mixed
      */
@@ -306,7 +309,7 @@ class VideojuegosController extends Controller
     }
 
     /**
-     * Busca un modelo de Videojuegos
+     * Busca un modelo de Videojuegos.
      * @param int $id
      * @return Videojuegos El modelo encontrado
      * @throws NotFoundHttpException Si el modelo no se puede encontrar

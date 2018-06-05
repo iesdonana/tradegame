@@ -5,7 +5,7 @@ body {
 
 body {
     background-image: url('../back.png');
-    font-family: 'Poppins';
+    font-family: 'Raleway';
 }
 
 #toast-container {
@@ -365,4 +365,9 @@ span[data-plat$='2'] {
     background-color: #730000;
     border: none;
     color: #fff;
+}
+
+
+.navbar-login .text-left.small {
+    overflow-x: hidden;
 }

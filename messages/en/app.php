@@ -216,6 +216,7 @@ return [
     'Ofertante' => 'Provider',
     'Comentario' => 'Comment',
     'Valoración' => 'Rating',
+    'Este videojuego ya ha sido intercambiado.' => 'This video game has been exchanged.',
 
     // GÉNEROS DE VIDEOJUEGOS
     'Acción' => 'Action',
