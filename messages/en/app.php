@@ -217,6 +217,9 @@ return [
     'Comentario' => 'Comment',
     'Valoración' => 'Rating',
     'Este videojuego ya ha sido intercambiado.' => 'This video game has been exchanged.',
+    'Recibidas' => 'Received',
+    'Enviadas' => 'Sent',
+    'Pendiente' => 'Pending',
 
     // GÉNEROS DE VIDEOJUEGOS
     'Acción' => 'Action',

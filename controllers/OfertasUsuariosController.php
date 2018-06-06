@@ -2,12 +2,10 @@
 
 namespace app\controllers;
 
-use app\models\OfertasUsuarios;
 use app\models\OfertasUsuariosSearch;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
 
 use yii\filters\AccessControl;
 
@@ -44,16 +42,18 @@ class OfertasUsuariosController extends Controller
 
     /**
      * Lista las ofertas que ha recibido el usuario logueado
-     * @param null|mixed $estado El estado en el cuál se encuentra la oferta
-     *                           Puede ser: 'pendientes', 'aceptadas', 'rechazadas' o null.
+     * @param string $estado El estado en el cuál se encuentra la oferta
+     *                       Puede ser: 'pendientes', 'aceptadas', 'rechazadas' o null.
+     * @param string $tipo   El tipo de ofertas a ver.
+     *                       Puede ser: 'recibidas' o 'enviadas'.
      * @return mixed
      */
-    public function actionIndex($estado = null)
+    public function actionIndex($estado = 'todas', $tipo = 'recibidas')
     {
         $query = Yii::$app->request->queryParams;
 
         // Evitamos que el usuario pase por parámetro cualquier cosa
-        $validos = ['pendientes', 'aceptadas', 'rechazadas', null];
+        $validos = ['pendientes', 'aceptadas', 'rechazadas', 'todas'];
         if (!in_array($estado, $validos)) {
             return $this->goHome();
         }
@@ -61,7 +61,8 @@ class OfertasUsuariosController extends Controller
         $dataProvider = $searchModel->search(
             Yii::$app->request->queryParams,
             Yii::$app->user->identity->usuario,
-            $estado
+            $estado,
+            $tipo
         );
 
         return $this->render('listado', [

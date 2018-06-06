@@ -37,21 +37,35 @@ class OfertasUsuariosSearch extends OfertasUsuarios
      * @param array $params
      * @param mixed $estado
      * @param mixed $usuario
+     * @param mixed $tipo
      *
      * @return ActiveDataProvider
      */
-    public function search($params, $usuario, $estado)
+    public function search($params, $usuario, $estado, $tipo)
     {
-        $query = OfertasUsuarios::find()
-            ->where(['usuario_publicado' => $usuario])
-            ->where(['and',
+        $query = OfertasUsuarios::find();
+
+        if ($tipo === 'recibidas') {
+            $query = $query->where(['and',
                 ['usuario_publicado' => $usuario],
                 ['is', 'contraoferta_de', null],
             ])
             ->orWhere(['and',
                 ['usuario_ofrecido' => $usuario],
                 ['is not', 'contraoferta_de', null],
-            ])->orderBy('aceptada DESC');
+            ]);
+        } elseif ($tipo === 'enviadas') {
+            $query = $query->where(['and',
+                ['usuario_publicado' => $usuario],
+                ['is not', 'contraoferta_de', null],
+            ])
+            ->orWhere(['and',
+                ['usuario_ofrecido' => $usuario],
+                ['is', 'contraoferta_de', null],
+            ]);
+        }
+
+        $query = $query->orderBy('aceptada DESC');
 
         if ($estado === 'pendientes') {
             $query->andWhere(['is', 'aceptada', null]);
