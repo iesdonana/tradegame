@@ -96,7 +96,7 @@ $this->title = 'TradeGame';
             [
                 'label' => Utiles::FA('handshake', ['class' => 'far']) . " " .
                     Yii::t('app', 'Ofertas') . " $pendOf",
-                'url' => ['/ofertas-usuarios/index']
+                'url' => ['/ofertas-usuarios/index', 'tipo' => 'recibidas', 'estado' => 'todas']
             ],
             [
                 'label' => Utiles::FA('inbox') . " " . Yii::t('app', 'Mensajes') . " $pendMsg",

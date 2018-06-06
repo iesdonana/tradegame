@@ -155,11 +155,12 @@ $this->registerCss('.btn-info {margin-left: 4px;}');
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                'header' => Yii::t('app', 'Acción'),
+                'header' => Yii::$app->request->get('tipo') !== 'enviadas' ?
+                    Yii::t('app', 'Acción') : Yii::t('app', 'Estado'),
                 'template' => '<div class="text-center">{aceptar}{rechazar}{contraoferta}{estado}</div>',
                 'buttons' => [
                     'aceptar' => function($url, $model, $key) {
-                        if ($model->aceptada === null) {
+                        if ($model->aceptada === null && Yii::$app->request->get('tipo') !== 'enviadas') {
                             return Html::a(Utiles::FA('check'), null, [
                                 'class' => 'btn btn-xs btn-success popup-modal',
                                 'data-cambiar' => 'aceptar',
@@ -169,7 +170,7 @@ $this->registerCss('.btn-info {margin-left: 4px;}');
                         }
                     },
                     'rechazar' => function($url, $model, $key) {
-                        if ($model->aceptada === null) {
+                        if ($model->aceptada === null && Yii::$app->request->get('tipo') !== 'enviadas') {
                             return Html::beginForm(['ofertas/cambiar-estado'], 'post', ['class' => 'accion']) .
                             Html::submitButton(Utiles::FA('times'), [
                                 'class' => 'btn btn-xs btn-danger popup-modal',
@@ -179,7 +180,7 @@ $this->registerCss('.btn-info {margin-left: 4px;}');
                         }
                     },
                     'contraoferta' => function($url, $model, $key) {
-                        if ($model->contraoferta_de === null && $model->aceptada === null) {
+                        if ($model->contraoferta_de === null && $model->aceptada === null && Yii::$app->request->get('tipo') !== 'enviadas') {
                             return Html::a(
                                 Utiles::FA('exchange-alt'),
                                 ['ofertas/contraoferta', 'oferta' => $model->id],
@@ -200,6 +201,11 @@ $this->registerCss('.btn-info {margin-left: 4px;}');
                             return Utiles::FA('ban', [
                                 'class' => 'fas fa-2x text-danger',
                                 'tooltip' => Yii::t('app', 'Oferta rechazada'),
+                            ]);
+                        } else if ($model->aceptada === null && Yii::$app->request->get('tipo') === 'enviadas') {
+                            return Utiles::FA('clock', [
+                                'class' => 'fas fa-2x',
+                                'tooltip' => Yii::t('app', 'Pendiente'),
                             ]);
                         }
                     }
