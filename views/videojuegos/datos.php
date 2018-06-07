@@ -23,7 +23,7 @@ use yii\helpers\Html;
             </li>
             <li class="list-group-item">
                 <strong><?= Yii::t('app', 'Plataforma') ?>:</strong>
-                <span itemprop="gamePlatform"><?= Html::encode($model->plataforma->nombre) ?></span>
+                <span itemprop="gamePlatform"><?= Html::encode( $model->plataforma->nombre) ?></span>
             </li>
             <li class="list-group-item">
                 <strong><?= Yii::t('app', 'Desarrollador') ?>:</strong>
@@ -31,7 +31,7 @@ use yii\helpers\Html;
             </li>
             <li class="list-group-item">
                 <strong><?= Yii::t('app', 'Género') ?>:</strong>
-                <span itemprop="genre"><?= Html::encode($model->genero->nombre) ?></span>
+                <span itemprop="genre"><?= Html::encode(Yii::t('app',$model->genero->nombre)) ?></span>
             </li>
         </ul>
     </div>

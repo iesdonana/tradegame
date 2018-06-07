@@ -120,15 +120,13 @@ if ($model->borrado)  {
     $this->title = 'Publicación eliminada';
 }
 
-$label = 'Publicaciones';
-
 $this->params['breadcrumbs'][] = [
     'label' => Html::encode($user),
     'url' => ['usuarios/perfil', 'usuario' => $user]
 ];
 
 $this->params['breadcrumbs'][] = [
-    'label' => $label,
+    'label' => Yii::t('app', 'Publicaciones'),
     'url' => ['videojuegos-usuarios/publicaciones', 'usuario' => $user]
 ];
 $this->params['breadcrumbs'][] = $this->title;
@@ -191,7 +189,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <hr>
                         <div class="row">
                             <div class="col-md-offset-2 col-md-8">
-                                <?= Html::a('Hacer oferta ' . Utiles::FA('handshake', ['class' => 'far']), [
+                                <?= Html::a(Yii::t('app', 'Hacer oferta') . ' ' . Utiles::FA('handshake', ['class' => 'far']), [
                                     'ofertas/create',
                                     'publicacion' => $model->id
                                 ], ['class' => 'btn btn-lg btn-warning btn-block']) ?>

@@ -220,6 +220,10 @@ return [
     'Recibidas' => 'Received',
     'Enviadas' => 'Sent',
     'Pendiente' => 'Pending',
+    'Mis ofertas' => 'My offers',
+    'Hacer oferta' => 'Make offer',
+    'Fotos del videojuego' => 'Video game photos',
+
 
     // GÉNEROS DE VIDEOJUEGOS
     'Acción' => 'Action',

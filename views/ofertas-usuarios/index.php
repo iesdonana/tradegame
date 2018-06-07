@@ -21,6 +21,8 @@ $por = Yii::t('app', 'por');
 $str = Yii::t('app', 'el videojuego');
 $de = Yii::t('app', 'de');
 
+$this->params['breadcrumbs'][] = Yii::t('app', 'Mis ofertas');
+
 $js = <<<JS
 $('.popup-modal').click(function(e) {
     e.preventDefault();

@@ -17,7 +17,13 @@ MapAsset::register($this);
 /* @var $model app\models\UsuariosDatos */
 /* @var $form yii\widgets\ActiveForm */
 $this->registerJsFile('@web/js/fotos.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+$lang = Yii::$app->language;
 $js = <<<JS
+var cad = 'Fecha de nacimiento';
+if ('$lang' === 'en') {
+    cad = 'Birthday date';
+}
+$('#usuariosdatos-fecha_nacimiento-disp').prop('placeholder', cad);
 $('.cargaForm button').on('click', function(e) {
     e.preventDefault();
     var address = $('#usuariosdatos-localidad').val() + ' ' + $('#usuariosdatos-direccion').val();

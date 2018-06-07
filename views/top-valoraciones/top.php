@@ -5,6 +5,8 @@ use app\helpers\Utiles;
 use yii\helpers\Url;
 use yii\helpers\Html;
 $this->registerCssFile('@web/css/top-valoraciones.css');
+$this->params['breadcrumbs'][] = Yii::t('app', 'Top valoraciones');
+
 ?>
 
 <div class="col-md-offset-2 col-md-8">

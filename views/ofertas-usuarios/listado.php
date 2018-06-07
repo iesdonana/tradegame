@@ -26,7 +26,7 @@ $(document).on('click',  '.not-active span', function() {
     $.ajax({
         url: '$urlOfertas',
         data: {
-            tipo: $('.not-active span').text().trim().toLowerCase(),
+            tipo: $('.not-active span').data('tipo'),
             estado: $('.nav-pills .active a').data('seccion')
         },
         beforeSend: function() {
@@ -51,7 +51,7 @@ $(document).on('click',  '.not-active span', function() {
         success: function(data) {
             este.closest('.panel-trade').children('.panel-body').removeClass('loading');
             $('.grid-results').html(data);
-            var tipo = $('.active-page span').text().trim().toLowerCase();
+            var tipo = $('.active-page span').data('tipo');
             var estado  = $('.nav-pills li.active a').data('seccion');
             window.history.pushState('', 'TradeGame', '/ofertas/' + tipo + '/' + estado);
             $('.nav-pills li a').each(function() {
@@ -112,7 +112,7 @@ $estado = Yii::$app->request->get('estado');
                     <div class="panel-title">
                         <div class="row">
                             <div class="col-md-12 text-center active-page">
-                                <span>
+                                <span data-tipo="<?= $ofEnviadas ? 'enviadas' : 'recibidas' ?>">
                                     <?php if ($ofEnviadas): ?>
                                         <?= Yii::t('app', 'Enviadas') ?>
                                     <?php else: ?>
@@ -123,7 +123,7 @@ $estado = Yii::$app->request->get('estado');
                         </div>
                         <div class="row">
                             <div class="col-md-12 text-center not-active">
-                                <span>
+                                <span data-tipo="<?= !$ofEnviadas ? 'enviadas' : 'recibidas' ?>">
                                     <?php if ($ofEnviadas): ?>
                                         <?= Yii::t('app', 'Recibidas') ?>
                                     <?php else: ?>
