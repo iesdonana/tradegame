@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\OfertasUsuariosSearch;
 use Yii;
+use yii\web\Response;
+
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 
@@ -50,8 +52,6 @@ class OfertasUsuariosController extends Controller
      */
     public function actionIndex($estado = 'todas', $tipo = 'recibidas')
     {
-        $query = Yii::$app->request->queryParams;
-
         // Evitamos que el usuario pase por parámetro cualquier cosa
         $validos = ['pendientes', 'aceptadas', 'rechazadas', 'todas'];
         if (!in_array($estado, $validos)) {
@@ -65,9 +65,15 @@ class OfertasUsuariosController extends Controller
             $tipo
         );
 
-        return $this->render('listado', [
+        $params = [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
+        ];
+
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return $this->renderAjax('index', $params);
+        }
+        return $this->render('listado', $params);
     }
 }

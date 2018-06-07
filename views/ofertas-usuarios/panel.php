@@ -10,7 +10,7 @@ $tipo = Yii::$app->request->get('tipo') !== null ? Yii::$app->request->get('tipo
             'ofertas-usuarios/index',
             'estado' => 'todas',
             'tipo' => $tipo,
-            ]) ?>
+        ], ['data-seccion' => 'todas']) ?>
     </li>
     <li>
         <?= Html::a(Yii::t('app', 'Pendientes'), [
