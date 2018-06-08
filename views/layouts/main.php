@@ -103,14 +103,14 @@ $this->title = 'TradeGame';
                 'url' => ['/mensajes/listado']
             ],
             [
-                'label' => Utiles::FA('star') . " " . Yii::t('app', 'Valoraciones') . " $pendVal",
+                'label' => Utiles::FA('star', ['class' => 'far']) . " " . Yii::t('app', 'Valoraciones') . " $pendVal",
                 'url' => ['/valoraciones/index']
             ]
         ];
 
         if (Yii::$app->user->identity->esAdmin()) {
             $subItems[] = [
-                'label' => Utiles::FA('flag') . " " . Yii::t('app', 'Reportes'),
+                'label' => Utiles::FA('flag', ['class' => 'far']) . " " . Yii::t('app', 'Reportes'),
                 'url' => ['/reportes/index']
             ];
         }

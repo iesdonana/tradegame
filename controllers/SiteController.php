@@ -5,6 +5,8 @@ namespace app\controllers;
 use app\models\LoginForm;
 use app\models\Usuarios;
 use Yii;
+use app\models\VideojuegosUsuarios;
+
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -83,7 +85,10 @@ class SiteController extends Controller
     public function actionIndex()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->render('index');
+            $list = VideojuegosUsuarios::find()->orderBy('created_at ASC')->limit(5)->all();
+            return $this->render('index', [
+                'lastVideojuegos' => $list,
+            ]);
         }
         return $this->render('main');
     }

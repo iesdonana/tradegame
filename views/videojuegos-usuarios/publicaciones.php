@@ -16,6 +16,10 @@ $css = <<<CSS
 .panel-default {
     padding: 20px;
 }
+
+.txt-empty {
+    margin-bottom: 10px;
+}
 CSS;
 $this->registerCss($css);
 $js = <<<JS
@@ -33,7 +37,15 @@ $this->registerJs($js);
             'summary' => '',
             'dataProvider' => $dataProvider,
             'itemView' => 'view_min',
-            'separator' => '<hr class="separador">'
+            'separator' => '<hr class="separador">',
+            'emptyText' => '<div class="row">' .
+                '<div class="col-md-12 text-center txt-empty">' .
+                    'Parece no tienes videojuegos publicados ¿A qué esperas?' .
+                '</div>' .
+                '<div class="col-md-12 text-center">' .
+                    Html::a('Publicar nuevo videojuego', ['videojuegos-usuarios/publicar'], ['class' => 'btn btn-tradegame']) .
+                '</div>' .
+                '</div>'
             ]) ?>
 
     </div>

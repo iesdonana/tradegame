@@ -19,16 +19,27 @@ use kartik\grid\GridView;
     'summary' => '',
     'dataProvider' => $dataProvider,
     'columns' => [
-        'usuario.usuario',
+        [
+            'label' => Yii::t('app', 'Usuario'),
+            'format' => 'raw',
+            'value' => function ($model) {
+                $usr = $model->usuario->usuario;
+                return Html::a(Html::encode($usr), [
+                    'usuarios/perfil',
+                    'usuario' => $usr
+                ]);
+            }
+        ],
         [
             'label' => Yii::t('app', 'Comentarios'),
             'width' => '400px',
+            'format' => 'raw',
             'contentOptions' => ['class' => 'comentarios-videojuego'],
             'value' => function ($model) {
                 if ($model->mensaje == '') {
-                    return Yii::t('app', 'No se ha proporcionado ningún comentario');
+                    return Html::tag('em', Yii::t('app', 'No se ha proporcionado ningún comentario'));
                 }
-                return Utiles::translate($model->mensaje);
+                return Html::encode(Utiles::translate($model->mensaje));
             }
         ],
         [
@@ -46,10 +57,15 @@ use kartik\grid\GridView;
             'buttons' => [
                 'oferta' => function ($url, $model, $key) {
                     if ($model->usuario_id !== Yii::$app->user->id) {
-                        return Html::a('Hacer oferta', [
+                        return Html::a(Yii::t('app', 'Hacer oferta'), [
                             'ofertas/create',
                             'publicacion' => $model->id
                         ], ['class' => 'btn btn-xs btn-warning']);
+                    } else {
+                        return Html::a(Yii::t('app', 'Tu publicación'), null, [
+                            'class' => 'btn btn-xs btn-primary',
+                            'disabled' => 'disabled',
+                        ]);
                     }
                 }
             ]

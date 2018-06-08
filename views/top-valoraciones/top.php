@@ -8,7 +8,6 @@ $this->registerCssFile('@web/css/top-valoraciones.css');
 $this->params['breadcrumbs'][] = Yii::t('app', 'Top valoraciones');
 
 ?>
-
 <div class="col-md-offset-2 col-md-8">
     <div class="panel panel-default panel-trade">
         <div class="panel-heading">
