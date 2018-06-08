@@ -1,6 +1,6 @@
 # Descripción general del proyecto
 
-La aplicación Gaming Trade nos permitirá intercambiar aquellos videojuegos que ya no usamos, por otros que publiquen los demás usuarios. Con esto evitaremos el gasto en nuevos videojuegos y poder disfrutar de los máximos posibles sin coste alguno.
+La aplicación TradeGame nos permitirá intercambiar aquellos videojuegos que ya no usamos, por otros que publiquen los demás usuarios. Con esto evitaremos el gasto en nuevos videojuegos y poder disfrutar de los máximos posibles sin coste alguno.
 
 ## Funcionalidad principal de la aplicación
 
@@ -9,7 +9,7 @@ Los usuarios podrán dar de alta los videojuegos a los que ya no les dan uso par
 
 Los usuarios se podrán ofertar videojuegos entre sí hasta llegar a un acuerdo de intercambio. Además, podrán hacer una *contraoferta* a una oferta que ya nos haya hecho un usuario concreto (eligiendo un videojuego de los que tenga publicado el usuario que nos realiza la oferta), o simplemente *aceptar* o *rechazar* la misma.
 
-Una vez aceptado el trato y realizado el intercambio, los videojuegos implicados en el intercambio desaparecerán de la lista. Además los usuarios podrán valorar al otro usuario con un número de estrellas, además de añadir un comentario a la valoración.
+Una vez aceptado el trato y realizado el intercambio, los videojuegos implicados en el intercambio aparecerán con el estado correspondiente. Además los usuarios podrán valorar al otro usuario con un número de estrellas, además de añadir un comentario a la valoración.
 
 ## Objetivos generales
 
