@@ -269,7 +269,7 @@ span[data-plat$='2'] {
 }
 
 .panel-trade > .panel-heading > .panel-title {
-    color: rgba(115, 0, 0);
+    color: #730000;
     font-weight: bold;
 }
 .panel-trade > .panel-heading {
@@ -370,4 +370,8 @@ span[data-plat$='2'] {
 
 .navbar-login .text-left.small {
     overflow-x: hidden;
+}
+
+.kv-grid-container tbody a:not(.btn) {
+    color: #000f82;
 }

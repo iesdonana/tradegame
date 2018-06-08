@@ -26,7 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             [
                 'header' => Yii::t('app', 'Usuario a valorar'),
-                'value' => 'usuarioValorado.usuario'
+                'format' => 'raw',
+                'value' => function ($model) {
+                    $usr = $model->usuarioValorado->usuario;
+                    return Html::a(Html::encode($usr), ['usuarios/perfil', 'usuario' => $usr]);
+                }
             ],
             [
                 'header' => Yii::t('app', 'Comentario'),

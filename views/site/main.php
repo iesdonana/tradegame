@@ -141,7 +141,7 @@ $('.navbar-fixed-top.navbar input[type=text]').on('focusout', function() {
 });
 
 $('.video').vide({
-    mp4: '$path' + 'video1.mp4'
+    mp4: '$path' + 'video.mp4'
 }, {
     posterType: 'auto-detection; "none"'
 });

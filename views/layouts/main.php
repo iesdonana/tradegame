@@ -58,7 +58,7 @@ $this->title = 'TradeGame';
     NavBar::begin([
         'brandLabel' => Html::img('@web/titulo.png', [
                     'alt'=>Yii::$app->name,
-                    'height' => '30px',
+                    'height' => '30',
                     'style' => 'display: inline; margin-top: -4px'
                 ]),
         'brandUrl' => Yii::$app->homeUrl,

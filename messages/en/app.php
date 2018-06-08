@@ -223,6 +223,9 @@ return [
     'Mis ofertas' => 'My offers',
     'Hacer oferta' => 'Make offer',
     'Fotos del videojuego' => 'Video game photos',
+    'Banear usuario' => 'Ban user',
+    'Usuario actualmente baneado' => 'User actually banned',
+    'Eliminar reporte' => 'Delete report', 
 
 
     // GÉNEROS DE VIDEOJUEGOS

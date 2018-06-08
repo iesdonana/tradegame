@@ -20,25 +20,36 @@ use kartik\datecontrol\DateControl;
 /* @var $searchModel app\models\ReportesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->registerJs("
-    $(function() {
-        $('.popup-modal').click(function(e) {
-            e.preventDefault();
-            $('#id-reporte').val($(this).closest('tr').data('key'));
-            $('#modal-delete').modal('show');
-        });
-        $('.popup-ban').click(function(e) {
-            e.preventDefault();
+$lang = Yii::$app->language;
+$js = <<<JS
+$(function() {
+    $('#banform-fecha-disp').prop('placeholder', $('#banform-fecha-disp').siblings('span.kv-date-calendar').attr('title'));
+    $('.popup-modal').click(function(e) {
+        e.preventDefault();
+        $('#id-reporte').val($(this).closest('tr').data('key'));
+        $('#modal-delete').modal('show');
+    });
+    $('.popup-ban').click(function(e) {
+        e.preventDefault();
+        if ($(this).attr('disabled') !== 'disabled') {
             $('.texto-ban').text('Banear hasta:');
             var usuario = $(this).closest('td').siblings('td[data-col-seq=1]').text();
             $('#banform-usuario').val(usuario);
             $('#modal-ban').modal('show');
-        });
-        $('.ban-btn').on('click', function() {
-            $('#form-ban').submit();
-        });
-    });"
-);
+        }
+    });
+    $('.ban-btn').on('click', function() {
+        $('#form-ban').submit();
+    });
+});
+
+$('*[data-toggle="tooltip"]').tooltip({
+    animated: 'fade',
+    placement: 'bottom',
+    html: true
+});
+JS;
+$this->registerJs($js);
 
 $this->title = Yii::t('app', 'Reportes');
 $this->params['breadcrumbs'][] = $this->title;
@@ -58,20 +69,28 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     [
                         'header' => Yii::t('app', 'Enviado por'),
-                        'format' => 'text',
-                        'attribute' => 'reporta.usuario',
+                        'format' => 'raw',
+                        'value' => function ($model) {
+                            $usr = $model->reporta->usuario;
+                            return Html::a(Html::encode($usr), ['usuarios/perfil', 'usuario' => $usr]);
+                        },
                         'headerOptions' => ['style' => 'width:15%'],
                     ],
                     [
                         'header' => Yii::t('app', 'Reportado'),
-                        'format' => 'text',
-                        'attribute' => 'reportado.usuario',
+                        'format' => 'raw',
+                        'value' => function ($model) {
+                            $usr = $model->reportado->usuario;
+                            return Html::a(Html::encode($usr), ['usuarios/perfil', 'usuario' => $usr]);
+                        },
                         'headerOptions' => ['style' => 'width:15%'],
                     ],
                     [
                         'header' => Yii::t('app', 'Mensaje'),
                         'format' => 'text',
-                        'attribute' => 'mensaje',
+                        'value' => function ($model) {
+                            return Html::encode(Utiles::translate($model->mensaje));
+                        },
                         'headerOptions' => ['style' => 'width:60%'],
                     ],
                     [
@@ -81,14 +100,27 @@ $this->params['breadcrumbs'][] = $this->title;
                         'template' => '{banear} {delete}',
                         'buttons' => [
                             'banear' => function ($url, $model, $key) {
+                                $params = [
+                                    'class' => 'btn btn-xs btn-tradegame popup-ban',
+                                    'data-toggle' => 'tooltip',
+                                ];
+
                                 if ($model->reportado->ban === null) {
-                                    return Html::a(Utiles::FA('ban'), null,
-                                    ['class' => 'btn btn-xs btn-tradegame popup-ban']);
+                                    $params['title'] = Yii::t('app', 'Banear usuario');
+                                } else {
+                                    $params['title'] = Yii::t('app', 'Usuario actualmente baneado');
+                                    $params['disabled'] = 'disabled';
                                 }
+
+                                return Html::a(Utiles::FA('ban'), null, $params);
                             },
                             'delete' => function ($url, $model, $key) {
                                 return Html::a(Utiles::FA('trash-alt'), null,
-                                ['class' => 'btn btn-xs btn-danger popup-modal']);
+                                [
+                                    'class' => 'btn btn-xs btn-danger popup-modal',
+                                    'data-toggle' => 'tooltip',
+                                    'title' => Yii::t('app', 'Eliminar reporte'),
+                                ]);
                             }
                         ]
                     ]

@@ -38,7 +38,13 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Top valoraciones');
                         ?>
                         <tr>
                             <td class="text-center">
-                                <div class="pos"><?= $pos ?></div>
+                                <?php if ($pos > 3): ?>
+                                    <div class="pos"><?= $pos ?></div>
+                                <?php else: ?>
+                                    <div class="pos">
+                                        <?= Html::img('@web/images/' . $pos . '.png', ['height' => 40]) ?>
+                                    </div>
+                                <?php endif; ?>
                             </td>
                             <td class="text-center">
                                 <div class="username">

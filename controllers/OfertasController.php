@@ -220,13 +220,17 @@ class OfertasController extends Controller
     private function enviarEmailOferta($usuario, $videojuego, $contraoferta = false)
     {
         $content = Yii::t('app', 'Parece que has recibido una oferta de alguien por tu') . ' ' . $videojuego . '<br>' .
-            Yii::t('app', 'Para ver la oferta pulsa en el siguiente botón') . ':<br>' .
-            Html::a(Yii::t('app', 'Ver mis ofertas'), Url::to('/ofertas', true), ['class' => 'oferta']);
+            Yii::t('app', 'Para ver la oferta pulsa en el siguiente botón') . ':<br>';
         if ($contraoferta) {
             $content = Yii::t('app', 'Parece que has recibido una contraoferta de alguien por su') . ' ' . $videojuego . '<br>' .
-            Yii::t('app', 'Para ver la contraoferta pulsa en el siguiente botón') . ':<br>' .
-            Html::a(Yii::t('app', 'Ver mis ofertas'), Url::to('/ofertas', true), ['class' => 'oferta']);
+            Yii::t('app', 'Para ver la contraoferta pulsa en el siguiente botón') . ':<br>';
         }
+
+        $content .= Html::a(Yii::t('app', 'Ver mis ofertas'), Url::to([
+            'ofertas-usuarios/index',
+            'tipo' => 'recibidas',
+            'estado' => 'todas'
+        ], true), ['class' => 'oferta']);
 
         return Yii::$app->mailer->compose('custom', [
                 'usuario' => $usuario->usuario,

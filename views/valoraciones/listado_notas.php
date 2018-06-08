@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = [
 $this->params['breadcrumbs'][] = Yii::t('app', 'Valoraciones');
 ?>
 <div class="valoraciones">
-    <h2 class="text-center"><?= Html::encode(Yii::t('app', 'Valoraciones de') . $this->title) ?></h2>
+    <h2 class="text-center text-tradegame"><?= Html::encode(Yii::t('app', 'Valoraciones de') . ' ' . $this->title) ?></h2>
     <div class="row">
         <div class="col-md-12">
             <div class="sticky">
