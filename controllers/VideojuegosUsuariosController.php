@@ -152,6 +152,29 @@ class VideojuegosUsuariosController extends Controller
     }
 
     /**
+     * Muestra un listado con todas las publicaciones que se han realizado en la aplicación
+     * @return mixed
+     */
+    public function actionAllPublicaciones()
+    {
+        $query = VideojuegosUsuarios::find()
+            ->with('videojuego')
+            ->andWhere(['visible' => true])
+            ->andWhere(['borrado' => false]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+        ]);
+
+        return $this->render('publicaciones', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
      * Hace un soft-delete de un VideojuegoUsuario.
      * @return mixed
      */

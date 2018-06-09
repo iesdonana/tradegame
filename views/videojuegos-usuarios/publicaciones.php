@@ -4,12 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\ListView;
 
 $this->title = Yii::t('app', 'Publicaciones');
-$label = $model->usuario;
 
-$this->params['breadcrumbs'][] = [
-    'label' => Html::encode($label),
-    'url' => ['usuarios/perfil', 'usuario' => $model->usuario]
-];
+if (isset($model)) {
+    $label = $model->usuario;
+    $this->params['breadcrumbs'][] = [
+        'label' => Html::encode($label),
+        'url' => ['usuarios/perfil', 'usuario' => $label]
+    ];
+}
 
 $this->params['breadcrumbs'][] = $this->title;
 $css = <<<CSS
@@ -40,7 +42,7 @@ $this->registerJs($js);
             'separator' => '<hr class="separador">',
             'emptyText' => '<div class="row">' .
                 '<div class="col-md-12 text-center txt-empty">' .
-                    'Parece no tienes videojuegos publicados ¿A qué esperas?' .
+                    Yii::t('app', 'Parece no tienes videojuegos publicados ¿A qué esperas?') .
                 '</div>' .
                 '<div class="col-md-12 text-center">' .
                     Html::a('Publicar nuevo videojuego', ['videojuegos-usuarios/publicar'], ['class' => 'btn btn-tradegame']) .

@@ -112,6 +112,7 @@ $config = [
                 'ofertas/<tipo:\w+>/<estado:\w+>' => 'ofertas-usuarios/index',
                 'videojuegos/<id:\d+>' => 'videojuegos/ver',
                 'videojuegos/publicar' => 'videojuegos-usuarios/publicar',
+                'publicaciones-total' => 'videojuegos-usuarios/all-publicaciones',
                 'publicaciones/<usuario:\w+>' => 'videojuegos-usuarios/publicaciones',
                 'usuarios/modificar/personal' => 'usuarios-datos/modificar',
                 'usuarios/modificar/<seccion:\w+>' => 'usuarios/modificar',

@@ -122,18 +122,36 @@ $pendMsg = Utiles::badgeNotificacionesPendientes(Mensajes::className());
                     </div>
                 </div>
                 <div class="panel-body">
-                    <ul class='bxslider hidden'>
-                        <?php foreach ($lastVideojuegos as $videojuego): ?>
-                            <li>
-                                <div class="col-md-offset-1 col-md-10">
-                                    <?= $this->render('/videojuegos-usuarios/view_min', [
-                                        'model' => $videojuego,
-                                        'big' => true
-                                    ]) ?>
-                                </div>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
+                    <?php if (count($lastVideojuegos) > 0): ?>
+                        <ul class='bxslider hidden'>
+                            <?php foreach ($lastVideojuegos as $videojuego): ?>
+                                <li>
+                                    <div class="col-md-offset-1 col-md-10">
+                                        <?= $this->render('/videojuegos-usuarios/view_min', [
+                                            'model' => $videojuego,
+                                            'big' => true
+                                            ]) ?>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?= Html::a(Yii::t('app', 'Ver todas las publicaciones'), [
+                                    'videojuegos-usuarios/all-publicaciones'
+                                ], ['class' => 'btn btn-block btn-xs btn-tradegame']) ?>
+                            </div>
+                        </div>
+                    <?php else: ?>
+                        <div class="row">
+                            <div class="col-md-12 text-center txt-empty">
+                                <?= Yii::t('app', 'Parece no hay videojuegos publicados aún ¿Quieres ser el primero?') ?>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <?= Html::a('Publicar nuevo videojuego', ['videojuegos-usuarios/publicar'], ['class' => 'btn btn-tradegame']) ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

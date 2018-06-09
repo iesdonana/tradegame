@@ -221,6 +221,7 @@ return [
     'Enviadas' => 'Sent',
     'Pendiente' => 'Pending',
     'Mis ofertas' => 'My offers',
+    'Mis mensajes' => 'My messages',
     'Hacer oferta' => 'Make offer',
     'Fotos del videojuego' => 'Video game photos',
     'Banear usuario' => 'Ban user',
@@ -228,6 +229,11 @@ return [
     'Eliminar reporte' => 'Delete report',
     'Ficha técnica' => 'Data sheet',
     'Ir a la publicación' => 'Go to publication',
+    'Publicación' => 'Publication',
+    'Accesos directos' => 'Shortcuts',
+    'Últimas publicaciones' => 'Latest publications',
+    'Parece no hay videojuegos publicados aún. ¿Quieres ser el primero?' => 'It seems there are no video games published yet. Do you want to be the first?',
+    'Parece no tienes videojuegos publicados ¿A qué esperas?' => 'It seems you do not have video games published. What are you waiting for?',
 
 
     // GÉNEROS DE VIDEOJUEGOS
