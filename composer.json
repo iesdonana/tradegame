@@ -34,7 +34,8 @@
         "lavrentiev/yii2-toastr": "^2.0",
         "2amigos/yii2-google-maps-library": "*",
         "statickidz/php-google-translate-free": "^1.0",
-        "npm-asset/vide": "^0.5.1"
+        "npm-asset/vide": "^0.5.1",
+        "npm-asset/slick-carousel": "^1.8"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -26,3 +26,11 @@
 .desc {
     margin-left: 20px;
 }
+
+/* MOBILE */
+@media(max-width:767px) {
+    .date-publicado,
+    .cabecera-videojuego {
+        margin-top: 10px;
+    }
+}

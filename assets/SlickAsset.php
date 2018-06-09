@@ -9,16 +9,17 @@ namespace app\assets;
 
 use yii\web\AssetBundle;
 
-class BxAsset extends AssetBundle
+class SlickAsset extends AssetBundle
 {
     // public $basePath = '@webroot';
-    public $sourcePath = '@npm/bxslider';
+    public $sourcePath = '@npm/slick-carousel';
     public $baseUrl = '@web';
     public $css = [
-        'dist/jquery.bxslider.min.css',
+        'slick/slick.css',
+        'slick/slick-theme.css',
     ];
     public $js = [
-        'dist/jquery.bxslider.min.js',
+        'slick/slick.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

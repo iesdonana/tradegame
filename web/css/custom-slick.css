@@ -1,0 +1,19 @@
+.slick-prev:before,
+.slick-next:before
+{
+    color: grey;
+}
+
+.slick-prev
+{
+    left: 5px;
+}
+
+.slick-next
+{
+    right: 5px;
+}
+
+ul.slick-initialized {
+    -webkit-padding-start: 20px;
+}

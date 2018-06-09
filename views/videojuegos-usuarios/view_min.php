@@ -1,6 +1,4 @@
 <?php
-use Statickidz\GoogleTranslate;
-
 use app\helpers\Utiles;
 
 use yii\helpers\Html;
@@ -30,25 +28,20 @@ if (isset($big) && $big === true) {
         <div class="row">
             <div class="col-md-<?= $valor ?>">
                 <div class="row">
-                    <?= Html::img($videojuego->caratula, ['class' => $clase . ' center-block']) ?>
-                </div>
-                <div class="row text-center">
-                    <?= Html::a(Utiles::FA('info-circle') . ' ' . Yii::t('app', 'Ficha completa'),
-                        ['videojuegos/ver', 'id' => $videojuego->id],
-                        ['class' => 'btn btn-xs btn-primary ' . $clase]) ?>
+                    <?= Html::img($videojuego->caratula, ['class' => $clase . ' center-block img-responsive']) ?>
                 </div>
             </div>
             <div class="col-md-<?= 12 - $valor ?>">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-8 cabecera-videojuego">
                             <strong class='titulo text-tradegame' itemprop="name"><?= Html::encode($videojuego->nombre) ?></strong><br>
                             <span itemprop="gamePlatform"><?= Utiles::badgePlataforma($videojuego->plataforma->nombre) ?></span>
                             <span class="label label-default"><?= Yii::t('app', $videojuego->genero->nombre) ?></span> <br>
                         </div>
                         <?php if (!isset($busqueda)): ?>
                         <div class="col-md-4">
-                            <div class='text-right date-publicado'>
+                            <div class='text-right date-publicado text-center'>
                                 <?= Html::a(Utiles::FA('clock', ['class' => 'far']) . ' ' .
                                 Yii::$app->formatter->asRelativeTime($model->created_at),
                                 ['videojuegos-usuarios/ver', 'id' => $model->id]) ?>

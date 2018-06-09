@@ -1,7 +1,10 @@
 <?php
 
 /* @var $this yii\web\View */
-use app\assets\BxAsset;
+/* @var $model app\models\Usuarios */
+
+use app\assets\SlickAsset;
+use app\assets\CustomSlickAsset;
 
 use app\helpers\Utiles;
 
@@ -18,23 +21,38 @@ use dosamigos\google\maps\overlays\Icon;
 use dosamigos\google\maps\overlays\Marker;
 use dosamigos\google\maps\overlays\Animation;
 
-/* @var $model app\models\Usuarios */
+SlickAsset::register($this);
+CustomSlickAsset::register($this);
 
-
-BxAsset::register($this);
+$js = <<<JS
+$(function() {
+    $('.popup-modal').click(function(e) {
+        e.preventDefault();
+        $('#modal-delete').modal('show');
+    });
+});
+$('.bxslider').removeClass('hidden');
+$('.bxslider').slick({
+    autoplay: true,
+    pauseOnFocus: true,
+    responsive: [
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: true
+          }
+      }
+    ]
+});
+JS;
+$this->registerJs($js);
 
 $this->title = $model->usuario;
 $this->params['breadcrumbs'][] = $this->title;
-$this->registerJs("
-    $(function() {
-        $('.popup-modal').click(function(e) {
-            e.preventDefault();
-            $('#modal-delete').modal('show');
-        });
-    });"
-);
 $this->registerCssFile('@web/css/profile.css');
-$this->registerJs("$('.bxslider').bxSlider({auto: true, stopAutoOnClick: true});");
 ?>
 <div class="col-md-12">
 <div class="panel panel-default">

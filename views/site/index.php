@@ -1,5 +1,6 @@
 <?php
-use app\assets\BxAsset;
+use app\assets\SlickAsset;
+use app\assets\CustomSlickAsset;
 
 use app\models\UsuariosDatos;
 
@@ -21,7 +22,8 @@ use dosamigos\google\maps\overlays\InfoWindow;
 /* @var $this yii\web\View */
 
 MapAsset::register($this);
-BxAsset::register($this);
+SlickAsset::register($this);
+CustomSlickAsset::register($this);
 
 $css = <<<CSS
 .container.custom-container {
@@ -57,7 +59,21 @@ CSS;
 $this->registerCss($css);
 $js = <<<JS
 $('.bxslider').removeClass('hidden');
-$('.bxslider').bxSlider({auto: true, stopAutoOnClick: true});
+$('.bxslider').slick({
+    autoplay: true,    
+    pauseOnFocus: true,
+    responsive: [
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: true
+          }
+      }
+    ]
+});
 JS;
 $this->registerJs($js);
 ?>
