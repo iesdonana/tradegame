@@ -170,22 +170,21 @@ class OfertasController extends Controller
                     $publicado = $model->videojuegoPublicado;
                     $ofrecido = $model->videojuegoOfrecido;
                     $publicado->visible = $ofrecido->visible = false;
-                    // Se rechazan automáticamente el resto de ofertas por este juego
-                    // por el que acabamos de aceptar una oferta, ya que no volverá
-                    // a estar visible. Además se borran las ofertas pendientes en
-                    // las que el videojuego ofrecido sea el que hemos aceptado que
-                    // nos ofrezcan
-                    $ofertasOfrecido = $ofrecido->getOfertasOfrecidos()
-                        ->where(['is', 'aceptada', null])->all();
-                    foreach ($ofertasOfrecido as $oferta) {
-                        $oferta->delete();
-                    }
-                    $ofertasPublicados = $publicado->getOfertasPublicados()
-                        ->where(['is', 'aceptada', null])->all();
-                    foreach ($ofertasPublicados as $oferta) {
+                    // Se rechazan automáticamente el resto de ofertas por alguno de los dos juegos
+                    // involucrados en la oferta
+                    $pendientes = Ofertas::find()
+                        ->where(['or',
+                            ['videojuego_publicado_id' => $publicado->id],
+                            ['videojuego_publicado_id' => $ofrecido->id],
+                            ['videojuego_ofrecido_id' => $publicado->id],
+                            ['videojuego_ofrecido_id' => $ofrecido->id],
+                        ])
+                        ->andWhere(['is', 'aceptada', null])->all();
+                    foreach ($pendientes as $oferta) {
                         $oferta->aceptada = false;
                         $oferta->save();
                     }
+
                     $publicado->save();
                     $ofrecido->save();
 
