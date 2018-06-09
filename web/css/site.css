@@ -376,3 +376,12 @@ span[data-plat$='2'] {
 .kv-grid-container tbody a:not(.btn) {
     color: #000f82;
 }
+
+.panel-sm .panel-heading {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.panel-sm .panel-heading .panel-title {
+    font-size: 15px !important;
+}

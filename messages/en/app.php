@@ -225,7 +225,9 @@ return [
     'Fotos del videojuego' => 'Video game photos',
     'Banear usuario' => 'Ban user',
     'Usuario actualmente baneado' => 'User actually banned',
-    'Eliminar reporte' => 'Delete report', 
+    'Eliminar reporte' => 'Delete report',
+    'Ficha técnica' => 'Data sheet',
+    'Ir a la publicación' => 'Go to publication',
 
 
     // GÉNEROS DE VIDEOJUEGOS

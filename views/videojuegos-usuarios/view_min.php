@@ -28,7 +28,9 @@ if (isset($big) && $big === true) {
         <div class="row">
             <div class="col-md-<?= $valor ?>">
                 <div class="row">
-                    <?= Html::img($videojuego->caratula, ['class' => $clase . ' center-block img-responsive']) ?>
+                    <?= Html::a(Html::img($videojuego->caratula, ['class' => $clase . ' center-block img-responsive']),
+                        ['videojuegos/ver', 'id' => $videojuego->id
+                        ]) ?>
                 </div>
             </div>
             <div class="col-md-<?= 12 - $valor ?>">
@@ -44,7 +46,9 @@ if (isset($big) && $big === true) {
                             <div class='text-right date-publicado text-center'>
                                 <?= Html::a(Utiles::FA('clock', ['class' => 'far']) . ' ' .
                                 Yii::$app->formatter->asRelativeTime($model->created_at),
-                                ['videojuegos-usuarios/ver', 'id' => $model->id]) ?>
+                                ['videojuegos-usuarios/ver', 'id' => $model->id], [
+                                    'title' => Yii::t('app', 'Ir a la publicación')
+                                ]) ?>
                                 <?php if ($model->usuario_id !== Yii::$app->user->id): ?>
                                     <br>
                                     <?= Html::a('<strong>' . Yii::t('app', 'Hacer oferta') . '</strong>', [

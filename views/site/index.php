@@ -44,15 +44,6 @@ $css = <<<CSS
     height: 300px !important;
 }
 
-.panel-sm .panel-heading {
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.panel-sm .panel-heading .panel-title {
-    font-size: 15px;
-}
-
 .accesos-directos .badge.badge-custom  {
     position: absolute;
     top: -4px;
@@ -70,6 +61,7 @@ $('.bxslider').removeClass('hidden');
 $('.bxslider').slick({
     autoplay: true,
     pauseOnFocus: true,
+    dots: true,
     responsive: [
         {
           breakpoint: 480,

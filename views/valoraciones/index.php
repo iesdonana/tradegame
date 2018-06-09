@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         if ($model->num_estrellas === null) {
                             return Html::a(Yii::t('app', 'Valorar') . ' ' . Utiles::FA('star'), [
                                 'valoraciones/valorar', 'id' => $model->id
-                            ], ['class' => 'btn btn-sm btn-warning']);
+                            ], ['class' => 'btn btn-sm btn-valora']);
                         } else {
                             return Utiles::pintarEstrellas($model->num_estrellas);
                         }

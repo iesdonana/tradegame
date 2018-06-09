@@ -35,7 +35,7 @@ $this->registerCss($css);
     <div class="row fila">
         <?php if ($mensaje->emisor_id == $me): ?>
             <div class="col-md-10 col-xs-8 mensaje">
-                <span class="pull-right mio">
+                <span class="pull-right mio" title="<?= $fecha ?>">
                     <?= nl2br($msg) ?>
                 </span>
             </div>
@@ -47,7 +47,7 @@ $this->registerCss($css);
                 <?= $avatar ?>
             </div>
             <div class="col-md-10 col-xs-8 mensaje">
-                <span class="pull-left suyo">
+                <span class="pull-left suyo" title="<?= $fecha ?>">
                     <?= nl2br($msg) ?>
                 </span>
             </div>

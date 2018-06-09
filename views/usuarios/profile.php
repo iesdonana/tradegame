@@ -224,7 +224,7 @@ $this->registerCssFile('@web/css/profile.css');
         $latlng = LatLngBounds::getBoundsOfMarkers($markers);
         $map = new Map([
             'center' => $latlng->getCenterCoordinates(),
-            'zoom' => $latlng->getZoom(300),
+            'zoom' => $latlng->getZoom(250),
             'width' => '100%',
         ]);
         foreach ($markers as $marker) {

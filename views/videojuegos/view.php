@@ -72,7 +72,12 @@ $this->registerJs("
                 </div>
             </div>
         <?php endif ?>
-        <div class="panel panel-default panel-trade">
+        <div class="panel panel-default panel-trade panel-sm">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <?= Yii::t('app', 'Ficha técnica') ?>
+                </div>
+            </div>
             <div class="panel-body" itemscope itemtype="http://schema.org/VideoGame">
                 <?= $this->render('datos', [
                     'model' => $model
