@@ -74,3 +74,16 @@ function escapeHtml(text) {
 
   return text.replace(/[&<>"']/g, function(m) { return map[m]; });
 }
+
+(function($) {
+    $.fn.goTo = function() {
+        var val = 50;
+        if (screen.width <= 768) {
+            val = 0;
+        }
+        $('html, body').animate({
+            scrollTop: (parseInt($(this).offset().top) - val) + 'px'
+        }, 'fast');
+        return this;
+    }
+})(jQuery);

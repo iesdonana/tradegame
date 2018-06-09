@@ -8,6 +8,8 @@ use yii\helpers\Url;
 
 $url = Url::to(['videojuegos/vista-busqueda']);
 $cargarMas = Yii::t('app', 'Cargar más resultados');
+$this->params['breadcrumbs'][] = Yii::t('app', 'Búsqueda');
+
 $this->registerCssFile('@web/css/pacman.css');
 $js = <<<JS
 var plataformas = [];
@@ -71,7 +73,7 @@ $('input[type=checkbox]').on('click', function() {
             $('.container-loader').addClass('hidden');
             $('.resultado-busqueda').html(data);
             comprobarMasResultados();
-            topFunction();
+            $('.resultado-busqueda').goTo();
         }
     });
 });
