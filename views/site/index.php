@@ -2,7 +2,10 @@
 use app\assets\SlickAsset;
 use app\assets\CustomSlickAsset;
 
+use app\models\Mensajes;
+use app\models\Valoraciones;
 use app\models\UsuariosDatos;
+use app\models\OfertasUsuarios;
 
 use app\helpers\Utiles;
 
@@ -50,6 +53,11 @@ $css = <<<CSS
     font-size: 15px;
 }
 
+.accesos-directos .badge.badge-custom  {
+    position: absolute;
+    top: -4px;
+    right: 8px;
+}
 @media(max-width:767px) {
     .accesos-directos .btn-tradegame {
         margin-top: 10px;
@@ -60,7 +68,7 @@ $this->registerCss($css);
 $js = <<<JS
 $('.bxslider').removeClass('hidden');
 $('.bxslider').slick({
-    autoplay: true,    
+    autoplay: true,
     pauseOnFocus: true,
     responsive: [
         {
@@ -76,6 +84,10 @@ $('.bxslider').slick({
 });
 JS;
 $this->registerJs($js);
+
+$pendOf = Utiles::badgeNotificacionesPendientes(OfertasUsuarios::className());
+$pendVal = Utiles::badgeNotificacionesPendientes(Valoraciones::className());
+$pendMsg = Utiles::badgeNotificacionesPendientes(Mensajes::className());
 ?>
 <div class="site-index">
     <div class="row">
@@ -89,19 +101,19 @@ $this->registerJs($js);
                 <div class="panel-body">
                     <div class="col-md-4">
                         <?= Html::a(Yii::t('app', 'Mis ofertas') . ' ' .
-                        Utiles::FA('handshake', ['class' => 'far']),
+                        Utiles::FA('handshake', ['class' => 'far']) . ' ' . $pendOf,
                         ['ofertas-usuarios/index'],
                         ['class' => 'btn btn-tradegame btn-block']) ?>
                     </div>
                     <div class="col-md-4">
                         <?= Html::a(Yii::t('app', 'Mis valoraciones') . ' ' .
-                        Utiles::FA('star', ['class' => 'far']),
+                        Utiles::FA('star', ['class' => 'far']) . ' ' . $pendVal,
                         ['valoraciones/index'],
                         ['class' => 'btn btn-tradegame btn-block']) ?>
                     </div>
                     <div class="col-md-4">
                         <?= Html::a(Yii::t('app', 'Mis mensajes') . ' ' .
-                        Utiles::FA('inbox'),
+                        Utiles::FA('inbox') . ' ' . $pendMsg,
                         ['mensajes/listado'],
                         ['class' => 'btn btn-tradegame btn-block']) ?>
                     </div>

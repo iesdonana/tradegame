@@ -66,7 +66,7 @@ $this->registerJsFile('@web/js/chat.js', ['position' => View::POS_HEAD]);
                 <div class="msg-hidden">
 
                 </div>
-                <div class="panel panel-default">
+                <div class="panel panel-default nuevo-mensaje">
                     <div class="panel-body">
                         <?php $form = ActiveForm::begin([
                             'id' => 'form-mensaje',

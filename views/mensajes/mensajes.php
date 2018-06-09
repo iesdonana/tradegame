@@ -19,11 +19,17 @@ $this->registerCss($css);
     $opt = ['class' => 'img-chat img-circle'];
     $me = Yii::$app->user->id;
     $avatar = '@web/uploads/avatares/default.png';
+    $usr = '';
     if ($mensaje->emisor !== null) {
         $avatar = $mensaje->emisor->usuariosDatos->avatar;
+        $usr = $mensaje->emisor->usuario;
     }
     $avatar = Html::img($avatar, $opt);
     $msg = Html::encode($mensaje->contenido);
+    // Si es el usuario de notificación no encodeamos la salida para poder enviar enlaces
+    if (in_array($usr, Yii::$app->params['privateUsers'])) {
+        $msg = $mensaje->contenido;
+    }
     $fecha = Yii::$app->formatter->asDatetime($mensaje->created_at);
     ?>
     <div class="row fila">

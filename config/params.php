@@ -12,4 +12,7 @@ return [
         'en' => 'english',
     ],
     'maxFotos' => 3,
+    'privateUsers' => [
+        'Notificaciones',
+    ]
 ];

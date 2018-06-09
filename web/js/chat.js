@@ -40,6 +40,12 @@ function peticionConversacion(urlConver, urlNuevos, receptor_id, intervalo = fal
                         }
                         $('.scrollable').scrollTop($('.scrollable')[0].scrollHeight);
                         $('.cargaForm button').prop('disabled', false);
+
+                        if (receptor_id === 1) {
+                            $('.nuevo-mensaje').addClass('hidden');
+                        } else {
+                            $('.nuevo-mensaje').removeClass('hidden');
+                        }
                     },
                 });
             }

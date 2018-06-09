@@ -7,38 +7,40 @@ INSERT INTO usuarios_generos (sexo)
 INSERT INTO roles (tipo)
     VALUES ('Administrador'), ('Usuario');
 
-INSERT INTO usuarios_id (id) VALUES (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT);
+INSERT INTO usuarios_id (id) VALUES (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT);
 
 INSERT INTO usuarios (id, usuario, email, password, auth_key, rol_id)
-    VALUES (1, 'admin', 'admin@admin.com', crypt('admin123', gen_salt('bf', 13)), 'GnT4M2ZjLDGxNrGe-2THbAjqFLwyJ1fa', 1),
-        (2, 'celu', 'joseluis.narvaez@iesdonana.org', crypt('celu123', gen_salt('bf', 13)), 'qmjxYKMqeOqrIfDwpt0Badk4VvPfts-n', 2),
-        (3, 'ivan', 'ivan@ivan.com', crypt('ivan123', gen_salt('bf', 13)), 'aIL6v0fpj42nuBmouXekziMa1yOCLpa4', 2),
-        (4, 'pepe', 'pepe@pepe.com', crypt('pepe123', gen_salt('bf', 13)), 'nykqGk2mEA6XjmNOlR2tiinDPQinG7A8', 2);
+    VALUES (1, 'Notificaciones', 'tradegame.soporte@gmail.com', null, '', 1),
+        (2, 'admin', 'admin@admin.com', crypt('admin123', gen_salt('bf', 13)), 'GnT4M2ZjLDGxNrGe-2THbAjqFLwyJ1fa', 1),
+        (3, 'celu', 'joseluis.narvaez@iesdonana.org', crypt('celu123', gen_salt('bf', 13)), 'qmjxYKMqeOqrIfDwpt0Badk4VvPfts-n', 2),
+        (4, 'ivan', 'ivan@ivan.com', crypt('ivan123', gen_salt('bf', 13)), 'aIL6v0fpj42nuBmouXekziMa1yOCLpa4', 2),
+        (5, 'pepe', 'pepe@pepe.com', crypt('pepe123', gen_salt('bf', 13)), 'nykqGk2mEA6XjmNOlR2tiinDPQinG7A8', 2);
 
 INSERT INTO usuarios_datos (id_usuario, nombre_real, biografia, localidad, geoloc)
-    VALUES (1, 'Administrador', 'Soy el administrador que todo lo sabe', 'Sanlúcar de Barrameda', '36.7725774,-6.352968899999951'),
-            (2, 'Jose Luis Narváez', 'Me gustan los videojuegos y la programación', 'Jerez de la Frontera', '36.6850064,-6.126074399999993'),
-            (3, 'Iván Herrera', DEFAULT, 'Chipiona', '36.7348614,-6.4316989999999805'),
-            (4, 'Pepe Rodríguez', DEFAULT, 'Córdoba', '37.8881751,-4.7793834999999945');
+    VALUES (1, 'Notificaciones', DEFAULT, DEFAULT, DEFAULT),
+            (2, 'Administrador', 'Soy el administrador que todo lo sabe', 'Sanlúcar de Barrameda', '36.7725774,-6.352968899999951'),
+            (3, 'Jose Luis Narváez', 'Me gustan los videojuegos y la programación', 'Jerez de la Frontera', '36.6850064,-6.126074399999993'),
+            (4, 'Iván Herrera', DEFAULT, 'Chipiona', '36.7348614,-6.4316989999999805'),
+            (5, 'Pepe Rodríguez', DEFAULT, 'Córdoba', '37.8881751,-4.7793834999999945');
 
 INSERT INTO mensajes (emisor_id, receptor_id, contenido, leido, created_at)
-    VALUES (1, 2, 'Hola que tal', true, localtimestamp - 'P3M'::interval),
-            (2, 1, 'Hola soy celu', true, localtimestamp - 'P2M'::interval),
-            (1, 2, 'Hola otra vez', true, localtimestamp - 'P1M'::interval),
-            (3, 2, 'Hola otra vez', true, localtimestamp - 'P1M'::interval),
-            (4, 2, 'Hola otra vez', true, localtimestamp - 'P2M'::interval);
+    VALUES (2, 3, 'Hola que tal', true, localtimestamp - 'P3M'::interval),
+            (3, 2, 'Hola soy celu', true, localtimestamp - 'P2M'::interval),
+            (2, 3, 'Hola otra vez', true, localtimestamp - 'P1M'::interval),
+            (4, 3, 'Hola otra vez', true, localtimestamp - 'P1M'::interval),
+            (5, 3, 'Hola otra vez', true, localtimestamp - 'P2M'::interval);
 
 INSERT INTO valoraciones (usuario_valorado_id, usuario_valora_id, comentario, num_estrellas)
-    VALUES (1, 2, 'Todo perfecto sin ningún tipo de problema. Volvería a repetir', 5),
-            (1, 3, 'Rápido y fácil. Es muy atento.', 4),
-            (1, 4, 'Me encanta su amabilidad. Recomendable 100%', 4),
-            (2, 1, 'Tarda mucho en contestar los mensajes, pero después el trato ha sido bueno', 3),
-            (2, 3, 'Atento y videojuego muy cuidado. Parece nuevo.', 5);
+    VALUES (2, 3, 'Todo perfecto sin ningún tipo de problema. Volvería a repetir', 5),
+            (2, 4, 'Rápido y fácil. Es muy atento.', 4),
+            (2, 5, 'Me encanta su amabilidad. Recomendable 100%', 4),
+            (3, 2, 'Tarda mucho en contestar los mensajes, pero después el trato ha sido bueno', 3),
+            (3, 4, 'Atento y videojuego muy cuidado. Parece nuevo.', 5);
 
 INSERT INTO reportes (reporta_id, reportado_id, mensaje)
-    VALUES (1, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' ||
+    VALUES (2, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' ||
     'Nam vel lectus malesuada neque interdum ultricies vitae sit amet elit. Etiam.'),
-    (2, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' ||
+    (3, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' ||
     'Nam vel lectus malesuada neque interdum ultricies vitae sit amet elit. Etiam.');
 
 INSERT INTO generos_videojuegos (nombre)
@@ -170,7 +172,7 @@ INSERT INTO videojuegos (nombre, descripcion, fecha_lanzamiento,
         '2017-03-03', 13, 1, 4);
 
 INSERT INTO videojuegos_usuarios (videojuego_id, usuario_id)
-    VALUES (1, 1), (2, 1), (3, 2), (4, 2), (5, 2), (6, 2), (7, 2), (8, 2);
+    VALUES (1, 2), (2, 2), (3, 3), (4, 3), (5, 3), (6, 3), (7, 3), (8, 3);
 
 INSERT INTO ofertas (videojuego_publicado_id, videojuego_ofrecido_id)
     VALUES (1, 3), (2, 3);

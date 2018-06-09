@@ -19,6 +19,11 @@ $js = <<<JS
                 a.parent().addClass('active');
                 $('#mensajes-receptor_id').val(a.data('id'));
                 $('.scrollable').scrollTop($('.scrollable')[0].scrollHeight);
+                $('#mensajes-contenido').prop('disabled', false);
+                $('.nuevo-mensaje').removeClass('hidden');
+                if (a.data('id') === 1) {
+                    $('.nuevo-mensaje').addClass('hidden');
+                }
             }
         });
     });

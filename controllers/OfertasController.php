@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Ofertas;
+use app\models\Mensajes;
 use app\models\Usuarios;
 use app\models\Valoraciones;
 use app\models\VideojuegosUsuarios;
@@ -162,49 +163,85 @@ class OfertasController extends Controller
         }
 
         $model->aceptada = $valor;
-        if ($model->save()) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'Se ha cambiado el estado correctamente'));
-            if ($model->aceptada) {
-                $publicado = $model->videojuegoPublicado;
-                $ofrecido = $model->videojuegoOfrecido;
-                $publicado->visible = $ofrecido->visible = false;
-                // Se rechazan automáticamente el resto de ofertas por este juego
-                // por el que acabamos de aceptar una oferta, ya que no volverá
-                // a estar visible. Además se borran las ofertas pendientes en
-                // las que el videojuego ofrecido sea el que hemos aceptado que
-                // nos ofrezcan
-                $ofertasOfrecido = $ofrecido->getOfertasOfrecidos()
-                    ->where(['is', 'aceptada', null])->all();
-                foreach ($ofertasOfrecido as $oferta) {
-                    $oferta->delete();
-                }
-                $ofertasPublicados = $publicado->getOfertasPublicados()
-                    ->where(['is', 'aceptada', null])->all();
-                foreach ($ofertasPublicados as $oferta) {
-                    $oferta->aceptada = false;
-                    $oferta->save();
-                }
-                $publicado->save();
-                $ofrecido->save();
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            if ($model->save()) {
+                if ($model->aceptada) {
+                    $publicado = $model->videojuegoPublicado;
+                    $ofrecido = $model->videojuegoOfrecido;
+                    $publicado->visible = $ofrecido->visible = false;
+                    // Se rechazan automáticamente el resto de ofertas por este juego
+                    // por el que acabamos de aceptar una oferta, ya que no volverá
+                    // a estar visible. Además se borran las ofertas pendientes en
+                    // las que el videojuego ofrecido sea el que hemos aceptado que
+                    // nos ofrezcan
+                    $ofertasOfrecido = $ofrecido->getOfertasOfrecidos()
+                        ->where(['is', 'aceptada', null])->all();
+                    foreach ($ofertasOfrecido as $oferta) {
+                        $oferta->delete();
+                    }
+                    $ofertasPublicados = $publicado->getOfertasPublicados()
+                        ->where(['is', 'aceptada', null])->all();
+                    foreach ($ofertasPublicados as $oferta) {
+                        $oferta->aceptada = false;
+                        $oferta->save();
+                    }
+                    $publicado->save();
+                    $ofrecido->save();
 
-                $usuarioValora = $publicado->usuario->id;
-                $usuarioValorado = $ofrecido->usuario->id;
+                    $usuarioValora = $publicado->usuario->id;
+                    $usuarioValorado = $ofrecido->usuario->id;
 
-                $valoracion = new Valoraciones([
-                    'usuario_valora_id' => $usuarioValora,
-                    'usuario_valorado_id' => $usuarioValorado,
-                ]);
-                $valoracion->save();
-                $valoracion = new Valoraciones([
-                    'usuario_valora_id' => $usuarioValorado,
-                    'usuario_valorado_id' => $usuarioValora,
-                ]);
-                $valoracion->save();
-                Yii::$app->session->setFlash('info', Yii::t('app', 'Recuerda valorar ' .
-                    'al usuario con el que has intercambiado el videojuego desde ' .
-                    'el panel de notificaciones'));
+                    $me = Yii::$app->user->id;
+                    // @var $otherUser Usuario con el que vamos a hacer el intercambio
+                    $otherUser = ($usuarioValora === $me) ? $usuarioValorado : $usuarioValora;
+
+                    $meUsr = Yii::$app->user->identity->usuario;
+                    $msg = new Mensajes([
+                        'emisor_id' => 1,
+                        'receptor_id' => $otherUser,
+                        'contenido' => Yii::t('app', '¡El usuario {username} ha aceptado tu oferta! Has intercambiado tu ' .
+                        'videojuego correctamente. Revisa tus ofertas aceptadas desde {enlace}.', [
+                                'username' => Html::a(Html::encode($meUsr), ['usuarios/perfil', 'usuario' => $meUsr]),
+                                'enlace' => Html::a(Yii::t('app', 'aquí'), [
+                                    'ofertas-usuarios/index',
+                                    'tipo' => 'enviadas',
+                                    'estado' => 'aceptadas',
+                                ]),
+                                'valorar' => Html::a(Yii::t('app', 'Valorar'), [
+                                    'valoraciones/index',
+                                    'estado' => 'pendientes'
+                                ])
+                        ])
+                    ]);
+                    $msg->save();
+
+                    $valoracion = new Valoraciones([
+                        'usuario_valora_id' => $usuarioValora,
+                        'usuario_valorado_id' => $usuarioValorado,
+                    ]);
+                    $valoracion->save();
+                    $valoracion = new Valoraciones([
+                        'usuario_valora_id' => $usuarioValorado,
+                        'usuario_valorado_id' => $usuarioValora,
+                    ]);
+                    $valoracion->save();
+
+                    Yii::$app->session->setFlash('success', Yii::t('app', 'Se ha cambiado el estado correctamente'));
+                    Yii::$app->session->setFlash('info', Yii::t('app', 'Recuerda valorar ' .
+                        'al usuario con el que has intercambiado el videojuego desde ' .
+                        'el panel de notificaciones'));
+                }
             }
+            $transaction->commit();
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+            throw $e;
+        } catch (\Throwable $e) {
+            $transaction->rollBack();
+            throw $e;
         }
+
         return $this->redirect('/ofertas-usuarios/index');
     }
 

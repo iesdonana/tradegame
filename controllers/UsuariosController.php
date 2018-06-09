@@ -230,7 +230,8 @@ class UsuariosController extends Controller
      */
     public function actionPerfil($usuario)
     {
-        if (($model = Usuarios::findOne(['usuario' => $usuario])) === null) {
+        if (in_array($usuario, Yii::$app->params['privateUsers']) ||
+            ($model = Usuarios::findOne(['usuario' => $usuario])) === null) {
             throw new NotFoundHttpException(Yii::t('app', "No se ha encontrado el usuario '{username}'", [
                 'username' => Html::encode($usuario)
             ]));
@@ -400,13 +401,21 @@ class UsuariosController extends Controller
         Yii::$app->response->format = Response::FORMAT_JSON;
         $usuarios['results'] = [];
         if ($q !== null && $q !== '') {
-            $usuarios['results'] = Usuarios::find()
+            $query = Usuarios::find()
                 ->select(['id', 'usuario'])
                 ->where(['ilike', 'usuario', $q])
-                ->andWhere(['!=', 'id', Yii::$app->user->id])
-                ->limit(10)
-                ->orderBy('usuario')
-                ->asArray()->all();
+                ->andWhere(['!=', 'id', Yii::$app->user->id]);
+
+            $private = Yii::$app->params['privateUsers'];
+            foreach ($private as $val) {
+                $query = $query->andWhere(['!=', 'usuario', $val]);
+            }
+
+            $query = $query->limit(10)
+            ->orderBy('usuario')
+            ->asArray()->all();
+
+            $usuarios['results'] = $query;
         }
         return $usuarios;
     }
