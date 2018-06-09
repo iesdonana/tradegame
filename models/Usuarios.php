@@ -76,6 +76,12 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 return Yii::$app->request->get('seccion') === 'password';
             }],
             [['usuario'], 'string', 'max' => 20],
+            [
+                ['usuario'],
+                'match',
+                'pattern' => '/^[a-zA-Z0-9]+([_\-\.]?[a-zA-Z0-9])*$/',
+                'message' => 'El usuario sólo puede contener los siguientes carácteres (A-z 0-9 -_.).',
+            ],
             [['email'], 'string', 'max' => 100],
             [['email'], 'email'],
             [['password'], 'string', 'max' => 255],
