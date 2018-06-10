@@ -111,6 +111,10 @@ a.desc:after {
         width: 100%;
         padding: 10px 15px;
     }
+    
+    .kv-grid-table .empty {
+        font-size: 5vh;
+    }
 }
 
 .nav > li > form > button.logout:focus,
@@ -166,7 +170,8 @@ a.desc:after {
     margin-top: 10px;
 }
 
-.text-tradegame {
+.text-tradegame,
+.text-tradegame a {
     color: #730000;
 }
 

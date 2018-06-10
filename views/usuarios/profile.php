@@ -98,37 +98,63 @@ $this->registerCssFile('@web/css/profile.css');
                     <?php endif ?>
                </ul>
                 <?php if ($model->id === Yii::$app->user->id): ?>
+                    <!-- Botones desktop -->
                     <?= Html::a(
                         Utiles::FA('edit') . ' ' . Yii::t('app', 'Editar perfil'),
                         ['usuarios/modificar', 'seccion' => 'personal'],
-                        ['class' => 'btn btn-default']
+                        ['class' => 'btn btn-default hidden-xs']
                     ) ?>
                     <?= Html::a(
                         Utiles::FA('user-times') . ' ' . Yii::t('app', 'Borrar cuenta'),
                         ['usuarios/remove'],
-                        ['class' => 'btn btn-danger popup-modal']
+                        ['class' => 'btn btn-danger popup-modal hidden-xs']
+                    ) ?>
+                    <!-- Botones mobile -->
+                    <?= Html::a(
+                        Utiles::FA('edit') . ' ' . Yii::t('app', 'Editar perfil'),
+                        ['usuarios/modificar', 'seccion' => 'personal'],
+                        ['class' => 'btn btn-default btn-block visible-xs']
+                    ) ?>
+                    <?= Html::a(
+                        Utiles::FA('user-times') . ' ' . Yii::t('app', 'Borrar cuenta'),
+                        ['usuarios/remove'],
+                        ['class' => 'btn btn-danger popup-modal visible-xs btn-block']
                     ) ?>
                 <?php else: ?>
+                    <!-- Botones desktop -->
                     <?= Html::a(
                         'Enviar mensaje ' . Utiles::FA('comment', ['class' => 'far']),
                         [
                             'mensajes/nuevo',
                             'receptor' => $model->usuario
                         ],
-                        [
-                            'class' => 'btn btn-primary'
-                        ])
-                    ?>
+                        ['class' => 'btn btn-primary hidden-xs']
+                    ) ?>
                     <?= Html::a(
                         'Reportar ' . Utiles::FA('flag', ['class' => 'far']),
                         [
                             'reportes/create',
                             'usuario' => $model->usuario
                         ],
+                        ['class' => 'btn btn-danger hidden-xs']
+                    ) ?>
+                    <!-- Botones mobile -->
+                    <?= Html::a(
+                        'Enviar mensaje ' . Utiles::FA('comment', ['class' => 'far']),
                         [
-                            'class' => 'btn btn-danger'
-                        ])
-                    ?>
+                            'mensajes/nuevo',
+                            'receptor' => $model->usuario
+                        ],
+                        ['class' => 'btn btn-primary visible-xs btn-block']
+                    ) ?>
+                    <?= Html::a(
+                        'Reportar ' . Utiles::FA('flag', ['class' => 'far']),
+                        [
+                            'reportes/create',
+                            'usuario' => $model->usuario
+                        ],
+                        ['class' => 'btn btn-danger visible-xs btn-block']
+                    ) ?>
                 <?php endif ?>
             </div>
          </div>
