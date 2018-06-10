@@ -77,7 +77,12 @@ $('#modal-oferta form').on('submit', function() {
 
 JS;
 $this->registerJs($js);
-$this->registerCss('.btn-info {margin-left: 4px;}');
+$css = <<<CSS
+.btn-info {
+    margin-left: 4px;
+}
+CSS;
+$this->registerCss($css);
 ?>
 <div class="ofertas-usuarios-index">
     <?= GridView::widget([

@@ -66,7 +66,7 @@ $(function() {
         e.preventDefault();
         var copy = $(this).clone();
         copy.removeClass('fotos-videojuego');
-        copy.width > copy.height ? copy.addClass('zoom-landscape') : copy.addClass('zoom-portrait');
+        copy.addClass('img-responsive center-block');
         $('#imagen-modal').html(copy);
         if ($('.fotos-videojuego img.fotos-videojuego').length == 1) {
             $('.btn-siguiente').remove();
@@ -103,11 +103,7 @@ function pasar(current, paso) {
 
     var copia = imgs.filter('[data-num-foto=' + prox + ']').clone();
     copia.removeClass('fotos-videojuego img-thumbnail');
-    if (copia.width > copia.height) {
-        copia.addClass('zoom-landscape')
-    } else {
-        copia.addClass('zoom-portrait')
-    }
+    copia.addClass('img-responsive center-block')
     $('#imagen-modal').html(copia)
 }
 JS;
@@ -141,21 +137,48 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
             <div class="panel-body">
+                <div class="visible-xs">
+                    <?php if ($model->visible && (Yii::$app->user->id === $model->usuario_id)): ?>
+                        <?= Html::a(Utiles::FA('trash-alt') . ' ' . Yii::t('app', 'Borrar'),
+                            null,
+                            ['class' => 'btn btn-xs btn-danger popup-modal btn-block']
+                        ) ?>
+                    <?php endif ?>
+                </div>
                 <?php if (!$model->borrado): ?>
                     <div id='date' class="row">
-                        <div class="col-md-6 text-left">
+                        <div class="row visible-xs text-center">
+                            <div class="col-xs-12">
+                                <?php $tag = Html::tag('span', Utiles::FA('check') .
+                                ' ' . Yii::t('app', 'Este videojuego ya ha sido intercambiado.'),
+                                ['class' => 'text-success']) ?>
+                                <?php if (!$model->visible): ?>
+                                    <?= $tag ?>
+                                <?php endif ?>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-left hidden-xs">
                             <?= Utiles::FA('user') . ' ' . Yii::t('app', 'Publicado por') ?>
                             <?= Html::a($user, ['usuarios/perfil', 'usuario' => $user]) ?>
                         </div>
-                        <div class="col-md-6 text-right">
+                        <div class="col-xs-12 text-center visible-xs">
+                            <?= Utiles::FA('user') . ' ' . Yii::t('app', 'Publicado por') ?>
+                            <?= Html::a($user, ['usuarios/perfil', 'usuario' => $user]) ?>
+                        </div>
+                        <div class="col-md-6 col-xs-12 text-right">
                             <?php if (!$model->visible): ?>
-                                <?= Html::tag('span', Utiles::FA('check') .
-                                ' ' . Yii::t('app', 'Este videojuego ya ha sido intercambiado.'),
-                                ['class' => 'text-success']) ?><br>
+                                <div class="hidden-xs">
+                                    <?= $tag ?>
+                                </div>
                             <?php endif; ?>
-                            <?= Utiles::FA('clock', ['class' => 'far']) . ' ' . Yii::$app->formatter->asRelativeTime($model->created_at) ?>
+                            <span class="visible-xs text-center">
+                                <?= Utiles::FA('clock', ['class' => 'far']) . ' ' . Yii::$app->formatter->asRelativeTime($model->created_at) ?>
+                            </span>
+                            <span class="hidden-xs">
+                                <?= Utiles::FA('clock', ['class' => 'far']) . ' ' . Yii::$app->formatter->asRelativeTime($model->created_at) ?>
+                            </span>
                             <?php if ($model->visible && (Yii::$app->user->id === $model->usuario_id)): ?>
-                                <?= Html::a(Utiles::FA('trash-alt'), null, ['class' => 'btn btn-xs btn-danger popup-modal']) ?>
+                                <?= Html::a(Utiles::FA('trash-alt'), null, ['class' => 'btn btn-xs btn-danger popup-modal hidden-xs']) ?>
                             <?php endif ?>
                         </div>
                     </div>
