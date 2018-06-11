@@ -2,6 +2,7 @@ function vaciarDatos()
 {
     $('#mi-oferta-caratula').prop('src', defaultImg);
     $('#mi-oferta-titulo').empty();
+    $('#mi-oferta-titulo').html('&nbsp;');
 }
 
 function peticionVideojuego(url)

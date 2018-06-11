@@ -20,7 +20,6 @@ $videojuegoPublicado = $vUsuarioPublicado->videojuego;
 $css = <<<CSS
 .tipo-oferta {
     text-transform: uppercase;
-    font-size: 5vh;
     letter-spacing: 4px;
     font-weight: bold;
 }
@@ -47,24 +46,28 @@ $this->registerJs($js);
     </div>
     <div class="row">
         <div class="col-md-offset-2 col-md-3 col-sm-3">
-            <div class="row">
-                <p class="text-center text-tradegame">
-                    <?= Html::encode($videojuegoPublicado->nombre) ?>
-                </p>
-            </div>
-            <div class="row">
-                <?= Html::img($videojuegoPublicado->caratula, [
-                    'class' => 'caratula-detail center-block img-thumbnail'
-                    ]) ?>
-            </div>
-            <div class="row">
-                <p class="text-center">
-                    <?php $usuario = $vUsuarioPublicado->usuario->usuario ?>
-                    <strong><?= Yii::t('app', 'Publicado por') ?>:</strong>
-                    <?= Html::a(
-                        Html::encode($usuario),
-                        ['usuarios/perfil', 'usuario' => $usuario]) ?>
-                </p>
+            <div class="panel panel-default panel-trade panel-sm">
+                <div class="panel-heading">
+                    <div class="panel-title text-center">
+                        <?= Html::encode($videojuegoPublicado->nombre) ?>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <?= Html::img($videojuegoPublicado->caratula, [
+                            'class' => 'caratula-detail center-block img-thumbnail'
+                            ]) ?>
+                    </div>
+                    <div class="row">
+                        <p class="text-center">
+                            <?php $usuario = $vUsuarioPublicado->usuario->usuario ?>
+                            <strong><?= Yii::t('app', 'Publicado por') ?>:</strong>
+                            <?= Html::a(
+                                Html::encode($usuario),
+                                ['usuarios/perfil', 'usuario' => $usuario]) ?>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-2 col-sm-3">
@@ -72,21 +75,26 @@ $this->registerJs($js);
             <?= Html::img('@web/images/trading.png', ['class' => 'trading center-block visible-lg visible-sm visible-md']) ?>
         </div>
         <div class="col-md-3 col-sm-3">
-            <div class="row text-tradegame text-center">
-                <p id="mi-oferta-titulo">&nbsp;</p>
-            </div>
-            <div class="row">
-                <?= Html::img('/' . Yii::getAlias('@caratulas') . '/default.png', [
-                    'id' => 'mi-oferta-caratula',
-                    'class' => 'caratula-detail center-block img-thumbnail'
-                    ]) ?>
-            </div>
-            <div class="row">
-                &nbsp;
+            <div class="panel panel-default panel-trade panel-sm">
+                <div class="panel-heading">
+                    <div id="mi-oferta-titulo" class="panel-title text-center">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <?= Html::img('/' . Yii::getAlias('@caratulas') . '/default.png', [
+                            'id' => 'mi-oferta-caratula',
+                            'class' => 'caratula-detail center-block img-thumbnail'
+                            ]) ?>
+                    </div>
+                    <div class="row">
+                        &nbsp;
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <hr>
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <?php if (isset($usuarioOfrecido)): ?>
