@@ -20,7 +20,6 @@ use kartik\datecontrol\DateControl;
 /* @var $searchModel app\models\ReportesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$lang = Yii::$app->language;
 $js = <<<JS
 $(function() {
     $('#banform-fecha-disp').prop('placeholder', $('#banform-fecha-disp').siblings('span.kv-date-calendar').attr('title'));
@@ -32,7 +31,6 @@ $(function() {
     $('.popup-ban').click(function(e) {
         e.preventDefault();
         if ($(this).attr('disabled') !== 'disabled') {
-            $('.texto-ban').text('Banear hasta:');
             var usuario = $(this).closest('td').siblings('td[data-col-seq=1]').text();
             $('#banform-usuario').val(usuario);
             $('#modal-ban').modal('show');
@@ -146,18 +144,18 @@ $this->params['breadcrumbs'][] = $this->title;
  <?php Modal::end(); ?>
 
  <?php Modal::begin([
-  'header' => '<h2 class="modal-title">Banear usuario</h2>',
+  'header' => '<h2 class="modal-title">' . Yii::t('app', 'Banear usuario') . '</h2>',
   'id'     => 'modal-ban',
-  'footer' => Html::a(Utiles::FA('ban') . ' Banear', null,
+  'footer' => Html::a(Utiles::FA('ban') . ' ' . Yii::t('app', 'Banear'), null,
     ['class' => 'btn btn-tradegame ban-btn'])
   ]) ?>
-  <p class="texto-ban"></p>
   <?php $banForm = new BanForm ?>
   <?php $form = ActiveForm::begin([
      'id' => 'form-ban',
      'method' => 'post',
      'action' => ['usuarios/banear'],
  ]) ?>
+ <label for=""><?= Yii::t('app', 'Banear hasta') ?></label>
   <?= $form->field($banForm, 'fecha')->widget(DateControl::classname(), [
       'type' => DateControl::FORMAT_DATE,
       'saveTimezone' => 'UTC',

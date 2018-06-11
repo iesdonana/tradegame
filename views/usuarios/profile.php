@@ -123,7 +123,7 @@ $this->registerCssFile('@web/css/profile.css');
                 <?php else: ?>
                     <!-- Botones desktop -->
                     <?= Html::a(
-                        'Enviar mensaje ' . Utiles::FA('comment', ['class' => 'far']),
+                        Yii::t('app', 'Enviar mensaje') . ' ' . Utiles::FA('comment', ['class' => 'far']),
                         [
                             'mensajes/nuevo',
                             'receptor' => $model->usuario
@@ -131,7 +131,7 @@ $this->registerCssFile('@web/css/profile.css');
                         ['class' => 'btn btn-primary hidden-xs']
                     ) ?>
                     <?= Html::a(
-                        'Reportar ' . Utiles::FA('flag', ['class' => 'far']),
+                        Yii::t('app', 'Reportar') . ' ' . Utiles::FA('flag', ['class' => 'far']),
                         [
                             'reportes/create',
                             'usuario' => $model->usuario
@@ -140,7 +140,7 @@ $this->registerCssFile('@web/css/profile.css');
                     ) ?>
                     <!-- Botones mobile -->
                     <?= Html::a(
-                        'Enviar mensaje ' . Utiles::FA('comment', ['class' => 'far']),
+                        Yii::t('app', 'Enviar mensaje') . ' ' . Utiles::FA('comment', ['class' => 'far']),
                         [
                             'mensajes/nuevo',
                             'receptor' => $model->usuario
@@ -148,7 +148,7 @@ $this->registerCssFile('@web/css/profile.css');
                         ['class' => 'btn btn-primary visible-xs btn-block']
                     ) ?>
                     <?= Html::a(
-                        'Reportar ' . Utiles::FA('flag', ['class' => 'far']),
+                        Yii::t('app', 'Reportar') . ' ' . Utiles::FA('flag', ['class' => 'far']),
                         [
                             'reportes/create',
                             'usuario' => $model->usuario
@@ -183,7 +183,7 @@ $this->registerCssFile('@web/css/profile.css');
     <?php endif ?>
     <div class="bs-callout bs-callout-danger">
        <h4><?= Yii::t('app', 'Biografía') ?></h4>
-       <p><?= ($datos->biografia) ? Html::encode($datos->biografia) :
+       <p><?= ($datos->biografia) ? Html::encode(Utiles::translate($datos->biografia)) :
        '<em>' . Yii::t('app', 'El usuario no ha facilitado una biografía') . '</em>' ?></p>
     </div>
     <?php $valRecibidas = $model->valoraciones ?>

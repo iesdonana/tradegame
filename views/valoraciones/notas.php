@@ -33,7 +33,7 @@ $this->registerCssFile('@web/css/sticky.css');
     <li>
         <span data-id="<?= $val->id ?>">
             <h2><?= Html::encode($val->usuarioValora->usuario) ?></h2>
-            <?php $in = Utiles::translate($val->comentario) ?>
+            <?php $in = Html::encode(Utiles::translate($val->comentario)) ?>
             <p class="comentario" data-full="<?= $in ?>">
                 <?php $out = strlen($in) > 100 ? substr($in,0,100)."..." : $in; ?>
                 <?= Html::encode($out) ?><br>

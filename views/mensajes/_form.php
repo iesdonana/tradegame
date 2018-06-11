@@ -33,7 +33,11 @@ $this->registerJs($js, View::POS_HEAD);
 
 <div class="mensajes-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'options' => [
+            'class' => 'cargaForm'
+        ]
+    ]); ?>
     <?php if ($model->receptor_id === null): ?>
         <?= $form->field($model, 'receptor_id')->widget(Select2::classname(), [
             'language' => Yii::$app->language,
@@ -60,8 +64,12 @@ $this->registerJs($js, View::POS_HEAD);
         'placeholder' => Yii::t('app', 'Mensaje')
         ])->label(false) ?>
 
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Enviar'), ['class' => 'btn btn-tradegame']) ?>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="form-group">
+                <?= Html::submitButton(Yii::t('app', 'Enviar') . ' ' , ['class' => 'btn btn-tradegame btn-block']) ?>
+            </div>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>

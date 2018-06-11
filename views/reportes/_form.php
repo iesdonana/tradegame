@@ -13,7 +13,11 @@ $this->registerJsFile('@web/js/utiles.js', ['depends' => [\yii\web\JqueryAsset::
 
 <div class="reportes-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'options' => [
+            'class' => 'cargaForm'
+        ]
+    ]); ?>
 
     <?= $form->field($model, 'reportado_id')->hiddenInput(['value' => 1])->label(false) ?>
 

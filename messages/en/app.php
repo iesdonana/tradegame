@@ -235,6 +235,10 @@ return [
     'Parece no hay videojuegos publicados aún. ¿Quieres ser el primero?' => 'It seems there are no video games published yet. Do you want to be the first?',
     'Parece no tienes videojuegos publicados ¿A qué esperas?' => 'It seems you do not have video games published. What are you waiting for?',
     'Búsqueda' => 'Search',
+    'Banear' => 'Ban',
+    'Banear usuario' => 'Ban user',
+    'Banear hasta' => 'Ban up',
+    'Reportar' => 'Report',
 
     // GÉNEROS DE VIDEOJUEGOS
     'Acción' => 'Action',
