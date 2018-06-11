@@ -25,7 +25,7 @@ Es por eso que decidí dejarla un poco de lado, hasta que ya más o menos tenía
 
  - **Amazon S3**
 
- He usado Amazon S3 para alojar las imágenes de la aplicación web, ya que el modo gratuito de Heroku no permite la persistencia de archivos durante mucho tiempo.
+ He usado Amazon S3 para alojar las imágenes de la aplicación web, ya que el modo gratuito de Heroku no permite la persistencia de archivos.
 
  Para ello he tenido que crearme una cuenta en Amazon AWS y solicitar una prueba gratuita, además de hacer uso de la API de Amazon AWS para subir y descargar imágenes de los bucket.
 
