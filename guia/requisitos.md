@@ -34,7 +34,7 @@
 | **Prioridad**   | Opcional           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
-| **Entrega**     | v3             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [4](https://github.com/jlnarvaez/tradegame/issues/4) |
 
 | **R05**     | **Inicio de sesión **           |
@@ -52,7 +52,7 @@
 | **Prioridad**   | Opcional           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Difícil         |
-| **Entrega**     | v3             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [6](https://github.com/jlnarvaez/tradegame/issues/6) |
 
 | **R07**     | **Avatar de usuario**           |
@@ -61,7 +61,7 @@
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
-| **Entrega**     | v2             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [7](https://github.com/jlnarvaez/tradegame/issues/7) |
 
 | **R08**     | **Confirmación de usuario por correo**           |
@@ -70,7 +70,7 @@
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
-| **Entrega**     | v2             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [8](https://github.com/jlnarvaez/tradegame/issues/8) |
 
 | **R09**     | **Recordar sesión**           |
@@ -79,7 +79,7 @@
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
-| **Entrega**     | v2             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [9](https://github.com/jlnarvaez/tradegame/issues/9) |
 
 | **R10**     | **Recuperación de contraseña**           |
@@ -88,7 +88,7 @@
 | **Prioridad**   | Opcional           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
-| **Entrega**     | v2             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [10](https://github.com/jlnarvaez/tradegame/issues/10) |
 
 | **R11**     | **Alta de videojuegos del usuario**           |
@@ -151,7 +151,7 @@
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Difícil         |
-| **Entrega**     | v3             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [17](https://github.com/jlnarvaez/tradegame/issues/17) |
 
 | **R18**     | **Búsqueda de videojuegos**           |
@@ -160,7 +160,7 @@
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
-| **Entrega**     | v2             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [18](https://github.com/jlnarvaez/tradegame/issues/18) |
 
 | **R19**     | **Email de oferta**           |
@@ -169,7 +169,7 @@
 | **Prioridad**   | Opcional           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Difícil         |
-| **Entrega**     | v3             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [19](https://github.com/jlnarvaez/tradegame/issues/19) |
 
 | **R20**     | **Visualizar mensajes privados**           |
@@ -178,7 +178,7 @@
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
-| **Entrega**     | v2             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [20](https://github.com/jlnarvaez/tradegame/issues/20) |
 
 | **R21**     | **Enviar mensaje privado**           |
@@ -187,7 +187,7 @@
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
-| **Entrega**     | v2             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [21](https://github.com/jlnarvaez/tradegame/issues/21) |
 
 | **R22**     | **Mostrar mensajes pendientes**           |
@@ -196,7 +196,7 @@
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
-| **Entrega**     | v2             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [22](https://github.com/jlnarvaez/tradegame/issues/22) |
 
 | **R23**     | **Listado de usuarios mejores valorados**           |
@@ -214,7 +214,7 @@
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
-| **Entrega**     | v2             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [24](https://github.com/jlnarvaez/tradegame/issues/24) |
 
 | **R25**     | **Solicitar nuevo videojuego**           |
@@ -223,7 +223,7 @@
 | **Prioridad**   | Opcional           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
-| **Entrega**     | v3             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [25](https://github.com/jlnarvaez/tradegame/issues/25) |
 
 | **R26**     | **Alta de videojuegos**           |
@@ -232,7 +232,7 @@
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
-| **Entrega**     | v2             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [26](https://github.com/jlnarvaez/tradegame/issues/26) |
 
 | **R27**     | **Baja de videojuegos**           |
@@ -241,7 +241,7 @@
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
-| **Entrega**     | v2             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [27](https://github.com/jlnarvaez/tradegame/issues/27) |
 
 | **R28**     | **Modificación de videojuegos**           |
@@ -250,7 +250,7 @@
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
-| **Entrega**     | v2             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [28](https://github.com/jlnarvaez/tradegame/issues/28) |
 
 | **R29**     | **Mapa con usuarios cercanos**           |
@@ -259,7 +259,7 @@
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Difícil         |
-| **Entrega**     | v3             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [29](https://github.com/jlnarvaez/tradegame/issues/29) |
 
 | **R30**     | **Valorar un intercambio**           |
@@ -268,7 +268,7 @@
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
-| **Entrega**     | v2             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [30](https://github.com/jlnarvaez/tradegame/issues/30) |
 
 | **R31**     | **Visualizar valoraciones pendientes**           |
@@ -277,7 +277,7 @@
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
-| **Entrega**     | v2             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [31](https://github.com/jlnarvaez/tradegame/issues/31) |
 
 | **R32**     | **Reportar usuario**           |
@@ -286,7 +286,7 @@
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
-| **Entrega**     | v3             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [32](https://github.com/jlnarvaez/tradegame/issues/32) |
 
 | **R33**     | **Listar reportes **           |
@@ -295,7 +295,7 @@
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
-| **Entrega**     | v3             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [33](https://github.com/jlnarvaez/tradegame/issues/33) |
 
 | **R34**     | **Subir fotos de los juegos**           |
@@ -358,7 +358,7 @@
 | **Prioridad**   | Mínimo           |
 | **Tipo**        | Técnico                |
 | **Complejidad** | Media         |
-| **Entrega**     | v2             |
+| **Entrega**     | v3             |
 | **Incidencia**  | [40](https://github.com/jlnarvaez/tradegame/issues/40) |
 
 | **R41**     | **Gestión de ventanas**           |
@@ -367,7 +367,7 @@
 | **Prioridad**   | Mínimo           |
 | **Tipo**        | Técnico                |
 | **Complejidad** | Media         |
-| **Entrega**     | v2             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [41](https://github.com/jlnarvaez/tradegame/issues/41) |
 
 | **R42**     | **Uso de manejo de eventos**           |
@@ -394,7 +394,7 @@
 | **Prioridad**   | Mínimo           |
 | **Tipo**        | Técnico                |
 | **Complejidad** | Media         |
-| **Entrega**     | v3             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [44](https://github.com/jlnarvaez/tradegame/issues/44) |
 
 | **R45**     | **Uso de jQuery**           |
@@ -403,7 +403,7 @@
 | **Prioridad**   | Mínimo           |
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
-| **Entrega**     | v2             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [45](https://github.com/jlnarvaez/tradegame/issues/45) |
 
 | **R46**     | **Uso de plugin no trabajado**           |
@@ -412,7 +412,7 @@
 | **Prioridad**   | Mínimo           |
 | **Tipo**        | Técnico                |
 | **Complejidad** | Media         |
-| **Entrega**     | v3             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [46](https://github.com/jlnarvaez/tradegame/issues/46) |
 
 | **R47**     | **Uso de AJAX**           |
@@ -421,7 +421,7 @@
 | **Prioridad**   | Mínimo           |
 | **Tipo**        | Técnico                |
 | **Complejidad** | Media         |
-| **Entrega**     | v2             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [47](https://github.com/jlnarvaez/tradegame/issues/47) |
 
 | **R48**     | **PHP 7.1**           |
@@ -457,7 +457,7 @@
 | **Prioridad**   | Mínimo           |
 | **Tipo**        | Técnico                |
 | **Complejidad** | Media         |
-| **Entrega**     | v3             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [51](https://github.com/jlnarvaez/tradegame/issues/51) |
 
 | **R52**     | **Pruebas con Codeception**           |
@@ -520,7 +520,7 @@
 | **Prioridad**   | Mínimo           |
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
-| **Entrega**     | v3             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [58](https://github.com/jlnarvaez/tradegame/issues/58) |
 
 | **R59**     | **Uso de microdatos**           |
@@ -565,7 +565,7 @@
 | **Prioridad**   | Mínimo           |
 | **Tipo**        | Técnico                |
 | **Complejidad** | Media         |
-| **Entrega**     | v3             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [63](https://github.com/jlnarvaez/tradegame/issues/63) |
 
 | **R64**     | **Desplegar en un servidor local**           |
@@ -592,7 +592,7 @@
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
-| **Entrega**     | v2             |
+| **Entrega**     | v1             |
 | **Incidencia**  | [97](https://github.com/jlnarvaez/tradegame/issues/97) |
 
 | **R67**     | **Filtro avanzado de videojuegos**           |
@@ -601,7 +601,7 @@
 | **Prioridad**   | Opcional           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
-| **Entrega**     | v3             |
+| **Entrega**     | v2             |
 | **Incidencia**  | [98](https://github.com/jlnarvaez/tradegame/issues/98) |
 
 | **R68**     | **Cambiar de idioma**           |
@@ -621,68 +621,68 @@
 | (**R01**) Registro de usuarios | Importante | Funcional | Fácil | v1 | [1](https://github.com/jlnarvaez/tradegame/issues/1) |
 | (**R02**) Perfil de usuario | Importante | Funcional | Fácil | v1 | [2](https://github.com/jlnarvaez/tradegame/issues/2) |
 | (**R03**) Modificación de usuarios | Importante | Funcional | Fácil | v1 | [3](https://github.com/jlnarvaez/tradegame/issues/3) |
-| (**R04**) Baja de usuarios | Opcional | Funcional | Media | v3 | [4](https://github.com/jlnarvaez/tradegame/issues/4) |
+| (**R04**) Baja de usuarios | Opcional | Funcional | Media | v1 | [4](https://github.com/jlnarvaez/tradegame/issues/4) |
 | (**R05**) Inicio de sesión  | Importante | Funcional | Fácil | v1 | [5](https://github.com/jlnarvaez/tradegame/issues/5) |
-| (**R06**) Login/Registro con Google | Opcional | Funcional | Difícil | v3 | [6](https://github.com/jlnarvaez/tradegame/issues/6) |
-| (**R07**) Avatar de usuario | Importante | Funcional | Media | v2 | [7](https://github.com/jlnarvaez/tradegame/issues/7) |
-| (**R08**) Confirmación de usuario por correo | Importante | Funcional | Media | v2 | [8](https://github.com/jlnarvaez/tradegame/issues/8) |
-| (**R09**) Recordar sesión | Importante | Funcional | Media | v2 | [9](https://github.com/jlnarvaez/tradegame/issues/9) |
-| (**R10**) Recuperación de contraseña | Opcional | Funcional | Media | v2 | [10](https://github.com/jlnarvaez/tradegame/issues/10) |
+| (**R06**) Login/Registro con Google | Opcional | Funcional | Difícil | v1 | [6](https://github.com/jlnarvaez/tradegame/issues/6) |
+| (**R07**) Avatar de usuario | Importante | Funcional | Media | v1 | [7](https://github.com/jlnarvaez/tradegame/issues/7) |
+| (**R08**) Confirmación de usuario por correo | Importante | Funcional | Media | v1 | [8](https://github.com/jlnarvaez/tradegame/issues/8) |
+| (**R09**) Recordar sesión | Importante | Funcional | Media | v1 | [9](https://github.com/jlnarvaez/tradegame/issues/9) |
+| (**R10**) Recuperación de contraseña | Opcional | Funcional | Media | v1 | [10](https://github.com/jlnarvaez/tradegame/issues/10) |
 | (**R11**) Alta de videojuegos del usuario | Importante | Funcional | Fácil | v1 | [11](https://github.com/jlnarvaez/tradegame/issues/11) |
 | (**R12**) Baja de videojuegos del usuario | Importante | Funcional | Fácil | v1 | [12](https://github.com/jlnarvaez/tradegame/issues/12) |
 | (**R13**) Visualizar ofertas | Importante | Funcional | Fácil | v1 | [13](https://github.com/jlnarvaez/tradegame/issues/13) |
 | (**R14**) Hacer oferta | Importante | Funcional | Fácil | v1 | [14](https://github.com/jlnarvaez/tradegame/issues/14) |
 | (**R15**) Aceptar/Rechazar oferta | Importante | Funcional | Fácil | v1 | [15](https://github.com/jlnarvaez/tradegame/issues/15) |
 | (**R16**) Realizar oferta | Importante | Funcional | Fácil | v1 | [16](https://github.com/jlnarvaez/tradegame/issues/16) |
-| (**R17**) Realizar contraoferta | Importante | Funcional | Difícil | v3 | [17](https://github.com/jlnarvaez/tradegame/issues/17) |
-| (**R18**) Búsqueda de videojuegos | Importante | Funcional | Media | v2 | [18](https://github.com/jlnarvaez/tradegame/issues/18) |
-| (**R19**) Email de oferta | Opcional | Funcional | Difícil | v3 | [19](https://github.com/jlnarvaez/tradegame/issues/19) |
-| (**R20**) Visualizar mensajes privados | Importante | Funcional | Fácil | v2 | [20](https://github.com/jlnarvaez/tradegame/issues/20) |
-| (**R21**) Enviar mensaje privado | Importante | Funcional | Fácil | v2 | [21](https://github.com/jlnarvaez/tradegame/issues/21) |
-| (**R22**) Mostrar mensajes pendientes | Importante | Funcional | Media | v2 | [22](https://github.com/jlnarvaez/tradegame/issues/22) |
+| (**R17**) Realizar contraoferta | Importante | Funcional | Difícil | v1 | [17](https://github.com/jlnarvaez/tradegame/issues/17) |
+| (**R18**) Búsqueda de videojuegos | Importante | Funcional | Media | v1 | [18](https://github.com/jlnarvaez/tradegame/issues/18) |
+| (**R19**) Email de oferta | Opcional | Funcional | Difícil | v1 | [19](https://github.com/jlnarvaez/tradegame/issues/19) |
+| (**R20**) Visualizar mensajes privados | Importante | Funcional | Fácil | v1 | [20](https://github.com/jlnarvaez/tradegame/issues/20) |
+| (**R21**) Enviar mensaje privado | Importante | Funcional | Fácil | v1 | [21](https://github.com/jlnarvaez/tradegame/issues/21) |
+| (**R22**) Mostrar mensajes pendientes | Importante | Funcional | Media | v1 | [22](https://github.com/jlnarvaez/tradegame/issues/22) |
 | (**R23**) Listado de usuarios mejores valorados | Importante | Funcional | Fácil | v1 | [23](https://github.com/jlnarvaez/tradegame/issues/23) |
-| (**R24**) Listado de últimos videojuegos publicados | Importante | Funcional | Fácil | v2 | [24](https://github.com/jlnarvaez/tradegame/issues/24) |
-| (**R25**) Solicitar nuevo videojuego | Opcional | Funcional | Media | v3 | [25](https://github.com/jlnarvaez/tradegame/issues/25) |
-| (**R26**) Alta de videojuegos | Importante | Funcional | Fácil | v2 | [26](https://github.com/jlnarvaez/tradegame/issues/26) |
-| (**R27**) Baja de videojuegos | Importante | Funcional | Fácil | v2 | [27](https://github.com/jlnarvaez/tradegame/issues/27) |
-| (**R28**) Modificación de videojuegos | Importante | Funcional | Fácil | v2 | [28](https://github.com/jlnarvaez/tradegame/issues/28) |
-| (**R29**) Mapa con usuarios cercanos | Importante | Funcional | Difícil | v3 | [29](https://github.com/jlnarvaez/tradegame/issues/29) |
-| (**R30**) Valorar un intercambio | Importante | Funcional | Fácil | v2 | [30](https://github.com/jlnarvaez/tradegame/issues/30) |
-| (**R31**) Visualizar valoraciones pendientes | Importante | Funcional | Fácil | v2 | [31](https://github.com/jlnarvaez/tradegame/issues/31) |
-| (**R32**) Reportar usuario | Importante | Funcional | Fácil | v3 | [32](https://github.com/jlnarvaez/tradegame/issues/32) |
-| (**R33**) Listar reportes  | Importante | Funcional | Fácil | v3 | [33](https://github.com/jlnarvaez/tradegame/issues/33) |
+| (**R24**) Listado de últimos videojuegos publicados | Importante | Funcional | Fácil | v1 | [24](https://github.com/jlnarvaez/tradegame/issues/24) |
+| (**R25**) Solicitar nuevo videojuego | Opcional | Funcional | Media | v1 | [25](https://github.com/jlnarvaez/tradegame/issues/25) |
+| (**R26**) Alta de videojuegos | Importante | Funcional | Fácil | v1 | [26](https://github.com/jlnarvaez/tradegame/issues/26) |
+| (**R27**) Baja de videojuegos | Importante | Funcional | Fácil | v1 | [27](https://github.com/jlnarvaez/tradegame/issues/27) |
+| (**R28**) Modificación de videojuegos | Importante | Funcional | Fácil | v1 | [28](https://github.com/jlnarvaez/tradegame/issues/28) |
+| (**R29**) Mapa con usuarios cercanos | Importante | Funcional | Difícil | v1 | [29](https://github.com/jlnarvaez/tradegame/issues/29) |
+| (**R30**) Valorar un intercambio | Importante | Funcional | Fácil | v1 | [30](https://github.com/jlnarvaez/tradegame/issues/30) |
+| (**R31**) Visualizar valoraciones pendientes | Importante | Funcional | Fácil | v1 | [31](https://github.com/jlnarvaez/tradegame/issues/31) |
+| (**R32**) Reportar usuario | Importante | Funcional | Fácil | v1 | [32](https://github.com/jlnarvaez/tradegame/issues/32) |
+| (**R33**) Listar reportes  | Importante | Funcional | Fácil | v1 | [33](https://github.com/jlnarvaez/tradegame/issues/33) |
 | (**R34**) Subir fotos de los juegos | Opcional | Funcional | Difícil | v3 | [34](https://github.com/jlnarvaez/tradegame/issues/34) |
 | (**R35**) Videojuegos | Importante | Información | Fácil | v1 | [35](https://github.com/jlnarvaez/tradegame/issues/35) |
 | (**R36**) Usuarios | Importante | Información | Fácil | v1 | [36](https://github.com/jlnarvaez/tradegame/issues/36) |
 | (**R37**) Ofertas | Importante | Información | Fácil | v1 | [37](https://github.com/jlnarvaez/tradegame/issues/37) |
 | (**R38**) Mensajes | Importante | Información | Fácil | v1 | [38](https://github.com/jlnarvaez/tradegame/issues/38) |
 | (**R39**) Reportes | Importante | Información | Fácil | v1 | [39](https://github.com/jlnarvaez/tradegame/issues/39) |
-| (**R40**) Validación de formularios | Mínimo | Técnico | Media | v2 | [40](https://github.com/jlnarvaez/tradegame/issues/40) |
-| (**R41**) Gestión de ventanas | Mínimo | Técnico | Media | v2 | [41](https://github.com/jlnarvaez/tradegame/issues/41) |
+| (**R40**) Validación de formularios | Mínimo | Técnico | Media | v3 | [40](https://github.com/jlnarvaez/tradegame/issues/40) |
+| (**R41**) Gestión de ventanas | Mínimo | Técnico | Media | v1 | [41](https://github.com/jlnarvaez/tradegame/issues/41) |
 | (**R42**) Uso de manejo de eventos | Mínimo | Técnico | Fácil | v1 | [42](https://github.com/jlnarvaez/tradegame/issues/42) |
 | (**R43**) Uso y manipulación del DOM | Mínimo | Técnico | Fácil | v2 | [43](https://github.com/jlnarvaez/tradegame/issues/43) |
-| (**R44**) Almacenamiento en cliente | Mínimo | Técnico | Media | v3 | [44](https://github.com/jlnarvaez/tradegame/issues/44) |
-| (**R45**) Uso de jQuery | Mínimo | Técnico | Fácil | v2 | [45](https://github.com/jlnarvaez/tradegame/issues/45) |
-| (**R46**) Uso de plugin no trabajado | Mínimo | Técnico | Media | v3 | [46](https://github.com/jlnarvaez/tradegame/issues/46) |
-| (**R47**) Uso de AJAX | Mínimo | Técnico | Media | v2 | [47](https://github.com/jlnarvaez/tradegame/issues/47) |
+| (**R44**) Almacenamiento en cliente | Mínimo | Técnico | Media | v1 | [44](https://github.com/jlnarvaez/tradegame/issues/44) |
+| (**R45**) Uso de jQuery | Mínimo | Técnico | Fácil | v1 | [45](https://github.com/jlnarvaez/tradegame/issues/45) |
+| (**R46**) Uso de plugin no trabajado | Mínimo | Técnico | Media | v1 | [46](https://github.com/jlnarvaez/tradegame/issues/46) |
+| (**R47**) Uso de AJAX | Mínimo | Técnico | Media | v1 | [47](https://github.com/jlnarvaez/tradegame/issues/47) |
 | (**R48**) PHP 7.1 | Mínimo | Técnico | Fácil | v1 | [48](https://github.com/jlnarvaez/tradegame/issues/48) |
 | (**R49**) Yii2 2.0.10 | Mínimo | Técnico | Fácil | v1 | [49](https://github.com/jlnarvaez/tradegame/issues/49) |
 | (**R50**) PostgreSQL 9.6 | Mínimo | Técnico | Fácil | v1 | [50](https://github.com/jlnarvaez/tradegame/issues/50) |
-| (**R51**) Despliegue en Heroku | Mínimo | Técnico | Media | v3 | [51](https://github.com/jlnarvaez/tradegame/issues/51) |
+| (**R51**) Despliegue en Heroku | Mínimo | Técnico | Media | v1 | [51](https://github.com/jlnarvaez/tradegame/issues/51) |
 | (**R52**) Pruebas con Codeception | Mínimo | Técnico | Media | v3 | [52](https://github.com/jlnarvaez/tradegame/issues/52) |
 | (**R53**) Validar con Code Climate | Mínimo | Técnico | Media | v3 | [53](https://github.com/jlnarvaez/tradegame/issues/53) |
 | (**R54**) Escalabilidad | Mínimo | Técnico | Media | v3 | [54](https://github.com/jlnarvaez/tradegame/issues/54) |
 | (**R55**) Uso de HTML5 | Mínimo | Técnico | Fácil | v1 | [55](https://github.com/jlnarvaez/tradegame/issues/55) |
 | (**R56**) Uso de CSS | Mínimo | Técnico | Fácil | v1 | [56](https://github.com/jlnarvaez/tradegame/issues/56) |
 | (**R57**) Diseño flexible | Mínimo | Técnico | Media | v3 | [57](https://github.com/jlnarvaez/tradegame/issues/57) |
-| (**R58**) Animaciones y contenido multimedia | Mínimo | Técnico | Fácil | v3 | [58](https://github.com/jlnarvaez/tradegame/issues/58) |
+| (**R58**) Animaciones y contenido multimedia | Mínimo | Técnico | Fácil | v1 | [58](https://github.com/jlnarvaez/tradegame/issues/58) |
 | (**R59**) Uso de microdatos | Mínimo | Técnico | Fácil | v3 | [59](https://github.com/jlnarvaez/tradegame/issues/59) |
 | (**R60**) Validación de HTML y CSS, nivel de accesibilidad AA y prueba del seis | Mínimo | Técnico | Media | v3 | [60](https://github.com/jlnarvaez/tradegame/issues/60) |
 | (**R61**) Implementar para varias resoluciones | Mínimo | Técnico | Media | v3 | [61](https://github.com/jlnarvaez/tradegame/issues/61) |
 | (**R62**) Comprobación en varios navegadores | Mínimo | Técnico | Fácil | v3 | [62](https://github.com/jlnarvaez/tradegame/issues/62) |
-| (**R63**) Desplegar en un Host | Mínimo | Técnico | Media | v3 | [63](https://github.com/jlnarvaez/tradegame/issues/63) |
+| (**R63**) Desplegar en un Host | Mínimo | Técnico | Media | v1 | [63](https://github.com/jlnarvaez/tradegame/issues/63) |
 | (**R64**) Desplegar en un servidor local | Mínimo | Técnico | Media | v1 | [64](https://github.com/jlnarvaez/tradegame/issues/64) |
 | (**R65**) Listado de videojuegos publicados por un usuario | Importante | Funcional | Media | v1 | [76](https://github.com/jlnarvaez/tradegame/issues/76) |
-| (**R66**) Banear usuario | Importante | Funcional | Media | v2 | [97](https://github.com/jlnarvaez/tradegame/issues/97) |
-| (**R67**) Filtro avanzado de videojuegos | Opcional | Funcional | Media | v3 | [98](https://github.com/jlnarvaez/tradegame/issues/98) |
+| (**R66**) Banear usuario | Importante | Funcional | Media | v1 | [97](https://github.com/jlnarvaez/tradegame/issues/97) |
+| (**R67**) Filtro avanzado de videojuegos | Opcional | Funcional | Media | v2 | [98](https://github.com/jlnarvaez/tradegame/issues/98) |
 | (**R68**) Cambiar de idioma | Importante | Funcional | Media | v2 | [103](https://github.com/jlnarvaez/tradegame/issues/103) |
