@@ -273,3 +273,7 @@ tr.deprecated td,
 tr.deprecated th {
     background: lightpink;
 }
+
+pre {
+    white-space: normal;
+}

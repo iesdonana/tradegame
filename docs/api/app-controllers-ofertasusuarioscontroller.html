@@ -6,10 +6,10 @@
     <meta name="language" content="en" />
         <link href="./assets/65e2b46c/css/bootstrap.css" rel="stylesheet">
 <link href="./assets/9e6600df/solarized_light.css" rel="stylesheet">
-<link href="./assets/8c0c9d61/style.css" rel="stylesheet">
+<link href="./assets/31a1120b/style.css" rel="stylesheet">
 <script src="./assets/8de59952/jquery.js"></script>
 <script src="./assets/65e2b46c/js/bootstrap.js"></script>
-<script src="./assets/954c08f/jssearch.js"></script>    <title>OfertasUsuariosController, app\controllers\OfertasUsuariosController - API del proyecto</title>
+<script src="./assets/5b3b24db/jssearch.js"></script>    <title>OfertasUsuariosController, app\controllers\OfertasUsuariosController - API del proyecto</title>
 </head>
 <body>
 
@@ -35,9 +35,10 @@
                 <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-63" data-toggle="collapse" data-parent="#navigation">Not namespaced classes <b class="caret"></b></a><div id="navigation-63" class="submenu panel-collapse collapse"><a class="list-group-item" href="./yii.html">Yii</a>
 <a class="list-group-item" href="./yiirequirementchecker.html">YiiRequirementChecker</a></div>
 <a class="list-group-item" href="#navigation-64" data-toggle="collapse" data-parent="#navigation">app\assets <b class="caret"></b></a><div id="navigation-64" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-assets-appasset.html">AppAsset</a>
-<a class="list-group-item" href="./app-assets-bxasset.html">BxAsset</a>
+<a class="list-group-item" href="./app-assets-customslickasset.html">CustomSlickAsset</a>
 <a class="list-group-item" href="./app-assets-faasset.html">FAAsset</a>
 <a class="list-group-item" href="./app-assets-loginasset.html">LoginAsset</a>
+<a class="list-group-item" href="./app-assets-slickasset.html">SlickAsset</a>
 <a class="list-group-item" href="./app-assets-videasset.html">VideAsset</a></div>
 <a class="list-group-item" href="#navigation-65" data-toggle="collapse" data-parent="#navigation">app\commands <b class="caret"></b></a><div id="navigation-65" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-commands-hellocontroller.html">HelloController</a></div>
 <a class="list-group-item" href="#navigation-66" data-toggle="collapse" data-parent="#navigation">app\components <b class="caret"></b></a><div id="navigation-66" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-components-checklanguage.html">CheckLanguage</a>
@@ -538,12 +539,20 @@ in the request.</td>
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-ofertasusuarioscontroller.html#actionIndex()-detail">actionIndex</a></strong> ( <span style="color: #0000BB">$estado&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span> )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-ofertasusuarioscontroller.html#actionIndex()-detail">actionIndex</a></strong> ( <span style="color: #0000BB">$estado&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'todas'</span>, <span style="color: #0000BB">$tipo&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'recibidas'</span> )</td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$estado</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.null">null</a>|mixed</td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
                   <td class="param-desc-col"><p>El estado en el cuál se encuentra la oferta</p>
-<pre><code class="hljs nginx">                      <span class="hljs-title">Puede</span> ser: <span class="hljs-string">'pendientes'</span>, <span class="hljs-string">'aceptadas'</span>, <span class="hljs-string">'rechazadas'</span> o null.
+<pre><code class="hljs nginx">                  <span class="hljs-title">Puede</span> ser: <span class="hljs-string">'pendientes'</span>, <span class="hljs-string">'aceptadas'</span>, <span class="hljs-string">'rechazadas'</span> o null.
+</code></pre>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$tipo</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>El tipo de ofertas a ver.</p>
+<pre><code class="hljs nginx">                  <span class="hljs-title">Puede</span> ser: <span class="hljs-string">'recibidas'</span> o <span class="hljs-string">'enviadas'</span>.
 </code></pre>
 </td>
                 </tr>
@@ -632,7 +641,7 @@ or be detached using <a href="yii-base-component.html#detachBehavior()-detail">d
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Tue, 29 May 2018 17:25:05 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Mon, 11 Jun 2018 13:38:43 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {
