@@ -16,7 +16,7 @@ CSS;
 $this->registerCss($css);
 $this->registerCssFile('@web/css/pacman.css');
 $js = <<<JS
-    $('.btn-publicar').on('click', function(e) {
+    $('#w0').on('beforeSubmit', function(e) {
         $('.container-loader').removeClass('hidden');
     });
 JS;

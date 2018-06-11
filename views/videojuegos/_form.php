@@ -14,7 +14,7 @@ $this->registerJsFile('@web/js/fotos.js', ['depends' => [\yii\web\JqueryAsset::c
 $this->registerCssFile('@web/css/badge.css');
 $this->registerCss('.badge-corner { margin-right: 40px}');
 $js = <<<JS
-    $('.btn-guardar').on('click', function(e) {
+    $('#w0').on('beforeSubmit', function(e) {
         $('.container-loader').removeClass('hidden');
     });
 JS;
