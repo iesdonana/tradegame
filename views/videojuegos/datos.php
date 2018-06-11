@@ -4,16 +4,40 @@ use app\helpers\Utiles;
 
 use yii\helpers\Html;
 
+$css = <<<CSS
+.btn-ficha {
+    margin-top: 10px;
+}
+CSS;
+$this->registerCss($css);
+if (!isset($mostrarBoton)) {
+    $mostrarBoton = false;
+}
 ?>
 
 <div class="row">
     <div class="page-header text-center text-tradegame">
-        <h3><?= Html::a(Html::encode($model->nombre), ['videojuegos/ver', 'id' => $model->id]) ?></h3>
+        <?php if ($mostrarBoton): ?>
+            <h3><?= Html::a(Html::encode($model->nombre), ['videojuegos/ver', 'id' => $model->id]) ?></h3>
+        <?php else: ?>
+            <h3><?= Html::encode($model->nombre) ?></h3>
+        <?php endif; ?>
     </div>
 </div>
 <div class="row">
     <div class="col-md-3" itemprop="name">
-        <?= Html::img($model->caratula, ['class' => 'img-thumbnail center-block caratula-detail']) ?>
+        <?= Html::img($model->caratula, ['class' => 'center-block caratula-detail']) ?>
+        <?php if ($mostrarBoton): ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <?= Html::a('<strong>' . Utiles::FA('info-circle') . ' ' .
+                    Yii::t('app', 'Ficha técnica') . '</strong>', [
+                        'videojuegos/ver',
+                        'id' => $model->id
+                    ], ['class' => 'btn btn-xs btn-block btn-primary center-block caratula-detail btn-ficha']) ?>
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
     <div class="col-md-9">
         <ul class="list-group">

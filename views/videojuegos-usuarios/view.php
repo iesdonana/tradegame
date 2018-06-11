@@ -17,6 +17,7 @@ $css = <<<CSS
 
 #date {
     margin: 20px;
+    margin-bottom: 0;
 }
 
 img.fotos-videojuego {
@@ -126,32 +127,37 @@ $this->params['breadcrumbs'][] = [
     'url' => ['videojuegos-usuarios/publicaciones', 'usuario' => $user]
 ];
 $this->params['breadcrumbs'][] = $this->title;
+
+
+$tag = Html::tag('span', Utiles::FA('check') .
+    ' ' . Yii::t('app', 'Este videojuego ya ha sido intercambiado.'),
+    ['class' => 'text-success']);
 ?>
 
 <div class="row">
     <div class="col-md-offset-1 col-md-10">
-        <div class="panel panel-default panel-trade panel-sm">
+        <div class="panel panel-default panel-trade panel-sm panel-success">
             <div class="panel-heading">
                 <div class="panel-title">
-                    <?= Yii::t('app', 'Publicación') ?>
+                    <div class="row">
+                        <div class="col-md-6 col-xs-6">
+                            <?= Yii::t('app', 'Publicación') ?>
+                        </div>
+                        <div class="col-md-6 col-xs-6 text-right">
+                            <?php if ($model->visible && (Yii::$app->user->id === $model->usuario_id)): ?>
+                                <?= Html::a(Yii::t('app', 'Borrar') . ' ' . Utiles::FA('trash-alt'), null, ['class' => 'btn btn-xs btn-danger popup-modal']) ?>
+                            <?php elseif (!$model->visible): ?>
+                                <span class="hidden-xs"><?= $tag ?></span> 
+                            <?php endif ?>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="panel-body">
-                <div class="visible-xs">
-                    <?php if ($model->visible && (Yii::$app->user->id === $model->usuario_id)): ?>
-                        <?= Html::a(Utiles::FA('trash-alt') . ' ' . Yii::t('app', 'Borrar'),
-                            null,
-                            ['class' => 'btn btn-xs btn-danger popup-modal btn-block']
-                        ) ?>
-                    <?php endif ?>
-                </div>
                 <?php if (!$model->borrado): ?>
                     <div id='date' class="row">
                         <div class="row visible-xs text-center">
                             <div class="col-xs-12">
-                                <?php $tag = Html::tag('span', Utiles::FA('check') .
-                                ' ' . Yii::t('app', 'Este videojuego ya ha sido intercambiado.'),
-                                ['class' => 'text-success']) ?>
                                 <?php if (!$model->visible): ?>
                                     <?= $tag ?>
                                 <?php endif ?>
@@ -166,24 +172,17 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?= Html::a($user, ['usuarios/perfil', 'usuario' => $user]) ?>
                         </div>
                         <div class="col-md-6 col-xs-12 text-right">
-                            <?php if (!$model->visible): ?>
-                                <div class="hidden-xs">
-                                    <?= $tag ?>
-                                </div>
-                            <?php endif; ?>
                             <span class="visible-xs text-center">
                                 <?= Utiles::FA('clock', ['class' => 'far']) . ' ' . Yii::$app->formatter->asRelativeTime($model->created_at) ?>
                             </span>
                             <span class="hidden-xs">
                                 <?= Utiles::FA('clock', ['class' => 'far']) . ' ' . Yii::$app->formatter->asRelativeTime($model->created_at) ?>
                             </span>
-                            <?php if ($model->visible && (Yii::$app->user->id === $model->usuario_id)): ?>
-                                <?= Html::a(Utiles::FA('trash-alt'), null, ['class' => 'btn btn-xs btn-danger popup-modal hidden-xs']) ?>
-                            <?php endif ?>
                         </div>
                     </div>
                     <?= $this->render('/videojuegos/datos', [
-                        'model' => $videojuego
+                        'model' => $videojuego,
+                        'mostrarBoton' => true,
                     ]) ?>
                     <div class="datos-videojuego">
                         <strong><?= Yii::t('app', 'Comentarios del usuario') ?>: </strong><br>
@@ -220,7 +219,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?= Html::a(Yii::t('app', 'Hacer oferta') . ' ' . Utiles::FA('handshake', ['class' => 'far']), [
                                     'ofertas/create',
                                     'publicacion' => $model->id
-                                ], ['class' => 'btn btn-lg btn-warning btn-block']) ?>
+                                ], ['class' => 'btn btn-lg btn-warning btn-offer btn-block']) ?>
                             </div>
                         </div>
                     <?php endif; ?>

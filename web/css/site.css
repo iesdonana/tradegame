@@ -111,7 +111,7 @@ a.desc:after {
         width: 100%;
         padding: 10px 15px;
     }
-    
+
     .kv-grid-table .empty {
         font-size: 5vh;
     }
@@ -389,4 +389,8 @@ span[data-plat$='2'] {
 
 .panel-sm .panel-heading .panel-title {
     font-size: 15px !important;
+}
+
+.btn-offer {
+    background-color: #e08c04;
 }

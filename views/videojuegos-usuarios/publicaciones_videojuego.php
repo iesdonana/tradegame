@@ -60,7 +60,7 @@ use kartik\grid\GridView;
                         return Html::a(Yii::t('app', 'Hacer oferta'), [
                             'ofertas/create',
                             'publicacion' => $model->id
-                        ], ['class' => 'btn btn-xs btn-warning']);
+                        ], ['class' => 'btn btn-xs btn-warning btn-offer']);
                     } else {
                         return Html::a(Yii::t('app', 'Tu publicación'), null, [
                             'class' => 'btn btn-xs btn-primary',

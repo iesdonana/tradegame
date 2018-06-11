@@ -1,9 +1,9 @@
 .caratula-mini {
-    width: 130px;
+    width: 130px !important;
 }
 
 .caratula-big {
-    width: 200px;
+    width: 200px !important;
 }
 
 .titulo {
@@ -25,6 +25,11 @@
 
 .desc {
     margin-left: 20px;
+}
+
+.botones-acciones,
+.published-by {
+    margin-top: 10px;
 }
 
 /* MOBILE */
