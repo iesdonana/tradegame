@@ -78,7 +78,7 @@ class ReportesController extends Controller
             throw new NotFoundHttpException('No se ha podido encontrar el usuario.');
         }
 
-        $model->reporta_id = $user->id;
+        $model->reporta_id = Yii::$app->user->id;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('info', "Has reportado correctamente a $user->usuario. Tu petición será revisada por los administradores");
             return $this->goHome();

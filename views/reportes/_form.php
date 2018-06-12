@@ -19,7 +19,7 @@ $this->registerJsFile('@web/js/utiles.js', ['depends' => [\yii\web\JqueryAsset::
         ]
     ]); ?>
 
-    <?= $form->field($model, 'reportado_id')->hiddenInput(['value' => 1])->label(false) ?>
+    <?= $form->field($model, 'reportado_id')->hiddenInput(['value' => $reportado->id])->label(false) ?>
 
     <?= $form->field($model, 'mensaje', [
         'template' => "{label} " . Utiles::contadorCaracteres(20) . "\n{input}\n{hint}\n{error}"
