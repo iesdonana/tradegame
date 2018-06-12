@@ -8,6 +8,9 @@ use yii\helpers\Html;
 
 use yii\widgets\ActiveForm;
 
+$this->title = Yii::t('app', 'Mis mensajes');
+$this->params['breadcrumbs'][] = $this->title;
+
 $this->registerCssFile('@web/css/chat.css');
 $urlConver = Url::to(['mensajes/conversacion']);
 $create = Url::to(['mensajes/create']);
@@ -98,7 +101,14 @@ $this->registerJsFile('@web/js/chat.js', ['position' => View::POS_HEAD]);
         <div class="col-md-offset-2 col-md-8">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3><?= Yii::t('app', 'Aún no has intercambiado mensajes con ningún usuario') ?> <?= Utiles::FA('frown', ['class' => 'far']) ?></h3>
+                    <div class="row">
+                        <div class="col-md-12 text-center txt-empty">
+                            <?= Yii::t('app', 'Aún no has intercambiado mensajes con ningún usuario') . ' ' . Utiles::FA('frown', ['class' => 'far']) ?>
+                        </div>
+                        <div class="col-md-12 text-center btn-enviar">
+                            <?= Html::a('Enviar mensaje', ['mensajes/nuevo'], ['class' => 'btn btn-tradegame']) ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

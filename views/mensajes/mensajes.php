@@ -1,5 +1,7 @@
 <?php
 
+use app\helpers\Utiles;
+
 use yii\helpers\Url;
 use yii\helpers\Html;
 
@@ -10,6 +12,10 @@ $url = Url::to(['mensajes/conversacion']);
 $css = <<<CSS
 .mensaje {
     word-break: break-all;
+}
+
+.text-small {
+    font-size: 10px;
 }
 CSS;
 $this->registerCss($css);
@@ -30,13 +36,16 @@ $this->registerCss($css);
     if (in_array($usr, Yii::$app->params['privateUsers'])) {
         $msg = $mensaje->contenido;
     }
-    $fecha = Yii::$app->formatter->asDatetime($mensaje->created_at);
+    $fecha = Yii::$app->formatter->asDatetime($mensaje->created_at, 'dd/MM HH:mm');
     ?>
     <div class="row fila">
         <?php if ($mensaje->emisor_id == $me): ?>
             <div class="col-md-10 col-xs-8 mensaje">
                 <span class="pull-right mio" title="<?= $fecha ?>">
                     <?= nl2br($msg) ?>
+                    <div class="text-small text-right">
+                        <?= Utiles::FA('clock', ['class' => 'far']) . ' ' . $fecha ?>
+                    </div>
                 </span>
             </div>
             <div class="col-md-1 col-xs-3">
@@ -49,6 +58,9 @@ $this->registerCss($css);
             <div class="col-md-10 col-xs-8 mensaje">
                 <span class="pull-left suyo" title="<?= $fecha ?>">
                     <?= nl2br($msg) ?>
+                    <div class="text-small text-left">
+                        <?= Utiles::FA('clock', ['class' => 'far']) . ' ' . $fecha ?>
+                    </div>
                 </span>
             </div>
         <?php endif ?>

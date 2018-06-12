@@ -34,14 +34,13 @@ INSERT INTO valoraciones (usuario_valorado_id, usuario_valora_id, comentario, nu
     VALUES (2, 3, 'Todo perfecto sin ningún tipo de problema. Volvería a repetir', 5),
             (2, 4, 'Rápido y fácil. Es muy atento.', 4),
             (2, 5, 'Me encanta su amabilidad. Recomendable 100%', 4),
-            (3, 2, 'Tarda mucho en contestar los mensajes, pero después el trato ha sido bueno', 3),
+            (3, 2, 'Tarda mucho en contestar los mensajes, pero después el trato ha sido bueno. ' ||
+            'Además el videojuego que hemos intercambiado está en muy buen estado. Volvería a repetir sin duda alguna.', 3),
             (3, 4, 'Atento y videojuego muy cuidado. Parece nuevo.', 5);
 
 INSERT INTO reportes (reporta_id, reportado_id, mensaje)
-    VALUES (2, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' ||
-    'Nam vel lectus malesuada neque interdum ultricies vitae sit amet elit. Etiam.'),
-    (3, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' ||
-    'Nam vel lectus malesuada neque interdum ultricies vitae sit amet elit. Etiam.');
+    VALUES (3, 4, 'No para de molestarme mediante mensaje privado.'),
+    (5, 4, 'Se lleva todo el tiempo molestando a través del chat.');
 
 INSERT INTO generos_videojuegos (nombre)
     VALUES ('Acción'), ('Terror'), ('Shooter'), ('Deportes'), ('Aventuras')

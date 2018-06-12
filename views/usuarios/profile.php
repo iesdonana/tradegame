@@ -35,6 +35,7 @@ $('.bxslider').removeClass('hidden');
 $('.bxslider').slick({
     autoplay: true,
     pauseOnFocus: true,
+    dots: true,
     responsive: [
         {
           breakpoint: 480,
