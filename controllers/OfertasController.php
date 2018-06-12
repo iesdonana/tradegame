@@ -67,6 +67,17 @@ class OfertasController extends Controller
                                 return false;
                             }
 
+                            // Si solo tiene un videojuego, no le permitimos hacer una contraoferta
+                            $of = $oferta->videojuegoOfrecido
+                                ->usuario
+                                ->getVideojuegosUsuarios()
+                                ->where(['visible' => true])
+                                ->andWhere(['borrado' => false])->count();
+
+                            if ($of <= 1) {
+                                return false;
+                            }
+
                             return true;
                         },
                     ],
@@ -102,7 +113,7 @@ class OfertasController extends Controller
 
     /**
      * Realiza una contraoferta sobre una oferta ya recibida.
-     * @param  int   $oferta Id de la oferta sobre la cual vamos a hacer uan
+     * @param  int   $oferta Id de la oferta sobre la cual vamos a hacer una
      *                       contraoferta
      * @return mixed
      */

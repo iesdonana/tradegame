@@ -33,7 +33,7 @@ $('.pop-listado').click(function(e) {
 });
 JS;
 $this->registerJs($js);
-
+$ofertadoPrevio = $model->contraoferta_de !== null ? $model->contraofertaDe->videojuegoOfrecido->videojuego : null;
 ?>
 <div class="ofertas-create">
     <div class="row text-center">
@@ -109,7 +109,8 @@ $this->registerJs($js);
                             [
                                 'videojuegos-usuarios/publicaciones',
                                 'usuario' => $nom_ofrecido,
-                                'layout' => 'mini_ventana'
+                                'layout' => 'mini_ventana',
+                                'videojuego_oferta' => $ofertadoPrevio->id,
                             ],
                             ['class' => 'pop-listado']
                         ) ?>
@@ -123,10 +124,19 @@ $this->registerJs($js);
                     </div>
                 </div>
                 <div class="panel-body">
-                    <?php $datos = ['model' => $model] ?>
-                    <?php if (isset($usuarioOfrecido)): ?>
-                        <?php $datos = array_merge($datos, ['usuario_id' => $usuarioOfrecido->id]) ?>
-                    <?php endif ?>
+                    <?php
+                    $datos = ['model' => $model];
+                    if (isset($usuarioOfrecido)) {
+                        $datos = array_merge($datos, ['usuario_id' => $usuarioOfrecido->id]);
+                    }
+
+
+
+                    $params = [];
+                    if ($model->contraoferta_de !== null) {
+                        $datos['id_videojuego_oferta'] = $ofertadoPrevio->id;
+                    }
+                    ?>
                     <?= $this->render('_form', $datos) ?>
                 </div>
             </div>

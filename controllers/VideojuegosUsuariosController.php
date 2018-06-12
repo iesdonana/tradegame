@@ -72,12 +72,14 @@ class VideojuegosUsuariosController extends Controller
     /**
      * Hace una búsqueda de videojuegos publicados de un usuariom por el nombre
      * del videojuego.
-     * @param  int $id_usuario    Usuario por el cual vamos a filtrar
-     * @param  int $id_videojuego Id del videojuego publicado
-     * @param  string $q          Búsqueda del título
-     * @return string             Respuesta en JSON
+     * @param  int    $id_usuario           Usuario por el cual vamos a filtrar
+     * @param  int    $id_videojuego        Id del videojuego publicado
+     * @param  int    $id_videojuego_oferta Id del videojuego que nos han ofrecido en una oferta
+     *                                      (este parámetro solo hay que pasarlo en caso de ser una contraoferta)
+     * @param  string $q                    Búsqueda del título
+     * @return string                       Respuesta en JSON
      */
-    public function actionBuscarPublicados($id_usuario, $id_videojuego, $q = null)
+    public function actionBuscarPublicados($id_usuario, $id_videojuego, $id_videojuego_oferta = -1, $q = null)
     {
         if (!Yii::$app->request->isAjax) {
             return $this->goHome();
@@ -92,6 +94,10 @@ class VideojuegosUsuariosController extends Controller
                 ->andWhere(['visible' => true])
                 ->andWhere(['borrado' => false])
                 ->andWhere(['!=', 'videojuego_id',  $id_videojuego]);
+
+            if ($id_videojuego_oferta !== -1) {
+                $subQuery = $subQuery->andWhere(['!=', 'videojuego_id', $id_videojuego_oferta]);
+            }
 
             $videojuegos['results'] = Videojuegos::find()
                 ->select(['videojuegos_usuarios.id', 'videojuegos.nombre',
@@ -113,12 +119,14 @@ class VideojuegosUsuariosController extends Controller
     /**
      * Muestra las publicaciones de un usuario pasado por parámetro.
      * @param  string $usuario Nombre de usuario
+     * @param  int    $videojuego_oferta Videojuego que ya se le ha hecho en una oferta,
+     *                                   para que aparezca "desactivado" en la mini_ventana
      * @param null|mixed $layout Layout en el que vamos a renderizar la vista
      *                           Si es null la renderizaremos en el layout que usa todas las páginas
      * @return mixed
      * @throws NotFoundHttpException Si no se ha encontrado el usuario
      */
-    public function actionPublicaciones($usuario, $layout = null)
+    public function actionPublicaciones($usuario, $videojuego_oferta = -1, $layout = null)
     {
         if (($model = Usuarios::findOne(['usuario' => $usuario])) === null) {
             throw new NotFoundHttpException(Yii::t('app', "No se ha encontrado el usuario '{username}'", [
@@ -143,6 +151,7 @@ class VideojuegosUsuariosController extends Controller
             $this->layout = $layout;
             return $this->render('listado_ventana', [
                 'listado' => $query->all(),
+                'id_videojuego_oferta' => $videojuego_oferta
             ]);
         }
         return $this->render('publicaciones', [

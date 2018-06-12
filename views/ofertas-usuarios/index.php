@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Usuarios;
 use app\models\VideojuegosUsuarios;
 
 use app\helpers\Utiles;
@@ -188,14 +189,30 @@ $this->registerCss($css);
                     },
                     'contraoferta' => function($url, $model, $key) {
                         if ($model->contraoferta_de === null && $model->aceptada === null && Yii::$app->request->get('tipo') !== 'enviadas') {
-                            return Html::a(
-                                Utiles::FA('exchange-alt'),
-                                ['ofertas/contraoferta', 'oferta' => $model->id],
-                                [
-                                    'class' => 'btn btn-xs btn-info',
-                                    'data-toggle' => 'tooltip',
-                                    'title' => Yii::t('app', 'Realizar contraoferta'),
-                                ]);
+                            // Si el usuario sólo tiene el videojuego que te acaba de ofrecer,
+                            // no permitimos la contraoferta
+                            $usr = Usuarios::findOne(['usuario' => $model->usuario_ofrecido]);
+                            if ($usr->getVideojuegosUsuarios()
+                                ->where(['visible' => true])
+                                ->andWhere(['borrado' => false])->count() > 1) {
+                                return Html::a(
+                                    Utiles::FA('exchange-alt'),
+                                    ['ofertas/contraoferta', 'oferta' => $model->id],
+                                    [
+                                        'class' => 'btn btn-xs btn-info',
+                                        'data-toggle' => 'tooltip',
+                                        'title' => Yii::t('app', 'Realizar contraoferta'),
+                                    ]);
+                            } else {
+                                return Html::a(
+                                    Utiles::FA('exchange-alt'), null,
+                                    [
+                                        'class' => 'btn btn-xs btn-info',
+                                        'data-toggle' => 'tooltip',
+                                        'title' => Yii::t('app', 'Realizar contraoferta'),
+                                        'disabled' => true,
+                                    ]);
+                            }
                         }
                     },
                     'estado' => function ($url, $model, $key) {

@@ -20,10 +20,17 @@ $this->registerJs("var defaultImg = '$defaultImg'", View::POS_HEAD);
 $this->registerJsFile('@web/js/publicar.js', ['position' => View::POS_HEAD]);
 $this->registerJsFile('@web/js/utiles.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerJsFile('@web/js/oferta.js', ['position' => View::POS_HEAD]);
-$url = Url::to(['videojuegos-usuarios/buscar-publicados',
+
+$params = [
+    'videojuegos-usuarios/buscar-publicados',
     'id_usuario' => $usuario_id,
     'id_videojuego' => $model->videojuegoPublicado->videojuego->id
-]);
+];
+
+if (isset($id_videojuego_oferta)) {
+    $params['id_videojuego_oferta'] = $id_videojuego_oferta;
+}
+$url = Url::to($params);
 
 $urlDatos = Url::to(['videojuegos/oferta-videojuego']);
 ?>

@@ -32,6 +32,11 @@
     margin-top: 10px;
 }
 
+.disable-image {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
 /* MOBILE */
 @media(max-width:767px) {
     .date-publicado,
