@@ -85,7 +85,12 @@ class SiteController extends Controller
     public function actionIndex()
     {
         if (!Yii::$app->user->isGuest) {
-            $list = VideojuegosUsuarios::find()->orderBy('created_at DESC')->limit(5)->all();
+            $list = VideojuegosUsuarios::find()
+                ->where(['visible' => true])
+                ->andWhere(['borrado' => false])
+                ->orderBy('created_at DESC')
+                ->limit(5)
+                ->all();
             return $this->render('index', [
                 'lastVideojuegos' => $list,
             ]);

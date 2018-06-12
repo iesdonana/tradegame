@@ -168,8 +168,7 @@ class VideojuegosUsuariosController extends Controller
     public function actionAllPublicaciones()
     {
         $query = VideojuegosUsuarios::find()
-            ->with('videojuego')
-            ->andWhere(['visible' => true])
+            ->where(['visible' => true])
             ->andWhere(['borrado' => false])
             ->orderBy('created_at DESC');
 

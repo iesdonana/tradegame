@@ -591,7 +591,7 @@ del videojuego.</strong></p>
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="app-controllers-videojuegosusuarioscontroller.html#actionBuscarPublicados()-detail">actionBuscarPublicados</a></strong> ( <span style="color: #0000BB">$id_usuario</span>, <span style="color: #0000BB">$id_videojuego</span>, <span style="color: #0000BB">$q&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span> )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="app-controllers-videojuegosusuarioscontroller.html#actionBuscarPublicados()-detail">actionBuscarPublicados</a></strong> ( <span style="color: #0000BB">$id_usuario</span>, <span style="color: #0000BB">$id_videojuego</span>, <span style="color: #0000BB">$id_videojuego_oferta&nbsp;</span><span style="color: #007700">=&nbsp;-</span><span style="color: #0000BB">1</span>, <span style="color: #0000BB">$q&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span> )</td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$id_usuario</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
@@ -602,6 +602,14 @@ del videojuego.</strong></p>
                   <td class="param-name-col"><span style="color: #0000BB">$id_videojuego</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
                   <td class="param-desc-col"><p>Id del videojuego publicado</p>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$id_videojuego_oferta</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"><p>Id del videojuego que nos han ofrecido en una oferta</p>
+<pre><code class="hljs ">                                 (este parámetro solo hay que pasarlo en caso de ser una contraoferta)
+</code></pre>
 </td>
                 </tr>
                             <tr>
@@ -638,11 +646,19 @@ del videojuego.</strong></p>
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-videojuegosusuarioscontroller.html#actionPublicaciones()-detail">actionPublicaciones</a></strong> ( <span style="color: #0000BB">$usuario</span>, <span style="color: #0000BB">$layout&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span> )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-videojuegosusuarioscontroller.html#actionPublicaciones()-detail">actionPublicaciones</a></strong> ( <span style="color: #0000BB">$usuario</span>, <span style="color: #0000BB">$videojuego_oferta&nbsp;</span><span style="color: #007700">=&nbsp;-</span><span style="color: #0000BB">1</span>, <span style="color: #0000BB">$layout&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span> )</td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$usuario</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
                   <td class="param-desc-col"><p>Nombre de usuario</p>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$videojuego_oferta</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"><p>Videojuego que ya se le ha hecho en una oferta,</p>
+<pre><code class="hljs nginx">                              <span class="hljs-title">para</span> que aparezca <span class="hljs-string">"desactivado"</span> en la mini_ventana
+</code></pre>
 </td>
                 </tr>
                             <tr>
@@ -801,7 +817,7 @@ de un videojuego del usuario.</strong></p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Mon, 11 Jun 2018 17:42:16 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Tue, 12 Jun 2018 18:07:27 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {
