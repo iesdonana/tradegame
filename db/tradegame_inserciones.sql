@@ -36,7 +36,9 @@ INSERT INTO valoraciones (usuario_valorado_id, usuario_valora_id, comentario, nu
             (2, 5, 'Me encanta su amabilidad. Recomendable 100%', 4),
             (3, 2, 'Tarda mucho en contestar los mensajes, pero después el trato ha sido bueno. ' ||
             'Además el videojuego que hemos intercambiado está en muy buen estado. Volvería a repetir sin duda alguna.', 3),
-            (3, 4, 'Atento y videojuego muy cuidado. Parece nuevo.', 5);
+            (3, 4, 'Atento y videojuego muy cuidado. Parece nuevo.', 5),
+            (4, 5, 'Tardó mucho en quedar para el intercambio. ¡¡NO RECOMENDABLE!!', 2),
+            (5, 4, 'Aceptable', 3);
 
 INSERT INTO reportes (reporta_id, reportado_id, mensaje)
     VALUES (3, 4, 'No para de molestarme mediante mensaje privado.'),

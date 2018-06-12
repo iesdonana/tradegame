@@ -4,6 +4,8 @@ use app\helpers\Utiles;
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+
+use yii\widgets\LinkPager;
 $this->registerCssFile('@web/css/top-valoraciones.css');
 $this->params['breadcrumbs'][] = Yii::t('app', 'Top valoraciones');
 
@@ -33,7 +35,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Top valoraciones');
                     <?php for ($i=0; $i < count($listado) ; $i++): ?>
                         <?php
                         $model = $listado[$i];
-                        $pos = $i + 1;
+                        $pos = $i + $pages->offset + 1;
                         ?>
                         <tr>
                             <td class="text-center">
@@ -61,6 +63,11 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Top valoraciones');
                         </tr>
                     <?php endfor ?>
                 </table>
+                <div class="col-md-12 text-center">
+                    <?= LinkPager::widget([
+                        'pagination' => $pages,
+                    ]); ?>                    
+                </div>
 
             <?php endif; ?>
         </div>

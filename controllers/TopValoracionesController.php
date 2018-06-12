@@ -4,7 +4,8 @@ namespace app\controllers;
 
 use app\models\TopValoraciones;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
+
+use yii\data\Pagination;
 
 /**
  * TopValoracionesController implements the CRUD actions for TopValoraciones model.
@@ -18,10 +19,19 @@ class TopValoracionesController extends Controller
     public function actionTop()
     {
         $listado = TopValoraciones::find()
-            ->orderBy('avg DESC, totales DESC')->all();
+            ->orderBy('avg DESC, totales DESC');
+        $pages = new Pagination([
+            'totalCount' => $listado->count(),
+            'pageSize' => 10,
+        ]);
+
+        $models = $listado->offset($pages->offset)
+        ->limit($pages->limit)
+        ->all();
 
         return $this->render('top', [
-            'listado' => $listado,
+            'listado' => $models,
+            'pages' => $pages
         ]);
     }
 }

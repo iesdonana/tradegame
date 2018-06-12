@@ -138,7 +138,8 @@ class VideojuegosUsuariosController extends Controller
             ->with('videojuego')
             ->where(['usuario_id' => $model->id])
             ->andWhere(['visible' => true])
-            ->andWhere(['borrado' => false]);
+            ->andWhere(['borrado' => false])
+            ->orderBy('created_at DESC');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -169,7 +170,8 @@ class VideojuegosUsuariosController extends Controller
         $query = VideojuegosUsuarios::find()
             ->with('videojuego')
             ->andWhere(['visible' => true])
-            ->andWhere(['borrado' => false]);
+            ->andWhere(['borrado' => false])
+            ->orderBy('created_at DESC');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
