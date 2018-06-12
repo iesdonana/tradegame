@@ -1,151 +1,192 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="language" content="en" />
-        <link href="./assets/65e2b46c/css/bootstrap.css" rel="stylesheet">
-<link href="./assets/9e6600df/solarized_light.css" rel="stylesheet">
-<link href="./assets/31a1120b/style.css" rel="stylesheet">
-<script src="./assets/8de59952/jquery.js"></script>
-<script src="./assets/65e2b46c/js/bootstrap.js"></script>
-<script src="./assets/5b3b24db/jssearch.js"></script>    <title>Decisiones adoptadas - Decisiones adoptadas - Guía del proyecto</title>
+    <link href="./assets/65e2b46c/css/bootstrap.css" rel="stylesheet">
+    <link href="./assets/9e6600df/solarized_light.css" rel="stylesheet">
+    <link href="./assets/31a1120b/style.css" rel="stylesheet">
+    <script src="./assets/8de59952/jquery.js"></script>
+    <script src="./assets/65e2b46c/js/bootstrap.js"></script>
+    <script src="./assets/5b3b24db/jssearch.js"></script>
+    <title>Decisiones adoptadas - Decisiones adoptadas - Guía del proyecto</title>
 </head>
+
 <body>
 
-<div class="wrap">
-    <nav id="w46" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w46-collapse"><span class="sr-only">Toggle navigation</span>
+    <div class="wrap">
+        <nav id="w46" class="navbar-inverse navbar-fixed-top navbar">
+            <div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w46-collapse"><span class="sr-only">Toggle navigation</span>
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
-<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">Guía del proyecto</a></div><div id="w46-collapse" class="collapse navbar-collapse"><ul id="w47" class="navbar-nav nav"><li><a href="./api/index.html">Class reference</a></li>
-<li><a href="./README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
-  <div class="form-group">
-    <input id="searchbox" type="text" class="form-control" placeholder="Search">
-  </div>
-</div>
-</div></nav>
-    <div id="search-resultbox" style="display: none;" class="modal-content">
-        <ul id="search-results">
-        </ul>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">Guía del proyecto</a></div>
+            <div id="w46-collapse" class="collapse navbar-collapse">
+                <ul id="w47" class="navbar-nav nav">
+                    <li><a href="./api/index.html">Class reference</a></li>
+                    <li><a href="./README.html">Guide</a></li>
+                </ul>
+                <div class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input id="searchbox" type="text" class="form-control" placeholder="Search">
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div id="search-resultbox" style="display: none;" class="modal-content">
+            <ul id="search-results">
+            </ul>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-36" data-toggle="collapse" data-parent="#navigation">Descripción general <b class="caret"></b></a>
+                    <div id="navigation-36" class="submenu panel-collapse collapse"><a class="list-group-item" href="./descripcion.html#funcionalidad-principal-de-la-aplicacion">Funcionalidad principal de la aplicación</a>
+                        <a class="list-group-item" href="./descripcion.html#objetivos-generales">Objetivos generales</a>
+                        <a class="list-group-item" href="./descripcion.html#url-del-repositorio">URL del repositorio</a>
+                        <a class="list-group-item" href="./descripcion.html#url-de-la-documentacion">URL de la documentación</a></div>
+                    <a class="list-group-item" href="#navigation-37" data-toggle="collapse" data-parent="#navigation">Instrucciones de instalación y despliegue <b class="caret"></b></a>
+                    <div id="navigation-37" class="submenu panel-collapse collapse"><a class="list-group-item" href="./instalacion.html#en-local">En local</a>
+                        <a class="list-group-item" href="./instalacion.html#en-la-nube">En la nube</a></div>
+                    <a class="list-group-item" href="#navigation-38" data-toggle="collapse" data-parent="#navigation">Catálogo de requisitos <b class="caret"></b></a>
+                    <div id="navigation-38" class="submenu panel-collapse collapse"><a class="list-group-item" href="./requisitos.html#cuadro-resumen">Cuadro resumen</a></div>
+                    <a class="list-group-item" href="#navigation-39" data-toggle="collapse" data-parent="#navigation">Manual de usuario <b class="caret"></b></a>
+                    <div id="navigation-39" class="submenu panel-collapse collapse"><a class="list-group-item" href="./manual.html">Manual de usuario</a></div>
+                    <a class="list-group-item active" href="#navigation-40" data-toggle="collapse" data-parent="#navigation">Decisiones adoptadas <b class="caret"></b></a>
+                    <div id="navigation-40" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./decisiones.html">Decisiones adoptadas</a></div>
+                    <a class="list-group-item" href="#navigation-41" data-toggle="collapse" data-parent="#navigation">Dificultades encontradas <b class="caret"></b></a>
+                    <div id="navigation-41" class="submenu panel-collapse collapse"><a class="list-group-item" href="./dificultades.html">Dificultades encontradas</a></div>
+                    <a class="list-group-item" href="#navigation-42" data-toggle="collapse" data-parent="#navigation">Diagramas <b class="caret"></b></a>
+                    <div id="navigation-42" class="submenu panel-collapse collapse"><a class="list-group-item" href="./diagramas.html#diagramas-de-clases">Diagramas de clases</a>
+                        <a class="list-group-item" href="./diagramas.html#diagramas-de-estructura-logica-de-datos">Diagramas de estructura lógica de datos</a></div>
+                    <a class="list-group-item" href="#navigation-43" data-toggle="collapse" data-parent="#navigation">Glosario de términos <b class="caret"></b></a>
+                    <div id="navigation-43" class="submenu panel-collapse collapse"><a class="list-group-item" href="./glosario.html">Glosario de términos</a></div>
+                    <a class="list-group-item" href="#navigation-44" data-toggle="collapse" data-parent="#navigation">Conclusiones <b class="caret"></b></a>
+                    <div id="navigation-44" class="submenu panel-collapse collapse"><a class="list-group-item" href="./conclusiones.html">Conclusiones</a></div>
+                    <a class="list-group-item" href="#navigation-45" data-toggle="collapse" data-parent="#navigation">Anexos <b class="caret"></b></a>
+                    <div id="navigation-45" class="submenu panel-collapse collapse"><a class="list-group-item" href="./anexos.html">Anexos</a></div>
+                </div>
+            </div>
+            <div class="col-md-9 guide-content" role="main">
+                <h1>Decisiones adoptadas <span id="decisiones-adoptadas"></span><a href="#decisiones-adoptadas" class="hashlink">&para;</a></h1>
+                <h4>No implementar <a href="https://github.com/jlnarvaez/tradegame/issues/25">(R25) Solicitar nuevo videojuego</a> <span id="no-implementar-r25-solicitar-nuevo-videojuego"></span><a href="#no-implementar-r25-solicitar-nuevo-videojuego" class="hashlink">&para;</a></h4>
+                <p>He decidido no implementar esta requisito de la aplicación (marcado como opcional) debido a que no tiene mucha utilidad, y no va a ser algo que se repita muchas veces.</p>
+                <p>El objetivo del sitio web en producción es obtener una base de datos enorme, con todos los videojuegos de la historia, además de los futuros posibles videojuegos también.</p>
+                <p>Si el usuario encontrase un videojuego que no esté en la base de datos, siempre podría ponerse en contacto con los administradores a través de un mensaje.</p>
+                <h4>Implementar nuevos requisitos <span id="implementar-nuevos-requisitos"></span><a href="#implementar-nuevos-requisitos" class="hashlink">&para;</a></h4>
+                <p>Se ha optado por implementar algunos requisitos que no estaban en la propuesta del proyecto, pero que a medida que he ido desarrollando, he visto que tenían utilidad. Entre otros, se encuentran:</p>
+                <ul>
+                    <li><a href="https://github.com/jlnarvaez/tradegame/issues/98">(R67) Filtro avanzado de videojuegos</a>: Para poder hacer un filtrado rápido de los videojuegos que estamos buscando, a través de datos como son <em>Plataforma</em>, <em>Desarrollador</em>                        o <em>Género</em>, mediante AJAX.</li>
+                    <li><a href="https://github.com/jlnarvaez/tradegame/issues/76">(R65) Listado de videojuegos publicados por un usuario</a>: Indispensable para poder ver tus publicaciones, y las de un usuario concreto.</li>
+                </ul>
+                <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+            </div>
+        </div>
+
+
     </div>
 
-    
-<div class="row">
-    <div class="col-md-2">
-                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-36" data-toggle="collapse" data-parent="#navigation">Descripción general <b class="caret"></b></a><div id="navigation-36" class="submenu panel-collapse collapse"><a class="list-group-item" href="./descripcion.html#funcionalidad-principal-de-la-aplicacion">Funcionalidad principal de la aplicación</a>
-<a class="list-group-item" href="./descripcion.html#objetivos-generales">Objetivos generales</a>
-<a class="list-group-item" href="./descripcion.html#url-del-repositorio">URL del repositorio</a>
-<a class="list-group-item" href="./descripcion.html#url-de-la-documentacion">URL de la documentación</a></div>
-<a class="list-group-item" href="#navigation-37" data-toggle="collapse" data-parent="#navigation">Instrucciones de instalación y despliegue <b class="caret"></b></a><div id="navigation-37" class="submenu panel-collapse collapse"><a class="list-group-item" href="./instalacion.html#en-local">En local</a>
-<a class="list-group-item" href="./instalacion.html#en-la-nube">En la nube</a></div>
-<a class="list-group-item" href="#navigation-38" data-toggle="collapse" data-parent="#navigation">Catálogo de requisitos <b class="caret"></b></a><div id="navigation-38" class="submenu panel-collapse collapse"><a class="list-group-item" href="./requisitos.html#cuadro-resumen">Cuadro resumen</a></div>
-<a class="list-group-item" href="#navigation-39" data-toggle="collapse" data-parent="#navigation">Manual de usuario <b class="caret"></b></a><div id="navigation-39" class="submenu panel-collapse collapse"><a class="list-group-item" href="./manual.html">Manual de usuario</a></div>
-<a class="list-group-item active" href="#navigation-40" data-toggle="collapse" data-parent="#navigation">Decisiones adoptadas <b class="caret"></b></a><div id="navigation-40" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./decisiones.html">Decisiones adoptadas</a></div>
-<a class="list-group-item" href="#navigation-41" data-toggle="collapse" data-parent="#navigation">Dificultades encontradas <b class="caret"></b></a><div id="navigation-41" class="submenu panel-collapse collapse"><a class="list-group-item" href="./dificultades.html">Dificultades encontradas</a></div>
-<a class="list-group-item" href="#navigation-42" data-toggle="collapse" data-parent="#navigation">Diagramas <b class="caret"></b></a><div id="navigation-42" class="submenu panel-collapse collapse"><a class="list-group-item" href="./diagramas.html#diagramas-de-clases">Diagramas de clases</a>
-<a class="list-group-item" href="./diagramas.html#diagramas-de-estructura-logica-de-datos">Diagramas de estructura lógica de datos</a></div>
-<a class="list-group-item" href="#navigation-43" data-toggle="collapse" data-parent="#navigation">Glosario de términos <b class="caret"></b></a><div id="navigation-43" class="submenu panel-collapse collapse"><a class="list-group-item" href="./glosario.html">Glosario de términos</a></div>
-<a class="list-group-item" href="#navigation-44" data-toggle="collapse" data-parent="#navigation">Conclusiones <b class="caret"></b></a><div id="navigation-44" class="submenu panel-collapse collapse"><a class="list-group-item" href="./conclusiones.html">Conclusiones</a></div>
-<a class="list-group-item" href="#navigation-45" data-toggle="collapse" data-parent="#navigation">Anexos <b class="caret"></b></a><div id="navigation-45" class="submenu panel-collapse collapse"><a class="list-group-item" href="./anexos.html">Anexos</a></div></div>    </div>
-    <div class="col-md-9 guide-content" role="main">
-        <h1>Decisiones adoptadas <span id="decisiones-adoptadas"></span><a href="#decisiones-adoptadas" class="hashlink">&para;</a></h1><h5>No implementar <a href="https://github.com/jlnarvaez/tradegame/issues/25">(R25) Solicitar nuevo videojuego</a> <span id="no-implementar-r25-solicitar-nuevo-videojuego"></span><a href="#no-implementar-r25-solicitar-nuevo-videojuego" class="hashlink">&para;</a></h5><p>He decidido no implementar esta requisito de la aplicación (marcado como opcional) debido a que no tiene mucha utilidad, y no va a ser algo que se repita muchas veces.</p>
-<p>El objetivo del sitio web en producción es obtener una base de datos enorme, con todos los videojuegos de la historia, además de los futuros posibles videojuegos también.</p>
-<p>Si el usuario encontrase un videojuego que no esté en la base de datos, siempre podría ponerse en contacto con los administradores a través de un mensaje.</p>
-<h5>Implementar nuevos requisitos <span id="implementar-nuevos-requisitos"></span><a href="#implementar-nuevos-requisitos" class="hashlink">&para;</a></h5><p>Se ha optado por implementar algunos requisitos que no estaban en la propuesta del proyecto, pero que a medida que he ido desarrollando, he visto que tenían utilidad. Entre otros, se encuentran:</p>
-<ul>
-<li><a href="https://github.com/jlnarvaez/tradegame/issues/98">(R67) Filtro avanzado de videojuegos</a>: Para poder hacer un filtrado rápido de los videojuegos que estamos buscando, a través de datos como son <em>Plataforma</em>, <em>Desarrollador</em> o <em>Género</em>, mediante AJAX.</li>
-<li><a href="https://github.com/jlnarvaez/tradegame/issues/76">(R65) Listado de videojuegos publicados por un usuario</a>: Indispensable para poder ver tus publicaciones, y las de un usuario concreto.</li>
-</ul>
-        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
-    </div>
-</div>
+    <footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 12 Jun 2018 18:07:35 +0000</small></p>
+        Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
+    <script>
+        jQuery(function($) {
+            var shiftWindow = function() {
+                scrollBy(0, -50)
+            };
+            if (location.hash) setTimeout(shiftWindow, 1);
+            window.addEventListener("hashchange", shiftWindow);
+            var element = document.createElement("script");
+            element.src = "./jssearch.index.js";
+            document.body.appendChild(element);
 
-</div>
+            var searchBox = $('#searchbox');
 
-<footer class="footer">
-        <p class="pull-right"><small>Page generated on Mon, 11 Jun 2018 17:42:24 +0000</small></p>
-    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+            // search when typing in search field
+            searchBox.on("keyup", function(event) {
+                var query = $(this).val();
 
-<script>jQuery(function ($) {
-    var shiftWindow = function () { scrollBy(0, -50) };
-    if (location.hash) setTimeout(shiftWindow, 1);
-    window.addEventListener("hashchange", shiftWindow);
-var element = document.createElement("script");
-element.src = "./jssearch.index.js";
-document.body.appendChild(element);
+                if (query == '' || event.which == 27) {
+                    $('#search-resultbox').hide();
+                    return;
+                } else if (event.which == 13) {
+                    var selectedLink = $('#search-resultbox a.selected');
+                    if (selectedLink.length != 0) {
+                        document.location = selectedLink.attr('href');
+                        return;
+                    }
+                } else if (event.which == 38 || event.which == 40) {
+                    $('#search-resultbox').show();
 
-var searchBox = $('#searchbox');
+                    var selected = $('#search-resultbox a.selected');
+                    if (selected.length == 0) {
+                        $('#search-results').find('a').first().addClass('selected');
+                    } else {
+                        var next;
+                        if (event.which == 40) {
+                            next = selected.parent().next().find('a').first();
+                        } else {
+                            next = selected.parent().prev().find('a').first();
+                        }
+                        if (next.length != 0) {
+                            var resultbox = $('#search-results');
+                            var position = next.position();
 
-// search when typing in search field
-searchBox.on("keyup", function(event) {
-    var query = $(this).val();
+                            //              TODO scrolling is buggy and jumps around
+                            //                resultbox.scrollTop(Math.floor(position.top));
+                            //                console.log(position.top);
 
-    if (query == '' || event.which == 27) {
-        $('#search-resultbox').hide();
-        return;
-    } else if (event.which == 13) {
-        var selectedLink = $('#search-resultbox a.selected');
-        if (selectedLink.length != 0) {
-            document.location = selectedLink.attr('href');
-            return;
-        }
-    } else if (event.which == 38 || event.which == 40) {
-        $('#search-resultbox').show();
+                            selected.removeClass('selected');
+                            next.addClass('selected');
+                        }
+                    }
 
-        var selected = $('#search-resultbox a.selected');
-        if (selected.length == 0) {
-            $('#search-results').find('a').first().addClass('selected');
-        } else {
-            var next;
-            if (event.which == 40) {
-                next = selected.parent().next().find('a').first();
-            } else {
-                next = selected.parent().prev().find('a').first();
-            }
-            if (next.length != 0) {
-                var resultbox = $('#search-results');
-                var position = next.position();
+                    return;
+                }
+                $('#search-resultbox').show();
+                $('#search-results').html('<li><span class="no-results">No results</span></li>');
 
-//              TODO scrolling is buggy and jumps around
-//                resultbox.scrollTop(Math.floor(position.top));
-//                console.log(position.top);
+                var result = jssearch.search(query);
 
-                selected.removeClass('selected');
-                next.addClass('selected');
-            }
-        }
+                if (result.length > 0) {
+                    var i = 0;
+                    var resHtml = '';
 
-        return;
-    }
-    $('#search-resultbox').show();
-    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+                    for (var key in result) {
+                        if (i++ > 20) {
+                            break;
+                        }
+                        resHtml = resHtml +
+                            '<li><a href="' + result[key].file.u.substr(3) + '"><span class="title">' + result[key].file.t + '</span>' +
+                            '<span class="description">' + result[key].file.d + '</span></a></li>';
+                    }
+                    $('#search-results').html(resHtml);
+                }
+            });
 
-    var result = jssearch.search(query);
+            // hide the search results on ESC
+            $(document).on("keyup", function(event) {
+                if (event.which == 27) {
+                    $('#search-resultbox').hide();
+                }
+            });
+            // hide search results on click to document
+            $(document).bind('click', function(e) {
+                $('#search-resultbox').hide();
+            });
+            // except the following:
+            searchBox.bind('click', function(e) {
+                e.stopPropagation();
+            });
+            $('#search-resultbox').bind('click', function(e) {
+                e.stopPropagation();
+            });
 
-    if (result.length > 0) {
-        var i = 0;
-        var resHtml = '';
+        });
+    </script>
+</body>
 
-        for (var key in result) {
-            if (i++ > 20) {
-                break;
-            }
-            resHtml = resHtml +
-            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
-            '<span class="description">' + result[key].file.d + '</span></a></li>';
-        }
-        $('#search-results').html(resHtml);
-    }
-});
-
-// hide the search results on ESC
-$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
-// hide search results on click to document
-$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
-// except the following:
-searchBox.bind('click', function(e) { e.stopPropagation(); });
-$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
-
-});</script></body>
 </html>
